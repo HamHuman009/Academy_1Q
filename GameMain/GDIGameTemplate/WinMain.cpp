@@ -120,7 +120,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		else
 		{
-			// 게임 루프					
+			// 게임 루프			
+			Game::GameManager::GetInstance()->Run();
 		}
 	}
 

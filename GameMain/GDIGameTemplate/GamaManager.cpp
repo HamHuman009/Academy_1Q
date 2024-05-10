@@ -18,6 +18,8 @@ namespace Game
 	{
 		Input::InitInput();
 		High_Resolution_Time::InitTime();
+		mySound::InitFMOD();
+		mySound::LoadSounds();
 		
 	}
 
@@ -28,7 +30,7 @@ namespace Game
 		Input::UpdateMouse();
 
 		Input::ResetInput();
-
+		mySound::PlaySounds(0);
 	}
 
 	void GameManager::FixeUpdate()
@@ -55,6 +57,7 @@ namespace Game
 	{
 
 		Render::ReleaseRender();
+		mySound::ReleaseSounds();
 	}
 	void GameManager::Run()
 	{

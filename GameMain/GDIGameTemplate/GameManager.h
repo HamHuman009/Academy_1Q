@@ -3,6 +3,7 @@
 #include "InputSystem.h"
 #include "TimeSystem.h"
 #include "RenderSystem.h"
+#include "SoundManager.h"
 namespace Game
 {
 	class GameManager

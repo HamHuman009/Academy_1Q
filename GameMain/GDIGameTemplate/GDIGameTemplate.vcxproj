@@ -70,6 +70,22 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\User\Documents\GitHub\Academy_1Q\GameMain\GDIGameTemplate\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Documents\GitHub\Academy_1Q\GameMain\GDIGameTemplate\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Users\User\Documents\GitHub\Academy_1Q\GameMain\GDIGameTemplate\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Documents\GitHub\Academy_1Q\GameMain\GDIGameTemplate\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\User\Documents\GitHub\Academy_1Q\GameMain\GDIGameTemplate\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Documents\GitHub\Academy_1Q\GameMain\GDIGameTemplate\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Users\User\Documents\GitHub\Academy_1Q\GameMain\GDIGameTemplate\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Documents\GitHub\Academy_1Q\GameMain\GDIGameTemplate\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -80,6 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -96,6 +113,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -109,6 +127,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -126,6 +145,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -133,6 +153,7 @@
     <ClCompile Include="GamaManager.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TimeSystem.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -142,6 +163,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TimeSystem.h" />
     <ClInclude Include="Vector2.h" />

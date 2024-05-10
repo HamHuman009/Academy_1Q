@@ -39,6 +39,9 @@
     <ClCompile Include="TimeSystem.cpp">
       <Filter>소스 파일\System</Filter>
     </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputSystem.h">
@@ -63,6 +66,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
