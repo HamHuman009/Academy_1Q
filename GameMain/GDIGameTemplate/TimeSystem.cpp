@@ -1,32 +1,67 @@
-#include "stdafx.h"
+#include "WinMain.h"
 #include "TimeSystem.h"
 #include <cmath>
 
 namespace Time
-{
-	LARGE_INTEGER frequency;
-	LARGE_INTEGER prevCounter;
-	LARGE_INTEGER currentCounter;
-	float deltaTime;
+{	
+	
+	ULONGLONG previousTime;
+	ULONGLONG currentTime;
+	ULONGLONG deltaTime;
 
 	void InitTime()
 	{
-		QueryPerformanceFrequency(&frequency);	// 고성능 타이머가 1초 동안 증가시킬수 있는 TickCount 값
-		QueryPerformanceCounter(&prevCounter);  // 초기 TickCount 값
+		previousTime = currentTime = GetTickCount64();
 	}
 
 	void UpdateTime()
 	{
-		QueryPerformanceCounter(&currentCounter); // 현재 TickCount 값
-		deltaTime = static_cast<float>(currentCounter.QuadPart - prevCounter.QuadPart) /
-			static_cast<float>(frequency.QuadPart);  // 카운터차이를 시간 초단위로 변환
+		previousTime = currentTime;
 
-		prevCounter = currentCounter;
-	}	
+		currentTime = GetTickCount64();
 
-	float GetDeltaTime() 
-	{ 
-		return deltaTime; 
+		deltaTime = currentTime - previousTime;
 	}
 
+	const float GetFrameRate()
+	{
+		if (deltaTime == 0) return 0;
+
+		return ceil(((1000.0f / deltaTime) * 1000) / 1000);
+	}
+
+	const ULONGLONG GetDeltaTime() { return deltaTime; }
+
+}
+
+namespace High_Resolution_Time
+{
+	LARGE_INTEGER previousTime = { 0 };
+	LARGE_INTEGER currentTime = { 0 };
+	LARGE_INTEGER frequency = { 0 };
+
+	float deltaTime = 0;
+
+	void InitTime()
+	{
+		QueryPerformanceFrequency(&frequency);
+		QueryPerformanceCounter(&previousTime);
+	}
+
+	void UpdateTime()
+	{
+		previousTime = currentTime;
+		QueryPerformanceCounter(&currentTime);
+
+		deltaTime = (currentTime.QuadPart - previousTime.QuadPart) / (frequency.QuadPart / 1000); //ms
+	}
+
+	const float GetFrameRate()
+	{
+		if (deltaTime == 0) return 0;
+
+		return ceil(((1000.0f / deltaTime) * 1000) / 1000);
+	}
+
+	const float GetDeltaTime() { return deltaTime; }
 }

@@ -2,7 +2,8 @@
 
 namespace Render
 {
-	void InitRender(HWND hWindow,int witdh,int height);
+
+	void InitRender(HWND hWindow, int witdh, int height);
 
 	void BeginDraw();
 
@@ -21,7 +22,8 @@ namespace Render
 	void DrawText(int x, int y, const char* text, COLORREF color);
 
 	void DrawFont(int x, int y, const char* text, COLORREF color, int fontSize, const wchar_t* fontName, int fontStyle);
+
 	SIZE GetScreenSize();
 
-	void DrawImage(int x, int y,Gdiplus::Bitmap* bitmap,int srcX, int srcY, int srcWitdh, int srcHeight);
+	//void DrawImage(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight);
 }

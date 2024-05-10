@@ -1,0 +1,39 @@
+#pragma once
+#include "WinMain.h"
+#include "InputSystem.h"
+#include "TimeSystem.h"
+#include "RenderSystem.h"
+namespace Game
+{
+	class GameManager
+	{
+	public:
+		GameManager();
+
+		~GameManager();
+
+		void Initialize();
+
+		void Update();
+
+		void FixeUpdate();
+
+		void Render();
+
+		void Finalize();
+
+		void Run();
+
+		static GameManager* GetInstance();
+
+		static void DestroyInstance();
+
+	private:
+
+		static GameManager* instance;
+		HWND m_hWnd = nullptr;
+		int m_UpdateCount = { 0 };
+		int m_FixedUpdateCount = { 0 };
+	};
+}
+

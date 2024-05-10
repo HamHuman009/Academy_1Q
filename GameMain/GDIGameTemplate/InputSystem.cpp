@@ -1,90 +1,108 @@
-#include "stdafx.h"
+#include "WinMain.h"
 #include "InputSystem.h"
 
 namespace Input
 {
-	// 키보드 입력 관련 변수
-	#define KEYBOARD_MAX 256		// 전체 가상 키의 수  https://learn.microsoft.com/ko-kr/windows/win32/inputdev/virtual-key-codes
-	BYTE g_byKeyPrev[KEYBOARD_MAX];		// 이전 키의 정보
-	BYTE g_byKeyCurr[KEYBOARD_MAX];		// 현재 키의 정보
-	BYTE g_byKeyTurnDn[KEYBOARD_MAX];	// Down된 키의 정보
-	BYTE g_byKeyTurnUp[KEYBOARD_MAX];   // Up 된 키의 정보
+    bool isKeyDown[256];
+    bool isKeyUp[256];
+    bool isKey[256];
 
-	HWND hWnd;
-	int nWidth;
-	int nHeight;
-	
-	POINT mouseClient;
+    MouseState curMouse;
+    MouseState prevMouse;
 
-	void Update()
-	{
-		GetCursorPos(&mouseClient);
-		ScreenToClient(hWnd, &mouseClient);
-	
-		// 키보드 상태 갱신
-		bool ret = GetKeyboardState((PBYTE)&g_byKeyCurr);	// 0x80 : 눌림, 0x00 : 눌리지 않음
-		
-		for (int i = 0; i < KEYBOARD_MAX; i++)
-		{
-			g_byKeyTurnUp[i] = (g_byKeyPrev[i] ^ g_byKeyCurr[i]) & g_byKeyPrev[i];
-			g_byKeyTurnDn[i] = (g_byKeyPrev[i] ^ g_byKeyCurr[i]) & g_byKeyCurr[i];
-		}
-		memcpy(&g_byKeyPrev, &g_byKeyCurr, KEYBOARD_MAX);
-	}
 
-	void InitInput(HWND hWindow,int width,int height)
-	{
-		hWnd = hWindow;
-		nWidth = width;
-		nHeight = height;
+    void ResetInput()
+    {
+        for (int i = 0; i < 256; i++)
+        {
+            isKeyDown[i] = false;
+            isKeyUp[i] = false;
+        }
+    }
 
-		mouseClient.x = nWidth / 2;
-		mouseClient.x = nHeight / 2;
-		SetCursorPos(mouseClient.x, mouseClient.y);
-	}
+    void KeyDown(unsigned int key)
+    {
+        isKeyDown[key] = true;
+        isKey[key] = true;
+    }
 
-	void ReleaseInput()
-	{
+    void KeyUp(unsigned int key)
+    {
+        isKeyUp[key] = true;
+        isKey[key] = false;
+    }
 
-	}
+    bool IsKeyDown(unsigned int key)
+    {
+        return isKeyDown[key];
+    }
 
-	BOOL IsTurnDn(BYTE vk)
-	{
-		if (g_byKeyTurnDn[vk] & 0x80)
-			return TRUE;
+    bool IsKeyUp(unsigned int key)
+    {
+        return isKeyUp[key];
+    }
 
-		return FALSE;
-	}
+    bool IsKey(unsigned int key)
+    {
+        return isKey[key];
+    }
 
-	BOOL IsTurnUp(BYTE vk)
-	{
-		if (g_byKeyTurnUp[vk] & 0x80)
-			return TRUE;
+    void InitMouse()
+    {
+        curMouse.x = global::GetWinApp().GetWidth() / 2;
+        curMouse.y = global::GetWinApp().GetHeight() / 2;
+        curMouse.wheel = 0;
 
-		return FALSE;
+        curMouse.left = false;
+        curMouse.right = false;
+        curMouse.middle = false;
 
-	}
+        prevMouse = curMouse;
 
-	BOOL IsCurrDn(BYTE vk)
-	{
-		if (g_byKeyCurr[vk] & 0x80)
-			return TRUE;
+        SetCursorPos(curMouse.x, curMouse.y);
+    }
 
-		return FALSE;
-	}
+    void UpdateMouse()
+    {
+        prevMouse = curMouse;
 
-	BOOL IsCurrUp(BYTE vk)
-	{
-		if (g_byKeyCurr[vk] & 0x80)
-			return FALSE;
+        POINT pt;
+        GetCursorPos(&pt);
+        ScreenToClient(global::GetWinApp().GetWindow(), &pt);
 
-		return TRUE;
+        curMouse.x = pt.x;
+        curMouse.y = pt.y;
+        curMouse.wheel = 0;
 
-	}
+        curMouse.left = (GetKeyState(VK_LBUTTON) & 0x8000) != 0;
+        curMouse.right = (GetKeyState(VK_RBUTTON) & 0x8000) != 0;
+        curMouse.middle = (GetKeyState(VK_MBUTTON) & 0x8000) != 0;
+    }
 
-	POINT GetMouseClient()
-	{
-		return mouseClient;
-	}
+    const MouseState& GetMouseState()
+    {
+        return curMouse;
+    }
 
+    const MouseState& GetPrevMouseState()
+    {
+        return prevMouse;
+    }
+
+    void InitInput()
+    {
+        for (int i = 0; i < 256; i++)
+        {
+            isKeyDown[i] = false;
+            isKeyUp[i] = false;
+            isKey[i] = false;
+        }
+
+        InitMouse();
+    }
+
+    bool IsSame(const MouseState& a, const MouseState& b)
+    {
+        return a.x == b.x && a.y == b.y && a.wheel == b.wheel && a.left == b.left && a.right == b.right && a.middle == b.middle;
+    }
 }
