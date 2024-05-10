@@ -17,6 +17,7 @@ namespace Render
 	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 	ULONG_PTR gdiplusToken;
 	Gdiplus::Graphics* graphics = nullptr;
+	Gdiplus::Image image;
 	// https://learn.microsoft.com/ko-kr/windows/win32/gdiplus/-gdiplus-about-gdi--about
 
 
@@ -34,6 +35,7 @@ namespace Render
 		// GDI+ 초기화
 		Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 		graphics = Gdiplus::Graphics::FromHDC(backMemDC);
+		Gdiplus::Image image(L"image1.png");
 	}
 
 	void BeginDraw()
@@ -147,17 +149,18 @@ namespace Render
 	}
 
 	//bitmap은 GdiplusShutdown 하기전에 해제해야함
-	//void DrawImage(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight)
-	//{
-	//	if (bitmap == nullptr)
-	//		return;
+	void DrawImage(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight)
+	{
+		if (bitmap == nullptr)
+			return;
 
-	//	Gdiplus::Rect srcRect(srcX, srcY, srcWitdh, srcHeight); // 소스의 영역
-	//	Gdiplus::Rect destRect(x, y, srcRect.Width, srcRect.Height); // 화면에 그릴 영역		
-	//	// 이미지 그리기
-	//	graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel);
+		Gdiplus::Rect srcRect(srcX, srcY, srcWitdh, srcHeight); // 소스의 영역
+		Gdiplus::Rect destRect(x, y, srcRect.Width, srcRect.Height); // 화면에 그릴 영역		
+		// 이미지 그리기
+		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel);
 
 
-	//}
+	}
 
+	
 }

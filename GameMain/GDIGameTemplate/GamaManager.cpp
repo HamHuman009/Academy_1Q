@@ -6,6 +6,7 @@
 
 namespace Game
 {
+	
 
 	GameManager* GameManager::instance = nullptr;
 	GameManager::GameManager()
@@ -20,7 +21,8 @@ namespace Game
 		High_Resolution_Time::InitTime();
 		mySound::InitFMOD();
 		mySound::LoadSounds();
-		
+		startScene = new StartScene();
+		m_hWnd = global::GetWinApp().GetWindow();
 	}
 
 	void GameManager::Update()
@@ -50,8 +52,12 @@ namespace Game
 	void GameManager::Render()
 	{
 		Render::BeginDraw();
+		HDC hdc =  GetDC(m_hWnd);
+		startScene->Render(hdc);
 
 		Render::EndDraw();
+
+		
 	}
 	void GameManager::Finalize()
 	{
@@ -94,6 +100,8 @@ namespace Game
 				Update();
 
 				Render();
+
+				
 			}
 		}
 	}

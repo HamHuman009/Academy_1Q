@@ -4,6 +4,9 @@
 #include "TimeSystem.h"
 #include "RenderSystem.h"
 #include "SoundManager.h"
+#include "CScene.h"
+#include "StartScene.h"
+
 namespace Game
 {
 	class GameManager
@@ -30,8 +33,8 @@ namespace Game
 		static void DestroyInstance();
 
 	private:
-
 		static GameManager* instance;
+		CScene* startScene;
 		HWND m_hWnd = nullptr;
 		int m_UpdateCount = { 0 };
 		int m_FixedUpdateCount = { 0 };
