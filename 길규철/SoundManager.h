@@ -3,9 +3,21 @@
 #include <vector>
 #include "fmod.hpp"
 #include <conio.h>
+#include <vector>
 
+using namespace std;
+using namespace FMOD;
 
-class SoundManager
+namespace Sound
 {
-};
+	void InitFMOD();
+
+	void LoadSounds();
+
+	void PlaySounds(int index);
+
+	void ReleaseSounds();
+
+
+}
 
