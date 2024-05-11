@@ -1,3 +1,4 @@
+#include <cmath>
 #pragma once
 struct Vector2
 {

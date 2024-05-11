@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Vector2.h"
+#include "Object.h"
 
 enum class TYPE
 {
@@ -16,29 +17,29 @@ enum class TYPE
 };
 
 
-class CObject {
-private:
-	Vector2 m_Pos;
-	Vector2 m_Scale;
-public:
-	Vector2 GetPos() { return m_Pos; }
-	Vector2 GetScale() { return m_Scale; }
-
-	void SetPos(Vector2 pos) { m_Pos = pos; }
-	void SetScale(Vector2 scale) { m_Scale = scale; }
-public:
-	virtual void Update()=0;
-	virtual void Render(HDC dc)=0;
-public:
-	CObject();
-	virtual ~CObject();
-};
+//class CObject {
+//private:
+//	Vector2 m_Pos;
+//	Vector2 m_Scale;
+//public:
+//	Vector2 GetPos() { return m_Pos; }
+//	Vector2 GetScale() { return m_Scale; }
+//
+//	void SetPos(Vector2 pos) { m_Pos = pos; }
+//	void SetScale(Vector2 scale) { m_Scale = scale; }
+//public:
+//	virtual void Update()=0;
+//	virtual void Render(HDC dc)=0;
+//public:
+//	CObject();
+//	virtual ~CObject();
+//};
 
 
 class CScene
 {
 private:
-	std::vector<CObject*> m_arrObj[(UINT)TYPE::END];
+	std::vector<Object*> m_arrObj[(UINT)TYPE::END];
 	std::wstring m_strName;
 public:
 	void SetName(const std::wstring& _strName) { m_strName = _strName; }
@@ -51,7 +52,7 @@ public:
 	virtual void Exit() = 0;
 
 protected:
-	void AddObject(CObject* obj, TYPE _type) {
+	void AddObject(Object* obj, TYPE _type) {
 		m_arrObj[(UINT)_type].push_back(obj);
 	}
 
