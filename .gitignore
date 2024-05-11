@@ -20,6 +20,7 @@ obj
 *.bak
 *_ReSharper*
 *.snk
+*.tlog
 logs
 output
 TestResults
