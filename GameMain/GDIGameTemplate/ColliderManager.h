@@ -9,13 +9,12 @@ private:
 	bool CheckCollision(Collider* lhs , Collider* rhs);
 public:
 	ColliderManager();
+	~ColliderManager();
 
 	void Init();
 	void Update();
 	
-	void PushCollider();
+	void PushCollider(Collider* collider);
 	void ClearColliders();
-
-	bool IsCollide();
 };
 

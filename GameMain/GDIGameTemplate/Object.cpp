@@ -5,33 +5,15 @@
 
 #define ANIMATION_DELAY 0.05f
 
-void Object::Init(bool player)
+void Object::Init()
 {
-	m_player = player;
-	if (m_player)
-	{
-		m_posX = 300.0f;
-		m_posY = 300.0f;
-		m_color = RGB(0, 0, 255);
-	}
-	else
-	{
-		m_posX = (float)(rand()%640);
-		m_posY = (float)(rand()%480);
-		m_color = RGB(255, 0, 0);
-	}
-			
 
-	 m_isDead = false;
-	 m_moveDir.Set(0.0f,0.0f);		// 방향 벡터
-	 m_moveDirPrev.Set(0.0f,0.0f);	// 이전 방향 벡터
-	 m_inputDir.Set(0.0f,0.0f);		// 입력 벡터	
 }
 
 void Object::Update(float delta)
 {
 	// 입력 벡터를 Normalize 하여  방향 벡터로 변환
-	if (m_inputDir != Vector2(0.0f, 0.0f))
+	/*if (m_inputDir != Vector2(0.0f, 0.0f))
 	{
 		m_inputDir.Normalize();
 		m_moveDir = m_inputDir;
@@ -41,16 +23,15 @@ void Object::Update(float delta)
 		m_moveDir = Vector2(0.0f, 0.0f);
 	}	
 
-	m_posX += m_moveDir.x * m_speed * delta;
-	m_posY += m_moveDir.y * m_speed * delta;	
+	m_pos += m_moveDir * m_speed * delta;*/
 
-	if (m_moveDir.x != 0.0f)
+	/*if (m_moveDir.x != 0.0f)
 	{
 		m_AnimationFlip = m_moveDir.x < 0 ? true : false;
-	}
+	}*/
 
 	//공격 중이면 상태	변경하지 않는다.
-	if (m_status != ObjectStatus::OBJECT_STATUS_ATTACK) 
+	/*if (m_status != ObjectStatus::OBJECT_STATUS_ATTACK) 
 	{
 		if (m_moveDirPrev == Vector2(0.0f,0.0f))
 		{
@@ -62,28 +43,29 @@ void Object::Update(float delta)
 			if (m_moveDir == Vector2(0.0f, 0.0f))
 				ChangeStatus(ObjectStatus::OBJECT_STATUS_IDLE);
 		}
-	}
+	}*/
 
 
-	// 화면 밖으로 나가지 않도록 처리
-	SIZE size = Render::GetScreenSize();
-	m_posX = std::clamp(m_posX, 0.0f, (float)size.cx);	// 프로젝트 설정에서 C++17로 변경해야 사용가능
-	m_posY = std::clamp(m_posY, 0.0f, (float)size.cy);
+	// 화면 밖으로 나가지 않도록 처리. // 나갈 경우 있음.
+	//SIZE size = Render::GetScreenSize(); 
+	//m_pos = Vector2(std::clamp(m_pos.x, 0.0f, (float)size.cx), std::clamp(m_pos.y, 0.0f, (float)size.cy));
 
 	if (m_pAnimationResource && m_AnimationMotionIndex != -1)
 		UpdateAnimation(delta);
 
 	// 이전 방향 벡터 저장
-	m_moveDirPrev = m_moveDir;
+	//m_moveDirPrev = m_moveDir;
 }
 
 void Object::Render()
 {
-	if(m_isDead)
+	if(m_isActive)
 		return;
 	
-	Render::DrawRect((int)m_posX - m_colliderSize.cx / 2, (int)m_posY - m_colliderSize.cy / 2,
-		(int)m_colliderSize.cx, (int)m_colliderSize.cy, m_color);
+	/*Render::DrawRect((int)m_pos.x - (int)m_renderBounds.extents.x,
+		(int)m_pos.y - (int)m_renderBounds.extents.y,
+		(int)m_pos.x + (int)m_renderBounds.extents.x,
+		(int)m_pos.y + (int)m_renderBounds.extents.y, RGB(0, 255, 0));*/
 
 	// 애니메이션 리소스가 있고 특정 모션이 설정되어 있으면 해당 프레임을 그린다.
 	if (m_pAnimationResource && m_AnimationMotionIndex != -1)
@@ -92,8 +74,8 @@ void Object::Render()
 		Gdiplus::Bitmap* bitmap = m_AnimationFlip ? m_pAnimationResource->m_bitmapFlip : m_pAnimationResource->m_bitmap;
 		SIZE size = Render::GetScreenSize();
 		
-		int x = m_AnimationFlip ? (int)m_posX - (frame.Size.cx - frame.CenterX) : (int)m_posX - frame.CenterX;
-		int y = (int)m_posY - frame.CenterY;
+		int x = m_AnimationFlip ? (int)m_pos.x - (frame.Size.cx - frame.CenterX) : (int)m_pos.x - frame.CenterX;
+		int y = (int)m_pos.y - frame.CenterY;
 		int srcX = m_AnimationFlip ? m_pAnimationResource->m_bitmapFlip->GetWidth() - frame.Size.cx - frame.Source.left : frame.Source.left;
 		int srcY = frame.Source.top;
 	
@@ -101,21 +83,21 @@ void Object::Render()
 	}
 }
 
-bool Object::Collide(const Object& other)
-{
-	RECT rc = { (LONG)m_posX - m_colliderSize.cx / 2, (LONG)m_posY - m_colliderSize.cy / 2,
-			(LONG)m_posX + m_colliderSize.cx / 2, (LONG)m_posY + m_colliderSize.cy / 2 };
-
-	RECT rcOther = { (LONG)other.m_posX - other.m_colliderSize.cx / 2, (LONG)other.m_posY - other.m_colliderSize.cy / 2,
-				(LONG)other.m_posX + other.m_colliderSize.cx / 2, (LONG)other.m_posY + other.m_colliderSize.cy / 2 };
-	
-	RECT rcIntersect;
-	if (::IntersectRect(&rcIntersect,&rc,&rcOther))
-	{	
-		return true;
-	}	
-	return false;
-}
+//bool Object::Collide(const Object& other)
+//{
+//	RECT rc = { (LONG)m_posX - m_colliderSize.cx / 2, (LONG)m_posY - m_colliderSize.cy / 2,
+//			(LONG)m_posX + m_colliderSize.cx / 2, (LONG)m_posY + m_colliderSize.cy / 2 };
+//
+//	RECT rcOther = { (LONG)other.m_posX - other.m_colliderSize.cx / 2, (LONG)other.m_posY - other.m_colliderSize.cy / 2,
+//				(LONG)other.m_posX + other.m_colliderSize.cx / 2, (LONG)other.m_posY + other.m_colliderSize.cy / 2 };
+//	
+//	RECT rcIntersect;
+//	if (::IntersectRect(&rcIntersect,&rc,&rcOther))
+//	{	
+//		return true;
+//	}	
+//	return false;
+//}
 
 void Object::SetMotion(int index)
 {
@@ -192,6 +174,10 @@ void Object::ChangeStatus(ObjectStatus status)
 		SetMotion(ObjectStatus::OBJECT_STATUS_ATTACK);
 		break;
 	}
+}
+
+Vector2 Object::GetPosition() {
+	return m_pos;
 }
 
 
