@@ -3,7 +3,7 @@
 
 
 
-AnimationResource* g_PlayerAnim;
+//AnimationResource* g_PlayerAnim;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 bool g_Mirror = false;
@@ -11,8 +11,8 @@ bool g_Mirror = false;
 
 // 윈도우 프로시저 함수 선언
 
-void LoadResource();
-void ReleaseResource();
+//void LoadResource();
+//void ReleaseResource();
 
 namespace global
 {
@@ -99,7 +99,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}	
 
 	
-	LoadResource();
+	//LoadResource();
 
 	// 대기가 없는 메세지 루프
 	MSG msg;
@@ -122,8 +122,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 	}
 
-	ReleaseResource();
-	
+	//ReleaseResource();
+	Game::GameManager::GetInstance()->ReleaseResource();
 	Render::ReleaseRender();
 	if (bUseConsole)
 	{
@@ -147,18 +147,20 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-void LoadResource()
-{
-	g_PlayerAnim = new AnimationResource;
+//AnimationResource* g_PlayerAnim;
 
-	g_PlayerAnim->LoadAnimImage(L"../Resource/Ken.png");
-	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenIdle.txt");				 //	OBJECT_STATUS_IDLE,
-	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenMove.txt");				 //	OBJECT_STATUS_MOVE,
-	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenAttack.txt", false);		 //	OBJECT_STATUS_ATTACK
-
-}
-
-void ReleaseResource()
-{
-	delete g_PlayerAnim;
-}
+//void LoadResource()
+//{
+//	g_PlayerAnim = new AnimationResource;
+//
+//	g_PlayerAnim->LoadAnimImage(L"../Resource/Ken.png");
+//	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenIdle.txt");				 //	OBJECT_STATUS_IDLE,
+//	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenMove.txt");				 //	OBJECT_STATUS_MOVE,
+//	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenAttack.txt", false);		 //	OBJECT_STATUS_ATTACK
+//
+//}
+//
+//void ReleaseResource()
+//{
+//	delete g_PlayerAnim;
+//}

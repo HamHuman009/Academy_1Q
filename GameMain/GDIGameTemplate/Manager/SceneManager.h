@@ -25,7 +25,7 @@ public:
 
 private:
 	SceneManager() {};
-	~SceneManager() {};
+	~SceneManager();
 	CScene* m_sceneArr[(UINT)SceneType::END];
 	CScene* m_curScene;
 	SceneType curSceneType;

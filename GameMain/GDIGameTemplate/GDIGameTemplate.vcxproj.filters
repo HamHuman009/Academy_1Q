@@ -29,17 +29,20 @@
     <ClCompile Include="System\SoundSystem.cpp">
       <Filter>System\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="GameLogic\Collider.cpp">
-      <Filter>GamaLogic</Filter>
+    <ClCompile Include="GameLogic\Animation.cpp">
+      <Filter>GamaLogic\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="GameLogic\Object.cpp">
-      <Filter>GamaLogic</Filter>
+    <ClCompile Include="GameLogic\Collider.cpp">
+      <Filter>GamaLogic\cpp</Filter>
     </ClCompile>
     <ClCompile Include="GameLogic\Vector2.cpp">
-      <Filter>GamaLogic</Filter>
+      <Filter>GamaLogic\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="GameLogic\Animation.cpp">
-      <Filter>GamaLogic</Filter>
+    <ClCompile Include="GameLogic\Objects\Object.cpp">
+      <Filter>GamaLogic\Objects\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic\Objects\UIObject.cpp">
+      <Filter>GamaLogic\Objects\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,20 +76,23 @@
     <ClInclude Include="System\SoundSystem.h">
       <Filter>System\h</Filter>
     </ClInclude>
-    <ClInclude Include="GameLogic\Bounds.h">
-      <Filter>GamaLogic</Filter>
+    <ClInclude Include="GameLogic\Vector2.h">
+      <Filter>GamaLogic\h</Filter>
     </ClInclude>
     <ClInclude Include="GameLogic\Collider.h">
-      <Filter>GamaLogic</Filter>
+      <Filter>GamaLogic\h</Filter>
     </ClInclude>
-    <ClInclude Include="GameLogic\Object.h">
-      <Filter>GamaLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLogic\Vector2.h">
-      <Filter>GamaLogic</Filter>
+    <ClInclude Include="GameLogic\Bounds.h">
+      <Filter>GamaLogic\h</Filter>
     </ClInclude>
     <ClInclude Include="GameLogic\Animation.h">
-      <Filter>GamaLogic</Filter>
+      <Filter>GamaLogic\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\Objects\Object.h">
+      <Filter>GamaLogic\Objects\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\Objects\UIObject.h">
+      <Filter>GamaLogic\Objects\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -102,15 +108,6 @@
     <Filter Include="Manager\h">
       <UniqueIdentifier>{ada2947e-e91b-4c2e-b4e1-aaf8ec0f2a10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{ae2bac4b-51c6-491b-a4f0-22afb3f04eec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\cpp">
-      <UniqueIdentifier>{c9b4ad94-dcc8-4f1d-ab4d-bc089ff19667}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\h">
-      <UniqueIdentifier>{ba321b4c-00da-4e28-a0a5-405d5677567c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System">
       <UniqueIdentifier>{0e43b326-23ef-4e28-87cf-128f6475e886}</UniqueIdentifier>
     </Filter>
@@ -123,5 +120,32 @@
     <Filter Include="GamaLogic">
       <UniqueIdentifier>{9430757f-5e8c-43a9-ad40-bb8eb04170b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{ae2bac4b-51c6-491b-a4f0-22afb3f04eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\cpp">
+      <UniqueIdentifier>{c9b4ad94-dcc8-4f1d-ab4d-bc089ff19667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\h">
+      <UniqueIdentifier>{ba321b4c-00da-4e28-a0a5-405d5677567c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamaLogic\cpp">
+      <UniqueIdentifier>{65569de8-8ff6-4281-b322-9cdddec11db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamaLogic\h">
+      <UniqueIdentifier>{c617bdfd-86c3-42c5-ba0a-d20b7a4867f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamaLogic\Objects">
+      <UniqueIdentifier>{a0f81e9d-95c3-4839-9044-da2eee72f425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamaLogic\Objects\cpp">
+      <UniqueIdentifier>{17a12fe0-7c1b-42e4-9972-d7f89e48b175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamaLogic\Objects\h">
+      <UniqueIdentifier>{c454301a-2c63-49f5-b5fb-8fa275fcd5a3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="image1.png" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@
 
 #include "Manager/GameManager.h"
 
-#include "GameLogic/AnimationResource.h"
+//#include "GameLogic/Animation.h"
 
 class WinApp
 {

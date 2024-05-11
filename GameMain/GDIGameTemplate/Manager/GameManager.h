@@ -8,6 +8,8 @@
 #include "../System/SoundSystem.h"
 
 #include "../Manager/SceneManager.h"
+
+#include "../GameLogic/Animation.h"
 namespace Game
 {
 	class GameManager
@@ -28,6 +30,10 @@ namespace Game
 		void Finalize();
 
 		void Run();
+
+		void LoadResource();
+
+		void ReleaseResource();
 
 		static GameManager* GetInstance();
 

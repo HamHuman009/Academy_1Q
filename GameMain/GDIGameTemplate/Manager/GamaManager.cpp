@@ -5,7 +5,7 @@
 namespace Game
 {
 	
-
+	Gdiplus::Bitmap* hTestBitmap = nullptr; // 전역 변수
 	GameManager* GameManager::instance = nullptr;
 	mySound::SoundManager* SMInstance = mySound::SoundManager::GetInstance();
 	GameManager::GameManager()
@@ -23,6 +23,7 @@ namespace Game
 		m_hWnd = global::GetWinApp().GetWindow();
 		m_hdc = GetDC(m_hWnd);
 		m_curScene = m_sceneManager->GetCurScene();
+		LoadResource();
 	}
 
 	void GameManager::Update()
@@ -30,7 +31,7 @@ namespace Game
 		++m_UpdateCount;
 
 		Input::UpdateMouse();
-		
+		m_curScene->Update();
 		Input::ResetInput();
 
 		
@@ -46,6 +47,8 @@ namespace Game
 		{
 			++m_FixedUpdateCount;
 			
+			m_curScene->FixedUpdate();
+
 			elapsedTime -= 20;
 		}
 	}
@@ -54,7 +57,7 @@ namespace Game
 	{
 		Render::BeginDraw();
 		
-		m_curScene->Render(m_hdc);
+		m_curScene->Render();
 
 		Render::EndDraw();
 
@@ -125,9 +128,30 @@ namespace Game
 	}
 
 
-	HBITMAP hTestBitmap = nullptr; // 전역 변수
-
 	
+	//AnimationResource* g_PlayerAnim = nullptr;
+	//void LoadResource()
+	//{
+	//	g_PlayerAnim = new AnimationResource;
 
+	//	g_PlayerAnim->LoadAnimImage(L"../Resource/Ken.png");
+	//	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenIdle.txt");				 //	OBJECT_STATUS_IDLE,
+	//	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenMove.txt");				 //	OBJECT_STATUS_MOVE,
+	//	g_PlayerAnim->LoadAnimMotion(L"../Resource/KenAttack.txt", false);		 //	OBJECT_STATUS_ATTACK
+
+	//}
+
+	//void ReleaseResource()
+	//{
+	//	delete g_PlayerAnim;
+	//}
+
+	void GameManager::LoadResource() {
+		//hTestBitmap = Gdiplus::Bitmap::FromFile(L"image1.png");
+	}
+
+	void GameManager::ReleaseResource() {
+		//delete hTestBitmap;
+	}
 	
 }

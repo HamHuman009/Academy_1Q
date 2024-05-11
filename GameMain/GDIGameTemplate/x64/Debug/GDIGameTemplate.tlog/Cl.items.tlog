@@ -1,6 +1,7 @@
 E:\Academy_1Q\GameMain\GDIGameTemplate\GameLogic\Animation.cpp;E:\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Animation.obj
 E:\Academy_1Q\GameMain\GDIGameTemplate\GameLogic\Collider.cpp;E:\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Collider.obj
-E:\Academy_1Q\GameMain\GDIGameTemplate\GameLogic\Object.cpp;E:\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Object.obj
+E:\Academy_1Q\GameMain\GDIGameTemplate\GameLogic\Objects\Object.cpp;E:\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Object.obj
+E:\Academy_1Q\GameMain\GDIGameTemplate\GameLogic\Objects\UIObject.cpp;E:\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\UIObject.obj
 E:\Academy_1Q\GameMain\GDIGameTemplate\GameLogic\Vector2.cpp;E:\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Vector2.obj
 E:\Academy_1Q\GameMain\GDIGameTemplate\Manager\ColliderManager.cpp;E:\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\ColliderManager.obj
 E:\Academy_1Q\GameMain\GDIGameTemplate\Manager\GamaManager.cpp;E:\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\GamaManager.obj

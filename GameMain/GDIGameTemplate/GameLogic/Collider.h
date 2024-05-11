@@ -2,7 +2,7 @@
 #include "../stdafx.h"
 #include "Vector2.h"
 #include "Bounds.h"
-#include "Object.h"
+#include "./Objects/Object.h"
 class Collider {
 private:
     Object* parent;
