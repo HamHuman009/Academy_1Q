@@ -9,6 +9,7 @@ namespace Game
 	
 
 	GameManager* GameManager::instance = nullptr;
+	mySound::SoundManager* SMInstance = mySound::SoundManager::GetInstance();
 	GameManager::GameManager()
 	{
 	}
@@ -19,8 +20,7 @@ namespace Game
 	{
 		Input::InitInput();
 		High_Resolution_Time::InitTime();
-		mySound::InitFMOD();
-		mySound::LoadSounds();
+		SMInstance->LoadSounds(mySound::SoundList::Drum, false, "drumloop.wav");
 		startScene = new StartScene();
 		m_hWnd = global::GetWinApp().GetWindow();
 	}
@@ -32,7 +32,8 @@ namespace Game
 		Input::UpdateMouse();
 
 		Input::ResetInput();
-		mySound::PlaySounds(0);
+
+		
 	}
 
 	void GameManager::FixeUpdate()
@@ -44,7 +45,7 @@ namespace Game
 		while (elapsedTime >= 20) //0.02ÃÊ
 		{
 			++m_FixedUpdateCount;
-
+			SMInstance->PlaySounds(mySound::SoundList::Drum, mySound::SoundChannel::BGM);
 			elapsedTime -= 20;
 		}
 	}
@@ -63,7 +64,7 @@ namespace Game
 	{
 
 		Render::ReleaseRender();
-		mySound::ReleaseSounds();
+		SMInstance->DestroyInstance();
 	}
 	void GameManager::Run()
 	{

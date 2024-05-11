@@ -4,20 +4,57 @@
 #include "./inc/fmod.hpp"
 #include <conio.h>
 #include <vector>
+#pragma comment (lib, "fmod_vc.lib")
 
 using namespace std;
 using namespace FMOD;
 
 namespace mySound
 {
-	void InitFMOD();
+	enum class SoundChannel
+	{
+		/* 예시 */
+		BGM,
+		Effect,
+		Size
+	};
 
-	void LoadSounds();
+	enum class SoundList
+	{
+		/* 추가 */
+		Drum,
+		Size,
+	};
 
-	void PlaySounds(int index);
+	class SoundManager;
+	extern SoundManager* soundManager;
 
-	void ReleaseSounds();
+	class SoundManager final
+	{
+	public:
+		static SoundManager* GetInstance();
 
+		static void DestroyInstance();
 
+		void LoadSounds(SoundList list, bool loopCheck, const char* music);
+
+		void PlaySounds(SoundList list, SoundChannel channel);
+
+		void StopSounds(SoundChannel channel);
+
+		void SetVolume(float volume);
+	private:
+		SoundManager();
+
+		~SoundManager();
+	private:
+		static SoundManager* mInstance;
+
+		FMOD::System* mSystem;
+		FMOD::Channel* mChannel[static_cast<int>(SoundChannel::Size)];
+		FMOD::Sound* mSoundList[static_cast<int>(SoundList::Size)];
+		float mVolume;
+
+	};
 }
 
