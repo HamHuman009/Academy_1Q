@@ -15,18 +15,22 @@ bool CircleCollider::isColliding(const Collider& other) const {
     }
     // 원과 사각형 충돌
     else if (const RectangleCollider* r = dynamic_cast<const RectangleCollider*>(&other)) {
-        if (GetPosition().x >= r->GetPosition().x - r->bounds.extents.x &&
-            GetPosition().x <= r->GetPosition().x + r->bounds.extents.x &&
-            GetPosition().y >= r->GetPosition().y - r->bounds.extents.y &&
-            GetPosition().y <= r->GetPosition().y + r->bounds.extents.y) {
+        auto circleX = GetPosition().x;
+        auto circleY = GetPosition().y;
+        auto rectX = r->GetPosition().x;
+        auto rectY = r->GetPosition().y;
+        if (circleX >= rectX - r->bounds.extents.x &&
+            circleX <= rectX + r->bounds.extents.x &&
+            circleY >= rectY - r->bounds.extents.y &&
+            circleY <= rectY + r->bounds.extents.y) {
             return true;
         }
 
         // 원의 중심이 사각형의 가장자리에 있는지 확인
-        float dx = GetPosition().x - std::max(r->GetPosition().x - r->bounds.extents.x,
-            std::min(GetPosition().x, r->GetPosition().x + r->bounds.extents.x));
-        float dy = GetPosition().y - std::max(r->GetPosition().y - r->bounds.extents.y,
-            std::min(GetPosition().y, r->GetPosition().y + r->bounds.extents.y));
+        float dx = circleX - std::max(rectX - r->bounds.extents.x,
+            std::min(circleX, rectX + r->bounds.extents.x));
+        float dy = circleY - std::max(rectY - r->bounds.extents.y,
+            std::min(circleY, rectY + r->bounds.extents.y));
         return (dx * dx + dy * dy) <= (radius * radius);
     }
     return false;
@@ -39,18 +43,22 @@ Vector2 RectangleCollider::GetPosition() const {
 bool RectangleCollider::isColliding(const Collider& other) const {
     // 사각형과 원 충돌
     if (const CircleCollider* c = dynamic_cast<const CircleCollider*>(&other)) {
-        if (c->GetPosition().x >= GetPosition().x - bounds.extents.x && 
-            c->GetPosition().x <= GetPosition().x + bounds.extents.x &&
-            c->GetPosition().y >= GetPosition().y - bounds.extents.y && 
-            c->GetPosition().y <= GetPosition().y + bounds.extents.y) {
+        auto circleX = c->GetPosition().x;
+        auto circleY = c->GetPosition().y;
+        auto rectX = GetPosition().x;
+        auto rectY = GetPosition().y;
+        if (circleX >= rectX - bounds.extents.x && 
+            circleX <= rectX + bounds.extents.x &&
+            circleY >= rectY - bounds.extents.y &&
+            circleY <= rectY + bounds.extents.y) {
             return true;
         }
 
         // 원의 중심이 사각형의 가장자리에 있는지 확인
-        float dx = c->GetPosition().x - std::max(GetPosition().x - bounds.extents.x,
-            std::min(c->GetPosition().x, GetPosition().x + bounds.extents.x));
-        float dy = c->GetPosition().y - std::max(GetPosition().y - bounds.extents.y,
-            std::min(c->GetPosition().y, GetPosition().y + bounds.extents.y));
+        float dx = circleX - std::max(rectX - bounds.extents.x,
+            std::min(circleX, rectX + bounds.extents.x));
+        float dy = circleY - std::max(rectY - bounds.extents.y,
+            std::min(circleY, rectY + bounds.extents.y));
         return (dx * dx + dy * dy) <= (c->radius * c->radius);
     }
     // 사각형과 사각형 충돌

@@ -1,10 +1,19 @@
 #include "ColliderManager.h"
 
 bool ColliderManager::CheckCollision(Collider* lhs, Collider* rhs) {
-	if (lhs->isColliding(*rhs)) {
-		lhs->parent->OnTrigger();
-		rhs->parent->OnTrigger();
-		return true;
+	if (const CircleCollider* c = dynamic_cast<const CircleCollider*>(lhs)) {
+		if(c->isColliding(*rhs)) {
+			lhs->parent->OnTrigger();
+			rhs->parent->OnTrigger();
+			return true;
+		}
+	}
+	else if(const RectangleCollider* r = dynamic_cast<const RectangleCollider*>(lhs)){
+		if (r->isColliding(*rhs)) {
+			lhs->parent->OnTrigger();
+			rhs->parent->OnTrigger();
+			return true;
+		}
 	}
 	return false;
 }

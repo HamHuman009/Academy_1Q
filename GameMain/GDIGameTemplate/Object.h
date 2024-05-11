@@ -1,7 +1,8 @@
 #pragma once
 #include "Vector2.h"
 #include "Bounds.h"
-//#include "Collider.h"
+
+// Object.h는 크게 몬스터, 물고기 건지는 뜰체(플레이어), UI로 구분지을 예정 
 
 class Collider;
 
@@ -39,18 +40,44 @@ struct Object
 	float m_AnimationAccTime = 0.0f;
 	bool m_AnimationFlip = false;
 
-	void Init();
-	void Update(float delta);
-	void Render();
-	void SetMotion(int index);
-	void UpdateAnimation(float delta);	
-	void ChangeStatus(ObjectStatus status);
+	virtual void Init();
+	virtual void Update(float delta);
+	virtual void Render();
+	virtual void SetMotion(int index);
+	virtual void UpdateAnimation(float delta);	
+	virtual void ChangeStatus(ObjectStatus status);
 
 	Vector2 GetPosition();
-	virtual void OnTrigger() = 0;;
+	virtual void OnTrigger() = 0;
 
 	friend class Collider;
 	friend class CircleCollider;
 	friend class RectangleCollider;
 };
 
+struct UIObject : public Object{
+	void Init() override;
+	void Update(float delta) override;
+	void Render()override;
+	void SetMotion(int index)override;
+	void UpdateAnimation(float delta)override;
+	void ChangeStatus(ObjectStatus status)override;
+};
+
+struct Enemy : public Object {
+	void Init()override;
+	void Update(float delta)override;
+	void Render()override;
+	void SetMotion(int index)override;
+	void UpdateAnimation(float delta)override;
+	void ChangeStatus(ObjectStatus status)override;
+};
+
+struct Player : public Object {
+	void Init()override;
+	void Update(float delta)override;
+	void Render()override;
+	void SetMotion(int index)override;
+	void UpdateAnimation(float delta)override;
+	void ChangeStatus(ObjectStatus status)override;
+};
