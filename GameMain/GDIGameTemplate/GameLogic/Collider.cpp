@@ -1,6 +1,5 @@
 #include "Collider.h"
-#include <algorithm>
-#include <cmath> 
+
 
 Vector2 CircleCollider::GetPosition() const {
     return parent->GetPosition() + point;

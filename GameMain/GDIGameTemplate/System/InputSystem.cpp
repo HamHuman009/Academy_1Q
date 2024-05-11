@@ -1,4 +1,3 @@
-#include "WinMain.h"
 #include "InputSystem.h"
 
 namespace Input

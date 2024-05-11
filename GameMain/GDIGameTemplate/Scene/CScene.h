@@ -1,9 +1,7 @@
 #pragma once
-#include <Windows.h>
-#include <string>
-#include <vector>
-#include "Vector2.h"
-#include "Object.h"
+#include "../stdafx.h"
+#include "../GameLogic/Vector2.h"
+#include "../GameLogic/Object.h"
 
 enum class TYPE
 {

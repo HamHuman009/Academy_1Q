@@ -6,3 +6,9 @@
 #include <stdio.h>	
 #include <ConsoleApi.h>
 #include <algorithm>
+#include <string>
+#include <vector>
+#include <conio.h>
+#include <cmath>
+#include <fstream>
+#include <sstream>

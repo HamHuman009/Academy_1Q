@@ -1,5 +1,6 @@
 #pragma once
-
+#include "../WinMain.h"
+#include "../stdafx.h"
 namespace Time
 {
 	void InitTime();

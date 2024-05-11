@@ -1,10 +1,8 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include "./inc/fmod.hpp"
-#include <conio.h>
-#include <vector>
-#pragma comment (lib, "fmod_vc.lib")
+
+#include "../stdafx.h"
+#include "../inc/fmod.hpp"
+#pragma comment (lib, "../fmod_vc.lib")
 
 using namespace std;
 using namespace FMOD;

@@ -1,4 +1,4 @@
-#include "SoundManager.h"
+#include "SoundSystem.h"
 
 namespace mySound
 {
@@ -11,8 +11,9 @@ namespace mySound
 		if (mInstance == nullptr)
 		{
 			mInstance = new SoundManager();
-			return mInstance;
+			
 		}
+		return mInstance;
 	}
 
 	void SoundManager::DestroyInstance()

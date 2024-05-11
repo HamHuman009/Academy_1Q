@@ -1,6 +1,6 @@
 #pragma once
-#include "CScene.h"
-#include "StartScene.h"
+#include "../Scene/CScene.h"
+#include "../Scene/StartScene.h"
 enum class SceneType
 {
 	NONE,

@@ -1,12 +1,13 @@
 #pragma once
-#include "WinMain.h"
-#include "InputSystem.h"
-#include "TimeSystem.h"
-#include "RenderSystem.h"
-#include "SoundManager.h"
-#include "CScene.h"
-#include "StartScene.h"
-#include "SceneManager.h"
+#include "../WinMain.h"
+#include "../stdafx.h"
+
+#include "../System/InputSystem.h"
+#include "../System/TimeSystem.h"
+#include "../System/RenderSystem.h"
+#include "../System/SoundSystem.h"
+
+#include "../Manager/SceneManager.h"
 namespace Game
 {
 	class GameManager

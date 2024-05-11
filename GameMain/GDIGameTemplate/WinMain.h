@@ -5,6 +5,15 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
+#include "stdafx.h"
+
+#include "System/InputSystem.h"
+#include "System/RenderSystem.h"
+#include "System/TimeSystem.h"
+
+#include "Manager/GameManager.h"
+
+#include "GameLogic/AnimationResource.h"
 
 class WinApp
 {

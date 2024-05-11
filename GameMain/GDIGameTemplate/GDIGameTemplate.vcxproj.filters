@@ -1,133 +1,133 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="소스 파일\System">
-      <UniqueIdentifier>{b91bb028-87e1-4976-8390-acaaa0cd1b15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\System">
-      <UniqueIdentifier>{ba45673e-60bf-4654-8460-6bfadb83b49e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Game">
-      <UniqueIdentifier>{5234de15-c144-48ba-91af-efd92b4a3f67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game">
-      <UniqueIdentifier>{75b26d5c-3b29-4e45-b357-091a08109045}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="InputSystem.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp">
+      <Filter>Manager\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="RenderSystem.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="Scene\CScene.cpp">
+      <Filter>Scene\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="TimeSystem.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="Scene\StartScene.cpp">
+      <Filter>Scene\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="Manager\ColliderManager.cpp">
+      <Filter>Manager\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="WinMain.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="Manager\GamaManager.cpp">
+      <Filter>Manager\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="System\InputSystem.cpp">
+      <Filter>System\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationResource.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="System\RenderSystem.cpp">
+      <Filter>System\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="GamaManager.cpp">
-      <Filter>소스 파일\Game</Filter>
+    <ClCompile Include="System\TimeSystem.cpp">
+      <Filter>System\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="CScene.cpp">
-      <Filter>소스 파일\Game</Filter>
+    <ClCompile Include="System\SoundSystem.cpp">
+      <Filter>System\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="StartScene.cpp">
-      <Filter>소스 파일\Game</Filter>
+    <ClCompile Include="GameLogic\Animation.cpp">
+      <Filter>GamaLogic</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>소스 파일\Game</Filter>
+    <ClCompile Include="GameLogic\AnimationResource.cpp">
+      <Filter>GamaLogic</Filter>
     </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="GameLogic\Collider.cpp">
+      <Filter>GamaLogic</Filter>
     </ClCompile>
-    <ClCompile Include="ColliderManager.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="GameLogic\Object.cpp">
+      <Filter>GamaLogic</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>소스 파일\System</Filter>
+    <ClCompile Include="GameLogic\Vector2.cpp">
+      <Filter>GamaLogic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationResource.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="WinMain.h" />
+    <ClInclude Include="Manager\SceneManager.h">
+      <Filter>Manager\h</Filter>
     </ClInclude>
-    <ClInclude Include="InputSystem.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="Scene\StartScene.h">
+      <Filter>Scene\h</Filter>
     </ClInclude>
-    <ClInclude Include="RenderSystem.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="Scene\CScene.h">
+      <Filter>Scene\h</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="Manager\GameManager.h">
+      <Filter>Manager\h</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="Manager\ColliderManager.h">
+      <Filter>Manager\h</Filter>
     </ClInclude>
-    <ClInclude Include="TimeSystem.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="System\InputSystem.h">
+      <Filter>System\h</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="System\RenderSystem.h">
+      <Filter>System\h</Filter>
     </ClInclude>
-    <ClInclude Include="WinMain.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="System\TimeSystem.h">
+      <Filter>System\h</Filter>
     </ClInclude>
-    <ClInclude Include="CScene.h">
-      <Filter>헤더 파일\Game</Filter>
+    <ClInclude Include="System\SoundSystem.h">
+      <Filter>System\h</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>헤더 파일\Game</Filter>
+    <ClInclude Include="GameLogic\Animation.h">
+      <Filter>GamaLogic</Filter>
     </ClInclude>
-    <ClInclude Include="StartScene.h">
-      <Filter>헤더 파일\Game</Filter>
+    <ClInclude Include="GameLogic\AnimationResource.h">
+      <Filter>GamaLogic</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>헤더 파일\Game</Filter>
+    <ClInclude Include="GameLogic\Bounds.h">
+      <Filter>GamaLogic</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
-    <ClInclude Include="resource.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="GameLogic\Collider.h">
+      <Filter>GamaLogic</Filter>
     </ClInclude>
-    <ClInclude Include="ColliderManager.h">
-      <Filter>헤더 파일\System</Filter>
+    <ClInclude Include="GameLogic\Object.h">
+      <Filter>GamaLogic</Filter>
     </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>헤더 파일\System</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>헤더 파일\System</Filter>
-=======
-    <ClInclude Include="Bounds.h">
-      <Filter>헤더 파일</Filter>
->>>>>>> Stashed changes
+    <ClInclude Include="GameLogic\Vector2.h">
+      <Filter>GamaLogic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="GDIGameTemplate.rc">
-      <Filter>리소스 파일</Filter>
-    </ResourceCompile>
+    <ResourceCompile Include="GDIGameTemplate.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{4d3a78dd-20c9-4f0e-8bfc-4e6d7dbd14ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\cpp">
+      <UniqueIdentifier>{806749ea-b402-4a05-8b6c-c1b40411beef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\h">
+      <UniqueIdentifier>{ada2947e-e91b-4c2e-b4e1-aaf8ec0f2a10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{ae2bac4b-51c6-491b-a4f0-22afb3f04eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\cpp">
+      <UniqueIdentifier>{c9b4ad94-dcc8-4f1d-ab4d-bc089ff19667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\h">
+      <UniqueIdentifier>{ba321b4c-00da-4e28-a0a5-405d5677567c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{0e43b326-23ef-4e28-87cf-128f6475e886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\cpp">
+      <UniqueIdentifier>{d3936fb0-035a-42b3-ac7a-904c09c4d70b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\h">
+      <UniqueIdentifier>{544a9710-58ca-4858-9d39-b2d6dca790d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamaLogic">
+      <UniqueIdentifier>{9430757f-5e8c-43a9-ad40-bb8eb04170b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

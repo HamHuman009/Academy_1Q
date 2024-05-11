@@ -1,6 +1,6 @@
-#include "WinMain.h"
+
 #include "TimeSystem.h"
-#include <cmath>
+
 
 namespace Time
 {	

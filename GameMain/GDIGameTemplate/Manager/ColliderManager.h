@@ -1,6 +1,6 @@
-#include <vector>
-#include "Collider.h"
 #pragma once
+#include "../stdafx.h"
+#include "../GameLogic/Collider.h"
 class ColliderManager
 {
 private:

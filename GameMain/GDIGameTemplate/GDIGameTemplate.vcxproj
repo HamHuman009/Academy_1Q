@@ -149,38 +149,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationResource.cpp" />
-    <ClCompile Include="Collider.cpp" />
-    <ClCompile Include="ColliderManager.cpp" />
-    <ClCompile Include="CScene.cpp" />
-    <ClCompile Include="GamaManager.cpp" />
-    <ClCompile Include="InputSystem.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="RenderSystem.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="StartScene.cpp" />
-    <ClCompile Include="TimeSystem.cpp" />
-    <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="GameLogic\Animation.cpp" />
+    <ClCompile Include="GameLogic\AnimationResource.cpp" />
+    <ClCompile Include="GameLogic\Collider.cpp" />
+    <ClCompile Include="GameLogic\Object.cpp" />
+    <ClCompile Include="GameLogic\Vector2.cpp" />
+    <ClCompile Include="Manager\ColliderManager.cpp" />
+    <ClCompile Include="Manager\GamaManager.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Scene\CScene.cpp" />
+    <ClCompile Include="Scene\StartScene.cpp" />
+    <ClCompile Include="System\InputSystem.cpp" />
+    <ClCompile Include="System\RenderSystem.cpp" />
+    <ClCompile Include="System\SoundSystem.cpp" />
+    <ClCompile Include="System\TimeSystem.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationResource.h" />
-    <ClInclude Include="Bounds.h" />
-    <ClInclude Include="Collider.h" />
-    <ClInclude Include="ColliderManager.h" />
-    <ClInclude Include="CScene.h" />
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="InputSystem.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="GameLogic\Animation.h" />
+    <ClInclude Include="GameLogic\AnimationResource.h" />
+    <ClInclude Include="GameLogic\Bounds.h" />
+    <ClInclude Include="GameLogic\Collider.h" />
+    <ClInclude Include="GameLogic\Object.h" />
+    <ClInclude Include="GameLogic\Vector2.h" />
+    <ClInclude Include="Manager\ColliderManager.h" />
+    <ClInclude Include="Manager\GameManager.h" />
+    <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="StartScene.h" />
+    <ClInclude Include="Scene\CScene.h" />
+    <ClInclude Include="Scene\StartScene.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TimeSystem.h" />
-    <ClInclude Include="Vector2.h" />
+    <ClInclude Include="System\InputSystem.h" />
+    <ClInclude Include="System\RenderSystem.h" />
+    <ClInclude Include="System\SoundSystem.h" />
+    <ClInclude Include="System\TimeSystem.h" />
     <ClInclude Include="WinMain.h" />
   </ItemGroup>
   <ItemGroup>

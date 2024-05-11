@@ -1,11 +1,8 @@
-#include "stdafx.h"
-#include "InputSystem.h"
-#include "RenderSystem.h"
-#include "TimeSystem.h"
-
-#include "AnimationResource.h"
 #include "WinMain.h"
-#include "GameManager.h"
+
+
+
+
 AnimationResource* g_PlayerAnim;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);

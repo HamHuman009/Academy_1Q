@@ -1,5 +1,5 @@
 #pragma once
-
+#include "../WinMain.h"
 namespace Input
 {
     void InitInput();

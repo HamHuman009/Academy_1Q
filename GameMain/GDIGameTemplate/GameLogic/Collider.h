@@ -1,3 +1,5 @@
+#include "../stdafx.h"
+
 #include "Vector2.h"
 #include "Bounds.h"
 #include "Object.h"
