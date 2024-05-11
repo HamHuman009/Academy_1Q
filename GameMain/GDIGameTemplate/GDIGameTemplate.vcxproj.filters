@@ -29,12 +29,6 @@
     <ClCompile Include="System\SoundSystem.cpp">
       <Filter>System\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="GameLogic\Animation.cpp">
-      <Filter>GamaLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="GameLogic\AnimationResource.cpp">
-      <Filter>GamaLogic</Filter>
-    </ClCompile>
     <ClCompile Include="GameLogic\Collider.cpp">
       <Filter>GamaLogic</Filter>
     </ClCompile>
@@ -42,6 +36,9 @@
       <Filter>GamaLogic</Filter>
     </ClCompile>
     <ClCompile Include="GameLogic\Vector2.cpp">
+      <Filter>GamaLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic\Animation.cpp">
       <Filter>GamaLogic</Filter>
     </ClCompile>
   </ItemGroup>
@@ -76,12 +73,6 @@
     <ClInclude Include="System\SoundSystem.h">
       <Filter>System\h</Filter>
     </ClInclude>
-    <ClInclude Include="GameLogic\Animation.h">
-      <Filter>GamaLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLogic\AnimationResource.h">
-      <Filter>GamaLogic</Filter>
-    </ClInclude>
     <ClInclude Include="GameLogic\Bounds.h">
       <Filter>GamaLogic</Filter>
     </ClInclude>
@@ -92,6 +83,9 @@
       <Filter>GamaLogic</Filter>
     </ClInclude>
     <ClInclude Include="GameLogic\Vector2.h">
+      <Filter>GamaLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\Animation.h">
       <Filter>GamaLogic</Filter>
     </ClInclude>
   </ItemGroup>

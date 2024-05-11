@@ -2,7 +2,7 @@
 
 #include "../stdafx.h"
 #include "../inc/fmod.hpp"
-#pragma comment (lib, "../fmod_vc.lib")
+#pragma comment (lib, "fmod_vc.lib")
 
 using namespace std;
 using namespace FMOD;

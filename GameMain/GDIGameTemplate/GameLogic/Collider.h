@@ -1,10 +1,8 @@
+#pragma once
 #include "../stdafx.h"
-
 #include "Vector2.h"
 #include "Bounds.h"
 #include "Object.h"
-#pragma once
-
 class Collider {
 private:
     Object* parent;

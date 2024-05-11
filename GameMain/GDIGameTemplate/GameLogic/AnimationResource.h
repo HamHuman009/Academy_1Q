@@ -1,5 +1,8 @@
 #pragma once
 #include "../stdafx.h"
+
+
+#pragma comment (lib,"Gdiplus.lib")
 // 동작의 하나의 프레임 정보
 struct Frame
 {

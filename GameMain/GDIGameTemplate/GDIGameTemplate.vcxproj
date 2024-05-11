@@ -150,7 +150,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameLogic\Animation.cpp" />
-    <ClCompile Include="GameLogic\AnimationResource.cpp" />
     <ClCompile Include="GameLogic\Collider.cpp" />
     <ClCompile Include="GameLogic\Object.cpp" />
     <ClCompile Include="GameLogic\Vector2.cpp" />
@@ -167,7 +166,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLogic\Animation.h" />
-    <ClInclude Include="GameLogic\AnimationResource.h" />
     <ClInclude Include="GameLogic\Bounds.h" />
     <ClInclude Include="GameLogic\Collider.h" />
     <ClInclude Include="GameLogic\Object.h" />
