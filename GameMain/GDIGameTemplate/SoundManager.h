@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "fmod.hpp"
+#include "./inc/fmod.hpp"
 #include <conio.h>
 #include <vector>
 

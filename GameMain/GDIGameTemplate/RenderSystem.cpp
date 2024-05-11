@@ -17,7 +17,7 @@ namespace Render
 	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 	ULONG_PTR gdiplusToken;
 	Gdiplus::Graphics* graphics = nullptr;
-	Gdiplus::Image image;
+	//Gdiplus::Image image;
 	// https://learn.microsoft.com/ko-kr/windows/win32/gdiplus/-gdiplus-about-gdi--about
 
 
@@ -35,7 +35,7 @@ namespace Render
 		// GDI+ √ ±‚»≠
 		Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 		graphics = Gdiplus::Graphics::FromHDC(backMemDC);
-		Gdiplus::Image image(L"image1.png");
+		//Gdiplus::Image image(L"image1.png");
 	}
 
 	void BeginDraw()

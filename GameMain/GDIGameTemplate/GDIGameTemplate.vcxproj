@@ -177,9 +177,6 @@
   <ItemGroup>
     <ResourceCompile Include="GDIGameTemplate.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Resource\image1.png" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
