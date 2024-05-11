@@ -9,12 +9,12 @@ build.txt
 *.scc
 *\_ReSharper*
 *\[Bb]in
-*\obj
+
 *\_ReSharper.*
 bin
-obj
+
 *\bin*
-*\obj*
+*.obj
 *.resharperoptions
 *.db
 *.bak
