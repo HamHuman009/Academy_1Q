@@ -58,7 +58,7 @@ protected:
 
 public:
 	CScene() {};
-	~CScene() {};
+	virtual ~CScene() {};
 };
 
 // void CScene::Update() {

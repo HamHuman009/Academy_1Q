@@ -6,7 +6,7 @@
 #include "SoundManager.h"
 #include "CScene.h"
 #include "StartScene.h"
-
+#include "SceneManager.h"
 namespace Game
 {
 	class GameManager
@@ -34,8 +34,10 @@ namespace Game
 
 	private:
 		static GameManager* instance;
-		CScene* startScene;
+		SceneManager* m_sceneManager;
+		CScene* m_curScene;
 		HWND m_hWnd = nullptr;
+		HDC m_hdc = nullptr;
 		int m_UpdateCount = { 0 };
 		int m_FixedUpdateCount = { 0 };
 	};
