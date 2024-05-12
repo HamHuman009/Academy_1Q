@@ -50,9 +50,11 @@
     <ClCompile Include="Manager\CResourceManager.cpp">
       <Filter>Manager\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="GameLogic\Objects\Fish.cpp" />
     <ClCompile Include="Scene\Stage01.cpp">
       <Filter>Scene\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic\Objects\Fish.cpp">
+      <Filter>GamaLogic\Objects\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +112,11 @@
     <ClInclude Include="Manager\CResourceManager.h">
       <Filter>Manager\h</Filter>
     </ClInclude>
-    <ClInclude Include="GameLogic\Objects\Fish.h" />
     <ClInclude Include="Scene\Stage01.h">
       <Filter>Scene\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\Objects\Fish.h">
+      <Filter>GamaLogic\Objects\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
