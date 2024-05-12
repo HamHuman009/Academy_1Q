@@ -6,6 +6,7 @@
 #include "../Animation.h"
 #include "../Bounds.h"
 #include "../Vector2.h"
+#include "../Collider.h"
 #include "../../Manager/CResourceManager.h"
 
 

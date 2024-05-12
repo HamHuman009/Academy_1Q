@@ -15,7 +15,7 @@ void UIObject::OnTrigger()
 }
 
 void UIBackGround::Init() {
-	//m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
+	m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
 }
 
 void UIBackGround::Render() {
@@ -26,15 +26,19 @@ void UIBackGround::Render() {
 }
 
 void UIButton::Init() {
-	CResourceManager CR = CResourceManager::CResourceManager();
-	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");
-	m_pos = { 500.f, 300.f };
+	/*CResourceManager CR = CResourceManager::CResourceManager();
+	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
+	m_pos = { 1600.f, 800.f };
+	
+	m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
+
+	cx = m_Bitmap->GetWidth();
+	cy = m_Bitmap->GetHeight();
+	m_collider = new RectangleCollider({ 0,0 }, { cx, cy });
+	m_collider->parent = this;
 }
 
 void UIButton::Render() {
-	
-	cx = m_Bitmap->GetWidth();
-	cy = m_Bitmap->GetHeight();
 	Render::DrawImage(m_pos.x, m_pos.y, m_Bitmap, 0, 0, cx, cy);
 }
 

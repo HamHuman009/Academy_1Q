@@ -163,6 +163,7 @@
     <ClCompile Include="Manager\GamaManager.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Scene\CScene.cpp" />
+    <ClCompile Include="Scene\Stage01.cpp" />
     <ClCompile Include="Scene\StartScene.cpp" />
     <ClCompile Include="System\InputSystem.cpp" />
     <ClCompile Include="System\RenderSystem.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene\CScene.h" />
+    <ClInclude Include="Scene\Stage01.h" />
     <ClInclude Include="Scene\StartScene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="System\InputSystem.h" />
