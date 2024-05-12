@@ -42,3 +42,9 @@ thumbs.db
 *crunchproject.local.xml
 StyleCop.Cache
 [.]vs
+*.recipe
+*.recipe
+*.ilk
+*.tlog
+*.tlog
+*.exe
