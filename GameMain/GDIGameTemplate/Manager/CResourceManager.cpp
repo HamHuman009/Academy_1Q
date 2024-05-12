@@ -3,11 +3,19 @@
 
 CPathManager path;
 
-CResourceManager::CResourceManager() {
+CResourceManager* CResourceManager::instance = nullptr;
 
+CResourceManager::CResourceManager() {
+	//path 경로 초기화 
+	path.Init();
 }
 
 CResourceManager::~CResourceManager() {
+	//소멸자에서 map 순회하며 전체 리소스 해제
+	std::map<std::wstring, Gdiplus::Bitmap*>::iterator iter = m_mapBitmap.begin();
+	for (; iter != m_mapBitmap.end(); ++iter) {
+		delete iter->second;
+	}
 }
 
 Gdiplus::Bitmap* CResourceManager::LoadBitmapResouce(const std::wstring& _strkey, const std::wstring& _path)
@@ -15,7 +23,7 @@ Gdiplus::Bitmap* CResourceManager::LoadBitmapResouce(const std::wstring& _strkey
 	//키값으로 map에서 찾기
 	Gdiplus::Bitmap* pBitmap = FindBitmapResouce(_strkey);
 	//있으면 반환
-	if (pBitmap!=nullptr)
+	if (pBitmap != nullptr)
 	{
 		return pBitmap;
 	}
@@ -39,6 +47,25 @@ Gdiplus::Bitmap* CResourceManager::FindBitmapResouce(const std::wstring& _strkey
 	{
 		return nullptr;
 	}
-		//있는 경우 <first,second> -> <key,내용물>이므로 내용물을 반환
+	//있는 경우 <first,second> -> <key,내용물>이므로 내용물을 반환
 	return iter->second;
+}
+
+
+CResourceManager* CResourceManager::GetInstance()
+{
+	if (instance == nullptr)
+	{
+		instance = new CResourceManager();
+	}
+	return instance;
+}
+
+void CResourceManager::DestroyInstance()
+{
+	if (instance != nullptr)
+	{
+		delete instance;
+		instance = nullptr;
+	}
 }
