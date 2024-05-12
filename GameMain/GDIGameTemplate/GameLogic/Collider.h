@@ -14,6 +14,7 @@ private:
     virtual Vector2 GetPosition() const = 0;    // 중심과 오브젝트 위치를 더한 값.
 public:
     virtual bool isColliding(const Collider& other) const = 0;
+    virtual bool isPointColliding(const Vector2& point) const = 0;
     Object* parent;
 };
 
@@ -33,6 +34,7 @@ public:
     CircleCollider(Vector2 _point, float _radius) : point(_point), radius(_radius) {}
 
     bool isColliding(const Collider& other) const override;
+    bool isPointColliding(const Vector2& point) const override;
 };
 
 // 사각형 충돌체
@@ -56,4 +58,5 @@ public:
     }
 
     bool isColliding(const Collider& other) const override;
+    bool isPointColliding(const Vector2& point) const override;
 };

@@ -5,8 +5,6 @@ class ColliderManager
 {
 private:
 	std::vector<Collider*> colliders;
-
-	
 public:
 	ColliderManager();
 	~ColliderManager();
@@ -18,5 +16,7 @@ public:
 	void ClearColliders();
 
 	bool CheckCollision(Collider* lhs, Collider* rhs);
+
+	void PointCollision(Vector2 point, Collider* rhs);
 };
 

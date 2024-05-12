@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="GameLogic\Animation.cpp" />
     <ClCompile Include="GameLogic\Collider.cpp" />
+    <ClCompile Include="GameLogic\Objects\Fish.cpp" />
     <ClCompile Include="GameLogic\Objects\Object.cpp" />
     <ClCompile Include="GameLogic\Objects\UIObject.cpp" />
     <ClCompile Include="GameLogic\Vector2.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="GameLogic\Animation.h" />
     <ClInclude Include="GameLogic\Bounds.h" />
     <ClInclude Include="GameLogic\Collider.h" />
+    <ClInclude Include="GameLogic\Objects\Fish.h" />
     <ClInclude Include="GameLogic\Objects\Object.h" />
     <ClInclude Include="GameLogic\Objects\UIObject.h" />
     <ClInclude Include="GameLogic\Vector2.h" />

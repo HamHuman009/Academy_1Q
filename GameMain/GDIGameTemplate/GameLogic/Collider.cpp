@@ -38,6 +38,12 @@ bool CircleCollider::isColliding(const Collider& other) const {
     return false;
 }
 
+bool CircleCollider::isPointColliding(const Vector2& point) const {
+    float distance = std::sqrt(std::pow(GetPosition().x - point.x, 2) +
+        std::pow(GetPosition().y - point.y, 2));
+    return distance < radius;
+}
+
 Vector2 RectangleCollider::GetPosition() const {
     if (parent == nullptr) {
         return bounds.center;
@@ -86,5 +92,16 @@ bool RectangleCollider::isColliding(const Collider& other) const {
             return false;
         else
             return true;
+    }
+}
+
+bool RectangleCollider::isPointColliding(const Vector2& point) const {
+    float rectX = GetPosition().x;
+    float rectY = GetPosition().y;
+    if (point.x >= rectX - bounds.extents.x &&
+        point.x <= rectX + bounds.extents.x &&
+        point.y >= rectY - bounds.extents.y &&
+        point.y <= rectY + bounds.extents.y) {
+        return true;
     }
 }

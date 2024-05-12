@@ -50,3 +50,7 @@ void ColliderManager::PushCollider(Collider* collider) {
 void ColliderManager::ClearColliders() {
 	colliders.clear(); // 오류발생 가능성 있음.
 }
+
+void ColliderManager::PointCollision(Vector2 point, Collider* rhs) {
+	rhs->isPointColliding(point);
+}
