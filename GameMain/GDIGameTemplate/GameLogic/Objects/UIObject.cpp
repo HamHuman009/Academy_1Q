@@ -15,7 +15,7 @@ void UIObject::OnTrigger()
 }
 
 void UIBackGround::Init() {
-	m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
+	//m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
 }
 
 void UIBackGround::Render() {
@@ -26,7 +26,8 @@ void UIBackGround::Render() {
 }
 
 void UIButton::Init() {
-	m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
+	CResourceManager CR = CResourceManager::CResourceManager();
+	m_Bitmap = CR.LoadBitmapResouce(L"¹öÆ°",L"sampleButton.png");
 	m_pos = { 500.f, 300.f };
 }
 

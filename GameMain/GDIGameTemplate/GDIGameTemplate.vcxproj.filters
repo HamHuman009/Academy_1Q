@@ -44,6 +44,12 @@
     <ClCompile Include="GameLogic\Objects\UIObject.cpp">
       <Filter>GamaLogic\Objects\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Manager\CPathManager.cpp">
+      <Filter>Manager\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\CResourceManager.cpp">
+      <Filter>Manager\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -93,6 +99,12 @@
     </ClInclude>
     <ClInclude Include="Scene\CScene.h">
       <Filter>Scene\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\CPathManager.h">
+      <Filter>Manager\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\CResourceManager.h">
+      <Filter>Manager\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

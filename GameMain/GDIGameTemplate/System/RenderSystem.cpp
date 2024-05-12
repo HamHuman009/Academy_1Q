@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+
 #include "RenderSystem.h"
 
 #pragma comment(lib, "msimg32.lib")

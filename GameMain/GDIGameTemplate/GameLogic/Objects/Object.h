@@ -6,7 +6,7 @@
 #include "../Animation.h"
 #include "../Bounds.h"
 #include "../Vector2.h"
-
+#include "../../Manager/CResourceManager.h"
 
 
 // Object.h는 크게 몬스터, 물고기 건지는 뜰체(플레이어), UI로 구분지을 예정 
