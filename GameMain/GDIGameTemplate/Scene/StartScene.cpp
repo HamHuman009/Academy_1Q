@@ -14,8 +14,9 @@ void StartScene::Init()
 
 void StartScene::Render() //이 부분 고칠 것.
 {	
-	for (int i = 0; i < m_arrObj->size(); i++) {
-		m_arrObj[i];
+	for (int i = 0; i < m_arrObj.size(); i++) {
+		m_arrObj[i]->Render();
+
 	}
 }
 

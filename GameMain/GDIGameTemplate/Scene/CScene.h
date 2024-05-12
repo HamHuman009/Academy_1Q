@@ -36,6 +36,9 @@ enum class TYPE
 
 class CScene
 {
+private:
+	
+
 public:
 	void SetName(const std::wstring& _strName) { m_strName = _strName; }
 	const std::wstring& GetName() { return m_strName; }
@@ -51,10 +54,11 @@ protected:
 	//void AddObject(Object* obj, TYPE _type) {
 	//	m_arrObj[(UINT)_type].push_back(obj); //이 코드 세철씨한테 물어볼 것.
 	//}
-	std::vector<Object*> m_arrObj[(UINT)TYPE::END];
+	std::vector<Object*> m_arrObj;
+
 	std::wstring m_strName;
 	void AddObject(Object* obj) {
-		m_arrObj->push_back(obj); //이 코드 세철씨한테 물어볼 것.
+		m_arrObj.push_back(obj); //이 코드 세철씨한테 물어볼 것.
 	}
 
 public:
