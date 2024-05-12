@@ -6,7 +6,7 @@ class ColliderManager
 private:
 	std::vector<Collider*> colliders;
 
-	bool CheckCollision(Collider* lhs , Collider* rhs);
+	
 public:
 	ColliderManager();
 	~ColliderManager();
@@ -16,5 +16,7 @@ public:
 	
 	void PushCollider(Collider* collider);
 	void ClearColliders();
+
+	bool CheckCollision(Collider* lhs, Collider* rhs);
 };
 

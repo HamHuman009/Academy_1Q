@@ -1,12 +1,18 @@
 #pragma once
 #include "CScene.h"
 #include "../GameLogic/Objects/UIObject.h"
+
 #include "../System/RenderSystem.h"
+#include "../System/InputSystem.h"
+
+#include "../Manager/ColliderManager.h"
 class StartScene : public CScene
 {	
-	
+private:
+	ColliderManager coll;
 	// CScene을(를) 통해 상속됨
 public:
+
 	virtual void Start() override;
 
 	void Init() override;

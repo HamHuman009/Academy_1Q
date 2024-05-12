@@ -19,9 +19,23 @@ void UIBackGround::Init() {
 }
 
 void UIBackGround::Render() {
-	UINT cx = 0;
-	UINT cy = 0;
+	
 	cx = m_BackGround->GetWidth();
 	cy = m_BackGround->GetHeight();
 	Render::DrawImage(100,100,m_BackGround,0,0,cx,cy);
+}
+
+void UIButton::Init() {
+	m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
+}
+
+void UIButton::Render() {
+	
+	cx = m_Bitmap->GetWidth();
+	cy = m_Bitmap->GetHeight();
+	Render::DrawImage(x, y, m_Bitmap, 0, 0, cx, cy);
+}
+
+void UIButton::OnTrigger() {
+
 }

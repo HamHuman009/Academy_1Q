@@ -1,5 +1,6 @@
 #include "StartScene.h"
 UIBackGround* myBack;
+UIButton* myButton;
 void StartScene::Start() 
 {
 
@@ -8,7 +9,11 @@ void StartScene::Start()
 void StartScene::Init()
 {	
 	myBack = new UIBackGround();
+	myButton = new UIButton();
+	myButton->m_collider = new RectangleCollider(Vector2(0.0f,0.0f),myButton->m_renderBounds.extents.x * 2, myButton->m_renderBounds.extents.y * 2);
+	myButton->m_collider->parent = myButton;
 	AddObject(myBack);
+	AddObject(myButton);
 	
 }
 
@@ -21,7 +26,12 @@ void StartScene::Render() //이 부분 고칠 것.
 }
 
 void StartScene::Update() {
-
+	if ((Input::GetMouseState().left && !Input::GetPrevMouseState().left)) {
+		CircleCollider temp = { Vector2(Input::GetMouseState().x,Input::GetMouseState().y),1.0f };
+	
+		
+		coll.CheckCollision(&temp,myButton->m_collider);
+	}
 }
 
 void StartScene::FixedUpdate() {

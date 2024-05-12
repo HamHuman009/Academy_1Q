@@ -5,7 +5,7 @@
 #include "./Objects/Object.h"
 class Collider {
 private:
-    Object* parent;
+    
 
     friend struct Object;
     friend class CircleCollider;
@@ -14,6 +14,7 @@ private:
     virtual Vector2 GetPosition() const = 0;    // 중심과 오브젝트 위치를 더한 값.
 public:
     virtual bool isColliding(const Collider& other) const = 0;
+    Object* parent;
 };
 
 // 원 충돌체 (마우스 포인터나, 원모양 객체에 사용)

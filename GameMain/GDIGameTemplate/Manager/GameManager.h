@@ -1,6 +1,5 @@
 #pragma once
 #include "../WinMain.h"
-#include "../stdafx.h"
 
 #include "../System/InputSystem.h"
 #include "../System/TimeSystem.h"
