@@ -27,13 +27,14 @@ void UIBackGround::Render() {
 
 void UIButton::Init() {
 	m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
+	m_pos = { 500.f, 300.f };
 }
 
 void UIButton::Render() {
 	
 	cx = m_Bitmap->GetWidth();
 	cy = m_Bitmap->GetHeight();
-	Render::DrawImage(x, y, m_Bitmap, 0, 0, cx, cy);
+	Render::DrawImage(m_pos.x, m_pos.y, m_Bitmap, 0, 0, cx, cy);
 }
 
 void UIButton::OnTrigger() {

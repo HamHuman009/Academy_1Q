@@ -3,15 +3,19 @@
 bool ColliderManager::CheckCollision(Collider* lhs, Collider* rhs) {
 	if (const CircleCollider* c = dynamic_cast<const CircleCollider*>(lhs)) {
 		if(c->isColliding(*rhs)) {
-			lhs->parent->OnTrigger();
-			rhs->parent->OnTrigger();
+			if(lhs->parent != nullptr)
+				lhs->parent->OnTrigger();
+			if (rhs->parent != nullptr)
+				rhs->parent->OnTrigger();
 			return true;
 		}
 	}
 	else if(const RectangleCollider* r = dynamic_cast<const RectangleCollider*>(lhs)){
 		if (r->isColliding(*rhs)) {
-			lhs->parent->OnTrigger();
-			rhs->parent->OnTrigger();
+			if (lhs->parent != nullptr)
+				lhs->parent->OnTrigger();
+			if (rhs->parent != nullptr)
+				rhs->parent->OnTrigger();
 			return true;
 		}
 	}

@@ -55,9 +55,6 @@
     <ClInclude Include="Scene\StartScene.h">
       <Filter>Scene\h</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\CScene.h">
-      <Filter>Scene\h</Filter>
-    </ClInclude>
     <ClInclude Include="Manager\GameManager.h">
       <Filter>Manager\h</Filter>
     </ClInclude>
@@ -93,6 +90,9 @@
     </ClInclude>
     <ClInclude Include="GameLogic\Objects\UIObject.h">
       <Filter>GamaLogic\Objects\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\CScene.h">
+      <Filter>Scene\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

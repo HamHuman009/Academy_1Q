@@ -2,6 +2,9 @@
 
 
 Vector2 CircleCollider::GetPosition() const {
+    if (parent == nullptr) {
+        return point;
+    }
     return parent->GetPosition() + point;
 }
 
@@ -36,6 +39,9 @@ bool CircleCollider::isColliding(const Collider& other) const {
 }
 
 Vector2 RectangleCollider::GetPosition() const {
+    if (parent == nullptr) {
+        return bounds.center;
+    }
     return parent->GetPosition() + bounds.center;
 }
 
