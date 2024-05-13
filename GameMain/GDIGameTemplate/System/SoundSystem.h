@@ -41,14 +41,10 @@ namespace mySound
 		void StopSounds(SoundChannel channel);
 
 		void SetVolume(float volume);
-<<<<<<< Updated upstream
-		
-		void RelaseSounds();
 
-=======
 
 		void RelaseSounds();
->>>>>>> Stashed changes
+
 	private:
 		SoundManager();
 

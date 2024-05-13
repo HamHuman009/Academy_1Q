@@ -1,6 +1,7 @@
 #pragma once
 #include "../Manager/SceneManager.h"
 #include "../Manager/GameManager.h"
+#include "../Scene/CScene.h"
 class Event {
 public:
 	virtual void Init() {};

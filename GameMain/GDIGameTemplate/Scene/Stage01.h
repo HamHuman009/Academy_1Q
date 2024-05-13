@@ -11,6 +11,8 @@ class Stage01 : public CScene
 	void FixedUpdate() override;
 	void Start() override;
 	void Exit() override;
+
+	
 private:
 	UIBackGround* myBack;
 };

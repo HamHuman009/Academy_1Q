@@ -11,7 +11,6 @@ void Stage01::Update()
 }
 
 
-
 void Stage01::FixedUpdate()
 {
 }
@@ -22,4 +21,5 @@ void Stage01::Start()
 
 void Stage01::Exit()
 {
+	
 }
