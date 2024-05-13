@@ -1,5 +1,5 @@
 #pragma once
-#include "../GameLogic/Objects/Object.h"
+#include "Object.h"
 
 class Player : public Object
 {

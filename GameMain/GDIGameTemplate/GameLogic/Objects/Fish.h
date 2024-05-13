@@ -3,11 +3,13 @@
 
 class Fish : public Object {
 private:
-	float speed;
+	float m_speed;
+	float m_AngulerSpeed;
 	Vector2 m_moveDirection;
 	Vector2 m_AngulerDirection;
 	void Move(float delta);
 	void AngularVelocity(float delta);
+	Vector2 GetRandomDirection();
 
 public:
 	void Init() override;
