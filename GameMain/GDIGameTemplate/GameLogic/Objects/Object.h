@@ -7,6 +7,8 @@
 #include "../Bounds.h"
 #include "../Vector2.h"
 #include "../Collider.h"
+#include "../Event.h"
+
 #include "../../Manager/CResourceManager.h"
 
 
@@ -43,11 +45,13 @@ struct Object
 	//COLORREF m_color = RGB(255,255,255);
 	ObjectStatus m_status = OBJECT_STATUS_IDLE;	// 플레이어의 상태 나타낼 때 사용
 
-	AnimationResource* m_pAnimationResource = nullptr;	
+	AnimationResource* m_pAnimationResource = nullptr;
+	//Event* m_Event = nullptr;
 	int m_AnimationMotionIndex = -1;
 	int m_AnimationFrameIndex = 0;
 	float m_AnimationAccTime = 0.0f;
 	bool m_AnimationFlip = false;
+	
 
 	virtual void Init();
 	virtual void Update(float delta);

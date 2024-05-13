@@ -4,12 +4,14 @@
 
 #include "../System/RenderSystem.h"
 
-
 #include "../Manager/ColliderManager.h"
 class StartScene : public CScene
 {	
 private:
 	ColliderManager coll;
+	UIBackGround* myBack;
+	UIButton* gameStartButton;
+	UIButton* gameExitButton;
 	// CScene을(를) 통해 상속됨
 public:
 

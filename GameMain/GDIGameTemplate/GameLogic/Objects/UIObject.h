@@ -37,8 +37,14 @@ class UIButton : public UIObject
 	// Object을(를) 통해 상속됨
 public:
 	void Init() override;
-	UIButton() {
+	/*UIButton() {
 		Init();
+		m_renderBounds = { {(float)cx,(float)cy},{(float)x,(float)y} };
+	}*/
+
+	UIButton(/*Event* myEvent*/) {
+		Init();
+		//m_Event = myEvent;
 		m_renderBounds = { {(float)cx,(float)cy},{(float)x,(float)y} };
 	}
 	//void Update(float delta) override;
@@ -46,7 +52,9 @@ public:
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
-	void OnTrigger() override;
+	void OnTrigger() override {
+		//if (m_Event != nullptr) m_Event->OnTrigger();
+	}
 
 	
 private:
