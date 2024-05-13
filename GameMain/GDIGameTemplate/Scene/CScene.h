@@ -14,6 +14,7 @@ enum class TYPE
 	END = 32,
 };
 
+//class ColliderManager;
 class CScene
 {
 private:
@@ -30,7 +31,7 @@ public:
 	virtual void Start() = 0;
 	virtual void Exit() = 0;
 
-	ColliderManager colliderManager; // 씬 전체 콜라이더를 관리하기 위함.
+	ColliderManager* colliderManager; // 씬 전체 콜라이더를 관리하기 위함.
 protected:
 	//void AddObject(Object* obj, TYPE _type) {
 	//	m_arrObj[(UINT)_type].push_back(obj); //이 코드 세철씨한테 물어볼 것.
@@ -42,5 +43,5 @@ protected:
 
 public:
 	CScene() {};
-	virtual ~CScene() = 0;
+	virtual ~CScene() {};
 };
