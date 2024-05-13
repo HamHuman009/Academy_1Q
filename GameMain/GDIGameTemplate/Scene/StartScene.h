@@ -23,7 +23,7 @@ public:
 	virtual void Exit() override;
 
 	StartScene() {};
-	~StartScene() {};
+	~StartScene();
 
 };
 

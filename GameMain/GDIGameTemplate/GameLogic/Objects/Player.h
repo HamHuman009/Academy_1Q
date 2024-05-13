@@ -9,6 +9,7 @@ private:
 	float height;
 	Vector2 center;
 	float radius;
+	float angle;
 public:
 	Player();
 	~Player();
@@ -19,5 +20,10 @@ public:
 	void OnTrigger() override;
 
 	void movePlayer(float delta);
+
+	void Up(float delta);
+	void Down(float delta);
+	void Left(float delta);
+	void Right(float delta);
 };
 

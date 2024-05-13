@@ -9,24 +9,23 @@ void StartScene::Start()
 
 void StartScene::Init()
 {	
-	myBack = new UIBackGround();
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(2);
-	gameStartButton = new UIButton(Vector2{1600.0f,800.0f},nextScnEvent);
 	/*gameStartButton->m_collider = new RectangleCollider(Vector2(0.0f, 0.0f), gameStartButton->m_renderBounds.extents.x, gameStartButton->m_renderBounds.extents.y);
 	gameStartButton->m_collider->parent = gameStartButton;*/
-	
-	AddObject(myBack);
-	AddObject(gameStartButton);
-	
+	auto a = new UIBackGround();
+	auto t = new UIButton(Vector2{ 1600.0f,800.0f }, nextScnEvent);
+	AddObject(a);
+	AddObject(t);
+	coll.PushCollider(a->m_collider);
+	coll.PushCollider(t->m_collider);
 }
 
 
 void StartScene::Update() {
 	if ((Input::GetMouseState().left && !Input::GetPrevMouseState().left)) {
 		CircleCollider temp = { Vector2(Input::GetMouseState().x,Input::GetMouseState().y), 1.0f };
-		
-		if (coll.CheckCollision(&temp, gameStartButton->m_collider)) {
-			gameStartButton->OnTrigger();
+		if (m_arrObj[1]->m_collider->isPointColliding(Vector2(Input::GetMouseState().x, Input::GetMouseState().y))) {
+			dynamic_cast<UIButton*>(m_arrObj[1])->OnTrigger();
 		}
 	}
 }
