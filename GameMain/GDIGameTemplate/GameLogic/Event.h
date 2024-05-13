@@ -22,7 +22,9 @@ public:
 	}*/
 
 	SelectScnEvent(int sceneNum) {
-		Init(sceneNum);
+		scnManager = SceneManager::GetInstance();
+		gameManager = Game::GameManager::GetInstance();
+		nextSceneNum = sceneNum;
 	}
 
 	/*void Init() override {
@@ -30,12 +32,6 @@ public:
 		
 		
 	}*/
-
-	void Init(int sceneNum) {
-		scnManager = SceneManager::GetInstance();
-		gameManager = Game::GameManager::GetInstance();
-		nextSceneNum = sceneNum;
-	}
 
 	void OnTrigger() override {
 		SelectScene(nextSceneNum);

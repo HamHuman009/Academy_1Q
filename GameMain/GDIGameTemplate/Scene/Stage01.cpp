@@ -1,5 +1,6 @@
 #include "Stage01.h"
 #include "../GameLogic/Objects/UIObject.h"
+#include "../GameLogic/Objects/Fish.h"
 #include "../System/TimeSystem.h"
 #include "../GameLogic/Event.h"
 void Stage01::Init()
@@ -23,6 +24,20 @@ void Stage01::Init()
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
 	AddObject(myTimer);
+	Fish* myFish;
+	for (int i = 0; i < 20; i++) {
+		myFish = new Fish();
+		myFish->Init();
+		myFish->m_pos = { 300.f, 300.f };
+		AddObject(myFish);
+	}
+	
+}
+
+Stage01::~Stage01() {
+	for (int i = 0; i < m_arrObj.size(); i++) {
+		delete m_arrObj[i];
+	}
 }
 
 void Stage01::Start()

@@ -11,7 +11,7 @@ void SceneManager::Init() {
 }
 
 void SceneManager::SetCurScene(int i) {
-	m_curScene =  m_sceneArr[i];
+	m_curScene = m_sceneArr[i];
 	m_curScene->Init();
 }
 

@@ -19,6 +19,6 @@ public:
 	void Exit() override;
 
 	Stage01() {};
-	~Stage01() {};
+	~Stage01();
 };
 

@@ -3,6 +3,7 @@
 #include "../GameLogic/Vector2.h"
 #include "../GameLogic/Objects/Object.h"
 
+class ColliderManager;
 enum class TYPE
 {
 	DEFAULT,

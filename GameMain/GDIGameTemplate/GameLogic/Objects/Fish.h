@@ -3,8 +3,10 @@
 
 class Fish : public Object {
 private:
-	float m_speed;
-	float m_AngulerSpeed;
+	float m_speed = 100.f;
+	float m_AngulerSpeed = 500.f;
+	float time = 0.f;
+	float maxTime = 5.f;
 	Vector2 m_moveDirection;
 	Vector2 m_AngulerDirection;
 	void Move(float delta);

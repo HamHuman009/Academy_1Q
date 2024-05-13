@@ -1,5 +1,6 @@
 #include "Fish.h"
 
+
 void Fish::Move(float delta) {
 	m_pos += m_moveDirection * m_speed * delta;
 }
@@ -51,6 +52,12 @@ void Fish::Init() {
 }
 
 void Fish::Update(float delta) {
+	time += delta;
+	if (time > maxTime) {
+		m_AngulerDirection = GetRandomDirection();
+		time -= maxTime;
+	}
+
 	Move(delta);
 	if (m_AngulerDirection != Vector2(0.f, 0.f))
 		AngularVelocity(delta);
