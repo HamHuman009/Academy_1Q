@@ -15,23 +15,7 @@ void StartScene::Init()
 	
 	AddObject(myBack);
 	AddObject(gameStartButton);
-	
 }
-
-
-//void StartScene::Update() {
-//	//if ((Input::GetMouseState().left && !Input::GetPrevMouseState().left)) {
-//	//	CircleCollider temp = { Vector2(Input::GetMouseState().x,Input::GetMouseState().y), 1.0f };
-//	//	
-//	//	if (coll.CheckCollision(&temp, gameStartButton->m_collider)) {
-//	//		gameStartButton->OnTrigger();
-//	//	}
-//	//}
-//
-//	for (int i = 0; i < m_arrObj.size(); i++) {
-//		m_arrObj[i]->Update();
-//	}
-//}
 
 StartScene::~StartScene() {
 

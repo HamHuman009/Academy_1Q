@@ -4,10 +4,11 @@
 Player::Player()
 {
 	moveSpeed = 100.0f;
-	center = { 1,1 };
+	center = { 0,0 };
 	width = 50.0f;
 	height = 50.0f;
 	radius = 50.0f;
+	angle = 10.0f;
 }
 
 Player::~Player()
@@ -43,20 +44,47 @@ void Player::movePlayer(float delta)
 {
 	if (Input::IsKey('W'))
 	{
-		m_pos.y -= moveSpeed * delta;
+		Up(delta);
 	}
 	if (Input::IsKey('S'))
 	{
-		m_pos.y += moveSpeed * delta;
+		Down(delta);
 	}
 	if  (Input::IsKey('A'))
 	{
-		m_pos.x -= moveSpeed * delta;
+		Left(delta);
 	}
 	if (Input::IsKey('D'))
 	{
-		m_pos.x += moveSpeed * delta;
+		Right(delta);
 	}
-
-
 }
+
+void Player::Up(float delta)
+{
+	Vector2 normal = Vector2(0, -1);
+	normal.Normalize();
+	m_pos += normal * moveSpeed * delta;
+}
+
+void Player::Down(float delta)
+{
+	Vector2 normal = Vector2(0, 1);
+	normal.Normalize();
+	m_pos += normal * moveSpeed * delta;
+}
+
+void Player::Left(float delta)
+{
+	Vector2 normal = Vector2(-1, 0);
+	normal.Normalize();
+	m_pos += normal * moveSpeed * delta;
+}
+
+void Player::Right(float delta)
+{
+	Vector2 normal = Vector2(1, 0);
+	normal.Normalize();
+	m_pos += normal * moveSpeed * delta;
+}
+

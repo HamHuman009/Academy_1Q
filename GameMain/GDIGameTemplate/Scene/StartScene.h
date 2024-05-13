@@ -19,7 +19,7 @@ public:
 	void Exit() override;
 
 	StartScene() {};
-	~StartScene() {};
+	~StartScene();
 
 };
 
