@@ -104,4 +104,5 @@ bool RectangleCollider::isPointColliding(const Vector2& point) const {
         point.y <= rectY + bounds.extents.y) {
         return true;
     }
+    return false;
 }

@@ -45,7 +45,7 @@ public:
 	UIButton(Vector2 myPos, Event* myEvent) {
 		Init(myPos,myEvent);
 		m_Event = myEvent;
-		m_renderBounds = { {(float)cx,(float)cy},{(float)x,(float)y} };
+		m_renderBounds = { {0.f, 0.f },{(float)x,(float)y} };
 	}
 	void Update(float delta) override;
 	void Render()override;
@@ -59,8 +59,8 @@ private:
 	Gdiplus::Bitmap* m_Bitmap;
 	UINT cx = 0;
 	UINT cy = 0;
-	UINT x = 1600;
-	UINT y = 800;
+	UINT x = 120;
+	UINT y = 90;
 };
 
 // scnene init

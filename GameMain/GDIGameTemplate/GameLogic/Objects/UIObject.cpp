@@ -39,7 +39,7 @@ void UIButton::Init(Vector2 myPos,Event* myEvent) {
 }
 
 void UIButton::Render() {
-	Render::DrawImage(m_pos.x, m_pos.y, m_Bitmap, 0, 0, cx, cy);
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy);
 }
 
 void UIButton::OnTrigger() {
@@ -48,7 +48,8 @@ void UIButton::OnTrigger() {
 
 void UIButton::Update(float delta) {
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
-		if(m_collider->isPointColliding(Vector2(Input::GetMouseState().x, Input::GetMouseState().y))) {
+		Vector2 temp = Vector2(Input::GetMouseState().x, Input::GetMouseState().y);
+		if(m_collider->isPointColliding(temp)) {
 			OnTrigger();
 		}
 	}
