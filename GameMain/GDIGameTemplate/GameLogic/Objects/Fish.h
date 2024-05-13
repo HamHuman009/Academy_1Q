@@ -3,7 +3,7 @@
 
 class Fish : public Object {
 private:
-	float m_speed = 100.f;
+	float m_speed = 50.f;
 	float m_AngulerSpeed = 500.f;
 	float time = 0.f;
 	float maxTime = 5.f;

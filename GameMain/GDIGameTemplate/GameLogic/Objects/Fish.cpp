@@ -25,8 +25,9 @@ void Fish::AngularVelocity(float delta) {
 		m_AngulerDirection = { 0.f, 0.f };
 	}
 	else {
-		float thetaX = m_moveDirection.x * cosf(dirScale) - m_moveDirection.y * sinf(dirScale);
-		float thetaY = m_moveDirection.x * sinf(dirScale) + m_moveDirection.y * cosf(dirScale);
+		dir = dir  / 180.f * 3.14159f;
+		float thetaX = m_moveDirection.x * cosf(dir) - m_moveDirection.y * sinf(dir);
+		float thetaY = m_moveDirection.x * sinf(dir) + m_moveDirection.y * cosf(dir);
 
 		m_moveDirection = { thetaX, thetaY };
 	}

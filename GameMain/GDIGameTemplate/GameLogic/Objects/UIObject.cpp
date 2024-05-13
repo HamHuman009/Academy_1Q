@@ -81,6 +81,7 @@ void UITimer::Update(float delta) {
 	}
 	else {
 		OnTrigger();
+		m_Event = nullptr;
 	}
 }
 
