@@ -1,7 +1,4 @@
-
 #include "Object.h"
-
-
 
 #define ANIMATION_DELAY 0.05f
 

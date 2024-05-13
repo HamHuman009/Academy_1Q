@@ -59,6 +59,9 @@
     <ClCompile Include="GameLogic\Event.cpp">
       <Filter>GamaLogic\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GamaLogic\Objects\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -123,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="GameLogic\Event.h">
       <Filter>GamaLogic\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GamaLogic\Objects\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
