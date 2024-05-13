@@ -41,6 +41,9 @@ namespace mySound
 		void StopSounds(SoundChannel channel);
 
 		void SetVolume(float volume);
+		
+		void RelaseSounds();
+
 	private:
 		SoundManager();
 
