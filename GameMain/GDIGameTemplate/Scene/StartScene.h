@@ -20,7 +20,6 @@ public:
 	void Init() override;
 	void Update() override;
 	void FixedUpdate() override;
-	void Render() override;
 	virtual void Exit() override;
 	StartScene() { Init(); };
 	~StartScene() {};

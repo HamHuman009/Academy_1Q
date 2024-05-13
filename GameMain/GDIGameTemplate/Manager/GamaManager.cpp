@@ -31,6 +31,9 @@ namespace Game
 		++m_UpdateCount;
 
 		Input::UpdateMouse();
+		if (m_curScene != m_sceneManager->GetCurScene()) {
+			m_curScene = m_sceneManager->GetCurScene();
+		}
 		m_curScene->Update();
 		Input::ResetInput();
 
@@ -57,6 +60,8 @@ namespace Game
 	{
 		Render::BeginDraw();
 		
+
+
 		m_curScene->Render();
 
 		Render::EndDraw();

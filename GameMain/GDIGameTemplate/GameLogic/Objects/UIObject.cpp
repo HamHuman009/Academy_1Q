@@ -1,5 +1,5 @@
 #include "UIObject.h"
-
+#include "../Event.h"
 void UIObject::Init() {
 	
 }
@@ -25,11 +25,11 @@ void UIBackGround::Render() {
 	Render::DrawImage(100,100,m_BackGround,0,0,cx,cy);
 }
 
-void UIButton::Init() {
+void UIButton::Init(Vector2 myPos,Event* myEvent) {
 	/*CResourceManager CR = CResourceManager::CResourceManager();
 	m_Bitmap = CR.LoadBitmapResouce(L"¹öÆ°",L"sampleButton.png");*/
-	m_pos = { 1600.f, 800.f };
-	
+	m_pos = myPos;
+	m_Event = myEvent;
 	m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
 
 	cx = m_Bitmap->GetWidth();
@@ -42,6 +42,6 @@ void UIButton::Render() {
 	Render::DrawImage(m_pos.x, m_pos.y, m_Bitmap, 0, 0, cx, cy);
 }
 
-//void UIButton::OnTrigger() {
-//
-//}
+void UIButton::OnTrigger() {
+	if (m_Event != nullptr) m_Event->OnTrigger();
+}

@@ -7,13 +7,12 @@
 #include "../Bounds.h"
 #include "../Vector2.h"
 #include "../Collider.h"
-#include "../Event.h"
+//#include "../Event.h"
 
 #include "../../Manager/CResourceManager.h"
 
-
 // Object.h는 크게 몬스터, 물고기 건지는 뜰체(플레이어), UI로 구분지을 예정 
-
+class Event;
 class Collider;
 
 enum ObjectStatus {
@@ -46,7 +45,7 @@ struct Object
 	ObjectStatus m_status = OBJECT_STATUS_IDLE;	// 플레이어의 상태 나타낼 때 사용
 
 	AnimationResource* m_pAnimationResource = nullptr;
-	//Event* m_Event = nullptr;
+	Event* m_Event = nullptr;
 	int m_AnimationMotionIndex = -1;
 	int m_AnimationFrameIndex = 0;
 	float m_AnimationAccTime = 0.0f;

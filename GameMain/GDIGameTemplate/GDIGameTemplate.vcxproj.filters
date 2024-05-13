@@ -56,6 +56,9 @@
     <ClCompile Include="GameLogic\Objects\Fish.cpp">
       <Filter>GamaLogic\Objects\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="GameLogic\Event.cpp">
+      <Filter>GamaLogic\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -117,6 +120,9 @@
     </ClInclude>
     <ClInclude Include="GameLogic\Objects\Fish.h">
       <Filter>GamaLogic\Objects\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\Event.h">
+      <Filter>GamaLogic\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

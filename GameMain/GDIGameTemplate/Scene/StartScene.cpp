@@ -1,6 +1,7 @@
 #include "StartScene.h"
 #include "../System/InputSystem.h"
 
+#include "../GameLogic/Event.h"
 void StartScene::Start() 
 {
 
@@ -9,23 +10,16 @@ void StartScene::Start()
 void StartScene::Init()
 {	
 	myBack = new UIBackGround();
-	//SelectScnEvent* nextScnEvent = new SelectScnEvent(2);
-	gameStartButton = new UIButton();
-	gameStartButton->Init();
-	//myButton->m_collider = new RectangleCollider(Vector2(0.0f,0.0f),myButton->m_renderBounds.extents.x, myButton->m_renderBounds.extents.y);
-	//myButton->m_collider->parent = myButton;
+	SelectScnEvent* nextScnEvent = new SelectScnEvent(2);
+	gameStartButton = new UIButton(Vector2{1600.0f,800.0f},nextScnEvent);
+	
+	gameStartButton->m_collider = new RectangleCollider(Vector2(0.0f,0.0f), gameStartButton->m_renderBounds.extents.x, gameStartButton->m_renderBounds.extents.y);
+	gameStartButton->m_collider->parent = gameStartButton;
 	AddObject(myBack);
 	AddObject(gameStartButton);
 	
 }
 
-void StartScene::Render() //이 부분 고칠 것.
-{	
-	for (int i = 0; i < m_arrObj.size(); i++) {
-		m_arrObj[i]->Render();
-
-	}
-}
 
 void StartScene::Update() {
 	if ((Input::GetMouseState().left && !Input::GetPrevMouseState().left)) {

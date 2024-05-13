@@ -44,7 +44,7 @@ public:
 	const std::wstring& GetName() { return m_strName; }
 	virtual void Init() = 0;
 	virtual void Update() = 0;
-	virtual void Render() = 0;
+	virtual void Render();
 	virtual void FixedUpdate() = 0;
 
 	virtual void Start() = 0;
