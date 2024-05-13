@@ -22,6 +22,6 @@ struct Bounds {
 	}
 
 	Vector2 minPosition() {
-		return center - extents;
+		return center - extents;	
 	}
 };

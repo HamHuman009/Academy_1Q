@@ -1,7 +1,11 @@
 #pragma once
 #include "CScene.h"
-#include "../GameLogic/Objects/Object.h"
+//#include "../GameLogic/Objects/Object.h"
+#include "../GameLogic/Objects/Player.h"
+
 class UIBackGround;
+//class Player;
+
 class Stage01 : public CScene
 {
 	// CScene을(를) 통해 상속됨
@@ -14,6 +18,8 @@ class Stage01 : public CScene
 
 	
 private:
+
 	UIBackGround* myBack;
+	Player* m_Player;
 };
 

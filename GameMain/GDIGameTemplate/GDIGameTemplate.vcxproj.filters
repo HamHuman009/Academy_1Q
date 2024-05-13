@@ -56,9 +56,11 @@
     <ClCompile Include="GameLogic\Event.cpp">
       <Filter>GamaLogic\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Manager\GameManager.cpp" />
     <ClCompile Include="GameLogic\Objects\Player.cpp">
       <Filter>GamaLogic\Objects\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\GameManager.cpp">
+      <Filter>Manager\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
