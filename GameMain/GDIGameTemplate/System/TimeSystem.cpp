@@ -50,10 +50,10 @@ namespace High_Resolution_Time
 
 	void UpdateTime()
 	{
-		previousTime = currentTime;
 		QueryPerformanceCounter(&currentTime);
 
 		deltaTime = (currentTime.QuadPart - previousTime.QuadPart) / (frequency.QuadPart / 1000); //ms
+		previousTime = currentTime;
 	}
 
 	const float GetFrameRate()
