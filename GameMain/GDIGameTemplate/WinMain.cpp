@@ -54,7 +54,7 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	// Step 2: Creating the Window
 
 	// 원하는 크기가 조정되어 리턴
-	SIZE clientSize = { 1920, 1280 };
+	SIZE clientSize = { 1920, 1080 };
 	RECT clientRect = { 0, 0, clientSize.cx, clientSize.cy };
 	AdjustWindowRect(&clientRect, WS_OVERLAPPEDWINDOW, FALSE);
 
