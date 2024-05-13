@@ -16,12 +16,13 @@ namespace Game
 	}
 	void GameManager::Initialize()
 	{
-		Input::InitInput();
-		High_Resolution_Time::InitTime();
+		//Input::InitInput();
+		//High_Resolution_Time::InitTime();
 		SMInstance->LoadSounds(mySound::SoundList::Drum, false, "drumloop.wav");
 		m_sceneManager = SceneManager::GetInstance();
 		m_hWnd = global::GetWinApp().GetWindow();
 		m_hdc = GetDC(m_hWnd);
+		//Render::InitRender(m_hWnd, 1920, 1080);
 		m_curScene = m_sceneManager->GetCurScene();
 		LoadResource();
 	}

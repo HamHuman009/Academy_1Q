@@ -73,7 +73,8 @@ void WinApp::Initialize(HINSTANCE hInstance)
 
 	Render::InitRender(m_hWnd, clientSize.cx, clientSize.cy);
 	Input::InitInput();
-	Time::InitTime();
+	High_Resolution_Time::InitTime();
+	//Time::InitTime();
 
 	// Step 3: Game Initialize Here
 	Game::GameManager::GetInstance()->Initialize();

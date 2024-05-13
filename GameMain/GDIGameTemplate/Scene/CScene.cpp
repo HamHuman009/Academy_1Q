@@ -3,7 +3,7 @@
 
 void CScene::Update() {
 	for (int i = 0; i < m_arrObj.size(); i++) {
-		m_arrObj[i]->Update(High_Resolution_Time::GetDeltaTime() / 1000.f);
+		m_arrObj[i]->Update(High_Resolution_Time::GetDeltaTime() / 1000.0f);
 	}
 }
 
