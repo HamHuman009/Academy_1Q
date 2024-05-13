@@ -58,6 +58,12 @@ namespace mySound
 		}
 	}
 
+	void SoundManager::RelaseSounds()
+	{
+		mSystem->release();
+		mSystem->close();
+	}
+
 	SoundManager::SoundManager() :mSystem(), mChannel{}, mSoundList{}, mVolume(0.5f)
 	{
 	}
