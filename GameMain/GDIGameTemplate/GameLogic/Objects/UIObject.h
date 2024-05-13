@@ -47,7 +47,7 @@ public:
 		m_Event = myEvent;
 		m_renderBounds = { {(float)cx,(float)cy},{(float)x,(float)y} };
 	}
-	//void Update(float delta) override;
+	void Update(float delta) override;
 	void Render()override;
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;

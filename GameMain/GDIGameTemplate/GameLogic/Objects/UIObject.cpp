@@ -46,6 +46,14 @@ void UIButton::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
+void UIButton::Update(float delta) {
+	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
+		if(m_collider->isPointColliding(Vector2(Input::GetMouseState().x, Input::GetMouseState().y))) {
+			OnTrigger();
+		}
+	}
+}
+
 
 void UITimer::Init(Vector2 myPos) {
 	/*CResourceManager CR = CResourceManager::CResourceManager();
