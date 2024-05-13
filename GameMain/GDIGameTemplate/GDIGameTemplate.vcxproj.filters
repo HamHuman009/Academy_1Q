@@ -26,9 +26,6 @@
     <ClCompile Include="System\SoundSystem.cpp">
       <Filter>System\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="GameLogic\Animation.cpp">
-      <Filter>GamaLogic\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="GameLogic\Collider.cpp">
       <Filter>GamaLogic\cpp</Filter>
     </ClCompile>
@@ -98,9 +95,6 @@
       <Filter>GamaLogic\h</Filter>
     </ClInclude>
     <ClInclude Include="GameLogic\Bounds.h">
-      <Filter>GamaLogic\h</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLogic\Animation.h">
       <Filter>GamaLogic\h</Filter>
     </ClInclude>
     <ClInclude Include="GameLogic\Objects\Object.h">
