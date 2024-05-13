@@ -14,9 +14,6 @@
     <ClCompile Include="Manager\ColliderManager.cpp">
       <Filter>Manager\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Manager\GamaManager.cpp">
-      <Filter>Manager\cpp</Filter>
-    </ClCompile>
     <ClCompile Include="System\InputSystem.cpp">
       <Filter>System\cpp</Filter>
     </ClCompile>
@@ -59,7 +56,8 @@
     <ClCompile Include="GameLogic\Event.cpp">
       <Filter>GamaLogic\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="Manager\GameManager.cpp" />
+    <ClCompile Include="GameLogic\Objects\Player.cpp">
       <Filter>GamaLogic\Objects\cpp</Filter>
     </ClCompile>
   </ItemGroup>
@@ -127,7 +125,7 @@
     <ClInclude Include="GameLogic\Event.h">
       <Filter>GamaLogic\h</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="GameLogic\Objects\Player.h">
       <Filter>GamaLogic\Objects\h</Filter>
     </ClInclude>
   </ItemGroup>
