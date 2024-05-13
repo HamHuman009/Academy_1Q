@@ -53,6 +53,8 @@ namespace High_Resolution_Time
 		QueryPerformanceCounter(&currentTime);
 
 		deltaTime = (currentTime.QuadPart - previousTime.QuadPart) / (frequency.QuadPart / 1000); //ms
+
+		std::cout <<"UpdateTime :: deltaTime :" << deltaTime << std::endl;
 		previousTime = currentTime;
 	}
 
