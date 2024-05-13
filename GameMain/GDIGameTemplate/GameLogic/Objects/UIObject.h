@@ -71,11 +71,11 @@ class UITimer : public UIObject
 {
 	// Object을(를) 통해 상속됨
 public:
-	void Init(Vector2 myPos);
+	void Init(Vector2 myPos,Event* myEvent);
 
 
-	UITimer(Vector2 myPos) {
-		Init(myPos);
+	UITimer(Vector2 myPos, Event* myEvent) {
+		Init(myPos,myEvent);
 		//m_Event = myEvent;
 		//m_renderBounds = { {(float)cx,(float)cy},{(float)x,(float)y} };
 	}
@@ -94,5 +94,5 @@ private:
 	UINT x = 1600;
 	UINT y = 800;
 	float deltaCx = 1600.0f;
-	float setTime = 60.0f;
+	float setTime = 10.0f;
 };

@@ -55,11 +55,11 @@ void UIButton::Update(float delta) {
 }
 
 
-void UITimer::Init(Vector2 myPos) {
+void UITimer::Init(Vector2 myPos,Event* myEvent) {
 	/*CResourceManager CR = CResourceManager::CResourceManager();
 	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
 	m_pos = myPos;
-	//m_Event = myEvent;
+	m_Event = myEvent;
 	//m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
 
 	//cx = m_Bitmap->GetWidth();
@@ -76,7 +76,10 @@ void UITimer::Update(float delta) {
 	std::cout << "setTime : " << setTime << endl;
 	//줄어든 바의 길이  = (정한시간에서 delta만크 줄어든 시기나 / 정한 시간 ) * 가로 길이 값
 	if (setTime > 0) {
-		deltaCx = (setTime / 60.0f) * cx;
+		deltaCx = (setTime / 10.0f) * cx;
+	}
+	else {
+		OnTrigger();
 	}
 }
 
@@ -86,5 +89,5 @@ void UITimer::Render() {
 }
 
 void UITimer::OnTrigger() {
-	//if (m_Event != nullptr) m_Event->OnTrigger();
+	if (m_Event != nullptr) m_Event->OnTrigger();
 }

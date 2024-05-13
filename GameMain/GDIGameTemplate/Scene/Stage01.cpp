@@ -1,7 +1,7 @@
 #include "Stage01.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../System/TimeSystem.h"
-
+#include "../GameLogic/Event.h"
 void Stage01::Init()
 {
 	// 작성요령
@@ -20,6 +20,9 @@ void Stage01::Init()
 	AddObject(myBack);
 	Player* m_Player = new Player();
 	AddObject(m_Player);
+	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
+	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
+	AddObject(myTimer);
 }
 
 void Stage01::Start()
