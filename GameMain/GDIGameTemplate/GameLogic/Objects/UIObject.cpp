@@ -34,7 +34,7 @@ void UIButton::Init(Vector2 myPos,Event* myEvent) {
 
 	cx = m_Bitmap->GetWidth();
 	cy = m_Bitmap->GetHeight();
-	m_collider = new RectangleCollider({ 0.f,0.f }, { (float)cx, (float)cy });
+	m_collider = new RectangleCollider(Vector2{ 0.f,0.f }, { (float)cx, (float)cy });
 	m_collider->parent = this;
 }
 

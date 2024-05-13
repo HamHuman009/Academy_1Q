@@ -12,8 +12,8 @@ void StartScene::Init()
 	myBack = new UIBackGround();
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(2);
 	gameStartButton = new UIButton(Vector2{1600.0f,800.0f},nextScnEvent);
-	gameStartButton->m_collider = new RectangleCollider(Vector2(0.0f, 0.0f), gameStartButton->m_renderBounds.extents.x, gameStartButton->m_renderBounds.extents.y);
-	gameStartButton->m_collider->parent = gameStartButton;
+	/*gameStartButton->m_collider = new RectangleCollider(Vector2(0.0f, 0.0f), gameStartButton->m_renderBounds.extents.x, gameStartButton->m_renderBounds.extents.y);
+	gameStartButton->m_collider->parent = gameStartButton;*/
 	
 	AddObject(myBack);
 	AddObject(gameStartButton);
@@ -35,7 +35,15 @@ void StartScene::FixedUpdate() {
 
 }
 
+StartScene::~StartScene() {
+	delete myBack;
+	delete gameStartButton->m_collider;
+	delete gameStartButton;
+	
+	
+}
+
 void StartScene::Exit() 
 {
-	
+
 }

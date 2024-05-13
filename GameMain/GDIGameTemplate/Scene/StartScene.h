@@ -22,6 +22,6 @@ public:
 	void FixedUpdate() override;
 	virtual void Exit() override;
 	StartScene() { Init(); };
-	~StartScene() {};
+	~StartScene();
 };
 
