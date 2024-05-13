@@ -26,22 +26,12 @@ struct Object
 {
 	bool m_isActive = true;							// isDead 대신 활성상태를 나타냄.
 
-	//bool m_player = true;							주석처리 해둔 변수는 Object를 상속받을 예정.
-	//bool m_isDead = false;
 	Vector2 m_pos;									// 현재 위치	
 
 	Collider* m_collider;							// 충돌처리 
 	// 만약 오브젝트 삭제 시 콜라이더를 삭제하는데 콜라이더 매니저에 등록된 콜라이더는 어떤 방식으로 삭제할지
 	Bounds m_renderBounds;							// 렌더할 이미지 좌표
-	//float m_speed = 500.0f;						// 이동 가능한 속력
 
-	//Vector2 m_moveDir = { 0.0f,0.0f };			// 현재의 방향 벡터
-	//Vector2 m_moveDirPrev = { 0.0f,0.0f };		// 이전의 방향 벡터
-	//Vector2 m_inputDir;							// 입력 벡터
-
-
-	//SIZE  m_colliderSize ={ 50,50 };
-	//COLORREF m_color = RGB(255,255,255);
 	ObjectStatus m_status = OBJECT_STATUS_IDLE;	// 플레이어의 상태 나타낼 때 사용
 
 	AnimationResource* m_pAnimationResource = nullptr;

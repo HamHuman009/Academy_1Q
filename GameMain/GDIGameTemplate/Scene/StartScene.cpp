@@ -9,11 +9,9 @@ void StartScene::Start()
 
 void StartScene::Init()
 {	
-	myBack = new UIBackGround();
-	SelectScnEvent* nextScnEvent = new SelectScnEvent(2);
-	gameStartButton = new UIButton(Vector2{1600.0f,800.0f},nextScnEvent);
-	/*gameStartButton->m_collider = new RectangleCollider(Vector2(0.0f, 0.0f), gameStartButton->m_renderBounds.extents.x, gameStartButton->m_renderBounds.extents.y);
-	gameStartButton->m_collider->parent = gameStartButton;*/
+	UIBackGround* myBack = new UIBackGround(); // 객체 테스트
+	SelectScnEvent* nextScnEvent = new SelectScnEvent(2); // 씬전환 이벤트 테스트
+	UIButton* gameStartButton = new UIButton(Vector2{1600.0f,800.0f},nextScnEvent); // 객체 테스트
 	
 	AddObject(myBack);
 	AddObject(gameStartButton);
@@ -21,26 +19,22 @@ void StartScene::Init()
 }
 
 
-void StartScene::Update() {
-	if ((Input::GetMouseState().left && !Input::GetPrevMouseState().left)) {
-		CircleCollider temp = { Vector2(Input::GetMouseState().x,Input::GetMouseState().y), 1.0f };
-		
-		if (coll.CheckCollision(&temp, gameStartButton->m_collider)) {
-			gameStartButton->OnTrigger();
-		}
-	}
-}
-
-void StartScene::FixedUpdate() {
-
-}
+//void StartScene::Update() {
+//	//if ((Input::GetMouseState().left && !Input::GetPrevMouseState().left)) {
+//	//	CircleCollider temp = { Vector2(Input::GetMouseState().x,Input::GetMouseState().y), 1.0f };
+//	//	
+//	//	if (coll.CheckCollision(&temp, gameStartButton->m_collider)) {
+//	//		gameStartButton->OnTrigger();
+//	//	}
+//	//}
+//
+//	for (int i = 0; i < m_arrObj.size(); i++) {
+//		m_arrObj[i]->Update();
+//	}
+//}
 
 StartScene::~StartScene() {
-	delete myBack;
-	delete gameStartButton->m_collider;
-	delete gameStartButton;
-	
-	
+
 }
 
 void StartScene::Exit() 

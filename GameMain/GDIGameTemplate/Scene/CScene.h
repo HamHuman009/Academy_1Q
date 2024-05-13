@@ -14,26 +14,6 @@ enum class TYPE
 	END = 32,
 };
 
-
-//class CObject {
-//private:
-//	Vector2 m_Pos;
-//	Vector2 m_Scale;
-//public:
-//	Vector2 GetPos() { return m_Pos; }
-//	Vector2 GetScale() { return m_Scale; }
-//
-//	void SetPos(Vector2 pos) { m_Pos = pos; }
-//	void SetScale(Vector2 scale) { m_Scale = scale; }
-//public:
-//	virtual void Update()=0;
-//	virtual void Render(HDC dc)=0;
-//public:
-//	CObject();
-//	virtual ~CObject();
-//};
-
-
 class CScene
 {
 private:
@@ -42,14 +22,15 @@ private:
 public:
 	void SetName(const std::wstring& _strName) { m_strName = _strName; }
 	const std::wstring& GetName() { return m_strName; }
-	virtual void Init() = 0;
-	virtual void Update() = 0;
-	virtual void Render();
-	virtual void FixedUpdate() = 0;
+	virtual void Init() = 0; 
+	void Update();
+	void Render();
+	void FixedUpdate();
 
 	virtual void Start() = 0;
 	virtual void Exit() = 0;
 
+	ColliderManager colliderManager; // 씬 전체 콜라이더를 관리하기 위함.
 protected:
 	//void AddObject(Object* obj, TYPE _type) {
 	//	m_arrObj[(UINT)_type].push_back(obj); //이 코드 세철씨한테 물어볼 것.
@@ -57,29 +38,9 @@ protected:
 	std::vector<Object*> m_arrObj;
 
 	std::wstring m_strName;
-	void AddObject(Object* obj) {
-		m_arrObj.push_back(obj); //이 코드 세철씨한테 물어볼 것.
-	}
+	void AddObject(Object* obj);
 
 public:
 	CScene() {};
-	virtual ~CScene() {};
+	virtual ~CScene() = 0;
 };
-
-// void CScene::Update() {
-//	for (UINT i = 0; i < (UINT)TYPE::END; ++i) {
-//		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
-//		{
-//			m_arrObj[i][j]->Update();
-//		}
-//	}
-//}
-//
-//void CScene::Render(HDC dc) {
-//	for (UINT i = 0; i < (UINT)TYPE::END; ++i) {
-//		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
-//		{
-//			m_arrObj[i][j]->Render(dc);
-//		}
-//	}
-//}
