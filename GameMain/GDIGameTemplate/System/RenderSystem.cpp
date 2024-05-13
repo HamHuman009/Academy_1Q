@@ -106,11 +106,12 @@ namespace Render
 
 		SelectObject(backMemDC, hOldPen);
 		SelectObject(backMemDC, hOldBrush);
-
+		
 		DeleteObject(hPen);
 		DeleteObject(hBrush);
 
 	}
+
 
 	void DrawPolygon(POINT points[], int count, COLORREF color)
 	{

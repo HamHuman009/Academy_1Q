@@ -10,6 +10,7 @@ private:
 	Vector2 center;
 	float radius;
 	float angle;
+	
 public:
 	Player();
 	~Player();
@@ -25,5 +26,7 @@ public:
 	void Down(float delta);
 	void Left(float delta);
 	void Right(float delta);
+
+	void Catch(float delta);
 };
 

@@ -15,9 +15,12 @@ void UIObject::OnTrigger()
 }
 
 void UIBackGround::Init() {
-	m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
-	cx = m_BackGround->GetWidth();
-	cy = m_BackGround->GetHeight();
+
+	
+	CResourceManager CR = CResourceManager::CResourceManager();
+	m_BackGround = CR.LoadBitmapResouce(L"배경", L"image1.png");
+
+
 }
 
 void UIBackGround::Render() {
@@ -25,11 +28,11 @@ void UIBackGround::Render() {
 }
 
 void UIButton::Init(Vector2 myPos,Event* myEvent) {
-	/*CResourceManager CR = CResourceManager::CResourceManager();
-	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
+	CResourceManager CR = CResourceManager::CResourceManager();
+	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");
 	m_pos = myPos;
 	m_Event = myEvent;
-	m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
+	//m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
 
 	cx = m_Bitmap->GetWidth();
 	cy = m_Bitmap->GetHeight();

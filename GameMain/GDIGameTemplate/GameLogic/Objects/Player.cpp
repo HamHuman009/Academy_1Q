@@ -58,6 +58,10 @@ void Player::movePlayer(float delta)
 	{
 		Right(delta);
 	}
+	if (Input::IsKey(' '))
+	{
+		Catch(delta);
+	}
 }
 
 void Player::Up(float delta)
@@ -86,5 +90,12 @@ void Player::Right(float delta)
 	Vector2 normal = Vector2(1, 0);
 	normal.Normalize();
 	m_pos += normal * moveSpeed * delta;
+}
+
+void Player::Catch(float delta)
+{
+	while (radius>0) {
+		radius--;
+	}
 }
 

@@ -17,18 +17,16 @@ void Stage01::Init()
 	// 또는 오브젝트 자체가 Update에서 마우스 클릭을 받아서 사용도 가능.
 	// 하나하나 event나 객체 생성을 해야하므로 init함수 내부가 꽉찰 예정.
 
-	UIBackGround* myBack = new UIBackGround();
-	AddObject(myBack);
 	Player* m_Player = new Player();
 	AddObject(m_Player);
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
 	AddObject(myTimer);
 	Fish* myFish;
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 3; i++) {
 		myFish = new Fish();
 		myFish->Init();
-		myFish->m_pos = { 300.f, 300.f };
+		myFish->m_pos = { 600.f, 500.f };
 		AddObject(myFish);
 	}
 	
