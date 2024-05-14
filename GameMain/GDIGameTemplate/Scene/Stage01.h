@@ -3,7 +3,7 @@
 //#include "../GameLogic/Objects/Object.h"
 #include "../GameLogic/Objects/Player.h"
 
-class UIBackGround;
+class UIImage;
 //class Player;
 
 class Stage01 : public CScene

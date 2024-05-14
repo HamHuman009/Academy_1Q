@@ -1,6 +1,8 @@
 #pragma once
 #include "../stdafx.h"
 #include "../GameLogic/Collider.h"
+#include "../Scene/CScene.h"
+
 class ColliderManager
 {
 private:

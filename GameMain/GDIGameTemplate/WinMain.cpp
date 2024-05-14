@@ -59,7 +59,9 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	AdjustWindowRect(&clientRect, WS_OVERLAPPEDWINDOW, FALSE);
 
 
-	m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
+	/*m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
+		SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);*/
+	m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPEDWINDOW | WS_SYSMENU,
 		SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);
 
 	if (!m_hWnd)
@@ -69,6 +71,7 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	}
 
 	ShowWindow(m_hWnd, SW_SHOWNORMAL);
+	//ShowWindow(m_hWnd, SW_MAXIMIZE);
 	UpdateWindow(m_hWnd);
 
 	Render::InitRender(m_hWnd, clientSize.cx, clientSize.cy);

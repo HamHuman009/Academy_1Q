@@ -20,7 +20,18 @@ void Stage01::Init()
 	//UIBackGround* myBack = new UIBackGround();
 	//AddObject(myBack);
 	Player* m_Player = new Player();
-	
+	/*UIImage* PauseBack = new UIImage();
+	UIButton* Resume = new UIButton(Vector2{}, new ResumeEvent);
+	UIButton* Retry = new UIButton(Vector2{}, new RetryEvent);
+	UIButton* Exit = new UIButton(Vector2{}, new ExitEvent);
+	PauseBack->Init();
+
+	AddObject(PauseBack);
+	AddObject(Resume);
+	AddObject(Retry);
+	AddObject(Exit);*/
+
+
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
 	AddObject(myTimer);

@@ -15,24 +15,20 @@ class UIObject : public Object
 	void OnTrigger() override;
 };
 
-class UIBackGround : public UIObject
+class UIImage : public UIObject
 {
 	// Object을(를) 통해 상속됨
 public:
-	void Init() override;
-	UIBackGround() {
-		Init();
-	}
+	void Init(Gdiplus::Bitmap* myBitMap , Vector2 myVector);
+	UIImage() {};
 	//void Update(float delta) override;
-	void Render()override;
+	void Render();
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	//void OnTrigger() override;
 private:
 	Gdiplus::Bitmap* m_BackGround;
-	UINT cx = 0;
-	UINT cy = 0;
 };
 
 class UIButton : public UIObject
@@ -96,3 +92,17 @@ private:
 	float deltaCx = 1600.0f;
 	float setTime = 60.0f;
 };
+
+//class UIPauseBack : public UIObject
+//{
+//public:
+//	void Init(Vector2 myPos, Event* myEvent);
+//
+//	UIPauseBack()
+//	{
+//		Init();
+//	}
+//	void Update(float delta) override;
+//	void Render()override;
+//	void OnTrigger() override;
+//};

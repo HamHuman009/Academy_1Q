@@ -34,10 +34,10 @@ Gdiplus::Bitmap* CResourceManager::LoadBitmapResouce(const std::wstring& _strkey
 		return pBitmap;
 	}
 	//pathmanager로 상대경로 붙이기
-	std::wstring strFilePath = path.GetContentPath(); //요 언저리 고치기!!
-	strFilePath += _path;
+	//std::wstring strFilePath = path.GetContentPath(); //요 언저리 고치기!!
+	//strFilePath += _path;
 	//bitmap 로드
-	pBitmap = Gdiplus::Bitmap::FromFile(strFilePath.c_str());
+	pBitmap = Gdiplus::Bitmap::FromFile(_path.c_str());
 	//map에 저장 하고
 	m_mapBitmap.insert(make_pair(_strkey, pBitmap));
 	//bitmap* 전달
@@ -67,10 +67,10 @@ AnimationResource* CResourceManager::LoadAnimationResouce(const std::wstring& _s
 		return pAnimation;
 	}
 	//pathmanager로 상대경로 붙이기
-	std::wstring strFilePath = path.GetContentPath(); 
-	strFilePath += _path;
+	//std::wstring strFilePath = path.GetContentPath(); 
+	//strFilePath += _path;
 	//bitmap 로드
-	pAnimation->LoadAnimImage(strFilePath.c_str());
+	pAnimation->LoadAnimImage(_path.c_str());
 	//map에 저장 하고
 	m_mapAnimation.insert(make_pair(_strkey, pAnimation));
 	//bitmap* 전달

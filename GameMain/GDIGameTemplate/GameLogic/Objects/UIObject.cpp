@@ -1,7 +1,7 @@
 #include "UIObject.h"
 #include "../Event.h"
 void UIObject::Init() {
-	
+
 }
 
 void UIObject::Render() {
@@ -14,20 +14,21 @@ void UIObject::OnTrigger()
 
 }
 
-void UIBackGround::Init() {
+void UIImage::Init(Gdiplus::Bitmap* myBitMap, Vector2 myVector) {
 	//CResourceManager* CR = CResourceManager::GetInstance();
 	//m_BackGround = CR->LoadBitmapResouce(L"image1",L"image1.png");
-	m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
-	cx = m_BackGround->GetWidth();
-	cy = m_BackGround->GetHeight();
+	//m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
+	m_BackGround = myBitMap;
+	m_renderBounds = { {0.f, 0.f}, {myBitMap->GetWidth() / 2.f, myBitMap->GetHeight() / 2.f} };
+	m_pos = myVector;
 }
 
-void UIBackGround::Render() {
+void UIImage::Render() {
 	//0x00000147f3f723d0
-	Render::DrawImage(100,100,m_BackGround,0,0,cx,cy);
+	Render::DrawImage(m_pos.x, m_pos.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
 }
 
-void UIButton::Init(Vector2 myPos,Event* myEvent) {
+void UIButton::Init(Vector2 myPos, Event* myEvent) {
 	/*CResourceManager CR = CResourceManager::CResourceManager();
 	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
 	m_pos = myPos;
@@ -51,14 +52,14 @@ void UIButton::OnTrigger() {
 void UIButton::Update(float delta) {
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
 		Vector2 temp = Vector2(Input::GetMouseState().x, Input::GetMouseState().y);
-		if(m_collider->isPointColliding(temp)) {
+		if (m_collider->isPointColliding(temp)) {
 			OnTrigger();
 		}
 	}
 }
 
 
-void UITimer::Init(Vector2 myPos,Event* myEvent) {
+void UITimer::Init(Vector2 myPos, Event* myEvent) {
 	/*CResourceManager CR = CResourceManager::CResourceManager();
 	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
 	m_pos = myPos;
@@ -95,3 +96,4 @@ void UITimer::Render() {
 void UITimer::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
+

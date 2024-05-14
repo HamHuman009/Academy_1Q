@@ -66,6 +66,12 @@ void Player::movePlayer(float delta)
 		auto c = s->GetCurScene();
 		//c->colliderManager.
 	}
+
+	if (Input::IsKey(VK_ESCAPE))
+	{
+		//pauseEvent
+	}
+
 }
 
 void Player::Up(float delta)

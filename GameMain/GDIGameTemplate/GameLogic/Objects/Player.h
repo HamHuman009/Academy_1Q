@@ -10,6 +10,7 @@ private:
 	Vector2 center;
 	float radius;
 	float angle;
+	Event* pauseEvent;
 public:
 	Player();
 	~Player();

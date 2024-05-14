@@ -44,11 +44,11 @@ void ColliderManager::Update() {
 }
 
 void ColliderManager::PushCollider(Collider* collider) {
-	colliders.push_back(collider);
+	//colliders.push_back(collider);
 }
 
 void ColliderManager::ClearColliders() {
-	colliders.clear(); // 오류발생 가능성 있음.
+	//colliders.clear(); // 오류발생 가능성 있음.
 }
 
 void ColliderManager::PointCollision(Vector2 point, Collider* rhs) {
