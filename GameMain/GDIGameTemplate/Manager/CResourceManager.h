@@ -1,6 +1,6 @@
 #pragma once
 #include "../stdafx.h"
-#include "../Animation.h"
+#include "../GameLogic/Animation.h"
 class CResourceManager
 {
 	//Todo:
