@@ -72,8 +72,8 @@ void UITimer::Init(Vector2 myPos,Event* myEvent) {
 }
 void UITimer::Update(float delta) {
 	setTime -= delta;
-	/*std::cout << "delta : " << delta << endl;
-	std::cout << "setTime : " << setTime << endl;*/
+	std::cout << "delta : " << delta << endl;
+	std::cout << "setTime : " << setTime << endl;
 	//줄어든 바의 길이  = (정한시간에서 delta만크 줄어든 시기나 / 정한 시간 ) * 가로 길이 값
 	if (setTime > 0) {
 		deltaCx = (setTime / 60.0f) * cx;

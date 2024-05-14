@@ -17,8 +17,8 @@ void Stage01::Init()
 	// 또는 오브젝트 자체가 Update에서 마우스 클릭을 받아서 사용도 가능.
 	// 하나하나 event나 객체 생성을 해야하므로 init함수 내부가 꽉찰 예정.
 
-	UIBackGround* myBack = new UIBackGround();
-	AddObject(myBack);
+	//UIBackGround* myBack = new UIBackGround();
+	//AddObject(myBack);
 	Player* m_Player = new Player();
 	AddObject(m_Player);
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);

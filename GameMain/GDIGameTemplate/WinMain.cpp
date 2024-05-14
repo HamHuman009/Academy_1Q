@@ -72,9 +72,6 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	UpdateWindow(m_hWnd);
 
 	Render::InitRender(m_hWnd, clientSize.cx, clientSize.cy);
-	Input::InitInput();
-	High_Resolution_Time::InitTime();
-	//Time::InitTime();
 
 	// Step 3: Game Initialize Here
 	Game::GameManager::GetInstance()->Initialize();
@@ -91,7 +88,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	global::winApp.Initialize(hInstance);
 
-	bool bUseConsole=false;
+	bool bUseConsole=true;
 	if (bUseConsole)
 	{
 		AllocConsole();
@@ -113,6 +110,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			if (msg.message == WM_QUIT)
 				break;
 
+			if (msg.message == WM_KEYDOWN)
+			{
+				Input::KeyDown(msg.wParam);
+			}
+			else if (msg.message == WM_KEYUP)
+			{
+				Input::KeyUp(msg.wParam);
+			}
+			else
+			{
+				DispatchMessage(&msg);
+			}
+
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
@@ -125,7 +135,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//ReleaseResource();
 	Game::GameManager::GetInstance()->ReleaseResource();
-	Render::ReleaseRender();
 	if (bUseConsole)
 	{
 		FreeConsole();
