@@ -21,6 +21,7 @@ class UIImage : public UIObject
 public:
 	void Init(Gdiplus::Bitmap* myBitMap , Vector2 myVector);
 	UIImage() {};
+	~UIImage() { delete m_BackGround; }
 	//void Update(float delta) override;
 	void Render();
 	//void SetMotion(int index)override;
@@ -49,7 +50,10 @@ public:
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	void OnTrigger() override;
-
+	~UIButton() {
+		delete m_Bitmap;
+		delete m_Event;
+	}
 	
 private:
 	Gdiplus::Bitmap* m_Bitmap;

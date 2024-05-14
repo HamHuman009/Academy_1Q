@@ -22,16 +22,38 @@ void Stage01::Init()
 	colliderManager = new ColliderManager();
 
 	Player* m_Player = new Player();
-	/*UIImage* PauseBack = new UIImage();
-	UIButton* Resume = new UIButton(Vector2{}, new ResumeEvent);
-	UIButton* Retry = new UIButton(Vector2{}, new RetryEvent);
-	UIButton* Exit = new UIButton(Vector2{}, new ExitEvent);
-	PauseBack->Init();
+	UIImage* pauseBack = new UIImage();
 
-	AddObject(PauseBack);
-	AddObject(Resume);
-	AddObject(Retry);
-	AddObject(Exit);*/
+	PauseEvent* e_pause = new PauseEvent;
+	ResumeEvent* e_resume = new ResumeEvent;
+	RetryEvent* e_retry = new RetryEvent;
+	ExitEvent* e_exit = new ExitEvent;
+
+	UIButton* resume = new UIButton(Vector2{ 710,200 }, e_resume);
+	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry);
+	UIButton* exit = new UIButton(Vector2{ 710,600 }, e_exit);
+	e_resume->Resume = resume;
+	e_resume->Retry = retry;
+	e_resume->PauseBack = pauseBack;
+	e_resume->Exit = exit;
+
+	e_pause->Resume = resume;
+	e_pause->Retry = retry;
+	e_pause->PauseBack = pauseBack;
+	e_pause->Exit = exit;
+	
+	e_resume->OnTrigger();
+	m_Player->pauseEvent = e_pause;
+	CResourceManager* CRM = CResourceManager::GetInstance();
+	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage",L"image1.png");
+	pauseBack->Init(pauseBackImage,Vector2{100,100});
+
+	
+
+	pauseBack->m_isActive = false;
+	resume->m_isActive = false;
+	retry->m_isActive = false;
+	exit->m_isActive = false;
 
 
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
@@ -47,13 +69,23 @@ void Stage01::Init()
 	}
 	AddObject(m_Player);
 	m_Player->m_pos = { 800.f, 500.f };
+
+	AddObject(pauseBack);
+	AddObject(resume);
+	AddObject(retry);
+	AddObject(exit);
 	
 }
 
 Stage01::~Stage01() {
 	for (int i = 0; i < m_arrObj.size(); i++) {
-		delete m_arrObj[i];
+		if (m_arrObj[i]->m_Event != nullptr) {
+			delete m_arrObj[i];
+
+		}
+		
 	}
+	delete colliderManager;
 }
 
 void Stage01::Start()

@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+class Event;
 
 class Player : public Object
 {
@@ -7,8 +8,8 @@ private:
 	float moveSpeed;
 	float radius;
 	Vector2 moveDirection;
-	Event* pauseEvent;
 public:
+	Event* pauseEvent;
 	Player();
 	~Player();
 

@@ -23,7 +23,7 @@ namespace Game
 		m_hWnd = global::GetWinApp().GetWindow();
 		m_hdc = GetDC(m_hWnd);
 		m_curScene = m_sceneManager->GetCurScene();
-		LoadResource();
+		
 	}
 
 	void GameManager::Update()

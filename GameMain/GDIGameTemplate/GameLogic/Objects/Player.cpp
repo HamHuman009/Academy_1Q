@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Fish.h"
 #include "../../System/InputSystem.h"
+#include "../Event.h"
 
 Player::Player()
 {
@@ -93,6 +94,7 @@ void Player::movePlayer(float delta)
 	if (Input::IsKey(VK_ESCAPE))
 	{
 		//pauseEvent
+		pauseEvent->OnTrigger();
 	}
 
 }

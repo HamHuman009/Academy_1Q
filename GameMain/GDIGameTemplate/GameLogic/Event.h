@@ -52,20 +52,33 @@ public:
 	UIButton* Resume;
 	UIButton* Retry;
 	UIButton* Exit;
-
-
+	
 	void OnTrigger() override
 	{
-		
+		PauseBack->m_isActive = true;
+		Resume->m_isActive = true;
+		Retry->m_isActive = true;
+		Exit->m_isActive = true;
+		High_Resolution_Time::SetTimeScale(0.f);
 	}
 
 };
 
 class ResumeEvent : public Event
-{
+{	
+public:
+	UIImage* PauseBack;
+	UIButton* Resume;
+	UIButton* Retry;
+	UIButton* Exit;
+
 	void OnTrigger() override
 	{
-
+		PauseBack->m_isActive = false;
+		Resume->m_isActive = false;
+		Retry->m_isActive = false;
+		Exit->m_isActive = false;
+		High_Resolution_Time::SetTimeScale(1.f);
 	}
 };
 
