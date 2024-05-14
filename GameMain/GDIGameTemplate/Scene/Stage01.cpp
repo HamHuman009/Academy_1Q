@@ -75,7 +75,8 @@ void Stage01::Init()
 	AddObject(m_Player);
 	m_Player->m_pos = { 800.f, 500.f };
 	UIBackGround* myUPBackGround = new UIBackGround();
-	myBackGround->Init(L"Water_UP_00.png", CRM);
+	myUPBackGround->Init(L"Water_UP_00.png", CRM);
+	AddObject(myUPBackGround);
 	AddObject(pauseBack);
 	AddObject(resume);
 	AddObject(retry);
