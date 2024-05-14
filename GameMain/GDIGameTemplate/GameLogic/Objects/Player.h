@@ -5,11 +5,8 @@ class Player : public Object
 {
 private:
 	float moveSpeed;
-	float width;
-	float height;
-	Vector2 center;
 	float radius;
-	float angle;
+	Vector2 moveDirection;
 	Event* pauseEvent;
 public:
 	Player();

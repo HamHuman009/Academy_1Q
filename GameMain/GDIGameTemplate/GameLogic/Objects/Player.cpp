@@ -5,11 +5,9 @@
 Player::Player()
 {
 	moveSpeed = 100.0f;
-	center = { 0,0 };
-	width = 50.0f;
-	height = 50.0f;
 	radius = 50.0f;
-	angle = 10.0f;
+	pauseEvent = nullptr;
+	moveDirection = { 0.f, 0.f };
 }
 
 Player::~Player()
@@ -20,7 +18,7 @@ Player::~Player()
 void Player::Init()
 {
 	//m_collider = new RectangleCollider(center, width, height);
-	m_collider = new CircleCollider(center, radius);
+	m_collider = new CircleCollider({ 0,0 }, radius);
 	m_collider->parent = this;
 	//m_renderBounds = { center, {width / 2, height / 2} };
 }
@@ -45,24 +43,44 @@ void Player::OnTrigger()
 void Player::movePlayer(float delta)
 {
 	// 키설정 버튼이 바뀔 수 있음
-	if (Input::IsKey('W'))
+	if (Input::IsKey('W') && !Input::IsKey('A') && !Input::IsKey('S') && !Input::IsKey('D'))
 	{
 		Up(delta);
 	}
-	if (Input::IsKey('S'))
+	else if (Input::IsKey('S') && !Input::IsKey('A') && !Input::IsKey('W') && !Input::IsKey('D'))
 	{
 		Down(delta);
 	}
-	if  (Input::IsKey('A'))
+	else if  (Input::IsKey('A') && !Input::IsKey('W') && !Input::IsKey('S') && !Input::IsKey('D'))
 	{
 		Left(delta);
 	}
-	if (Input::IsKey('D'))
+	else if (Input::IsKey('D') && !Input::IsKey('A') && !Input::IsKey('S') && !Input::IsKey('W'))
 	{
 		Right(delta);
 	}
+	else if (Input::IsKey('W') && Input::IsKey('A') && !Input::IsKey('S') && !Input::IsKey('D')) // 좌상단
+	{
+		Left(delta);
+		Up(delta);
+	}
+	else if (!Input::IsKey('W') && Input::IsKey('A') && Input::IsKey('S') && !Input::IsKey('D')) // 좌하단
+	{ 
+		Left(delta);
+		Down(delta);
+	}
+	else if (Input::IsKey('W') && !Input::IsKey('A') && !Input::IsKey('S') && Input::IsKey('D')) // 우상단
+	{ 
+		Right(delta);
+		Up(delta);
+	}
+	else if (!Input::IsKey('W') && !Input::IsKey('A') && Input::IsKey('S') && Input::IsKey('D')) // 우하단
+	{ 
+		Right(delta);
+		Down(delta);
+	}
 
-	if (Input::IsKeyDown('F')) {
+	if (Input::IsKeyDown(' ')) {
 		SceneManager* s = SceneManager::GetInstance();
 		auto c = s->GetCurScene();
 		Collider* fish = c->colliderManager->GetCurrentPointCollider(m_pos, TYPE::FISH);
@@ -81,6 +99,7 @@ void Player::movePlayer(float delta)
 
 void Player::Up(float delta)
 {
+	moveDirection.y = -1;
 	Vector2 normal = Vector2(0, -1);
 	normal.Normalize();
 	m_pos += normal * moveSpeed * delta;
@@ -88,6 +107,7 @@ void Player::Up(float delta)
 
 void Player::Down(float delta)
 {
+	moveDirection.y = 1;
 	Vector2 normal = Vector2(0, 1);
 	normal.Normalize();
 	m_pos += normal * moveSpeed * delta;
@@ -95,6 +115,7 @@ void Player::Down(float delta)
 
 void Player::Left(float delta)
 {
+	moveDirection.x = -1;
 	Vector2 normal = Vector2(-1, 0);
 	normal.Normalize();
 	m_pos += normal * moveSpeed * delta;
@@ -102,6 +123,7 @@ void Player::Left(float delta)
 
 void Player::Right(float delta)
 {
+	moveDirection.x = -1;
 	Vector2 normal = Vector2(1, 0);
 	normal.Normalize();
 	m_pos += normal * moveSpeed * delta;
