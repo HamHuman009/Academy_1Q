@@ -59,6 +59,9 @@ void Stage01::Init()
 
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
+	UIBackGround* myBackGround = new UIBackGround();
+	myBackGround->Init(L"Water_Down_00.png",CRM);
+	AddObject(myBackGround);
 	AddObject(myTimer);
 	Fish* myFish;
 	for (int i = 0; i < 5; i++) {
@@ -68,9 +71,11 @@ void Stage01::Init()
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}
+	
 	AddObject(m_Player);
 	m_Player->m_pos = { 800.f, 500.f };
-
+	UIBackGround* myUPBackGround = new UIBackGround();
+	myBackGround->Init(L"Water_UP_00.png", CRM);
 	AddObject(pauseBack);
 	AddObject(resume);
 	AddObject(retry);
@@ -80,17 +85,21 @@ void Stage01::Init()
 
 Stage01::~Stage01() {
 	for (int i = 0; i < m_arrObj.size(); i++) {
-		if (m_arrObj[i]->m_Event != nullptr) {
-			delete m_arrObj[i];
+		/*if (m_arrObj[i]->m_Event != nullptr) {
+			
 
-		}
-		
+		}*/
+		delete m_arrObj[i];
 	}
 	delete colliderManager;
 }
 
 void Stage01::Start()
 {
+}
+
+void Stage01::FixedUpdate() {
+
 }
 
 void Stage01::Exit()

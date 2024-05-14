@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 //#include "../Event.h"
-
+#define BACK_GROUND_ANIM_FRAME 10
 
 class UIObject : public Object
 {
@@ -97,16 +97,22 @@ private:
 	float setTime = 60.0f;
 };
 
-//class UIPauseBack : public UIObject
-//{
-//public:
-//	void Init(Vector2 myPos, Event* myEvent);
-//
-//	UIPauseBack()
-//	{
-//		Init();
-//	}
-//	void Update(float delta) override;
-//	void Render()override;
-//	void OnTrigger() override;
-//};
+class UIBackGround : public UIObject
+{
+private:
+	std::wstring m_fileName[BACK_GROUND_ANIM_FRAME];
+	Gdiplus::Bitmap* m_bitmap[BACK_GROUND_ANIM_FRAME] = { nullptr, };
+public:
+	// Object을(를) 통해 상속됨
+	void Init(const WCHAR* fileName, CResourceManager* CRM);
+	//void Update(float delta) override;
+	void Render()override;
+	//void FixedUpdate();
+	//void SetMotion(int index)override;
+	//void UpdateAnimation(float delta)override;
+	//void ChangeStatus(ObjectStatus status)override;
+	//void OnTrigger() override;
+	~UIBackGround();
+	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
+
+};

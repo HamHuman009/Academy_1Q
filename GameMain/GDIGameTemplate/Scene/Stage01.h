@@ -17,6 +17,7 @@ public:
 	void Init() override;
 	void Start() override;
 	void Exit() override;
+	void FixedUpdate();
 
 	Stage01() {};
 	~Stage01();

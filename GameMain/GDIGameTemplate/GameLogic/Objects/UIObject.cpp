@@ -102,3 +102,53 @@ void UITimer::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
+void UIBackGround::Init(const WCHAR* fileName, CResourceManager* CRM) {
+	LoadAnimImage(fileName,CRM);
+	m_pos = { 0,0 };
+	m_renderBounds = { {0,0},{m_bitmap[0]->GetWidth() / 2.f,m_bitmap[0]->GetHeight() / 2.f} };
+}
+
+void UIBackGround::LoadAnimImage(const WCHAR* fileName,CResourceManager* CRM)
+{
+	int fileNameLength = wcslen(fileName);
+	
+	m_fileName[0] = fileName;
+	m_bitmap[0] = CRM->LoadBitmapResouce(fileName, fileName);
+	std::wstring noNumFileName = m_fileName[0].substr(0, fileNameLength - 6);
+
+	for (int i = 1; i < BACK_GROUND_ANIM_FRAME; i++) {
+		std::wstring wZero = std::to_wstring(0);
+		
+		std::wstring wNum = std::to_wstring(i);
+		if (i < 10) {
+			m_fileName[i] = noNumFileName.append(wZero).append(wNum);
+		}
+		else {
+			m_fileName[i] = noNumFileName.append(wNum);
+		}
+		
+		m_bitmap[i] = CRM->LoadBitmapResouce(m_fileName[i].c_str(), m_fileName[i].append(L".png").c_str());
+		noNumFileName = noNumFileName.substr(0, fileNameLength - 6);
+	}
+
+
+}
+
+void UIBackGround::Render() {
+	static int backGroundframe = 0;
+	Render::DrawImage(m_pos.x, m_pos.y, m_bitmap[backGroundframe], 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
+	backGroundframe = (backGroundframe + 1) % BACK_GROUND_ANIM_FRAME;
+}
+
+//void UIBackGround::FixedUpdate() {
+//	static int backGroundframe = 0;
+//	Render::DrawImage(m_pos.x, m_pos.y, m_bitmap[backGroundframe], 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
+//	backGroundframe = (backGroundframe + 1) % BACK_GROUND_ANIM_FRAME;
+//}
+
+UIBackGround::~UIBackGround() {
+	for (int i = 0; i < BACK_GROUND_ANIM_FRAME; i++) {
+		if (m_bitmap[i]!=nullptr)
+			delete m_bitmap[i];
+	}
+}
