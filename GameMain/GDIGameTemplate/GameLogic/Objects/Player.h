@@ -10,6 +10,8 @@ private:
 	Vector2 moveDirection;
 	float angle;
 	bool flag;
+
+	Gdiplus::Bitmap* playerBitmap;
 public:
 	Event* pauseEvent;
 	Player();

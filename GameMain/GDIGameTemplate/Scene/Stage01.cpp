@@ -23,6 +23,7 @@ void Stage01::Init()
 
 	Player* m_Player = new Player();
 	UIImage* pauseBack = new UIImage();
+	m_Player->Init();
 
 	PauseEvent* e_pause = new PauseEvent;
 	ResumeEvent* e_resume = new ResumeEvent;
