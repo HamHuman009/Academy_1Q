@@ -13,6 +13,8 @@ private:
 	void AngularVelocity(float delta);
 	Vector2 GetRandomDirection();
 
+	Gdiplus::Bitmap* m_FishImage;
+
 public:
 	void Init() override;
 	void Update(float delta) override;

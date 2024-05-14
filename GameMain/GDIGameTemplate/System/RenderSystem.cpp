@@ -159,8 +159,15 @@ namespace Render
 		// 이미지 그리기
 		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel);
 
-
+		//graphics->DrawImage()
 	}
 
-	
+	void DrawRotateImage(int centerX, int centerY, Gdiplus::Bitmap* bitmap, float rad) {
+		Gdiplus::Graphics ScreenG(backMemDC);
+		Gdiplus::Matrix mat;
+		mat.RotateAt(rad, Gdiplus::PointF((float)centerX + bitmap->GetWidth() / 2.f, (float)centerY + bitmap->GetHeight()/ 2.f));
+		ScreenG.SetTransform(&mat);
+		ScreenG.DrawImage(bitmap, centerX, centerY);
+
+	}
 }

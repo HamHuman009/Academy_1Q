@@ -15,12 +15,15 @@ void UIObject::OnTrigger()
 }
 
 void UIBackGround::Init() {
+	//CResourceManager* CR = CResourceManager::GetInstance();
+	//m_BackGround = CR->LoadBitmapResouce(L"image1",L"image1.png");
 	m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
 	cx = m_BackGround->GetWidth();
 	cy = m_BackGround->GetHeight();
 }
 
 void UIBackGround::Render() {
+	//0x00000147f3f723d0
 	Render::DrawImage(100,100,m_BackGround,0,0,cx,cy);
 }
 
@@ -72,8 +75,8 @@ void UITimer::Init(Vector2 myPos,Event* myEvent) {
 }
 void UITimer::Update(float delta) {
 	setTime -= delta;
-	std::cout << "delta : " << delta << endl;
-	std::cout << "setTime : " << setTime << endl;
+	/*std::cout << "delta : " << delta << endl;
+	std::cout << "setTime : " << setTime << endl;*/
 	//줄어든 바의 길이  = (정한시간에서 delta만크 줄어든 시기나 / 정한 시간 ) * 가로 길이 값
 	if (setTime > 0) {
 		deltaCx = (setTime / 60.0f) * cx;

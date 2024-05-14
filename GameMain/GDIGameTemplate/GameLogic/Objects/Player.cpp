@@ -27,6 +27,7 @@ void Player::Init()
 void Player::Update(float delta)
 {
 	movePlayer(delta);
+	//if(Input::IsKeyDown('F'))
 }
 
 void Player::Render()
@@ -42,6 +43,7 @@ void Player::OnTrigger()
 
 void Player::movePlayer(float delta)
 {
+	// 키설정 버튼이 바뀔 수 있음
 	if (Input::IsKey('W'))
 	{
 		Up(delta);
@@ -57,6 +59,12 @@ void Player::movePlayer(float delta)
 	if (Input::IsKey('D'))
 	{
 		Right(delta);
+	}
+
+	if (Input::IsKeyDown('F')) {
+		SceneManager* s = SceneManager::GetInstance();
+		auto c = s->GetCurScene();
+		//c->colliderManager.
 	}
 }
 

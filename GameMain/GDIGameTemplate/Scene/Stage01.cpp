@@ -25,10 +25,10 @@ void Stage01::Init()
 	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
 	AddObject(myTimer);
 	Fish* myFish;
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 1; i++) {
 		myFish = new Fish();
 		myFish->Init();
-		myFish->m_pos = { 300.f, 300.f };
+		myFish->m_pos = { 800.f, 500.f };
 		AddObject(myFish);
 	}
 	

@@ -19,8 +19,9 @@ void Fish::AngularVelocity(float delta) {
 
 	float dirScale = deg > 0 ? deg2 : -deg2;
 	float dir = deg > 0 ? m_AngulerSpeed * delta : -m_AngulerSpeed * delta;
-	if (abs(dirScale) <= abs(dir)) { // 남은 각도보다 회전할 각도가 클 때 방향을 m_moveDirection = m_AngulerDirection;
-		m_moveDirection = m_AngulerDirection;
+	//std::cout << "abs(dirScale): " << abs(deg) * 180.f / 3.14159f << std::endl;
+	if (abs(deg) * 180.f / 3.14159f <= abs(dir)) { // 남은 각도보다 회전할 각도가 클 때 방향을 m_moveDirection = m_AngulerDirection;
+		m_moveDirection = { -m_AngulerDirection.x,  -m_AngulerDirection.y};
 		// 회전이 완료되면 회전을 종료하는 무언가를 추가하면 될듯.
 		m_AngulerDirection = { 0.f, 0.f };
 	}
@@ -48,8 +49,12 @@ void Fish::Init() {
 	// 테스트용
 	m_collider = new RectangleCollider({ 0.f,0.f }, 100.f, 100.f);
 	m_collider->parent = this;
-	m_renderBounds = { {0.f, 0.f}, {50.f, 50.f} };
 	m_moveDirection = GetRandomDirection();
+
+	//CResourceManager CR = CResourceManager::CResourceManager();
+	//m_FishImage = CR.LoadBitmapResouce(L"FishTest", L"FishTest.png");
+	m_FishImage = Gdiplus::Bitmap::FromFile(L"FishTest.png");
+	m_renderBounds = { {0.f, 0.f}, {m_FishImage->GetWidth() / 2.f, m_FishImage->GetHeight() / 2.f}};
 }
 
 void Fish::Update(float delta) {
@@ -65,8 +70,27 @@ void Fish::Update(float delta) {
 }
 
 void Fish::Render() {
+	float angulerdirScale = 1.f;
+	float movedirScale = 1.f;
+
+	float deg = (0.f * m_moveDirection.y - 1.f * m_moveDirection.x) /
+		(angulerdirScale * movedirScale); // 회전방향 구하기
+	//deg = asinf(deg) * 180.f / 3.14159f;
+	//float rad = asinf(deg);
+
+	float inner = 0.f * m_moveDirection.x + 1.f * m_moveDirection.y;
+	float deg2 = acosf(inner / (angulerdirScale * movedirScale)) * 180.f / 3.14159f;
+
+	float dirScale = deg > 0 ? deg2 : -deg2;
+	//float dir = deg > 0 ? m_AngulerSpeed * delta : -m_AngulerSpeed * delta;
+
+
 	// 테스트용
-	Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 255));
+	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 255));
+	Render::DrawRotateImage((int)m_pos.x, (int)m_pos.y, m_FishImage, dirScale);
+	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_FishImage, 0, 0, (int)m_renderBounds.extents.x * 2, (int)m_renderBounds.extents.y * 2);
+
+	Render::DrawText(10, 10, std::to_string(dirScale).c_str(), RGB(255, 0, 0));
 }
 
 void Fish::OnTrigger() {
