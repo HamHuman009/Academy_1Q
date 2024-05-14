@@ -8,6 +8,9 @@ private:
 	float moveSpeed;
 	float radius;
 	Vector2 moveDirection;
+	float angle;
+	Event* pauseEvent;
+	bool flag;
 public:
 	Event* pauseEvent;
 	Player();
@@ -24,5 +27,7 @@ public:
 	void Down(float delta);
 	void Left(float delta);
 	void Right(float delta);
+
+	void SetStatus();
 };
 

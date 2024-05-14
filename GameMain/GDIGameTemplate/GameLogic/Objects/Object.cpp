@@ -14,18 +14,22 @@ void Object::Update(float delta)
 	{
 		m_inputDir.Normalize();
 		m_moveDir = m_inputDir;
-	}
-	else
-	{
-		m_moveDir = Vector2(0.0f, 0.0f);
-	}	
-
-	m_pos += m_moveDir * m_speed * delta;*/
-
-	/*if (m_moveDir.x != 0.0f)
-	{
-		m_AnimationFlip = m_moveDir.x < 0 ? true : false;
 	}*/
+	//if (m_moveDir != Vector2(0.0f, 0.0f))
+	//{
+	//	m_moveDir.Normalize();
+	//}
+	//else
+	//{
+	//	m_moveDir = Vector2(0.0f, 0.0f);
+	//}	
+
+	//m_pos += m_moveDir * delta;
+
+	//if (m_moveDir.x != 0.0f)
+	//{
+	//	m_AnimationFlip = m_moveDir.x < 0 ? true : false;
+	//}
 
 	//공격 중이면 상태	변경하지 않는다.
 	/*if (m_status != ObjectStatus::OBJECT_STATUS_ATTACK) 
@@ -47,8 +51,8 @@ void Object::Update(float delta)
 	//SIZE size = Render::GetScreenSize(); 
 	//m_pos = Vector2(std::clamp(m_pos.x, 0.0f, (float)size.cx), std::clamp(m_pos.y, 0.0f, (float)size.cy));
 
-	if (m_pAnimationResource && m_AnimationMotionIndex != -1)
-		UpdateAnimation(delta);
+	/*if (m_pAnimationResource && m_AnimationMotionIndex != -1)
+		UpdateAnimation(delta);*/
 
 	// 이전 방향 벡터 저장
 	//m_moveDirPrev = m_moveDir;

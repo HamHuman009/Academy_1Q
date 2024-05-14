@@ -70,6 +70,7 @@ AnimationResource* CResourceManager::LoadAnimationResouce(const std::wstring& _s
 	//std::wstring strFilePath = path.GetContentPath(); 
 	//strFilePath += _path;
 	//bitmap 로드
+	pAnimation = new AnimationResource();
 	pAnimation->LoadAnimImage(_path.c_str());
 	//map에 저장 하고
 	m_mapAnimation.insert(make_pair(_strkey, pAnimation));
@@ -98,9 +99,9 @@ void CResourceManager::setAnimationMotion(const std::wstring& _strkey, const std
 		return;
 	}
 
-	std::wstring strFilePath = path.GetContentPath();
-	strFilePath += _path;
-	pAnimation->LoadAnimMotion(strFilePath.c_str(), IsLoop);
+	/*std::wstring strFilePath = path.GetContentPath();
+	strFilePath += _path;*/
+	pAnimation->LoadAnimMotion(_path.c_str(), IsLoop);
 }
 
 

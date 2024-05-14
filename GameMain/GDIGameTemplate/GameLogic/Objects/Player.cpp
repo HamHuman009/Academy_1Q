@@ -9,6 +9,10 @@ Player::Player()
 	radius = 50.0f;
 	pauseEvent = nullptr;
 	moveDirection = { 0.f, 0.f };
+	angle = 10.0f;
+	m_AnimationMotionIndex = 0;
+	Init();
+	flag = false;
 }
 
 Player::~Player()
@@ -22,17 +26,49 @@ void Player::Init()
 	m_collider = new CircleCollider({ 0,0 }, radius);
 	m_collider->parent = this;
 	//m_renderBounds = { center, {width / 2, height / 2} };
+	CResourceManager* CR = CResourceManager::GetInstance();
+	m_pAnimationResource = CR->LoadAnimationResouce(L"ken", L"../Resource/ken.bmp");
+	CR->setAnimationMotion(L"ken", L"../Resource/KenIdle.txt"); // idle
+	CR->setAnimationMotion(L"ken", L"../Resource/KenMove.txt"); // move
 }
 
 void Player::Update(float delta)
 {
 	movePlayer(delta);
+	if (flag == true)
+	{
+		ChangeStatus(ObjectStatus::OBJECT_STATUS_MOVE);
+	}
+	else
+	{
+		ChangeStatus(ObjectStatus::OBJECT_STATUS_IDLE);
+	}
+	
 	//if(Input::IsKeyDown('F'))
+	if (m_pAnimationResource && m_AnimationMotionIndex != -1)
+	{
+		UpdateAnimation(delta);
+	}
+
 }
 
 void Player::Render()
 {
-	Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
+	/*Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
+	Render::*/
+	if (m_pAnimationResource && m_AnimationMotionIndex != -1)
+	{
+		Frame& frame = m_pAnimationResource->m_motions[m_AnimationMotionIndex].Frames[m_AnimationFrameIndex];
+		Gdiplus::Bitmap* bitmap = m_AnimationFlip ? m_pAnimationResource->m_bitmapFlip : m_pAnimationResource->m_bitmap;
+		SIZE size = Render::GetScreenSize();
+
+		int x = m_AnimationFlip ? (int)m_pos.x - (frame.Size.cx - frame.CenterX) : (int)m_pos.x - frame.CenterX;
+		int y = (int)m_pos.y - frame.CenterY;
+		int srcX = m_AnimationFlip ? m_pAnimationResource->m_bitmapFlip->GetWidth() - frame.Size.cx - frame.Source.left : frame.Source.left;
+		int srcY = frame.Source.top;
+
+		Render::DrawImage(x, y, bitmap, srcX, srcY, frame.Size.cx, frame.Size.cy);
+	}
 	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(255, 0, 0));
 }
 
@@ -79,6 +115,11 @@ void Player::movePlayer(float delta)
 	{ 
 		Right(delta);
 		Down(delta);
+	}
+	else
+	{
+		flag = false;
+		// flag 설정할것
 	}
 
 	if (Input::IsKeyDown(' ')) {
@@ -129,5 +170,22 @@ void Player::Right(float delta)
 	Vector2 normal = Vector2(1, 0);
 	normal.Normalize();
 	m_pos += normal * moveSpeed * delta;
+}
+
+void Player::SetStatus()
+{
+	if (m_status != ObjectStatus::OBJECT_STATUS_ATTACK)
+	{
+		if (m_moveDirPrev == Vector2(0.0f,0.0f))
+		{
+			if (m_moveDir != Vector2(0.0f, 0.0f))
+				ChangeStatus(ObjectStatus::OBJECT_STATUS_MOVE);
+		}
+		else if (m_moveDirPrev != Vector2(0.0f, 0.0f))
+		{
+			if (m_moveDir == Vector2(0.0f, 0.0f))
+				ChangeStatus(ObjectStatus::OBJECT_STATUS_IDLE);
+		}
+	}
 }
 
