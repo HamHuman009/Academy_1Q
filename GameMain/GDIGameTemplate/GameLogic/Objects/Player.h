@@ -9,7 +9,6 @@ private:
 	float radius;
 	Vector2 moveDirection;
 	float angle;
-	Event* pauseEvent;
 	bool flag;
 public:
 	Event* pauseEvent;

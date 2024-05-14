@@ -69,7 +69,7 @@ void Player::Render()
 
 		Render::DrawImage(x, y, bitmap, srcX, srcY, frame.Size.cx, frame.Size.cy);
 	}
-	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(255, 0, 0));
+	Render::DrawRect(m_pos.x - m_renderBounds.extents.x - 30, m_pos.y - m_renderBounds.extents.y - 30, m_renderBounds.extents.x + 30, m_renderBounds.extents.y + 30, RGB(255, 0, 0));
 }
 
 void Player::OnTrigger()
