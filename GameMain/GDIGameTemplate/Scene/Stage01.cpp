@@ -20,17 +20,19 @@ void Stage01::Init()
 	//UIBackGround* myBack = new UIBackGround();
 	//AddObject(myBack);
 	Player* m_Player = new Player();
-	AddObject(m_Player);
+	
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
 	AddObject(myTimer);
 	Fish* myFish;
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < 5; i++) {
 		myFish = new Fish();
 		myFish->Init();
 		myFish->m_pos = { 800.f, 500.f };
 		AddObject(myFish);
 	}
+	AddObject(m_Player);
+	m_Player->m_pos = { 800.f, 500.f };
 	
 }
 

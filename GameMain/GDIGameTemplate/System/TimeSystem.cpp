@@ -41,6 +41,7 @@ namespace High_Resolution_Time
 	LARGE_INTEGER frequency = { 0 };
 
 	float deltaTime = 0;
+	float timeScale = 1.f;
 
 	void InitTime()
 	{
@@ -55,6 +56,9 @@ namespace High_Resolution_Time
 		deltaTime = (currentTime.QuadPart - previousTime.QuadPart) / (frequency.QuadPart / 1000.f); //ms
 		previousTime = currentTime;
 	}
+	void SetTimeScale(float _timeScale) {
+		timeScale = _timeScale;
+	}
 
 	const float GetFrameRate()
 	{
@@ -63,5 +67,5 @@ namespace High_Resolution_Time
 		return ceil(((1000.0f / deltaTime) * 1000) / 1000);
 	}
 
-	const float GetDeltaTime() { return deltaTime; }
+	const float GetDeltaTime() { return deltaTime * timeScale; }
 }

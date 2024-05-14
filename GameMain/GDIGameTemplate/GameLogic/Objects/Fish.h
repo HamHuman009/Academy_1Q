@@ -12,6 +12,7 @@ private:
 	void Move(float delta);
 	void AngularVelocity(float delta);
 	Vector2 GetRandomDirection();
+	//Bounds renderBounds2;
 
 	Gdiplus::Bitmap* m_FishImage;
 

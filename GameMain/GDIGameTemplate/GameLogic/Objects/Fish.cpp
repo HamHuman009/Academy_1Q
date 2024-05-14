@@ -55,6 +55,8 @@ void Fish::Init() {
 	//m_FishImage = CR.LoadBitmapResouce(L"FishTest", L"FishTest.png");
 	m_FishImage = Gdiplus::Bitmap::FromFile(L"FishTest.png");
 	m_renderBounds = { {0.f, 0.f}, {m_FishImage->GetWidth() / 2.f, m_FishImage->GetHeight() / 2.f}};
+
+	//renderBounds2 = { {0.f, 50.f} , {m_FishImage->GetWidth() / 2.f, m_FishImage->GetHeight() / 2.f} };
 }
 
 void Fish::Update(float delta) {
@@ -87,6 +89,7 @@ void Fish::Render() {
 
 	// 테스트용
 	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 255));
+	//Render::DrawRotateImage((int)m_pos.x, (int)m_pos.y + 100.f, m_FishImage, dirScale);
 	Render::DrawRotateImage((int)m_pos.x, (int)m_pos.y, m_FishImage, dirScale);
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_FishImage, 0, 0, (int)m_renderBounds.extents.x * 2, (int)m_renderBounds.extents.y * 2);
 
