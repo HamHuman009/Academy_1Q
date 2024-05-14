@@ -3,7 +3,7 @@
 
 #include "../../System/RenderSystem.h"
 
-
+#include "../Animation.h"
 #include "../Bounds.h"
 #include "../Vector2.h"
 #include "../Collider.h"
