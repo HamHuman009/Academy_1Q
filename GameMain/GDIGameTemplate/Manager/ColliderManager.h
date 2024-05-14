@@ -14,11 +14,15 @@ public:
 	void Init();
 	void Update();
 	
-	void PushCollider(Collider* collider);
+	void PushCollider(Collider* collider, TYPE type);
 	void ClearColliders();
 
 	bool CheckCollision(Collider* lhs, Collider* rhs);
 
 	void PointCollision(Vector2 point, Collider* rhs);
+
+	Collider* GetCurrentPointCollider(Vector2 point);
+
+	Collider* GetCurrentPointCollider(Vector2 point, TYPE type);
 };
 

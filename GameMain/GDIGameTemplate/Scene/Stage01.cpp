@@ -19,6 +19,8 @@ void Stage01::Init()
 
 	//UIBackGround* myBack = new UIBackGround();
 	//AddObject(myBack);
+	colliderManager = new ColliderManager();
+
 	Player* m_Player = new Player();
 	/*UIImage* PauseBack = new UIImage();
 	UIButton* Resume = new UIButton(Vector2{}, new ResumeEvent);
@@ -41,6 +43,7 @@ void Stage01::Init()
 		myFish->Init();
 		myFish->m_pos = { 800.f, 500.f };
 		AddObject(myFish);
+		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}
 	AddObject(m_Player);
 	m_Player->m_pos = { 800.f, 500.f };

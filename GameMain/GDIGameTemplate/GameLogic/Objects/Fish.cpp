@@ -60,6 +60,7 @@ void Fish::Init() {
 }
 
 void Fish::Update(float delta) {
+	if (m_isActive == false) return;
 	time += delta;
 	if (time > maxTime) {
 		m_AngulerDirection = GetRandomDirection();
@@ -72,6 +73,8 @@ void Fish::Update(float delta) {
 }
 
 void Fish::Render() {
+	if (m_isActive == false) return;
+
 	float angulerdirScale = 1.f;
 	float movedirScale = 1.f;
 
@@ -88,14 +91,14 @@ void Fish::Render() {
 
 
 	// 테스트용
-	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 255));
 	//Render::DrawRotateImage((int)m_pos.x, (int)m_pos.y + 100.f, m_FishImage, dirScale);
-	Render::DrawRotateImage((int)m_pos.x, (int)m_pos.y, m_FishImage, dirScale);
+	Render::DrawRotateImage((int)m_pos.x - m_renderBounds.extents.x, (int)m_pos.y - m_renderBounds.extents.y, m_FishImage, dirScale);
+	Render::DrawRect(m_pos.x - 50.f, m_pos.y - 50.f, 100, 100, RGB(0, 255, 0));
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_FishImage, 0, 0, (int)m_renderBounds.extents.x * 2, (int)m_renderBounds.extents.y * 2);
 
 	Render::DrawText(10, 10, std::to_string(dirScale).c_str(), RGB(255, 0, 0));
 }
 
 void Fish::OnTrigger() {
-
+	m_isActive = false;
 }

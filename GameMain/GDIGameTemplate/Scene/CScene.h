@@ -12,7 +12,7 @@ enum class TYPE
 	FISH,
 	UI,
 
-	END = 32,
+	END = 5
 };
 
 //class ColliderManager;

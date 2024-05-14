@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Fish.h"
 #include "../../System/InputSystem.h"
 
 Player::Player()
@@ -64,7 +65,11 @@ void Player::movePlayer(float delta)
 	if (Input::IsKeyDown('F')) {
 		SceneManager* s = SceneManager::GetInstance();
 		auto c = s->GetCurScene();
-		//c->colliderManager.
+		Collider* fish = c->colliderManager->GetCurrentPointCollider(m_pos, TYPE::FISH);
+		if (fish != nullptr)
+		{
+			fish->parent->OnTrigger();
+		}
 	}
 
 	if (Input::IsKey(VK_ESCAPE))
