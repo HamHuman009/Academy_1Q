@@ -24,5 +24,8 @@ public:
 	Collider* GetCurrentPointCollider(Vector2 point);
 
 	Collider* GetCurrentPointCollider(Vector2 point, TYPE type);
+
+	// 충돌체크할 collider와 충돌체들을 담을 arrCollider, length, 가져올 type을 이용해 colliders와 개수 리턴
+	int GetCountCollidersAtType(Collider* collider, Collider** arrCollider, int length, TYPE type);
 };
 

@@ -85,3 +85,18 @@ Collider* ColliderManager::GetCurrentPointCollider(Vector2 point, TYPE type) {
 	}
 	return nullptr;
 }
+
+int ColliderManager::GetCountCollidersAtType(Collider* collider, Collider** arrCollider, int length, TYPE type){
+	int count = 0;
+	for (int i = colliders[(UINT)type].size() - 1; i >= 0; i--) {
+		if (colliders[(UINT)type][i]->parent->m_isActive == false) continue;
+		else {
+			if ((colliders[(UINT)type])[i]->isColliding(*collider)) {
+				arrCollider[count] = (colliders[(UINT)type][i]);
+				count++;
+			}
+		}
+	}
+
+	return count;
+}

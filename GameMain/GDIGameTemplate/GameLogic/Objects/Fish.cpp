@@ -48,12 +48,12 @@ Vector2 Fish::GetRandomDirection() {
 	//y = sqrtf(y);
 	//y = (rand() % 2) == 0 ? -y : y;
 	//return { x, y };
-	std::cout << "현재 위치: " << (int)m_pos.x << ", " << (int)m_pos.y << std::endl;
+	//std::cout << "현재 위치: " << (int)m_pos.x << ", " << (int)m_pos.y << std::endl;
 	Vector2 position = GetRandomPosition();
-	std::cout << "랜덤 위치: " << position.x << ", " << position.y;
+	//std::cout << "랜덤 위치: " << position.x << ", " << position.y;
 	float distance = sqrtf(pow(m_pos.x - position.x, 2) + pow(m_pos.y - position.y, 2)); // 거리는 곧 시간이 됨.
 	maxTime = distance / m_speed;
-	std::cout << ", " << maxTime << std::endl;
+	//std::cout << ", " << maxTime << std::endl;
 	Vector2 direction = m_pos - position;
 	direction.Normalize(); // 방향.
 	return direction;

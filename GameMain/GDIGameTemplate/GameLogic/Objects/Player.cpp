@@ -9,7 +9,6 @@ Player::Player()
 	radius = 50.0f;
 	pauseEvent = nullptr;
 	moveDirection = { 0.f, 0.f };
-	angle = 10.0f;
 	m_AnimationMotionIndex = 0;
 	Init();
 	flag = false;
@@ -22,18 +21,9 @@ Player::~Player()
 
 void Player::Init()
 {
-	//m_collider = new RectangleCollider(center, width, height);
+	playerBitmap = Gdiplus::Bitmap::FromFile(L"Player.png");
 	m_collider = new CircleCollider({ 0,0 }, radius);
 	m_collider->parent = this;
-	//m_renderBounds = { center, {width / 2, height / 2} };
-	//CResourceManager* CR = CResourceManager::GetInstance();
-	//m_pAnimationResource = CR->LoadAnimationResouce(L"ken", L"../Resource/ken.bmp");
-	//CR->setAnimationMotion(L"ken", L"../Resource/KenIdle.txt"); // idle
-	//CR->setAnimationMotion(L"ken", L"../Resource/KenMove.txt"); // move
-	playerBitmap = Gdiplus::Bitmap::FromFile(L"Player.png");
-
-	//CResourceManager CR = CResourceManager::CResourceManager();
-	//playerBitmap = CR.LoadBitmapResouce(L"Player", L"Player.png");
 
 	m_renderBounds = { { 0,0 }, {playerBitmap->GetWidth() / 2.f, playerBitmap->GetHeight() / 2.f}};
 
@@ -85,7 +75,6 @@ void Player::OnTrigger()
 {
 	// 물고기 잡을때 트리거
 }
-
 void Player::movePlayer(float delta)
 {
 	// 키설정 버튼이 바뀔 수 있음
@@ -134,11 +123,18 @@ void Player::movePlayer(float delta)
 	if (Input::IsKeyDown(' ')) {
 		SceneManager* s = SceneManager::GetInstance();
 		auto c = s->GetCurScene();
-		Collider* fish = c->colliderManager->GetCurrentPointCollider(m_pos, TYPE::FISH);
+
+		Collider* fishs[20];
+		int count = c->colliderManager->GetCountCollidersAtType(m_collider, fishs, 20, TYPE::FISH);
+		for (int i = 0; i < count; i++) {
+			fishs[i]->parent->OnTrigger();
+		}
+
+		/*Collider* fish = c->colliderManager->GetCurrentPointCollider(m_pos, TYPE::FISH);
 		if (fish != nullptr)
 		{
 			fish->parent->OnTrigger();
-		}
+		}*/
 	}
 
 	if (Input::IsKey(VK_ESCAPE))
@@ -146,7 +142,6 @@ void Player::movePlayer(float delta)
 		//pauseEvent
 		pauseEvent->OnTrigger();
 	}
-
 }
 
 void Player::Up(float delta)

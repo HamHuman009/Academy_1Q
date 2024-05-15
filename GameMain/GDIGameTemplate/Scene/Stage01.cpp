@@ -66,7 +66,7 @@ void Stage01::Init()
 	AddObject(myTimer);
 	Fish* myFish;
 	srand(std::time(NULL));
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < 10; i++) {
 		myFish = new Fish();
 		myFish->m_pos = { 600.f, 350.f };
 		myFish->Init();
