@@ -59,21 +59,23 @@ void Stage01::Init()
 
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, e_retry);
-	myBackGround = new UIBackGround();
+
+	UIBackGround* myBackGround = new UIBackGround();
 	myBackGround->Init(L"Water_Down_00.bmp",CRM);
 	AddObject(myBackGround);
 	AddObject(myTimer);
 	Fish* myFish;
-	for (int i = 0; i < 5; i++) {
+	srand(std::time(NULL));
+	for (int i = 0; i < 1; i++) {
 		myFish = new Fish();
+		myFish->m_pos = { 600.f, 350.f };
 		myFish->Init();
-		myFish->m_pos = { 800.f, 500.f };
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}
 	
 	AddObject(m_Player);
-	m_Player->m_pos = { 800.f, 500.f };
+	m_Player->m_pos = { 600.f, 350.f };
 	UIBackGround* myUPBackGround = new UIBackGround();
 	myUPBackGround->Init(L"Water_UP_00.bmp", CRM);
 	AddObject(myUPBackGround);

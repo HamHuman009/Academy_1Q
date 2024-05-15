@@ -101,7 +101,7 @@ void UITimer::Render() {
 }
 
 void UITimer::OnTrigger() {
-	if (m_Event != nullptr) m_Event->OnTrigger();
+	//if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
 void UIBackGround::Init(const WCHAR* fileName, CResourceManager* CRM) {
@@ -158,8 +158,7 @@ void UIBackGround::Render() {
 		0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);*/
 
 	//Render::DrawImage(50, 200, m_bitmap[backGroundFrame], 0, 0, 1250, 800);
-
-	Render::DrawBitmap(50, 200, m_bitmap[backGroundFrame], 0, 0, 1250, 800);
+	Render::DrawBitmap(0, 0, m_bitmap[backGroundFrame], 0, 0, 1280, 720);
 	
 }
 

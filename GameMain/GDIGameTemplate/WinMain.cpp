@@ -65,19 +65,19 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	// Step 2: Creating the Window
 
 	// 원하는 크기가 조정되어 리턴
-	//SIZE clientSize = { 1920, 1080 };
-	//RECT clientRect = { 0, 0, clientSize.cx, clientSize.cy };
+	SIZE clientSize = { 1280, 720 };
+	RECT clientRect = { 0, 0, clientSize.cx, clientSize.cy };
 	int width = GetSystemMetrics(SM_CXSCREEN);
 	int height = GetSystemMetrics(SM_CXSCREEN);
-	RECT clientRect = { 0, 0, width, height };
+	//RECT clientRect = { 0, 0, width, height };
 	
 	AdjustWindowRect(&clientRect, WS_OVERLAPPEDWINDOW, FALSE);
 
 
-	/*m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
-		SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);*/
-	m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
-		SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);
+	m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
+		SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);
+	//m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
+	//	SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);
 
 	
 	if (!m_hWnd)
@@ -87,8 +87,8 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	}
 
 
-	//ShowWindow(m_hWnd, SW_SHOWNORMAL);
-	ShowWindow(m_hWnd, SW_MAXIMIZE);
+	ShowWindow(m_hWnd, SW_SHOWNORMAL);
+	//ShowWindow(m_hWnd, SW_MAXIMIZE);
 	
 	UpdateWindow(m_hWnd);
 
