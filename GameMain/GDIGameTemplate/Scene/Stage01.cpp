@@ -58,8 +58,8 @@ void Stage01::Init()
 
 
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
-	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
-	UIBackGround* myBackGround = new UIBackGround();
+	UITimer* myTimer = new UITimer(Vector2{910,100}, e_retry);
+	myBackGround = new UIBackGround();
 	myBackGround->Init(L"Water_Down_00.bmp",CRM);
 	AddObject(myBackGround);
 	AddObject(myTimer);

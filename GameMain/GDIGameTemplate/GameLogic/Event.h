@@ -84,9 +84,20 @@ public:
 
 class RetryEvent : public Event
 {
+	// retry 버튼을 눌렀을때 그냥 맨처음 초기화면으로 돌아가게끔
+	// + 시간초가 다되면 retry 이벤트가 자동으로 실행되게끔
+
+private:
+	SceneManager* scnManager;
+	Game::GameManager* gameManager;
+	int nextSceneNum;
+public:
+
 	void OnTrigger() override
 	{
-
+		scnManager = SceneManager::GetInstance();
+		gameManager = Game::GameManager::GetInstance();
+		scnManager->SetCurScene(1);
 	}
 };
 
@@ -94,6 +105,6 @@ class ExitEvent : public Event
 {
 	void OnTrigger() override
 	{
-
+		PostQuitMessage(1);
 	}
 };

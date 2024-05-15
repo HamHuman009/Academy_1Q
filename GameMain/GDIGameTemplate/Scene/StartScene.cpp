@@ -19,6 +19,10 @@ void StartScene::Init()
 	
 	AddObject(myBack);
 	AddObject(gameStartButton);
+
+	ExitEvent* e_exit = new ExitEvent;
+	UIButton* exit = new UIButton(Vector2{ 100,1000 }, e_exit);
+	AddObject(exit);
 }
 
 StartScene::~StartScene() {
