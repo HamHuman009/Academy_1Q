@@ -28,7 +28,7 @@ void UIImage::Init(Gdiplus::Bitmap* myBitMap, Vector2 myVector) {
 void UIImage::Render() {
 	if (m_isActive == false) return;
 	//0x00000147f3f723d0
-	Render::DrawImage(m_pos.x- m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x, m_renderBounds.extents.y);
+	Render::DrawImage(m_pos.x- m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
 }
 
 void UIButton::Init(Vector2 myPos, Event* myEvent) {
@@ -106,7 +106,7 @@ void UITimer::OnTrigger() {
 
 void UIBackGround::Init(const WCHAR* fileName, CResourceManager* CRM) {
 	LoadAnimImage(fileName,CRM);
-	m_pos = { 0,0 };
+	m_pos = { 960.f, 540.f };
 	m_renderBounds = { {0,0},{m_bitmap[0]->GetWidth() / 2.f,m_bitmap[0]->GetHeight() / 2.f} };
 	backGroundFrame = 0;
 	backGroundFrameFlag = 0;
@@ -131,24 +131,40 @@ void UIBackGround::LoadAnimImage(const WCHAR* fileName,CResourceManager* CRM)
 			m_fileName[i] = noNumFileName.append(wNum);
 		}
 		
-		m_bitmap[i] = CRM->LoadBitmapResouce(m_fileName[i].c_str(), m_fileName[i].append(L".png").c_str());
+		m_bitmap[i] = CRM->LoadBitmapResouce(m_fileName[i].c_str(), m_fileName[i].append(L".bmp").c_str());
 		noNumFileName = noNumFileName.substr(0, fileNameLength - 6);
 	}
 
 
 }
 
+void UIBackGround::Update(float delta) {
+	time += delta;
+	if (time >= maxTime) {
+		time -= maxTime;
+		backGroundFrame = (backGroundFrame + 1) % BACK_GROUND_ANIM_FRAME;
+	}
+
+	/*backGroundFrameFlag = ++backGroundFrameFlag % backGroundFrameInterval;
+	if (backGroundFrameFlag == 9) {
+		backGroundFrame = ++backGroundFrame % BACK_GROUND_ANIM_FRAME;
+	}*/
+}
+
 void UIBackGround::Render() {
 	
-	Render::DrawImage(m_pos.x, m_pos.y, m_bitmap[backGroundFrame], 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
+	/*Render::DrawImage(m_pos.x - m_renderBounds.extents.x, 
+		m_pos.y - m_renderBounds.extents.y, m_bitmap[backGroundFrame], 
+		0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);*/
+
+	//Render::DrawImage(50, 200, m_bitmap[backGroundFrame], 0, 0, 1250, 800);
+
+	Render::DrawBitmap(50, 200, m_bitmap[backGroundFrame], 0, 0, 1250, 800);
 	
 }
 
 void UIBackGround::FixedUpdate() {
-	backGroundFrameFlag = ++backGroundFrameFlag % backGroundFrameInterval;
-	if (backGroundFrameFlag == 9) {
-		backGroundFrame = ++backGroundFrame % BACK_GROUND_ANIM_FRAME;
-	}
+	
 	
 }
 

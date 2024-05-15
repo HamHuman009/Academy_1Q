@@ -105,10 +105,13 @@ private:
 	int backGroundFrame;
 	int backGroundFrameFlag;
 	const static int backGroundFrameInterval = 10;
+
+	float time = 0.f;
+	float maxTime = 0.2f;
 public:
 	// Object을(를) 통해 상속됨
 	void Init(const WCHAR* fileName, CResourceManager* CRM);
-	//void Update(float delta) override;
+	void Update(float delta) override;
 	void Render()override;
 	void FixedUpdate();
 	//void SetMotion(int index)override;

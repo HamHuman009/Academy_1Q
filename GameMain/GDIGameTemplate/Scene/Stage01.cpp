@@ -47,7 +47,7 @@ void Stage01::Init()
 	m_Player->pauseEvent = e_pause;
 	CResourceManager* CRM = CResourceManager::GetInstance();
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage",L"image1.png");
-	pauseBack->Init(pauseBackImage,Vector2{100,100});
+	pauseBack->Init(pauseBackImage,Vector2{500.f,400.f});
 
 	
 
@@ -59,8 +59,8 @@ void Stage01::Init()
 
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
-	myBackGround = new UIBackGround();
-	myBackGround->Init(L"Water_Down_00.png",CRM);
+	UIBackGround* myBackGround = new UIBackGround();
+	myBackGround->Init(L"Water_Down_00.bmp",CRM);
 	AddObject(myBackGround);
 	AddObject(myTimer);
 	Fish* myFish;
@@ -74,8 +74,8 @@ void Stage01::Init()
 	
 	AddObject(m_Player);
 	m_Player->m_pos = { 800.f, 500.f };
-	myUPBackGround = new UIBackGround();
-	myUPBackGround->Init(L"Water_UP_00.png", CRM);
+	UIBackGround* myUPBackGround = new UIBackGround();
+	myUPBackGround->Init(L"Water_UP_00.bmp", CRM);
 	AddObject(myUPBackGround);
 	AddObject(pauseBack);
 	AddObject(resume);
@@ -100,8 +100,8 @@ void Stage01::Start()
 }
 
 void Stage01::FixedUpdate() {
-	myBackGround->FixedUpdate();
-	myUPBackGround->FixedUpdate();
+	//myBackGround->FixedUpdate();
+	//myUPBackGround->FixedUpdate();
 }
 
 void Stage01::Exit()

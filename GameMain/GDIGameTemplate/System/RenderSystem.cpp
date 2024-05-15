@@ -168,6 +168,13 @@ namespace Render
 		mat.RotateAt(rad, Gdiplus::PointF((float)centerX + bitmap->GetWidth() / 2.f, (float)centerY + bitmap->GetHeight()/ 2.f));
 		ScreenG.SetTransform(&mat);
 		ScreenG.DrawImage(bitmap, centerX, centerY);
+	}
 
+	void DrawBitmap(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight) {
+		Gdiplus::ImageAttributes imgAttr;
+		Gdiplus::Rect srcRect(srcX, srcY, srcWitdh, srcHeight); // 소스의 영역
+		Gdiplus::Rect destRect(x, y, srcRect.Width, srcRect.Height);
+		imgAttr.SetColorKey(Gdiplus::Color(0, 0, 0), Gdiplus::Color(0, 0, 0), Gdiplus::ColorAdjustTypeBitmap);
+		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel, &imgAttr);
 	}
 }

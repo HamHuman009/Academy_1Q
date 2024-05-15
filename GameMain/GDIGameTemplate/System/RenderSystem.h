@@ -29,4 +29,6 @@ namespace Render
 	void DrawImage(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight);
 
 	void DrawRotateImage(int centerX, int centerY, Gdiplus::Bitmap* bitmap, float rad);
+
+	void DrawBitmap(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight);
 }
