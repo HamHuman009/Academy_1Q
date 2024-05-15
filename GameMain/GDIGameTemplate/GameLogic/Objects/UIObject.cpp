@@ -1,5 +1,7 @@
 #include "UIObject.h"
 #include "../Event.h"
+
+
 void UIObject::Init() {
 
 }
@@ -106,6 +108,8 @@ void UIBackGround::Init(const WCHAR* fileName, CResourceManager* CRM) {
 	LoadAnimImage(fileName,CRM);
 	m_pos = { 0,0 };
 	m_renderBounds = { {0,0},{m_bitmap[0]->GetWidth() / 2.f,m_bitmap[0]->GetHeight() / 2.f} };
+	backGroundFrame = 0;
+	backGroundFrameFlag = 0;
 }
 
 void UIBackGround::LoadAnimImage(const WCHAR* fileName,CResourceManager* CRM)
@@ -135,16 +139,18 @@ void UIBackGround::LoadAnimImage(const WCHAR* fileName,CResourceManager* CRM)
 }
 
 void UIBackGround::Render() {
-	static int backGroundframe = 0;
-	Render::DrawImage(m_pos.x, m_pos.y, m_bitmap[backGroundframe], 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
-	backGroundframe = (backGroundframe + 1) % BACK_GROUND_ANIM_FRAME;
+	
+	Render::DrawImage(m_pos.x, m_pos.y, m_bitmap[backGroundFrame], 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
+	
 }
 
-//void UIBackGround::FixedUpdate() {
-//	static int backGroundframe = 0;
-//	Render::DrawImage(m_pos.x, m_pos.y, m_bitmap[backGroundframe], 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
-//	backGroundframe = (backGroundframe + 1) % BACK_GROUND_ANIM_FRAME;
-//}
+void UIBackGround::FixedUpdate() {
+	backGroundFrameFlag = ++backGroundFrameFlag % backGroundFrameInterval;
+	if (backGroundFrameFlag == 9) {
+		backGroundFrame = ++backGroundFrame % BACK_GROUND_ANIM_FRAME;
+	}
+	
+}
 
 UIBackGround::~UIBackGround() {
 	for (int i = 0; i < BACK_GROUND_ANIM_FRAME; i++) {

@@ -59,7 +59,7 @@ void Stage01::Init()
 
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, nextScnEvent);
-	UIBackGround* myBackGround = new UIBackGround();
+	myBackGround = new UIBackGround();
 	myBackGround->Init(L"Water_Down_00.png",CRM);
 	AddObject(myBackGround);
 	AddObject(myTimer);
@@ -74,7 +74,7 @@ void Stage01::Init()
 	
 	AddObject(m_Player);
 	m_Player->m_pos = { 800.f, 500.f };
-	UIBackGround* myUPBackGround = new UIBackGround();
+	myUPBackGround = new UIBackGround();
 	myUPBackGround->Init(L"Water_UP_00.png", CRM);
 	AddObject(myUPBackGround);
 	AddObject(pauseBack);
@@ -100,7 +100,8 @@ void Stage01::Start()
 }
 
 void Stage01::FixedUpdate() {
-
+	myBackGround->FixedUpdate();
+	myUPBackGround->FixedUpdate();
 }
 
 void Stage01::Exit()

@@ -102,17 +102,21 @@ class UIBackGround : public UIObject
 private:
 	std::wstring m_fileName[BACK_GROUND_ANIM_FRAME];
 	Gdiplus::Bitmap* m_bitmap[BACK_GROUND_ANIM_FRAME] = { nullptr, };
+	int backGroundFrame;
+	int backGroundFrameFlag;
+	const static int backGroundFrameInterval = 10;
 public:
 	// Object을(를) 통해 상속됨
 	void Init(const WCHAR* fileName, CResourceManager* CRM);
 	//void Update(float delta) override;
 	void Render()override;
-	//void FixedUpdate();
+	void FixedUpdate();
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	//void OnTrigger() override;
 	~UIBackGround();
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
+	
 
 };
