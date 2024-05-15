@@ -64,6 +64,8 @@ namespace Game
 
 		m_curScene->Render();
 
+		Render::DrawTextW(10, 50, std::to_string(High_Resolution_Time::GetFrameRate()).c_str(), RGB(255, 0, 0));
+
 		Render::EndDraw();
 
 		

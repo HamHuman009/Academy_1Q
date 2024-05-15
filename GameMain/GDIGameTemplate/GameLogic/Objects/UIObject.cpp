@@ -28,7 +28,7 @@ void UIImage::Init(Gdiplus::Bitmap* myBitMap, Vector2 myVector) {
 void UIImage::Render() {
 	if (m_isActive == false) return;
 	//0x00000147f3f723d0
-	Render::DrawImage(m_pos.x, m_pos.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
+	Render::DrawImage(m_pos.x- m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x, m_renderBounds.extents.y);
 }
 
 void UIButton::Init(Vector2 myPos, Event* myEvent) {
