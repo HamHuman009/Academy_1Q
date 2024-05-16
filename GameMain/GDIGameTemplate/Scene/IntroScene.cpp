@@ -15,7 +15,7 @@ IntroScene::~IntroScene()
 void IntroScene::Init()
 {
 	WCHAR* _str = new WCHAR[255];
-	WCHAR t_str[] = L"Draw text in a rectangle by passing a RectF to the DrawString method.";
+	WCHAR t_str[] = L"仆元之仆元之仆元之仆元之仆元之 by passing a RectF to the DrawString method.";
 
 	wcscpy_s(_str, 255, t_str);
 

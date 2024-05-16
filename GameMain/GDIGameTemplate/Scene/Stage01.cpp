@@ -120,6 +120,7 @@ void Stage01::FixedUpdate() {
 
 void Stage01::Exit()
 {
+
 	for (int i = 0; i < m_arrObj.size(); i++) {
 
 		if (m_arrObj[i] != nullptr) {

@@ -1,5 +1,7 @@
 
 #include "RenderSystem.h"
+#include "../Manager/SceneManager.h"
+
 
 #pragma comment(lib, "msimg32.lib")
 #pragma comment(lib, "gdiplus.lib")
@@ -45,6 +47,9 @@ namespace Render
 
 	void EndDraw()
 	{
+		
+		SceneManager::GetInstance()->GetCurScene()->prevBitmap = new Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::Graphics::FromHDC(frontMemDC));
+
 		::BitBlt(frontMemDC, 0, 0, nWidth, nHeight, backMemDC, 0, 0, SRCCOPY);
 	}
 
