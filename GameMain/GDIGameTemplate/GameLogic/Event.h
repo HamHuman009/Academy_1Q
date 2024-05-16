@@ -59,7 +59,7 @@ public:
 	void OnTrigger() override {
 		SelectScene(nextSceneNum);
 		if (m_Sound != mySound::SoundList::Void) {
-			m_SoundManager->PlayIn1Secs(m_Sound, mySound::SoundChannel::Effect, 1);
+			m_SoundManager->PlayInSecs({mySound::SoundList::Singing,mySound::SoundChannel::Effect,1});
 		}
 	}
 

@@ -52,9 +52,11 @@ namespace mySound
 
 		void SetVolume(float volume);
 
-		void StopInSecs(LCS LCS);
+		void PlayInSecs(LCS LCS);
 
 		void RelaseSounds();
+
+		LCS m_LCS;
 
 	private:
 		SoundManager();
@@ -62,7 +64,7 @@ namespace mySound
 		~SoundManager();
 	private:
 		static SoundManager* mInstance;
-		LCS m_LCS;
+		
 		FMOD::System* mSystem;
 		FMOD::Channel* mChannel[static_cast<int>(SoundChannel::Size)];
 		FMOD::Sound* mSoundList[static_cast<int>(SoundList::Size)];

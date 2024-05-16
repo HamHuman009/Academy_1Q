@@ -80,7 +80,7 @@ namespace Game
 		CResourceManager::GetInstance()->DestroyInstance();
 		
 		Render::ReleaseRender();
-		SMInstance->DestroyInstance();
+		//SMInstance->DestroyInstance();
 
 	}
 	void GameManager::Run()
