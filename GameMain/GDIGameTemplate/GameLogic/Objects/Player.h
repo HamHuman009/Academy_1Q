@@ -12,7 +12,11 @@ private:
 
 	Gdiplus::Bitmap* playerBitmap;
 
-	float sScale = 1.f;
+	bool isScoopUp = false;
+	float scoopUpTime = 0.f;
+	float scale = 1.f;
+
+	//bool r = false;
 public:
 	Event* pauseEvent;
 	Player();
@@ -24,6 +28,7 @@ public:
 	void OnTrigger() override;
 
 	void movePlayer(float delta);
+	void ScoopUp(float delta);
 
 	void Up(float delta);
 	void Down(float delta);

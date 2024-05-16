@@ -12,6 +12,9 @@ private:
 	float animMaxTime = 0.f;
 	int animationFrame = 0;
 
+	float alphaTime = 1.f;
+	bool isCatch = false;
+
 	void Move(float delta);
 	Vector2 GetRandomPosition();
 
