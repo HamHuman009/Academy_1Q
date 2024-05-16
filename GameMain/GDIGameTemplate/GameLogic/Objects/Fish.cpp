@@ -94,15 +94,26 @@ void Fish::Update(float delta) {
 		time = 0;
 	}
 
-	Move(delta);
+	if (isCatch) {
+		alphaTime -= delta;
+		if (alphaTime <= 0) {
+			alphaTime = 0.f;
+			m_isActive = false;
+			isCatch = false;
+		}
+	}
 
-	if (m_AngulerDirection != Vector2(0.f, 0.f))
-		AngularVelocity(delta);
+	if (!isCatch) {
+		Move(delta);
 
-	animTime += delta;
-	if (animTime >= animMaxTime) {
-		animTime -= animMaxTime;
-		animationFrame = (animationFrame + 1) % 30;
+		if (m_AngulerDirection != Vector2(0.f, 0.f))
+			AngularVelocity(delta);
+
+		animTime += delta;
+		if (animTime >= animMaxTime) {
+			animTime -= animMaxTime;
+			animationFrame = (animationFrame + 1) % 30;
+		}
 	}
 }
 
@@ -122,7 +133,7 @@ void Fish::Render(float alpha) {
 
 	// 테스트용
 	//Render::DrawRotateImage((int)m_pos.x, (int)m_pos.y + 100.f, m_FishImage, dirScale);
-	Render::DrawRotateImage((int)m_pos.x - m_renderBounds.extents.x, (int)m_pos.y - m_renderBounds.extents.y, m_bitmap[animationFrame], dirScale);
+	Render::DrawRotateImage((int)m_pos.x - m_renderBounds.extents.x, (int)m_pos.y - m_renderBounds.extents.y, m_bitmap[animationFrame], dirScale, alphaTime);
 	//Render::DrawRect(m_pos.x - 50.f, m_pos.y - 50.f, 100, 100, RGB(0, 255, 0));
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_FishImage, 0, 0, (int)m_renderBounds.extents.x * 2, (int)m_renderBounds.extents.y * 2);
 
@@ -153,7 +164,7 @@ void Fish::Render(float alpha) {
 }
 
 void Fish::OnTrigger() {
-	m_isActive = false;
+	isCatch = true;
 }
 
 void Fish::SetRandomPosition()

@@ -5,7 +5,7 @@
 
 Player::Player()
 {
-	moveSpeed = 100.0f;
+	moveSpeed = 70.0f;
 	radius = 50.0f;
 	pauseEvent = nullptr;
 	moveDirection = { 0.f, 0.f };
@@ -37,6 +37,9 @@ void Player::Update(float delta)
 		sScale = 0.7f;
 	}*/
 	movePlayer(delta);
+
+	ScoopUp(delta);
+
 	if (flag == true)
 	{
 		ChangeStatus(ObjectStatus::OBJECT_STATUS_MOVE);
@@ -75,8 +78,8 @@ void Player::Render(float alpha)
 	//Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
 	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(255, 0, 0));
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight());
-	Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
-	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight(), alpha,sScale);
+	//if(r) Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight(), alpha, scale);
 }
 
 void Player::OnTrigger()
@@ -128,27 +131,60 @@ void Player::movePlayer(float delta)
 		// flag 설정할것
 	}
 
-	if (Input::IsKeyDown(' ')) {
-		SceneManager* s = SceneManager::GetInstance();
-		auto c = s->GetCurScene();
-
-		Collider* fishs[20];
-		int count = c->colliderManager->GetCountCollidersAtType(m_collider, fishs, 20, TYPE::FISH);
-		for (int i = 0; i < count; i++) {
-			fishs[i]->parent->OnTrigger();
-		}
-
-		/*Collider* fish = c->colliderManager->GetCurrentPointCollider(m_pos, TYPE::FISH);
-		if (fish != nullptr)
-		{
-			fish->parent->OnTrigger();
-		}*/
-	}
-
 	if (Input::IsKey(VK_ESCAPE))
 	{
 		//pauseEvent
 		pauseEvent->OnTrigger();
+	}
+}
+
+void Player::ScoopUp(float delta)
+{
+	if (Input::IsKeyDown(' ') && isScoopUp == false) {
+		isScoopUp = true;
+		moveSpeed = 45.f;
+	}
+
+	if (isScoopUp == true) {
+		std::cout << scoopUpTime << ", " << scale << std::endl;
+		scoopUpTime += delta;
+		if (scoopUpTime >= 0.f && scoopUpTime < 1.5f) {
+			scale -= delta * 0.25f / 1.5f; // 1.5초에 걸쳐서 0.75 scale까지 줄어듦.
+			if (scale < 0.75f)
+				scale = 0.75f;
+		}
+		else if (scoopUpTime >= 1.5f && scoopUpTime < 4.5f) {
+			// nothing
+		}
+		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {
+			scale += delta * 0.25f / 1.5f;
+			if (scale > 1.f)
+				scale = 1.f;
+		}
+
+		if (scoopUpTime >= 1.3f && scoopUpTime < 1.5f) {
+			// 사운드, 시각효과
+			//r = true;
+		}
+		else if (scoopUpTime >= 1.5f && scoopUpTime < 4.5f) {
+			SceneManager* s = SceneManager::GetInstance();
+			auto c = s->GetCurScene();
+
+			Collider* fishs[20];
+			int count = c->colliderManager->GetCountCollidersAtType(m_collider, fishs, 20, TYPE::FISH);
+			for (int i = 0; i < count; i++) {
+				fishs[i]->parent->OnTrigger();
+			}
+		}
+		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {
+			
+		}
+		else if (scoopUpTime >= 6.f){
+			isScoopUp = false;
+			scoopUpTime = 0.f;
+			moveSpeed = 70.f;
+			//r = false;
+		}
 	}
 }
 
