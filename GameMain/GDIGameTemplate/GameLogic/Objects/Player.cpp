@@ -16,9 +16,9 @@ Player::Player()
 
 Player::~Player()
 {
-	if (pauseEvent != nullptr) {
+	/*if (pauseEvent != nullptr) {
 		delete pauseEvent;
-	}
+	}*/
 }
 
 void Player::Init()

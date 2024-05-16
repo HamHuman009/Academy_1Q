@@ -15,7 +15,7 @@ void StartScene::Init()
 	UIImage* myBack = new UIImage(); // 객체 테스트
 	myBack->Init(myBitmap, { 500.f,400.f });
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent(2); // 씬전환 이벤트 테스트
+	SelectScnEvent* e_nextScn = new SelectScnEvent(3); // 씬전환 이벤트 테스트
 	UIButton* gameStartButton = new UIButton(Vector2{800.0f,600.0f}, e_nextScn); // 객체 테스트
 	
 	AddObject(myBack);
