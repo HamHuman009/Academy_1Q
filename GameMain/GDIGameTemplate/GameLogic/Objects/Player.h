@@ -15,6 +15,7 @@ private:
 	bool isScoopUp = false;
 	float scoopUpTime = 0.f;
 	float scale = 1.f;
+	bool isOnScoopUpSound;
 
 	//bool r = false;
 public:

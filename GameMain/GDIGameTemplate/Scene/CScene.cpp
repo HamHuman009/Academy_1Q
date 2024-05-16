@@ -1,6 +1,8 @@
 #include "CScene.h"
 #include "../System/TimeSystem.h"
 
+
+
 void CScene::Update() {
 	for (int i = 0; i < m_arrObj.size(); i++) {
 		m_arrObj[i]->Update(High_Resolution_Time::GetDeltaTime() / 1000.0f);
@@ -10,6 +12,15 @@ void CScene::Update() {
 void CScene::Render() {
 	for (int i = 0; i < m_arrObj.size(); i++) {
 		m_arrObj[i]->Render(alpha);
+	}
+}
+
+void CScene::PostProcessing()
+{
+	if (isCapture == true) {
+		Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
+		//Game::GameManager::GetInstance()->sceneBitmap->Save(L"example_saved.bmp", &CLSID_NULL, NULL);
+		isCapture = false;
 	}
 }
 

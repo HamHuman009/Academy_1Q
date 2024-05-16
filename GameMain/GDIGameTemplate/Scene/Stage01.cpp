@@ -19,6 +19,7 @@ void Stage01::Init()
 
 	//UIBackGround* myBack = new UIBackGround();
 	//AddObject(myBack);
+
 	colliderManager = new ColliderManager();
 
 	Player* m_Player = new Player();
@@ -92,6 +93,11 @@ void Stage01::Init()
 	AddObject(exit);
 	
 
+	UIImage* backEffect = new UIImage();
+	backEffect->Init(Game::GameManager::GetInstance()->sceneBitmap, { 800.f, 560.f });
+	AddObject(backEffect);
+	backEffect->alpha = 0.5f;
+
 	alpha = 1.0f;
 
 }
@@ -120,6 +126,8 @@ void Stage01::FixedUpdate() {
 
 void Stage01::Exit()
 {
+	delete Game::GameManager::GetInstance()->sceneBitmap;
+	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
 
 	for (int i = 0; i < m_arrObj.size(); i++) {
 

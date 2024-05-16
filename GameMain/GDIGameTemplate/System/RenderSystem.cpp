@@ -40,6 +40,25 @@ namespace Render
 		//Gdiplus::Image image(L"image1.png");
 	}
 
+	Gdiplus::Bitmap* GetFrontHDC()
+	{
+		HDC hdcScreen = GetDC(hWnd);
+
+		// Create compatible DC and Bitmap
+		HDC hdcCapture = CreateCompatibleDC(hdcScreen);
+		HBITMAP hBitmap = CreateCompatibleBitmap(hdcScreen, 1280, 720);
+		SelectObject(hdcCapture, hBitmap);
+
+		// Capture screen to HDC
+		BitBlt(hdcCapture, 0, 0, 1280, 720, hdcScreen, 0, 0, SRCCOPY);
+
+		// Create GDI+ Bitmap from HDC
+		Gdiplus::Bitmap* bitmap = new Gdiplus::Bitmap(hBitmap, NULL);
+
+
+		return bitmap;//new Gdiplus::Bitmap(1280, 720, Gdiplus::Graphics::FromHDC(frontMemDC));
+	}
+
 	void BeginDraw()
 	{
 		::PatBlt(backMemDC, 0, 0, nWidth, nHeight, BLACKNESS);
@@ -48,7 +67,7 @@ namespace Render
 	void EndDraw()
 	{
 		
-		SceneManager::GetInstance()->GetCurScene()->prevBitmap = new Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::Graphics::FromHDC(frontMemDC));
+		//SceneManager::GetInstance()->GetCurScene()->prevBitmap = new Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::Graphics::FromHDC(frontMemDC));
 
 		::BitBlt(frontMemDC, 0, 0, nWidth, nHeight, backMemDC, 0, 0, SRCCOPY);
 	}
@@ -212,8 +231,8 @@ namespace Render
 		Gdiplus::ImageAttributes imgAttr;
 		Gdiplus::Rect srcRect(srcX, srcY, srcWitdh, srcHeight); // 소스의 영역
 		Gdiplus::Rect destRect(x, y, srcRect.Width, srcRect.Height);
-		imgAttr.SetColorKey(Gdiplus::Color(0, 0, 0), Gdiplus::Color(0, 0, 0), Gdiplus::ColorAdjustTypeBitmap);
-		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel, &imgAttr);
+		//imgAttr.SetColorKey(Gdiplus::Color(0, 0, 0), Gdiplus::Color(0, 0, 0), Gdiplus::ColorAdjustTypeBitmap);
+		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel);
 	}
 
 	void DrawFont(int x, int y, int cx, int cy , const WCHAR* text, COLORREF color, int fontSize, const wchar_t* fontName, int fontStyle) {

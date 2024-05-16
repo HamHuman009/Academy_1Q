@@ -22,14 +22,16 @@ void UIImage::Init(Gdiplus::Bitmap* myBitMap, Vector2 myVector) {
 	//m_BackGround = CR->LoadBitmapResouce(L"image1",L"image1.png");
 	//m_BackGround = Gdiplus::Bitmap::FromFile(L"image1.png");
 	m_BackGround = myBitMap;
+	if (m_BackGround == nullptr) return;
 	m_renderBounds = { {0.f, 0.f}, {myBitMap->GetWidth() / 2.f, myBitMap->GetHeight() / 2.f} };
 	m_pos = myVector;
 }
 
-void UIImage::Render(float alpha) {
+void UIImage::Render(float _alpha) {
 	if (m_isActive == false) return;
 	//0x00000147f3f723d0
-	Render::DrawImage(m_pos.x- m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2 , 1.0f);
+	if (m_BackGround == nullptr) return;
+	Render::DrawImage(m_pos.x- m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2 , alpha);
 }
 
 void UIButton::Init(Vector2 myPos, Event* myEvent) {

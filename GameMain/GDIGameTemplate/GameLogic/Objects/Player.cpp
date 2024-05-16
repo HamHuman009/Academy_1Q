@@ -145,6 +145,7 @@ void Player::ScoopUp(float delta)
 	if (Input::IsKeyDown(' ') && isScoopUp == false) {
 		isScoopUp = true;
 		moveSpeed = 45.f;
+		isOnScoopUpSound = true;
 	}
 
 	if (isScoopUp == true) {
@@ -165,8 +166,11 @@ void Player::ScoopUp(float delta)
 		}
 
 		if (scoopUpTime >= 1.3f && scoopUpTime < 1.5f) {
-			// 사운드, 시각효과
 			//r = true;
+			if (isOnScoopUpSound == true) {
+				// 사운드, 시각효과 Play
+				isOnScoopUpSound = false; // 1회만 실행하기 위한 bool값
+			}
 		}
 		else if (scoopUpTime >= 1.5f && scoopUpTime < 4.5f) {
 			SceneManager* s = SceneManager::GetInstance();

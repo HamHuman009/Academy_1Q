@@ -13,6 +13,9 @@ class UIObject : public Object
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	void OnTrigger() override;
+
+public:
+	float alpha = 1.f;
 };
 
 class UIImage : public UIObject

@@ -26,6 +26,10 @@ namespace Game
 
 		void Render();
 
+		void PostProcessing();
+
+		void EndRender();
+
 		void Finalize();
 
 		void Run();
@@ -38,6 +42,7 @@ namespace Game
 
 		static void DestroyInstance();
 
+		Gdiplus::Bitmap* sceneBitmap;
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;

@@ -27,6 +27,7 @@ public:
 	virtual void Init() = 0; 
 	void Update();
 	void Render();
+	void PostProcessing();
 	virtual void FixedUpdate();
 
 	virtual void Start() = 0;
@@ -35,8 +36,12 @@ public:
 	ColliderManager* colliderManager; // 씬 전체 콜라이더를 관리하기 위함.
 
 	float alpha;					  // 알파
+	bool isCapture = false;
 
-	static Gdiplus::Bitmap* prevBitmap;
+	//static Gdiplus::Bitmap* prevBitmap;
+	//Gdiplus::Bitmap* Getbitmap() {
+	//	return prevBitmap;
+	//}
 protected:
 	//void AddObject(Object* obj, TYPE _type) {
 	//	m_arrObj[(UINT)_type].push_back(obj); //이 코드 세철씨한테 물어볼 것.

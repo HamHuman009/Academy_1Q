@@ -3,8 +3,9 @@
 
 namespace Render
 {
-
 	void InitRender(HWND hWindow, int witdh, int height);
+
+	Gdiplus::Bitmap* GetFrontHDC();
 
 	void BeginDraw();
 
