@@ -168,9 +168,9 @@ void UIBackGround::FixedUpdate() {
 	
 }
 
-UIBackGround::~UIBackGround() {
-	for (int i = 0; i < BACK_GROUND_ANIM_FRAME; i++) {
-		if (m_bitmap[i]!=nullptr)
-			delete m_bitmap[i];
-	}
-}
+//UIBackGround::~UIBackGround() {
+//	for (int i = 0; i < BACK_GROUND_ANIM_FRAME; i++) {
+//		if (m_bitmap[i]!=nullptr)
+//			delete m_bitmap[i];
+//	}
+//}

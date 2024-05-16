@@ -21,7 +21,7 @@ class UIImage : public UIObject
 public:
 	void Init(Gdiplus::Bitmap* myBitMap , Vector2 myVector);
 	UIImage() {};
-	~UIImage() { delete m_BackGround; }
+	~UIImage() override {};//{ delete m_BackGround; }
 	//void Update(float delta) override;
 	void Render(float alpha) override;
 	//void SetMotion(int index)override;
@@ -50,9 +50,9 @@ public:
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	void OnTrigger() override;
-	~UIButton() {
+	~UIButton() override {}; /*{
 		delete m_Bitmap;
-	}
+	}*/
 	
 private:
 	Gdiplus::Bitmap* m_Bitmap;
@@ -84,9 +84,9 @@ public:
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	void OnTrigger() override;
-	~UITimer() {
+	~UITimer() override {}; /*{
 		delete m_Bitmap;
-	}
+	}*/
 
 private:
 	Gdiplus::Bitmap* m_Bitmap;
@@ -119,7 +119,7 @@ public:
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	//void OnTrigger() override;
-	~UIBackGround();
+	~UIBackGround() override {};
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
 	
 

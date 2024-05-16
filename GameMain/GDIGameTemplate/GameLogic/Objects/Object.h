@@ -59,7 +59,7 @@ struct Object
 	friend class CircleCollider;
 	friend class RectangleCollider;
 
-	~Object() {
+	virtual ~Object() {
 		if (m_collider != nullptr) {
 			delete m_collider;
 		}
