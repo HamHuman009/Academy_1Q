@@ -52,7 +52,6 @@ public:
 			if (m_arrObj[i] != nullptr) {
 				delete m_arrObj[i];
 			}
-
 		}
 		m_arrObj.clear();
 		if (colliderManager != nullptr)
