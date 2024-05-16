@@ -17,6 +17,10 @@ void CScene::AddObject(Object* obj) {
 	m_arrObj.push_back(obj); //이 코드 세철씨한테 물어볼 것.
 }
 
+void CScene::AddEvent(Event* evt) {
+	m_eventArr.push_back(evt); //이 코드 세철씨한테 물어볼 것.
+}
+
 void CScene::FixedUpdate() {
 
 }

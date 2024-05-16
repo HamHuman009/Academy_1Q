@@ -29,6 +29,10 @@ void Stage01::Init()
 	ResumeEvent* e_resume = new ResumeEvent;
 	RetryEvent* e_retry = new RetryEvent;
 	ExitEvent* e_exit = new ExitEvent;
+	AddEvent(e_pause);
+	AddEvent(e_resume);
+	AddEvent(e_retry);
+	AddEvent(e_exit);
 
 	UIButton* resume = new UIButton(Vector2{ 710,200 }, e_resume);
 	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry);
@@ -56,7 +60,8 @@ void Stage01::Init()
 	exit->m_isActive = false;
 
 
-	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
+	SelectScnEvent* e_nextScn = new SelectScnEvent(3);
+	AddEvent(e_nextScn);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, e_retry);
 
 	UIImage* myBackGround = new UIImage();

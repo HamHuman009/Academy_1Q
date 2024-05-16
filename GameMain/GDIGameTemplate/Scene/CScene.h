@@ -40,9 +40,10 @@ protected:
 	//	m_arrObj[(UINT)_type].push_back(obj); //이 코드 세철씨한테 물어볼 것.
 	//}
 	std::vector<Object*> m_arrObj;
-
+	std::vector<Event*> m_eventArr;
 	std::wstring m_strName;
 	void AddObject(Object* obj);
+	void AddEvent(Event* evt);
 
 public:
 	CScene() {};
@@ -51,6 +52,12 @@ public:
 
 			if (m_arrObj[i] != nullptr) {
 				delete m_arrObj[i];
+			}
+		}
+		for (int i = 0; i < m_eventArr.size(); i++) {
+
+			if (m_eventArr[i] != nullptr) {
+				delete m_eventArr[i];
 			}
 		}
 		m_arrObj.clear();
