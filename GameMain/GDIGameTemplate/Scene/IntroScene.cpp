@@ -28,7 +28,8 @@ void IntroScene::Init()
 	UIDialog* dialog = new UIDialog();
 	dialog->Init({ 100.f,100.f }, { 500.f,400.f }, _str);
 
-	SelectScnEvent* nextScnEvent = new SelectScnEvent(2); // 씬전환 이벤트 테스트
+	SelectScnEvent* e_NextScn = new SelectScnEvent(2); // 씬전환 이벤트 테스트
+	AddEvent(e_NextScn);
 	AddObject(myBack);
 	AddObject(dialog);
 }

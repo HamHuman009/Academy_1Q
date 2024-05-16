@@ -12,7 +12,7 @@ void StartScene::Init()
 
 	CResourceManager* CR = CResourceManager::GetInstance();
 	myBitmap = CR->LoadBitmapResouce(L"image1",L"image1.png");
-	UIImage* myBack = new UIImage(); // 객체 테스트
+	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 500.f,400.f });
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent(3,mySound::SoundList::Singing); // 씬전환 이벤트 테스트
