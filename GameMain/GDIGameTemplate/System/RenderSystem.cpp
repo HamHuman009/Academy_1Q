@@ -191,4 +191,20 @@ namespace Render
 		imgAttr.SetColorKey(Gdiplus::Color(0, 0, 0), Gdiplus::Color(0, 0, 0), Gdiplus::ColorAdjustTypeBitmap);
 		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel, &imgAttr);
 	}
+
+	void DrawFont(int x, int y, int cx, int cy , const WCHAR* text, COLORREF color, int fontSize, const wchar_t* fontName, int fontStyle) {
+
+		Gdiplus::SolidBrush semiTransBrush(Gdiplus::Color(100, 0, 0, 0)); // 50% Åõ¸í »¡°£»ö
+		graphics->FillRectangle(&semiTransBrush, x, y, cx, cy);
+
+		Gdiplus::FontFamily   fontFamily(fontName);
+		Gdiplus::Font         font(&fontFamily, fontSize, fontStyle, Gdiplus::UnitPoint);
+		Gdiplus::RectF        rectF(x, y, cx, cy);
+		Gdiplus::SolidBrush   solidBrush(Gdiplus::Color(255, 0, 0, 0));
+
+		//graphics.DrawString(string, -1, &font, rectF, NULL, &solidBrush);
+		graphics->DrawString(text, -1, &font, rectF, NULL, &solidBrush);
+		Gdiplus::Pen pen(Gdiplus::Color(0, 0, 0, 1));
+		graphics->DrawRectangle(&pen, rectF);
+	}
 }

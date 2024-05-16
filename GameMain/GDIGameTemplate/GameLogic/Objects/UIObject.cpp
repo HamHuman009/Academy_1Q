@@ -168,9 +168,31 @@ void UIBackGround::FixedUpdate() {
 	
 }
 
+
 //UIBackGround::~UIBackGround() {
 //	for (int i = 0; i < BACK_GROUND_ANIM_FRAME; i++) {
 //		if (m_bitmap[i]!=nullptr)
 //			delete m_bitmap[i];
 //	}
 //}
+
+
+void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
+	x = myPos.x;
+	y = myPos.y;
+	cx = endPos.x;
+	cy = endPos.y;
+	string = _string;
+}
+void UIDialog::Render(){
+	Render::DrawFont(x, y,cx,cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
+}
+
+void UIDialog::Update(float delta) {
+	
+}
+
+void UIDialog::OnTrigger() {
+
+}
+

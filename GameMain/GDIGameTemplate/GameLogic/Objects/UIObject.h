@@ -124,3 +124,17 @@ public:
 	
 
 };
+
+class UIDialog : public UIObject {
+private:
+	UINT cx = 0;
+	UINT cy = 0;
+	UINT x = 0;
+	UINT y = 0;
+	WCHAR* string;
+public:
+	void Init(Vector2 myPos, Vector2 endPos,WCHAR* _string);
+	void Update(float delta) override;
+	void Render()override;
+	void OnTrigger() override;
+};
