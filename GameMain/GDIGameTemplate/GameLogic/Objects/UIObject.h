@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 //#include "../Event.h"
-#define BACK_GROUND_ANIM_FRAME 10
+#define BACK_GROUND_ANIM_FRAME 60
 
 class UIObject : public Object
 {

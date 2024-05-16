@@ -132,7 +132,7 @@ void UIBackGround::LoadAnimImage(const WCHAR* fileName,CResourceManager* CRM)
 			m_fileName[i] = noNumFileName.append(wNum);
 		}
 		
-		m_bitmap[i] = CRM->LoadBitmapResouce(m_fileName[i].c_str(), m_fileName[i].append(L".bmp").c_str());
+		m_bitmap[i] = CRM->LoadBitmapResouce(m_fileName[i].c_str(), m_fileName[i].append(L".png").c_str());
 		noNumFileName = noNumFileName.substr(0, fileNameLength - 6);
 	}
 

@@ -59,8 +59,11 @@ void Stage01::Init()
 	SelectScnEvent* nextScnEvent = new SelectScnEvent(3);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, e_retry);
 
-	UIBackGround* myBackGround = new UIBackGround();
-	myBackGround->Init(L"Water_Down_00.bmp",CRM);
+	UIImage* myBackGround = new UIImage();
+	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
+	myBackGround->Init(waterBack, { 640.f, 360.f });
+	//UIBackGround* myBackGround = new UIBackGround();
+	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
 	AddObject(myBackGround);
 	AddObject(myTimer);
 	Fish* myFish;
@@ -76,7 +79,7 @@ void Stage01::Init()
 	AddObject(m_Player);
 	m_Player->m_pos = { 600.f, 350.f };
 	UIBackGround* myUPBackGround = new UIBackGround();
-	myUPBackGround->Init(L"Water_UP_00.bmp", CRM);
+	myUPBackGround->Init(L"물결+그림자_00.png", CRM);
 	AddObject(myUPBackGround);
 	AddObject(pauseBack);
 	AddObject(resume);
