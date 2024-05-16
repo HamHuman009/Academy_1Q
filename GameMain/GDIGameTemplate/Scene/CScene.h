@@ -46,5 +46,16 @@ protected:
 
 public:
 	CScene() {};
-	virtual ~CScene() {};
+	~CScene() {
+		for (int i = 0; i < m_arrObj.size(); i++) {
+
+			if (m_arrObj[i] != nullptr) {
+				delete m_arrObj[i];
+			}
+
+		}
+		m_arrObj.clear();
+		if (colliderManager != nullptr)
+			delete colliderManager;
+	};
 };

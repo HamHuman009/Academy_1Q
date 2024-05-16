@@ -52,7 +52,6 @@ public:
 	void OnTrigger() override;
 	~UIButton() {
 		delete m_Bitmap;
-		delete m_Event;
 	}
 	
 private:
@@ -85,7 +84,9 @@ public:
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	void OnTrigger() override;
-
+	~UITimer() {
+		delete m_Bitmap;
+	}
 
 private:
 	Gdiplus::Bitmap* m_Bitmap;

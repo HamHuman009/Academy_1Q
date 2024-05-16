@@ -58,6 +58,16 @@ struct Object
 	friend class Collider;
 	friend class CircleCollider;
 	friend class RectangleCollider;
+
+	~Object() {
+		if (m_collider != nullptr) {
+			delete m_collider;
+		}
+
+		if (m_pAnimationResource != nullptr) {
+			delete m_pAnimationResource;
+		}
+	}
 };
 
 //struct UIObject : public Object{
