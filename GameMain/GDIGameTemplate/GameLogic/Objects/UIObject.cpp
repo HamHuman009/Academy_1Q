@@ -6,8 +6,9 @@ void UIObject::Init() {
 
 }
 
-void UIObject::Render() {
-
+void UIObject::Render(float alpha) 
+{
+	
 }
 
 
@@ -25,10 +26,10 @@ void UIImage::Init(Gdiplus::Bitmap* myBitMap, Vector2 myVector) {
 	m_pos = myVector;
 }
 
-void UIImage::Render() {
+void UIImage::Render(float alpha) {
 	if (m_isActive == false) return;
 	//0x00000147f3f723d0
-	Render::DrawImage(m_pos.x- m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);
+	Render::DrawImage(m_pos.x- m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2 , 1.0f);
 }
 
 void UIButton::Init(Vector2 myPos, Event* myEvent) {
@@ -44,9 +45,9 @@ void UIButton::Init(Vector2 myPos, Event* myEvent) {
 	m_collider->parent = this;
 }
 
-void UIButton::Render() {
+void UIButton::Render(float alpha) {
 	if (m_isActive == false) return;
-	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy);
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
 }
 
 void UIButton::OnTrigger() {
@@ -94,7 +95,7 @@ void UITimer::Update(float delta) {
 	}
 }
 
-void UITimer::Render() {
+void UITimer::Render(float alpha) {
 	if (m_isActive == false) return;
 	Render::DrawRect(m_pos.x, m_pos.y, cx, cy, RGB(255, 255, 255));
 	Render::DrawRect(m_pos.x, m_pos.y, (UINT)deltaCx, cy, RGB(255, 255, 0));
@@ -151,7 +152,7 @@ void UIBackGround::Update(float delta) {
 	}*/
 }
 
-void UIBackGround::Render() {
+void UIBackGround::Render(float alpha) {
 	
 	/*Render::DrawImage(m_pos.x - m_renderBounds.extents.x, 
 		m_pos.y - m_renderBounds.extents.y, m_bitmap[backGroundFrame], 

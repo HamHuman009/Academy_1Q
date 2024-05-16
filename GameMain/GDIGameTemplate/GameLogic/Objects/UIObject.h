@@ -8,7 +8,7 @@ class UIObject : public Object
 	// Object을(를) 통해 상속됨
 	void Init() override;
 	//void Update(float delta) override;
-	void Render()override;
+	void Render(float alpha) override;
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
@@ -23,7 +23,7 @@ public:
 	UIImage() {};
 	~UIImage() { delete m_BackGround; }
 	//void Update(float delta) override;
-	void Render();
+	void Render(float alpha) override;
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
@@ -45,7 +45,7 @@ public:
 		m_renderBounds = { {0.f, 0.f },{(float)x,(float)y} };
 	}
 	void Update(float delta) override;
-	void Render()override;
+	void Render(float alpha) override;
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
@@ -80,7 +80,7 @@ public:
 		//m_renderBounds = { {(float)cx,(float)cy},{(float)x,(float)y} };
 	}
 	void Update(float delta) override;
-	void Render()override;
+	void Render(float alpha) override;
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
@@ -112,7 +112,7 @@ public:
 	// Object을(를) 통해 상속됨
 	void Init(const WCHAR* fileName, CResourceManager* CRM);
 	void Update(float delta) override;
-	void Render()override;
+	void Render(float alpha) override;
 	void FixedUpdate();
 	//void SetMotion(int index)override;
 	//void UpdateAnimation(float delta)override;

@@ -90,7 +90,6 @@ class RetryEvent : public Event
 private:
 	SceneManager* scnManager;
 	Game::GameManager* gameManager;
-	int nextSceneNum;
 public:
 
 	void OnTrigger() override
@@ -106,5 +105,19 @@ class ExitEvent : public Event
 	void OnTrigger() override
 	{
 		PostQuitMessage(1);
+	}
+};
+
+class Discription : public Event
+{
+public:
+	UIButton* Close;
+	UIButton* Resume;
+
+	void OnTrigger() override
+	{	
+		Close->m_isActive = true;
+		Resume->m_isActive = true;
+		High_Resolution_Time::SetTimeScale(0.f);
 	}
 };

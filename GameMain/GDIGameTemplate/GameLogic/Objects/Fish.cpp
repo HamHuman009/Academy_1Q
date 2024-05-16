@@ -104,7 +104,7 @@ void Fish::Update(float delta) {
 	}
 }
 
-void Fish::Render() {
+void Fish::Render(float alpha) {
 	if (m_isActive == false) return;
 
 	float deg = (0.f * m_moveDirection.y + 1.f * m_moveDirection.x);  // 회전방향 구하기

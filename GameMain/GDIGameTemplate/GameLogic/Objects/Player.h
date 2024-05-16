@@ -18,7 +18,7 @@ public:
 
 	void Init() override;
 	void Update(float delta) override;
-	void Render() override;
+	void Render(float alpha) override;
 	void OnTrigger() override;
 
 	void movePlayer(float delta);

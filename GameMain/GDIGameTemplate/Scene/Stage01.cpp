@@ -37,7 +37,6 @@ void Stage01::Init()
 	e_resume->Retry = retry;
 	e_resume->PauseBack = pauseBack;
 	e_resume->Exit = exit;
-
 	e_pause->Resume = resume;
 	e_pause->Retry = retry;
 	e_pause->PauseBack = pauseBack;
@@ -84,6 +83,9 @@ void Stage01::Init()
 	AddObject(retry);
 	AddObject(exit);
 	
+
+	alpha = 1.0f;
+
 }
 
 Stage01::~Stage01() {

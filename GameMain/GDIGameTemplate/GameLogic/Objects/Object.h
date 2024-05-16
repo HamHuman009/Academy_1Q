@@ -47,7 +47,7 @@ struct Object
 
 	virtual void Init();
 	virtual void Update(float delta);
-	virtual void Render();
+	virtual void Render(float alpha);
 	virtual void SetMotion(int index);
 	virtual void UpdateAnimation(float delta);	
 	virtual void ChangeStatus(ObjectStatus status);
