@@ -78,10 +78,10 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	AdjustWindowRect(&clientRect, WS_OVERLAPPEDWINDOW, FALSE);
 
 
-	//m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
-	//	SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);
-	m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
-		SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);
+	m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
+		SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);
+	//m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
+	//	SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);
 
 	
 	if (!m_hWnd)
@@ -91,8 +91,8 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	}
 
 
-	//ShowWindow(m_hWnd, SW_SHOWNORMAL);
-	ShowWindow(m_hWnd, SW_MAXIMIZE);
+	ShowWindow(m_hWnd, SW_SHOWNORMAL);
+	//ShowWindow(m_hWnd, SW_MAXIMIZE);
 	
 	UpdateWindow(m_hWnd);
 
@@ -120,7 +120,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	bool bUseConsole = true;
 	if (bUseConsole)
 	{
-		//AllocConsole();
+		AllocConsole();
 		FILE* _tempFile;
 		freopen_s(&_tempFile, "CONOUT$", "w", stdout);
 	}	

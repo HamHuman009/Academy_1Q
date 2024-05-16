@@ -31,6 +31,11 @@ void Player::Init()
 
 void Player::Update(float delta)
 {
+	/*sScale -= delta;
+	if (sScale <= 0.7f)
+	{
+		sScale = 0.7f;
+	}*/
 	movePlayer(delta);
 	if (flag == true)
 	{
@@ -71,7 +76,7 @@ void Player::Render(float alpha)
 	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(255, 0, 0));
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight());
 	Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
-	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight(), alpha);
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight(), alpha,sScale);
 }
 
 void Player::OnTrigger()
