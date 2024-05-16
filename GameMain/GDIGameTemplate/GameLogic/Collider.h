@@ -16,6 +16,7 @@ public:
     virtual bool isColliding(const Collider& other) const = 0;
     virtual bool isPointColliding(const Vector2& point) const = 0;
     Object* parent;
+    bool isActive = true;
 };
 
 // 원 충돌체 (마우스 포인터나, 원모양 객체에 사용)

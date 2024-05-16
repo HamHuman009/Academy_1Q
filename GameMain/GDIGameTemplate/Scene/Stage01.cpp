@@ -72,16 +72,28 @@ void Stage01::Init()
 	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
 	AddObject(myBackGround);
 	AddObject(myTimer);
+
+	//*************물고기 생성****************
 	Fish* myFish;
 	srand(std::time(NULL));
-	for (int i = 0; i < 16; i++) {
-		myFish = new Fish();
-		myFish->LoadAnimImage(L"BossFish_00.png", CRM);
-		myFish->Init();
+	for (int i = 0; i < 4; i++) {
+		myFish = new Fish(L"Fish1", 50.f, 4.36f, L"Fish_01_Anim_00.png", CRM, L".png", 3.f, 4.f);
+		AddObject(myFish);
+		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	}for (int i = 0; i < 4; i++) {
+		myFish = new Fish(L"Fish2", 50.f, 4.36f, L"Fish_02_Anim_00.png", CRM, L".png", 3.f, 4.f);
+		AddObject(myFish);
+		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	}for (int i = 0; i < 4; i++) {
+		myFish = new Fish(L"Fish3", 50.f, 4.36f, L"Fish_03_Anim_00.png", CRM, L".png", 3.f, 4.f);
+		AddObject(myFish);
+		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	}for (int i = 0; i < 4; i++) {
+		myFish = new Fish(L"Fish4", 50.f, 4.36f, L"Fish_04_Anim_00.png", CRM, L".png", 3.f, 4.f);
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}
-	
+	//***************************************
 	AddObject(m_Player);
 	m_Player->m_pos = { 600.f, 350.f };
 	UIBackGround* myUPBackGround = new UIBackGround();

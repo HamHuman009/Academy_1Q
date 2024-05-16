@@ -1,6 +1,7 @@
 #include "ColliderManager.h"
 
 bool ColliderManager::CheckCollision(Collider* lhs, Collider* rhs) {
+	if (lhs->isActive == false || rhs->isActive == false) return false;
 	if (const CircleCollider* c = dynamic_cast<const CircleCollider*>(lhs)) {
 		if(c->isColliding(*rhs)) {
 			if(lhs->parent != nullptr)
