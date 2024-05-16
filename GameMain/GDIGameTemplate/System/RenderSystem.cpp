@@ -149,7 +149,7 @@ namespace Render
 	}
 
 	//bitmap은 GdiplusShutdown 하기전에 해제해야함
-	void DrawImage(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight, float alpha)
+	void DrawImage(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight, float alpha, float scale)
 	{
 		if (bitmap == nullptr)
 			return;
@@ -169,7 +169,7 @@ namespace Render
 		imageAttributes.SetColorMatrix(&colorMatrix);
 
 		Gdiplus::Rect srcRect(srcX, srcY, srcWitdh, srcHeight); // 소스의 영역
-		Gdiplus::Rect destRect(x, y, srcRect.Width, srcRect.Height); // 화면에 그릴 영역		
+		Gdiplus::Rect destRect(x + srcWitdh / 2 - (srcWitdh * scale) / 2, y + srcHeight / 2 - (srcHeight * scale) / 2, srcRect.Width * scale, srcRect.Height * scale); // 화면에 그릴 영역		
 		// 이미지 그리기
 		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel, &imageAttributes);
 

@@ -11,6 +11,8 @@ private:
 	bool flag;
 
 	Gdiplus::Bitmap* playerBitmap;
+
+	float sScale = 1.f;
 public:
 	Event* pauseEvent;
 	Player();

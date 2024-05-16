@@ -82,6 +82,8 @@ void Fish::Init() {
 	m_pos = GetRandomPosition();
 	m_moveDirection = GetRandomDirection();
 	//renderBounds2 = { {0.f, 50.f} , {m_FishImage->GetWidth() / 2.f, m_FishImage->GetHeight() / 2.f} };
+
+	animationFrame = rand() % 30;
 }
 
 void Fish::Update(float delta) {
