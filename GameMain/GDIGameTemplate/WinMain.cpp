@@ -1,5 +1,9 @@
 #include "WinMain.h"
-
+// 릭 잡기용
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 
 
 
@@ -103,8 +107,11 @@ void WinApp::Initialize(HINSTANCE hInstance)
 // 프로젝트 속성 -> 링커 -> 시스템 -> 하위 시스템 -> Windows로 변경
 // 진입점 함수 정의
 
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-{
+{	
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetBreakAlloc(6042);
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
@@ -156,12 +163,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	//ReleaseResource();
+	Game::GameManager::GetInstance()->Finalize();
 	Game::GameManager::GetInstance()->ReleaseResource();
 	if (bUseConsole)
 	{
 		FreeConsole();
 	}
-
+	
 	//UnregisterClass(appName, hInstance);
 
 	return static_cast<int>(msg.wParam);
@@ -173,7 +181,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_DESTROY:
+		
 		PostQuitMessage(0);
+		
 		break;
 	default:
 		return DefWindowProc(hwnd, msg, wParam, lParam);

@@ -25,6 +25,8 @@ public:
 
 	static SceneManager* GetInstance();
 
+	void DestroyInstance();
+	
 
 private:
 	SceneManager() {};

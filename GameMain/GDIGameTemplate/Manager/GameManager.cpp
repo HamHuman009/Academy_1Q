@@ -72,9 +72,11 @@ namespace Game
 	}
 	void GameManager::Finalize()
 	{
-
+		SceneManager::GetInstance()->DestroyInstance();
+		CResourceManager::GetInstance()->DestroyInstance();
 		Render::ReleaseRender();
 		SMInstance->DestroyInstance();
+
 	}
 	void GameManager::Run()
 	{

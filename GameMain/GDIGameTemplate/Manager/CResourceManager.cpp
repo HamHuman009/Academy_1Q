@@ -17,11 +17,12 @@ CResourceManager::~CResourceManager() {
 	for (; iter != m_mapBitmap.end(); ++iter) {
 		delete iter->second;
 	}
-
+	
 	std::map<std::wstring, AnimationResource*>::iterator iterAnimation = m_mapAnimation.begin();
 	for (; iter != m_mapBitmap.end(); ++iter) {
 		delete iter->second;
 	}
+	m_mapBitmap.clear();
 }
 
 Gdiplus::Bitmap* CResourceManager::LoadBitmapResouce(const std::wstring& _strkey, const std::wstring& _path)

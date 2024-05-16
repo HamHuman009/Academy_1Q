@@ -115,11 +115,11 @@ void Stage01::FixedUpdate() {
 void Stage01::Exit()
 {
 	for (int i = 0; i < m_arrObj.size(); i++) {
-		/*if (m_arrObj[i]->m_Event != nullptr) {
 
-
-		}*/
-		delete m_arrObj[i];
+		if (m_arrObj[i] != nullptr) {
+			delete m_arrObj[i];
+		}
+		
 	}
 	m_arrObj.clear();
 	if (colliderManager != nullptr)

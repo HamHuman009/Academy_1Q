@@ -30,6 +30,16 @@ SceneManager* SceneManager::GetInstance() {
 	return m_Instance;
 }
 
+void SceneManager::DestroyInstance()
+{
+	if (m_Instance != nullptr)
+	{
+		delete m_Instance;
+		m_Instance = nullptr;
+	}
+}
+
+
 SceneManager::~SceneManager() {
 	for (int i = 0; i < (UINT)SceneType::END; i++) {
 		if (m_sceneArr[i] != nullptr)
