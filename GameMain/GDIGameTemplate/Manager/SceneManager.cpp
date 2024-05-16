@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+
 SceneManager* SceneManager::m_Instance = nullptr;
 
 void SceneManager::Init() {

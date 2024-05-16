@@ -133,8 +133,11 @@ private:
 	UINT y = 0;
 	WCHAR* string;
 public:
+	~UIDialog()override {
+		delete[] string;
+	};
 	void Init(Vector2 myPos, Vector2 endPos,WCHAR* _string);
 	void Update(float delta) override;
-	void Render()override;
+	void Render(float alpha)override;
 	void OnTrigger() override;
 };

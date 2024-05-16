@@ -1,6 +1,6 @@
 #include "IntroScene.h"
-#include "../../GameLogic/Objects/UIObject.h"
-#include "../../GameLogic/Event.h"
+#include "../GameLogic/Objects/UIObject.h"
+#include "../GameLogic/Event.h"
 
 IntroScene::IntroScene()
 {

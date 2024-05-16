@@ -184,7 +184,7 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 	cy = endPos.y;
 	string = _string;
 }
-void UIDialog::Render(){
+void UIDialog::Render(float alpha){
 	Render::DrawFont(x, y,cx,cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
 }
 

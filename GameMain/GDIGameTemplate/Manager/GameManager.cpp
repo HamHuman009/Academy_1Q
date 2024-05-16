@@ -5,7 +5,7 @@
 namespace Game
 {
 	
-	Gdiplus::Bitmap* hTestBitmap = nullptr; // 전역 변수
+	//Gdiplus::Bitmap* hTestBitmap = nullptr; // 전역 변수
 	GameManager* GameManager::instance = nullptr;
 	mySound::SoundManager* SMInstance = mySound::SoundManager::GetInstance();
 	GameManager::GameManager()
@@ -74,6 +74,7 @@ namespace Game
 	{
 		SceneManager::GetInstance()->DestroyInstance();
 		CResourceManager::GetInstance()->DestroyInstance();
+		
 		Render::ReleaseRender();
 		SMInstance->DestroyInstance();
 
