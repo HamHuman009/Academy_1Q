@@ -11,6 +11,9 @@ void SceneManager::Init() {
 }
 
 void SceneManager::SetCurScene(int i) {
+	if (m_curScene != nullptr)
+		m_curScene->Exit();
+
 	m_curScene = m_sceneArr[i];
 	m_curScene->Init();
 }

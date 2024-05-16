@@ -66,9 +66,9 @@ void Stage01::Init()
 	AddObject(myTimer);
 	Fish* myFish;
 	srand(std::time(NULL));
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 16; i++) {
 		myFish = new Fish();
-		myFish->m_pos = { 600.f, 350.f };
+		myFish->LoadAnimImage(L"BossFish_00.png", CRM);
 		myFish->Init();
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
@@ -90,10 +90,11 @@ Stage01::~Stage01() {
 	for (int i = 0; i < m_arrObj.size(); i++) {
 		/*if (m_arrObj[i]->m_Event != nullptr) {
 			
-
 		}*/
 		delete m_arrObj[i];
 	}
+	m_arrObj.clear();
+	if (colliderManager != nullptr)
 	delete colliderManager;
 }
 
@@ -108,5 +109,14 @@ void Stage01::FixedUpdate() {
 
 void Stage01::Exit()
 {
-	
+	for (int i = 0; i < m_arrObj.size(); i++) {
+		/*if (m_arrObj[i]->m_Event != nullptr) {
+
+
+		}*/
+		delete m_arrObj[i];
+	}
+	m_arrObj.clear();
+	if (colliderManager != nullptr)
+	delete colliderManager;
 }

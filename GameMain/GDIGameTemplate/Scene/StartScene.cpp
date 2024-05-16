@@ -31,5 +31,14 @@ StartScene::~StartScene() {
 
 void StartScene::Exit() 
 {
+	for (int i = 0; i < m_arrObj.size(); i++) {
+		/*if (m_arrObj[i]->m_Event != nullptr) {
 
+
+		}*/
+		delete m_arrObj[i];
+	}
+	m_arrObj.clear();
+	if(colliderManager != nullptr)
+	delete colliderManager;
 }
