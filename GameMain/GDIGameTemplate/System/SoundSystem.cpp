@@ -4,7 +4,7 @@ namespace mySound
 {
 
 	SoundManager* SoundManager::mInstance = nullptr;
-	SoundManager* soundManger = SoundManager::GetInstance();		// 초기화
+	//SoundManager* soundManger = SoundManager::GetInstance();		// 초기화
 
 	SoundManager* SoundManager::GetInstance()
 	{
@@ -47,6 +47,13 @@ namespace mySound
 	void SoundManager::StopSounds(SoundChannel channel)
 	{
 		mChannel[static_cast<int>(channel)]->stop();
+	}
+
+	void CALLBACK TimerProc(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime) {
+		
+		SoundManager::GetInstance()->StopSounds();
+		KillTimer(NULL, idEvent); // 타이머 해제
+		
 	}
 
 	void SoundManager::SetVolume(float volume)

@@ -18,7 +18,7 @@ namespace Game
 	{
 		Input::InitInput();
 		High_Resolution_Time::InitTime();
-		SMInstance->LoadSounds(mySound::SoundList::Drum, false, "drumloop.wav");
+		SMInstance->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");
 		m_sceneManager = SceneManager::GetInstance();
 		m_hWnd = global::GetWinApp().GetWindow();
 		m_hdc = GetDC(m_hWnd);
