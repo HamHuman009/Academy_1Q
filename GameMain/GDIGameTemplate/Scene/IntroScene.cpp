@@ -32,6 +32,8 @@ void IntroScene::Init()
 	AddEvent(e_NextScn);
 	AddObject(myBack);
 	AddObject(dialog);
+
+	delete[] _str;
 }
 
 

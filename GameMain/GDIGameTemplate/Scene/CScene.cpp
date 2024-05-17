@@ -55,8 +55,8 @@ CScene::~CScene() {
 		int count = colliderManager->colliders->capacity();
 		std::cout << count << std::endl;
 	}
-	if (colliderManager != nullptr)					// 오류검출 중복제거 의심
-		delete colliderManager;
+	//if (colliderManager != nullptr)					// 오류검출 중복제거 의심
+	//	delete colliderManager;
 	for (int i = 0; i < m_arrObj.size(); i++) {
 
 		if (m_arrObj[i] != nullptr) {

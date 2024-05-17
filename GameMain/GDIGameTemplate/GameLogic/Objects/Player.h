@@ -24,7 +24,7 @@ private:
 public:
 	Event* pauseEvent;
 	Player();
-	//~Player();
+	~Player() override { delete playerBitmap; }
 
 	void Init() override;
 	void Update(float delta) override;
