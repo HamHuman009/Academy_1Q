@@ -33,13 +33,13 @@ void UIImage::Render(float _alpha) {
 	if (m_BackGround == nullptr) return;
 	Render::DrawImage(m_pos.x- m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2 , alpha);
 }
-
-void UIButton::Init(Vector2 myPos, Event* myEvent) {
+//게임 - 시작 - 버튼 - 기본 - 1	200 * 100
+void UIButton::Init(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
 	/*CResourceManager CR = CResourceManager::CResourceManager();
 	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
 	m_pos = myPos;
 	m_Event = myEvent;
-	m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
+	m_Bitmap = myBitMap;
 	if (m_Bitmap == nullptr) return;
 	cx = m_Bitmap->GetWidth();
 	cy = m_Bitmap->GetHeight();
@@ -66,36 +66,35 @@ void UIButton::Update(float delta) {
 	}
 }
 
-
-void UITimer::Init(Vector2 myPos, Event* myEvent) {
+//제한-시간-게이지-바-게이지-1	600*50
+//제한 - 시간 - 게이지 - 바 - 배경 - 1	600 * 50
+void UITimer::Init(Vector2 myPos, Event* myEvent,float _setTime) {
 	/*CResourceManager CR = CResourceManager::CResourceManager();
 	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
+	//m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
 	m_pos = myPos;
 	m_Event = myEvent;
-	//m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
-
-	//cx = m_Bitmap->GetWidth();
-	//cy = m_Bitmap->GetHeight();
-	cx = 400;
-	cy = 100;
-	//m_collider = new RectangleCollider({ 0.f,0.f }, { (float)cx, (float)cy });
-	//m_collider->parent = this;
-	deltaCx = 400;
+	
+	cx = 600;
+	cy = 50;
+	
+	deltaCx = 600;
+	setTime = _setTime;
+	deltaTime = _setTime;
 }
 void UITimer::Update(float delta) {
 	if (m_isActive == false) return;
-	setTime -= delta;
+	deltaTime -= delta;
 	/*std::cout << "delta : " << delta << endl;
 	std::cout << "setTime : " << setTime << endl;*/
 	//줄어든 바의 길이  = (정한시간에서 delta만크 줄어든 시기나 / 정한 시간 ) * 가로 길이 값
-	if (setTime > 0) {
+	if (deltaTime > 0) {
 
-		deltaCx = (setTime / 10.0f) * cx;
+		deltaCx = (deltaTime / setTime) * cx;
 
 	}
 	else {
 		OnTrigger();
-		//m_Event = nullptr;
 	}
 }
 
