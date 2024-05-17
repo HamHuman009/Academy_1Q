@@ -6,7 +6,7 @@
 class UIImage;
 //class Player;
 class UIBackGround;
-class Stage02 : public CScene
+class Stage03 : public CScene
 {
 private:
 	/*UIBackGround* myBack; // 이런 변수는 m_arrObj에서 관리.
@@ -20,7 +20,7 @@ public:
 	void Exit() override;
 	void FixedUpdate() override;
 
-	Stage02() {};
-	~Stage02();
+	Stage03() {};
+	~Stage03();
 };
 

@@ -4,6 +4,9 @@
 #include "../Scene/Stage01.h"
 #include "../Scene/IntroScene.h"
 #include "../Scene/Stage02.h"
+#include "../Scene/Stage03.h"
+#include "../Scene/Stage04.h"
+#include "../Scene/Stage05.h"
 
 class CScene;
 enum class SceneType
