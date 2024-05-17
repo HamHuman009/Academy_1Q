@@ -34,7 +34,7 @@ private:
 	Gdiplus::Bitmap* m_bitmap[30] = { nullptr, };
 
 public:
-	Fish(const WCHAR* name, float moveSpeed, float angulerSpeed, const WCHAR* fileName, CResourceManager* CRM, const WCHAR* imageType, float rotateInterval1, float rotateInterval2);
+	Fish(const WCHAR* name, float moveSpeed, float angulerSpeed, const WCHAR* fileName, CResourceManager* CRM, const WCHAR* imageType, float rotateInterval1, float rotateInterval2, float colliderWidth, float colliderHeight);
 	void Init() override;
 	void Update(float delta) override;
 	void Render(float alpha) override;

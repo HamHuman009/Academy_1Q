@@ -41,7 +41,6 @@ public:
 // 사각형 충돌체
 class RectangleCollider : public Collider {
 private:
-    Bounds bounds = { {0.f,0.f}, {0.f, 0.f} };
 
     friend struct Object;
     friend class Collider;
@@ -50,6 +49,7 @@ private:
 
     Vector2 GetPosition() const override;
 public:
+    Bounds bounds = { {0.f,0.f}, {0.f, 0.f} };
     RectangleCollider(Vector2 _pointUL, Vector2 _pointDR) {
         bounds = { {0.0f,0.0f}, {(_pointDR.x - _pointUL.x) / 2.0f, (_pointDR.y - _pointUL.y) / 2.0f} };
     }
