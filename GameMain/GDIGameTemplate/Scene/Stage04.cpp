@@ -35,9 +35,15 @@ void Stage04::Init()
 	AddEvent(e_retry);
 	AddEvent(e_exit);
 
-	UIButton* resume = new UIButton(Vector2{ 710,200 }, e_resume);
-	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry);
-	UIButton* exit = new UIButton(Vector2{ 710,600 }, e_exit);
+	CResourceManager* CRM = CResourceManager::GetInstance();
+	Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
+
+	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
+
+	UIButton* resume = new UIButton(Vector2{ 710,200 }, e_resume, exitBtn);
+	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry, exitBtn);
+	UIButton* exit = new UIButton(Vector2{ 710,600 }, e_exit, exitBtn);
+
 	e_resume->Resume = resume;
 	e_resume->Retry = retry;
 	e_resume->PauseBack = pauseBack;
@@ -49,8 +55,7 @@ void Stage04::Init()
 
 	e_resume->OnTrigger();
 	m_Player->pauseEvent = e_pause;
-	CResourceManager* CRM = CResourceManager::GetInstance();
-	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
+	
 	pauseBack->Init(pauseBackImage, Vector2{ 500.f,400.f });
 
 
@@ -63,7 +68,7 @@ void Stage04::Init()
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_05);
 	AddEvent(e_nextScn);
-	UITimer* myTimer = new UITimer(Vector2{ 910,100 }, e_nextScn);
+	UITimer* myTimer = new UITimer(Vector2{ 910,100 }, e_nextScn, 40.f);
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
