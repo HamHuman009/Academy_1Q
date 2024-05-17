@@ -133,7 +133,7 @@ class ExitEvent : public Event
 {
 	void OnTrigger() override
 	{	
-		
+		_CrtDumpMemoryLeaks();
 		PostQuitMessage(1);
 	}
 };
