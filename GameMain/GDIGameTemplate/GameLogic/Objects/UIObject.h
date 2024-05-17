@@ -98,7 +98,7 @@ private:
 	UINT x = 1600;
 	UINT y = 800;
 	float deltaCx = 1600.0f;
-	float setTime = 1.3f;
+	float setTime = 10.f;
 };
 
 class UIBackGround : public UIObject
