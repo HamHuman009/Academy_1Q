@@ -14,8 +14,11 @@ C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Manager\SceneManager.c
 C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Scene\CScene.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\CScene.obj
 C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Scene\IntroScene.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\IntroScene.obj
 C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Scene\Stage01.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Stage01.obj
+C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Scene\Stage03.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Stage03.obj
 C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Scene\StartScene.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\StartScene.obj
 C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Scene\Stage02.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Stage02.obj
+C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Scene\Stage04.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Stage04.obj
+C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\Scene\Stage05.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\Stage05.obj
 C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\System\InputSystem.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\InputSystem.obj
 C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\System\RenderSystem.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\RenderSystem.obj
 C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\System\SoundSystem.cpp;C:\Users\User\Desktop\Academy_1Q\GameMain\GDIGameTemplate\x64\Debug\SoundSystem.obj

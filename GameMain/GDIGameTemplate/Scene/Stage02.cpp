@@ -74,25 +74,29 @@ void Stage02::Init()
 	AddObject(myTimer);
 
 	//*************물고기 생성****************
-	Fish* myFish;
 	srand(std::time(NULL));
+	Fish* myFish;
 	for (int i = 0; i < 4; i++) {
-		myFish = new Fish(L"Fish1", 50.f, 4.36f, L"Fish_01_Anim_00.png", CRM, L".png", 3.f, 4.f);
+		myFish = new Fish(L"Fish1", 50.f, 4.36f, L"Fish_01_Anim_00.png", CRM, L".png", 3.f, 4.f, 35.f, 35.f);
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}for (int i = 0; i < 4; i++) {
-		myFish = new Fish(L"Fish2", 50.f, 4.36f, L"Fish_02_Anim_00.png", CRM, L".png", 3.f, 4.f);
+		myFish = new Fish(L"Fish2", 50.f, 4.36f, L"Fish_02_Anim_00.png", CRM, L".png", 3.f, 4.f, 35.f, 35.f);
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}for (int i = 0; i < 4; i++) {
-		myFish = new Fish(L"Fish3", 50.f, 4.36f, L"Fish_03_Anim_00.png", CRM, L".png", 3.f, 4.f);
+		myFish = new Fish(L"Fish3", 50.f, 4.36f, L"Fish_03_Anim_00.png", CRM, L".png", 3.f, 4.f, 35.f, 35.f);
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}for (int i = 0; i < 4; i++) {
-		myFish = new Fish(L"Fish4", 50.f, 4.36f, L"Fish_04_Anim_00.png", CRM, L".png", 3.f, 4.f);
+		myFish = new Fish(L"Fish4", 50.f, 4.36f, L"Fish_04_Anim_00.png", CRM, L".png", 3.f, 4.f, 35.f, 35.f);
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}
+	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 45.f, 45.f);
+	AddObject(myFish);
+	myFish = new Fish(L"BossFish", 60.f, 8.7f, L"BossFish_02_Anim_00.png", CRM, L".png", 2.f, 4.f, 60.f, 60.f);
+	AddObject(myFish);
 	//***************************************
 	AddObject(m_Player);
 	m_Player->m_pos = { 600.f, 350.f };

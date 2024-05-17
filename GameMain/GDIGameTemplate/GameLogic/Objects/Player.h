@@ -8,7 +8,10 @@ private:
 	float moveSpeed;
 	float radius;
 	Vector2 moveDirection;
-	bool flag;
+	float up = -1;
+	float down = 1;
+	float left = -1;
+	float right = 1;
 
 	Gdiplus::Bitmap* playerBitmap;
 
@@ -17,7 +20,7 @@ private:
 	float scale = 1.f;
 	bool isOnScoopUpSound;
 
-	//bool r = false;
+	bool isAwake;
 public:
 	Event* pauseEvent;
 	Player();
@@ -30,12 +33,5 @@ public:
 
 	void movePlayer(float delta);
 	void ScoopUp(float delta);
-
-	void Up(float delta);
-	void Down(float delta);
-	void Left(float delta);
-	void Right(float delta);
-
-	void SetStatus();
 };
 

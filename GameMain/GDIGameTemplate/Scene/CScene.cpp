@@ -18,7 +18,7 @@ void CScene::Render() {
 void CScene::Exit() {
 	delete Game::GameManager::GetInstance()->sceneBitmap;
 	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
-	CScene::~CScene();
+	//CScene::~CScene();
 }
 
 void CScene::PostProcessing()

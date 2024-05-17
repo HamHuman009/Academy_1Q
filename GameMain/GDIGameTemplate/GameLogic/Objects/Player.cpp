@@ -11,7 +11,6 @@ Player::Player()
 	moveDirection = { 0.f, 0.f };
 	m_AnimationMotionIndex = 0;
 	Init();
-	flag = false;
 }
 
 Player::~Player()
@@ -29,6 +28,7 @@ void Player::Init()
 
 	m_renderBounds = { { 0,0 }, {playerBitmap->GetWidth() / 2.f, playerBitmap->GetHeight() / 2.f}};
 
+	isAwake = false;
 }
 
 void Player::Update(float delta)
@@ -40,22 +40,22 @@ void Player::Update(float delta)
 	}*/
 	movePlayer(delta);
 
-	ScoopUp(delta);
+	//ScoopUp(delta);
 
-	if (flag == true)
-	{
-		ChangeStatus(ObjectStatus::OBJECT_STATUS_MOVE);
-	}
-	else
-	{
-		ChangeStatus(ObjectStatus::OBJECT_STATUS_IDLE);
-	}
-	
-	//if(Input::IsKeyDown('F'))
-	if (m_pAnimationResource && m_AnimationMotionIndex != -1)
-	{
-		UpdateAnimation(delta);
-	}
+	//if (flag == true)
+	//{
+	//	ChangeStatus(ObjectStatus::OBJECT_STATUS_MOVE);
+	//}
+	//else
+	//{
+	//	ChangeStatus(ObjectStatus::OBJECT_STATUS_IDLE);
+	//}
+	//
+	////if(Input::IsKeyDown('F'))
+	//if (m_pAnimationResource && m_AnimationMotionIndex != -1)
+	//{
+	//	UpdateAnimation(delta);
+	//}
 
 }
 
@@ -90,48 +90,21 @@ void Player::OnTrigger()
 }
 void Player::movePlayer(float delta)
 {
-	// 키설정 버튼이 바뀔 수 있음
-	if (Input::IsKey('W') && !Input::IsKey('A') && !Input::IsKey('S') && !Input::IsKey('D'))
-	{
-		Up(delta);
+	moveDirection = { 0.f, 0.f };
+	if (Input::IsKey('W')) {
+		moveDirection.y = isAwake ? -1 : up;
 	}
-	else if (Input::IsKey('S') && !Input::IsKey('A') && !Input::IsKey('W') && !Input::IsKey('D'))
-	{
-		Down(delta);
+	else if (Input::IsKey('S')) {
+		moveDirection.y = isAwake ? 1 : down;
 	}
-	else if  (Input::IsKey('A') && !Input::IsKey('W') && !Input::IsKey('S') && !Input::IsKey('D'))
-	{
-		Left(delta);
+	if (Input::IsKey('A')) {
+		moveDirection.x = isAwake ? -1 : left;
 	}
-	else if (Input::IsKey('D') && !Input::IsKey('A') && !Input::IsKey('S') && !Input::IsKey('W'))
-	{
-		Right(delta);
+	else if (Input::IsKey('D')) {
+		moveDirection.x = isAwake ? 1 : right;
 	}
-	else if (Input::IsKey('W') && Input::IsKey('A') && !Input::IsKey('S') && !Input::IsKey('D')) // 좌상단
-	{
-		Left(delta);
-		Up(delta);
-	}
-	else if (!Input::IsKey('W') && Input::IsKey('A') && Input::IsKey('S') && !Input::IsKey('D')) // 좌하단
-	{ 
-		Left(delta);
-		Down(delta);
-	}
-	else if (Input::IsKey('W') && !Input::IsKey('A') && !Input::IsKey('S') && Input::IsKey('D')) // 우상단
-	{ 
-		Right(delta);
-		Up(delta);
-	}
-	else if (!Input::IsKey('W') && !Input::IsKey('A') && Input::IsKey('S') && Input::IsKey('D')) // 우하단
-	{ 
-		Right(delta);
-		Down(delta);
-	}
-	else
-	{
-		flag = false;
-		// flag 설정할것
-	}
+	moveDirection.Normalize();
+	m_pos += moveDirection * moveSpeed * delta;
 
 	if (Input::IsKey(VK_ESCAPE))
 	{
@@ -190,55 +163,6 @@ void Player::ScoopUp(float delta)
 			scoopUpTime = 0.f;
 			moveSpeed = 70.f;
 			//r = false;
-		}
-	}
-}
-
-void Player::Up(float delta)
-{
-	moveDirection.y = -1;
-	Vector2 normal = Vector2(0, -1);
-	normal.Normalize();
-	m_pos += normal * moveSpeed * delta;
-}
-
-void Player::Down(float delta)
-{
-	moveDirection.y = 1;
-	Vector2 normal = Vector2(0, 1);
-	normal.Normalize();
-	m_pos += normal * moveSpeed * delta;
-}
-
-void Player::Left(float delta)
-{
-	moveDirection.x = -1;
-	Vector2 normal = Vector2(-1, 0);
-	normal.Normalize();
-	m_pos += normal * moveSpeed * delta;
-}
-
-void Player::Right(float delta)
-{
-	moveDirection.x = -1;
-	Vector2 normal = Vector2(1, 0);
-	normal.Normalize();
-	m_pos += normal * moveSpeed * delta;
-}
-
-void Player::SetStatus()
-{
-	if (m_status != ObjectStatus::OBJECT_STATUS_ATTACK)
-	{
-		if (m_moveDirPrev == Vector2(0.0f,0.0f))
-		{
-			if (m_moveDir != Vector2(0.0f, 0.0f))
-				ChangeStatus(ObjectStatus::OBJECT_STATUS_MOVE);
-		}
-		else if (m_moveDirPrev != Vector2(0.0f, 0.0f))
-		{
-			if (m_moveDir == Vector2(0.0f, 0.0f))
-				ChangeStatus(ObjectStatus::OBJECT_STATUS_IDLE);
 		}
 	}
 }
