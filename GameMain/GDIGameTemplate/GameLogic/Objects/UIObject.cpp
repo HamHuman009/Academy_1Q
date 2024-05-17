@@ -216,7 +216,6 @@ void UICrossDissolve::Update(float delta)
 {
 	if (m_isActive == false) return;
 	alphaValue -= delta;
-	std::cout << alphaValue << std::endl;
 	if (alphaValue < 0.f) {
 		alphaValue = 0;
 		m_isActive = false;

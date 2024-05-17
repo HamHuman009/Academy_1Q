@@ -55,21 +55,5 @@ protected:
 
 public:
 	CScene() {};
-	~CScene() {
-		for (int i = 0; i < m_arrObj.size(); i++) {
-
-			if (m_arrObj[i] != nullptr) {
-				delete m_arrObj[i];
-			}
-		}
-		for (int i = 0; i < m_eventArr.size(); i++) {
-
-			if (m_eventArr[i] != nullptr) {
-				delete m_eventArr[i];
-			}
-		}
-		m_arrObj.clear();
-		if (colliderManager != nullptr)					// 오류검출 중복제거 의심
-			delete colliderManager;
-	};
+	~CScene();
 };

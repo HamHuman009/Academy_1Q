@@ -1,6 +1,6 @@
 #include "CScene.h"
 #include "../System/TimeSystem.h"
-
+#include "../Manager/ColliderManager.h"
 
 
 void CScene::Update() {
@@ -19,6 +19,16 @@ void CScene::Exit() {
 	delete Game::GameManager::GetInstance()->sceneBitmap;
 	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
 	//CScene::~CScene();
+	for (int i = 0; i < m_arrObj.size(); i++) {
+
+		if (m_arrObj[i] != nullptr) {
+			delete m_arrObj[i];
+		}
+
+	}
+	m_arrObj.clear();
+	if (colliderManager != nullptr)
+		delete colliderManager;
 }
 
 void CScene::PostProcessing()
@@ -41,3 +51,23 @@ void CScene::AddEvent(Event* evt) {
 void CScene::FixedUpdate() {
 
 }
+
+CScene::~CScene() {
+	int count = colliderManager->colliders->capacity();
+	std::cout << count << std::endl;
+	if (colliderManager != nullptr)					// 오류검출 중복제거 의심
+		delete colliderManager;
+	for (int i = 0; i < m_arrObj.size(); i++) {
+
+		if (m_arrObj[i] != nullptr) {
+			delete m_arrObj[i];
+		}
+	}
+	for (int i = 0; i < m_eventArr.size(); i++) {
+
+		if (m_eventArr[i] != nullptr) {
+			delete m_eventArr[i];
+		}
+	}
+	m_arrObj.clear();
+};

@@ -119,10 +119,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	global::winApp.Initialize(hInstance);
 
-	bool bUseConsole = false;
+	bool bUseConsole = true;
 	if (bUseConsole)
 	{
-		//AllocConsole();
+		AllocConsole();
 		FILE* _tempFile;
 		freopen_s(&_tempFile, "CONOUT$", "w", stdout);
 	}	

@@ -40,7 +40,7 @@ void Player::Update(float delta)
 	}*/
 	movePlayer(delta);
 
-	//ScoopUp(delta);
+	ScoopUp(delta);
 
 	//if (flag == true)
 	//{
@@ -103,9 +103,9 @@ void Player::movePlayer(float delta)
 	else if (Input::IsKey('D')) {
 		moveDirection.x = isAwake ? 1 : right;
 	}
-	moveDirection.Normalize();
+	if(moveDirection != Vector2(0.f, 0.f))
+		moveDirection.Normalize();
 	m_pos += moveDirection * moveSpeed * delta;
-
 	if (Input::IsKey(VK_ESCAPE))
 	{
 		//pauseEvent
@@ -122,7 +122,6 @@ void Player::ScoopUp(float delta)
 	}
 
 	if (isScoopUp == true) {
-		std::cout << scoopUpTime << ", " << scale << std::endl;
 		scoopUpTime += delta;
 		if (scoopUpTime >= 0.f && scoopUpTime < 1.5f) {
 			scale -= delta * 0.25f / 1.5f; // 1.5초에 걸쳐서 0.75 scale까지 줄어듦.
