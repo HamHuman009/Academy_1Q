@@ -65,9 +65,9 @@ namespace Game
 
 		m_curScene->Render();
 
-		string FrameRate = std::to_string(High_Resolution_Time::GetFrameRate());
+		//string FrameRate = std::to_string(High_Resolution_Time::GetFrameRate());
 
-		Render::DrawTextW(10, 50, FrameRate.c_str(), RGB(255, 0, 0));
+		//Render::DrawTextW(10, 50, FrameRate.c_str(), RGB(255, 0, 0));
 
 		
 

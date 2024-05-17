@@ -29,7 +29,11 @@ ColliderManager::ColliderManager() {
 
 ColliderManager::~ColliderManager() {
 	/*for (int i = 0; i < (UINT)TYPE::END; i++) {
-		delete colliders[i];
+		for (int j = 0; j < colliders[i].size(); j++) {
+		
+			delete colliders[i][j];
+		}
+		
 	}*/
 }
 void ColliderManager::Init() {

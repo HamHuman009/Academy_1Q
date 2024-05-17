@@ -40,7 +40,7 @@ void UIButton::Init(Vector2 myPos, Event* myEvent) {
 	m_pos = myPos;
 	m_Event = myEvent;
 	m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
-
+	if (m_Bitmap == nullptr) return;
 	cx = m_Bitmap->GetWidth();
 	cy = m_Bitmap->GetHeight();
 	m_collider = new RectangleCollider({ 0.f,0.f }, { (float)cx, (float)cy });

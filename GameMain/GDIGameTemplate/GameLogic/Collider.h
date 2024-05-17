@@ -17,6 +17,10 @@ public:
     virtual bool isPointColliding(const Vector2& point) const = 0;
     Object* parent;
     bool isActive = true;
+    virtual ~Collider()
+    {
+
+    }
 };
 
 // 원 충돌체 (마우스 포인터나, 원모양 객체에 사용)
@@ -33,7 +37,7 @@ private:
     Vector2 GetPosition() const override; 
 public:
     CircleCollider(Vector2 _point, float _radius) : point(_point), radius(_radius) {}
-
+    ~CircleCollider() override {}
     bool isColliding(const Collider& other) const override;
     bool isPointColliding(const Vector2& point) const override;
 };
@@ -57,7 +61,7 @@ public:
         bounds.center = _center;
         bounds.extents = Vector2(_width / 2, _height / 2);
     }
-
+    ~RectangleCollider() override {}
     bool isColliding(const Collider& other) const override;
     bool isPointColliding(const Vector2& point) const override;
 };

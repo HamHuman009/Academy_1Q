@@ -13,12 +13,12 @@ Player::Player()
 	Init();
 }
 
-Player::~Player()
-{
-	/*if (pauseEvent != nullptr) {
-		delete pauseEvent;
-	}*/
-}
+//Player::~Player()
+//{
+//	/*if (pauseEvent != nullptr) {
+//		delete pauseEvent;
+//	}*/
+//}
 
 void Player::Init()
 {
