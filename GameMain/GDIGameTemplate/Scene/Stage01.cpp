@@ -105,10 +105,8 @@ void Stage01::Init()
 	AddObject(exit);
 	
 
-	UIImage* backEffect = new UIImage();
-	backEffect->Init(Game::GameManager::GetInstance()->sceneBitmap, { 800.f, 560.f });
+	UICrossDissolve* backEffect = new UICrossDissolve({640.f, 360.f}, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
-	backEffect->alpha = 0.5f;
 
 	alpha = 1.0f;
 

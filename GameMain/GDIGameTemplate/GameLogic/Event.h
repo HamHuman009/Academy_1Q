@@ -120,6 +120,7 @@ public:
 	void OnTrigger() override
 	{	
 		scnManager->SetCurScene(1);
+		High_Resolution_Time::SetTimeScale(1.f);
 	}
 };
 

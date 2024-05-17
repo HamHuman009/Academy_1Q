@@ -198,3 +198,34 @@ void UIDialog::OnTrigger() {
 
 }
 
+UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap)
+{
+	m_pos = position;
+	m_BackGround = bitmap;
+	Init();
+}
+
+void UICrossDissolve::Init()
+{
+	alphaValue = 1.f;
+	if (m_BackGround == nullptr) return;
+	m_renderBounds = { {0.f, 0.f}, {m_BackGround->GetWidth() / 2.f, m_BackGround->GetHeight() / 2.f} };
+}
+
+void UICrossDissolve::Update(float delta)
+{
+	if (m_isActive == false) return;
+	alphaValue -= delta;
+	std::cout << alphaValue << std::endl;
+	if (alphaValue < 0.f) {
+		alphaValue = 0;
+		m_isActive = false;
+	}
+}
+
+void UICrossDissolve::Render(float alpha)
+{
+	if (m_isActive == false) return;
+	if (m_BackGround == nullptr) return;
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, alphaValue);
+}

@@ -27,13 +27,11 @@ void StartScene::Init()
 	AddEvent(e_nextScn);
 	AddEvent(e_exit);
 
-	alpha = 1.0f;
 
-	UIImage* backEffect = new UIImage();
-	backEffect->Init(Game::GameManager::GetInstance()->sceneBitmap, { 800.f, 560.f });
-	backEffect->alpha = 0.5f;
+	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
 
+	alpha = 1.0f;
 }
 
 StartScene::~StartScene() {

@@ -144,3 +144,13 @@ public:
 	void Render(float alpha)override;
 	void OnTrigger() override;
 };
+
+class UICrossDissolve : public UIObject {
+	Gdiplus::Bitmap* m_BackGround;
+	float alphaValue;
+public:
+	UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap);
+	void Init();
+	void Update(float delta) override;
+	void Render(float alpha) override;
+};
