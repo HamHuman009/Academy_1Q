@@ -17,8 +17,11 @@ namespace mySound
 	}
 
 	void SoundManager::DestroyInstance()
-	{
-		delete mInstance;
+	{	
+		if (mInstance != nullptr) {
+			delete mInstance;
+		}
+		
 		mInstance = nullptr;
 	}
 
@@ -66,7 +69,10 @@ namespace mySound
 	}
 
 	void SoundManager::RelaseSounds()
-	{
+	{	
+		for (int i = 0; i < (int)SoundList::Size; i++) {
+			mSoundList[i]->release();
+		}
 		mSystem->release();
 		mSystem->close();
 	}

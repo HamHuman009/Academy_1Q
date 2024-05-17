@@ -61,7 +61,7 @@ void Stage01::Init()
 	exit->m_isActive = false;
 
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent(3);
+	SelectScnEvent* e_nextScn = new SelectScnEvent((int)SceneType::END);
 	AddEvent(e_nextScn);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, e_retry);
 

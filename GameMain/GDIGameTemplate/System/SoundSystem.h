@@ -23,8 +23,8 @@ namespace mySound
 		/* Ãß°¡ */
 		Void,
 		Drum,
-		Size,
-		Singing
+		Singing,
+		Size
 	};
 
 	struct LCS
