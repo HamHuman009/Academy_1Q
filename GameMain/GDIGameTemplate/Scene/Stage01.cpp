@@ -108,19 +108,19 @@ void Stage01::Init()
 		AddEvent(e_TEST[i]);
 	}
 
-	UIButton* ub_S1 = new UIButton(Vector2{ 100,100 }, e_TEST[0]);
+	UIButton* ub_S1 = new UIButton(Vector2{ 100,000 }, e_TEST[0]);
 	UIButton* ub_S2 = new UIButton(Vector2{ 100,200 }, e_TEST[1]);
-	UIButton* ub_S3 = new UIButton(Vector2{ 100,300 }, e_TEST[2]);
-	UIButton* ub_S4 = new UIButton(Vector2{ 100,400 }, e_TEST[3]);
+	UIButton* ub_S3 = new UIButton(Vector2{ 100,400 }, e_TEST[2]);
+	UIButton* ub_S4 = new UIButton(Vector2{ 100,600 }, e_TEST[3]);
 	AddObject(ub_S1);
 	AddObject(ub_S2);
 	AddObject(ub_S3);
 	AddObject(ub_S4);
 
-	UIButton* ub_S5 = new UIButton(Vector2{ 400,100 }, e_TEST[4]);
+	UIButton* ub_S5 = new UIButton(Vector2{ 400,000 }, e_TEST[4]);
 	UIButton* ub_S6 = new UIButton(Vector2{ 400,200 }, e_TEST[5]);
-	UIButton* ub_S7 = new UIButton(Vector2{ 400,300 }, e_TEST[6]);
-	UIButton* ub_S8 = new UIButton(Vector2{ 400,400 }, e_TEST[7]);
+	UIButton* ub_S7 = new UIButton(Vector2{ 400,400 }, e_TEST[6]);
+	UIButton* ub_S8 = new UIButton(Vector2{ 400,600 }, e_TEST[7]);
 
 	AddObject(ub_S5);
 	AddObject(ub_S6);
