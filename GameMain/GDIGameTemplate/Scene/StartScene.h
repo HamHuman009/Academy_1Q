@@ -17,7 +17,7 @@ private:
 public:
 	void Init() override;
 	void Start() override;
-
+	void Exit() override;
 
 	StartScene() {};
 	~StartScene();

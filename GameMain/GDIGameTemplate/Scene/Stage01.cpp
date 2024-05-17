@@ -62,7 +62,7 @@ void Stage01::Init()
 	exit->m_isActive = false;
 
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent((int)SceneType::STAGE_02);
+	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_02);
 	AddEvent(e_nextScn);
 	UITimer* myTimer = new UITimer(Vector2{910,100}, e_nextScn);
 
@@ -170,9 +170,25 @@ void Stage01::FixedUpdate() {
 	//myUPBackGround->FixedUpdate();
 }
 
-//void Stage01::Exit()
-//{
-//	delete Game::GameManager::GetInstance()->sceneBitmap;
-//	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
-//	CScene::~CScene();
-//}
+void Stage01::Exit() {
+	if (Game::GameManager::GetInstance()->sceneBitmap != nullptr)
+		delete Game::GameManager::GetInstance()->sceneBitmap;
+	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
+	//CScene::~CScene();
+	if (colliderManager != nullptr)
+		delete colliderManager;
+
+	for (int i = 0; i < m_eventArr.size(); i++) {
+		if (m_eventArr[i] != nullptr) {
+			delete (m_eventArr[i]);
+		}
+	}
+	for (int i = 0; i < m_arrObj.size(); i++) {
+
+		if (m_arrObj[i] != nullptr) {
+			delete m_arrObj[i];
+		}
+	}
+	m_arrObj.clear();
+	m_eventArr.clear();
+}

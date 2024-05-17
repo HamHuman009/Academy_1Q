@@ -15,7 +15,10 @@ void StartScene::Init()
 	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 500.f,400.f });
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent((int)SceneType::STAGE_01,mySound::SoundList::Singing); // 씬전환 이벤트 테스트
+	/*SelectScnEvent* a = new SelectScnEvent(3);
+	delete a;*/
+
+	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_01,mySound::SoundList::Singing); // 씬전환 이벤트 테스트
 	UIButton* gameStartButton = new UIButton(Vector2{800.0f,600.0f}, e_nextScn); // 객체 테스트
 	
 	AddObject(myBack);
@@ -38,18 +41,25 @@ StartScene::~StartScene() {
 
 }
 
-//void StartScene::Exit() 
-//{
-//	delete Game::GameManager::GetInstance()->sceneBitmap;
-//	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
-//	for (int i = 0; i < m_arrObj.size(); i++) {
-//		/*if (m_arrObj[i]->m_Event != nullptr) {
-//
-//
-//		}*/
-//		delete m_arrObj[i];
-//	}
-//	m_arrObj.clear();
-//	if(colliderManager != nullptr)
-//	delete colliderManager;
-//}
+void StartScene::Exit() {
+	if (Game::GameManager::GetInstance()->sceneBitmap != nullptr)
+		delete Game::GameManager::GetInstance()->sceneBitmap;
+	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
+	//CScene::~CScene();
+	if (colliderManager != nullptr)
+		delete colliderManager;
+
+	for (int i = 0; i < m_eventArr.size(); i++) {
+		if (m_eventArr[i] != nullptr) {
+			delete (m_eventArr[i]);
+		}
+	}
+	for (int i = 0; i < m_arrObj.size(); i++) {
+
+		if (m_arrObj[i] != nullptr) {
+			delete m_arrObj[i];
+		}
+	}
+	m_arrObj.clear();
+	m_eventArr.clear();
+}

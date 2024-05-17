@@ -148,7 +148,7 @@ void Player::ScoopUp(float delta)
 			SceneManager* s = SceneManager::GetInstance();
 			auto c = s->GetCurScene();
 
-			Collider* fishs[20];
+			Collider* fishs[24];
 			int count = c->colliderManager->GetCountCollidersAtType(m_collider, fishs, 20, TYPE::FISH);
 			for (int i = 0; i < count; i++) {
 				fishs[i]->parent->OnTrigger();

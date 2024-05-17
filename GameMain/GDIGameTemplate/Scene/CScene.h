@@ -28,11 +28,10 @@ public:
 	virtual void Init() = 0; 
 	void Update();
 	void Render();
-	void PostProcessing();
 	virtual void FixedUpdate();
 
 	virtual void Start() = 0;
-	void Exit();
+	virtual void Exit() = 0;
 	
 	ColliderManager* colliderManager; // 씬 전체 콜라이더를 관리하기 위함.
 

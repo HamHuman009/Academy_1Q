@@ -9,7 +9,7 @@ public:
     void Init() override;
     void Start() override;
    
-    //void Exit() override;
+    void Exit() override;
 
     IntroScene();
     ~IntroScene();

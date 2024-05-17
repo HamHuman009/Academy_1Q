@@ -39,8 +39,26 @@ void IntroScene::Start()
 {
 }
 
-//void IntroScene::Exit()
-//{
-//}
+void IntroScene::Exit() {
+	if(Game::GameManager::GetInstance()->sceneBitmap != nullptr)
+		delete Game::GameManager::GetInstance()->sceneBitmap;
+	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
+	//CScene::~CScene();
+	if (colliderManager != nullptr)
+		delete colliderManager;
+	
+	for (int i = 0; i < m_eventArr.size(); i++) {
+		if (m_eventArr[i] != nullptr) {
+			delete (m_eventArr[i]);
+		}
+	}
+	for (int i = 0; i < m_arrObj.size(); i++) {
 
+		if (m_arrObj[i] != nullptr) {
+			delete m_arrObj[i];
+		}
+	}
+	m_arrObj.clear();
+	m_eventArr.clear();
+}
 

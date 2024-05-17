@@ -15,30 +15,28 @@ void CScene::Render() {
 	}
 }
 
-void CScene::Exit() {
-	delete Game::GameManager::GetInstance()->sceneBitmap;
-	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
-	//CScene::~CScene();
-	for (int i = 0; i < m_arrObj.size(); i++) {
-
-		if (m_arrObj[i] != nullptr) {
-			delete m_arrObj[i];
-		}
-
-	}
-	m_arrObj.clear();
-	if (colliderManager != nullptr)
-		delete colliderManager;
-}
-
-void CScene::PostProcessing()
-{
-	if (isCapture == true) {
-		Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
-		//Game::GameManager::GetInstance()->sceneBitmap->Save(L"example_saved.bmp", &CLSID_NULL, NULL);
-		isCapture = false;
-	}
-}
+//void CScene::Exit() {
+//	if(Game::GameManager::GetInstance()->sceneBitmap != nullptr)
+//		delete Game::GameManager::GetInstance()->sceneBitmap;
+//	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
+//	//CScene::~CScene();
+//	if (colliderManager != nullptr)
+//		delete colliderManager;
+//	
+//	for (int i = 0; i < m_eventArr.size(); i++) {
+//		if (m_eventArr[i] != nullptr) {
+//			delete (m_eventArr[i]);
+//		}
+//	}
+//	for (int i = 0; i < m_arrObj.size(); i++) {
+//
+//		if (m_arrObj[i] != nullptr) {
+//			delete m_arrObj[i];
+//		}
+//	}
+//	m_arrObj.clear();
+//	m_eventArr.clear();
+//}
 
 void CScene::AddObject(Object* obj) {
 	m_arrObj.push_back(obj); //이 코드 세철씨한테 물어볼 것.
@@ -57,8 +55,8 @@ CScene::~CScene() {
 		int count = colliderManager->colliders->capacity();
 		std::cout << count << std::endl;
 	}
-	//if (colliderManager != nullptr)					// 오류검출 중복제거 의심
-	//	delete colliderManager;
+	if (colliderManager != nullptr)					// 오류검출 중복제거 의심
+		delete colliderManager;
 	for (int i = 0; i < m_arrObj.size(); i++) {
 
 		if (m_arrObj[i] != nullptr) {
@@ -72,4 +70,5 @@ CScene::~CScene() {
 		}
 	}
 	m_arrObj.clear();
+	m_eventArr.clear();
 };
