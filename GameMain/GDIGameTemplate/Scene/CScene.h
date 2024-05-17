@@ -4,6 +4,7 @@
 #include "../GameLogic/Objects/Object.h"
 
 class ColliderManager;
+
 enum class TYPE
 {
 	DEFAULT,
@@ -68,7 +69,7 @@ public:
 			}
 		}
 		m_arrObj.clear();
-		if (colliderManager != nullptr)
+		if (colliderManager != nullptr)					// 오류검출 중복제거 의심
 			delete colliderManager;
 	};
 };

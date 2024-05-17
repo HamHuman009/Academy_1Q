@@ -1,9 +1,9 @@
-#include "Stage01.h"
+#include "Stage02.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Objects/Fish.h"
 #include "../System/TimeSystem.h"
 #include "../GameLogic/Event.h"
-void Stage01::Init()
+void Stage02::Init()
 {
 	// 작성요령
 	// 1. object를 생성자로 생성 ex) (원하는 클래스) obj = new (원하는 클래스)();
@@ -46,14 +46,14 @@ void Stage01::Init()
 	e_pause->Retry = retry;
 	e_pause->PauseBack = pauseBack;
 	e_pause->Exit = exit;
-	
+
 	e_resume->OnTrigger();
 	m_Player->pauseEvent = e_pause;
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage",L"image1.png");
-	pauseBack->Init(pauseBackImage,Vector2{500.f,400.f});
+	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
+	pauseBack->Init(pauseBackImage, Vector2{ 500.f,400.f });
 
-	
+
 
 	pauseBack->m_isActive = false;
 	resume->m_isActive = false;
@@ -63,7 +63,7 @@ void Stage01::Init()
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((int)SceneType::STAGE_02);
 	AddEvent(e_nextScn);
-	UITimer* myTimer = new UITimer(Vector2{910,100}, e_nextScn);
+	UITimer* myTimer = new UITimer(Vector2{ 910,100 }, e_retry);
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
@@ -103,16 +103,16 @@ void Stage01::Init()
 	AddObject(resume);
 	AddObject(retry);
 	AddObject(exit);
-	
 
-	UICrossDissolve* backEffect = new UICrossDissolve({640.f, 360.f}, Game::GameManager::GetInstance()->sceneBitmap);
+
+	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
 
 	alpha = 1.0f;
 
 }
 
-Stage01::~Stage01() {
+Stage02::~Stage02() {
 	for (int i = 0; i < m_arrObj.size(); i++) {
 
 		if (m_arrObj[i] != nullptr) {
@@ -125,16 +125,16 @@ Stage01::~Stage01() {
 		delete colliderManager;
 }
 
-void Stage01::Start()
+void Stage02::Start()
 {
 }
 
-void Stage01::FixedUpdate() {
+void Stage02::FixedUpdate() {
 	//myBackGround->FixedUpdate();
 	//myUPBackGround->FixedUpdate();
 }
 
-void Stage01::Exit()
+void Stage02::Exit()
 {
 	delete Game::GameManager::GetInstance()->sceneBitmap;
 	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
@@ -144,9 +144,9 @@ void Stage01::Exit()
 		if (m_arrObj[i] != nullptr) {
 			delete m_arrObj[i];
 		}
-		
+
 	}
 	m_arrObj.clear();
 	if (colliderManager != nullptr)
-	delete colliderManager;
+		delete colliderManager;
 }
