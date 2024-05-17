@@ -10,6 +10,9 @@ void SceneManager::Init() {
 	m_sceneArr[(UINT)SceneType::INTRO] = new IntroScene();
 	m_sceneArr[(UINT)SceneType::STAGE_01] = new Stage01();
 	m_sceneArr[(UINT)SceneType::STAGE_02] = new Stage02();
+	m_sceneArr[(UINT)SceneType::STAGE_03] = new Stage03();
+	m_sceneArr[(UINT)SceneType::STAGE_04] = new Stage04();
+	m_sceneArr[(UINT)SceneType::STAGE_05] = new Stage05();
 	SetCurScene((UINT)SceneType::START);
 }
 

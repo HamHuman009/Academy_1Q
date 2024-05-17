@@ -1,9 +1,9 @@
-#include "Stage02.h"
+#include "Stage04.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Objects/Fish.h"
 #include "../System/TimeSystem.h"
 #include "../GameLogic/Event.h"
-void Stage02::Init()
+void Stage04::Init()
 {
 	// 작성요령
 	// 1. object를 생성자로 생성 ex) (원하는 클래스) obj = new (원하는 클래스)();
@@ -61,7 +61,7 @@ void Stage02::Init()
 	exit->m_isActive = false;
 
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent((int)SceneType::STAGE_03);
+	SelectScnEvent* e_nextScn = new SelectScnEvent((int)SceneType::STAGE_05);
 	AddEvent(e_nextScn);
 	UITimer* myTimer = new UITimer(Vector2{ 910,100 }, e_nextScn);
 
@@ -112,7 +112,7 @@ void Stage02::Init()
 
 }
 
-Stage02::~Stage02() {
+Stage04::~Stage04() {
 	for (int i = 0; i < m_arrObj.size(); i++) {
 
 		if (m_arrObj[i] != nullptr) {
@@ -125,16 +125,16 @@ Stage02::~Stage02() {
 		delete colliderManager;
 }
 
-void Stage02::Start()
+void Stage04::Start()
 {
 }
 
-void Stage02::FixedUpdate() {
+void Stage04::FixedUpdate() {
 	//myBackGround->FixedUpdate();
 	//myUPBackGround->FixedUpdate();
 }
 
-void Stage02::Exit()
+void Stage04::Exit()
 {
 	delete Game::GameManager::GetInstance()->sceneBitmap;
 	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
