@@ -3,6 +3,7 @@
 #include "../GameLogic/Objects/Fish.h"
 #include "../System/TimeSystem.h"
 #include "../GameLogic/Event.h"
+//#define TEST
 void Stage01::Init()
 {
 	// 작성요령
@@ -100,6 +101,34 @@ void Stage01::Init()
 	myUPBackGround->Init(L"물결+그림자_00.png", CRM);
 	AddObject(myUPBackGround);
 	AddObject(pauseBack);
+#ifndef TEST
+	SelectScnEvent* e_TEST[8];
+	for (int i = 0; i < (int)SceneType::END; i++) {
+		e_TEST[i] = new SelectScnEvent(i+1);
+		AddEvent(e_TEST[i]);
+	}
+
+	UIButton* ub_S1 = new UIButton(Vector2{ 100,100 }, e_TEST[0]);
+	UIButton* ub_S2 = new UIButton(Vector2{ 100,300 }, e_TEST[1]);
+	UIButton* ub_S3 = new UIButton(Vector2{ 100,500 }, e_TEST[2]);
+	UIButton* ub_S4 = new UIButton(Vector2{ 100,800 }, e_TEST[3]);
+	AddObject(ub_S1);
+	AddObject(ub_S2);
+	AddObject(ub_S3);
+	AddObject(ub_S4);
+
+	UIButton* ub_S5 = new UIButton(Vector2{ 400,100 }, e_TEST[4]);
+	UIButton* ub_S6 = new UIButton(Vector2{ 400,300 }, e_TEST[5]);
+	UIButton* ub_S7 = new UIButton(Vector2{ 400,500 }, e_TEST[6]);
+	UIButton* ub_S8 = new UIButton(Vector2{ 400,800 }, e_TEST[7]);
+
+	AddObject(ub_S5);
+	AddObject(ub_S6);
+	AddObject(ub_S7);
+	AddObject(ub_S8);
+	
+#endif // !TEST
+
 	AddObject(resume);
 	AddObject(retry);
 	AddObject(exit);
