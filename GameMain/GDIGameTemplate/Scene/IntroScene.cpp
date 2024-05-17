@@ -39,8 +39,8 @@ void IntroScene::Start()
 {
 }
 
-void IntroScene::Exit()
-{
-}
+//void IntroScene::Exit()
+//{
+//}
 
 

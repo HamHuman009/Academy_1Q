@@ -27,13 +27,6 @@ namespace mySound
 		Size
 	};
 
-	struct LCS
-	{
-		SoundList List;
-		SoundChannel Channel;
-		int Sec;
-	};
-
 	class SoundManager;
 	extern SoundManager* soundManager;
 
@@ -52,11 +45,8 @@ namespace mySound
 
 		void SetVolume(float volume);
 
-		void PlayInSecs(LCS LCS);
-
 		void RelaseSounds();
 
-		LCS m_LCS;
 
 	private:
 		SoundManager();

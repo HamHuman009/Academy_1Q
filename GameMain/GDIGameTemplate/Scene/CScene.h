@@ -32,7 +32,7 @@ public:
 	virtual void FixedUpdate();
 
 	virtual void Start() = 0;
-	virtual void Exit() = 0;
+	void Exit();
 	
 	ColliderManager* colliderManager; // 씬 전체 콜라이더를 관리하기 위함.
 

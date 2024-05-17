@@ -113,7 +113,7 @@ void Stage02::Init()
 }
 
 Stage02::~Stage02() {
-	for (int i = 0; i < m_arrObj.size(); i++) {
+	/*for (int i = 0; i < m_arrObj.size(); i++) {
 
 		if (m_arrObj[i] != nullptr) {
 			delete m_arrObj[i];
@@ -122,7 +122,7 @@ Stage02::~Stage02() {
 	}
 	m_arrObj.clear();
 	if (colliderManager != nullptr)
-		delete colliderManager;
+		delete colliderManager;*/
 }
 
 void Stage02::Start()
@@ -134,19 +134,9 @@ void Stage02::FixedUpdate() {
 	//myUPBackGround->FixedUpdate();
 }
 
-void Stage02::Exit()
-{
-	delete Game::GameManager::GetInstance()->sceneBitmap;
-	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
-
-	for (int i = 0; i < m_arrObj.size(); i++) {
-
-		if (m_arrObj[i] != nullptr) {
-			delete m_arrObj[i];
-		}
-
-	}
-	m_arrObj.clear();
-	if (colliderManager != nullptr)
-		delete colliderManager;
-}
+//void Stage02::Exit()
+//{
+//	delete Game::GameManager::GetInstance()->sceneBitmap;
+//	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();
+//	CScene::~CScene();
+//}

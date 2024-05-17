@@ -52,13 +52,6 @@ namespace mySound
 		mChannel[static_cast<int>(channel)]->stop();
 	}
 
-	void CALLBACK TimerProc(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime) {
-		
-		SoundManager::GetInstance()->StopSounds(SoundManager::GetInstance()->m_LCS.Channel);
-		KillTimer(global::GetWinApp().GetWindow(), idEvent); // 타이머 해제
-		
-	}
-
 	void SoundManager::SetVolume(float volume)
 	{
 		mVolume = volume;
@@ -75,12 +68,6 @@ namespace mySound
 		}
 		mSystem->release();
 		mSystem->close();
-	}
-
-	void SoundManager::PlayInSecs(LCS LCS) {
-		SoundManager::GetInstance()->PlaySounds(LCS.List, LCS.Channel);
-		SetTimer(global::GetWinApp().GetWindow(), 0, LCS.Sec * 1000, TimerProc);
-		m_LCS = LCS;
 	}
 
 	SoundManager::SoundManager() :mSystem(), mChannel{}, mSoundList{}, mVolume(0.5f)

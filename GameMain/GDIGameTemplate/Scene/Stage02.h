@@ -17,7 +17,7 @@ public:
 	// CScene을(를) 통해 상속됨
 	void Init() override;
 	void Start() override;
-	void Exit() override;
+
 	void FixedUpdate() override;
 
 	Stage02() {};
