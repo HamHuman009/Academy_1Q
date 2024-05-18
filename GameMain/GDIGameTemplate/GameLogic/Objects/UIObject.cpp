@@ -229,27 +229,3 @@ void UICrossDissolve::Render(float alpha)
 	if (m_BackGround == nullptr) return;
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, alphaValue);
 }
-
-void UIFace::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent)
-{
-	m_pos = myPos;
-	m_Bitmap = myBitMap;
-	m_Event = myEvent;
-	if (m_Bitmap == nullptr) return;
-	cx = m_Bitmap->GetWidth();
-	cy = m_Bitmap->GetHeight();
-}
-
-void UIFace::Render(float alpha) {
-	if (m_isActive == false) return;
-	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
-}
-
-void UIFace::OnTrigger() {
-	if (m_Event != nullptr) m_Event->OnTrigger();
-}
-
-void UIFace::Update(float delta) {
-	if (m_isActive == false) return;
-	// 상태변화 이벤트? 아무튼 얼굴변화 여기서 주기
-}

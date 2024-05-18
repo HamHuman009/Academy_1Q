@@ -68,7 +68,7 @@ void Stage03::Init()
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_04);
 	AddEvent(e_nextScn);
-	UITimer* myTimer = new UITimer(Vector2{ 310,100 }, e_nextScn, 40.f);
+	UITimer* myTimer = new UITimer(Vector2{ 910,200 }, e_nextScn, 40.f);
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
@@ -118,10 +118,6 @@ void Stage03::Init()
 
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
-
-	Gdiplus::Bitmap* daughterFace = CRM->LoadBitmapResouce(L"Face", L"FaceTest.png");
-	UIFace* myFace = new UIFace(Vector2{ 1200,300 }, daughterFace);
-	AddObject(myFace);
 
 	alpha = 1.0f;
 
