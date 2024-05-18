@@ -21,6 +21,7 @@ private:
 	bool isOnScoopUpSound;
 
 	bool isAwake;
+	float awakeTime;
 public:
 	Event* pauseEvent;
 	Player();
@@ -34,6 +35,7 @@ public:
 	void movePlayer(float delta);
 	void ScoopUp(float delta);
 	void SetMoveDirection(Vector2 _up, Vector2 _down, Vector2 _left, Vector2 _right);
+	void SoberUp();
 	UINT cnt;
 };
 

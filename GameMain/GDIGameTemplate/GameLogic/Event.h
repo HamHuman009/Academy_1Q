@@ -22,7 +22,7 @@ public:
 		m_Sound = mSound;
 	}
 	virtual ~Event() { 
-		std::cout << "dÀÌº¥Æ® ¼Ò¸ê" << std::endl; 
+		std::cout << "dï¿½Ìºï¿½Æ® ï¿½Ò¸ï¿½" << std::endl; 
 	}
 
 };
@@ -72,7 +72,7 @@ public:
 		scnManager->SetCurScene(i);
 	}
 	~SelectScnEvent() {
-		std::cout << "dÀÌº¥Æ® ¼Ò¸êdwadawdawd" << std::endl;
+		std::cout << "dï¿½Ìºï¿½Æ® ï¿½Ò¸ï¿½dwadawdawd" << std::endl;
 		//m_Sound = mySound::eSoundList::Void;
 	}
 };
@@ -117,8 +117,8 @@ public:
 
 class RetryEvent : public Event
 {
-	// retry ¹öÆ°À» ´­·¶À»¶§ ±×³É ¸ÇÃ³À½ ÃÊ±âÈ­¸éÀ¸·Î µ¹¾Æ°¡°Ô²û
-	// + ½Ã°£ÃÊ°¡ ´ÙµÇ¸é retry ÀÌº¥Æ®°¡ ÀÚµ¿À¸·Î ½ÇÇàµÇ°Ô²û
+	// retry ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½Ô²ï¿½
+	// + ï¿½Ã°ï¿½ï¿½Ê°ï¿½ ï¿½ÙµÇ¸ï¿½ retry ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°Ô²ï¿½
 
 private:
 	SceneManager* scnManager = SceneManager::GetInstance();

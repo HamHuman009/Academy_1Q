@@ -88,7 +88,7 @@ void Player::Render(float alpha)
 
 void Player::OnTrigger()
 {
-	// ¹°°í±â ÀâÀ»¶§ Æ®¸®°Å
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½
 }
 void Player::movePlayer(float delta)
 {
@@ -117,6 +117,13 @@ void Player::movePlayer(float delta)
 
 void Player::ScoopUp(float delta)
 {
+	if (isAwake == true) {
+		awakeTime -= delta;
+		if (awakeTime <= 0.f) {
+			isAwake = false;
+		}
+	}
+
 	if (Input::IsKeyDown(' ') && isScoopUp == false) {
 		isScoopUp = true;
 		moveSpeed = 45.f;
@@ -126,7 +133,7 @@ void Player::ScoopUp(float delta)
 	if (isScoopUp == true) {
 		scoopUpTime += delta;
 		if (scoopUpTime >= 0.f && scoopUpTime < 1.5f) {
-			scale -= delta * 0.25f / 1.5f; // 1.5ÃÊ¿¡ °ÉÃÄ¼­ 0.75 scale±îÁö ÁÙ¾îµê.
+			scale -= delta * 0.25f / 1.5f; // 1.5ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ 0.75 scaleï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½.
 			if (scale < 0.75f)
 				scale = 0.75f;
 		}
@@ -142,8 +149,8 @@ void Player::ScoopUp(float delta)
 		if (scoopUpTime >= 1.3f && scoopUpTime < 1.5f) {
 			//r = true;
 			if (isOnScoopUpSound == true) {
-				// »ç¿îµå, ½Ã°¢È¿°ú Play
-				isOnScoopUpSound = false; // 1È¸¸¸ ½ÇÇàÇÏ±â À§ÇÑ bool°ª
+				// ï¿½ï¿½ï¿½ï¿½, ï¿½Ã°ï¿½È¿ï¿½ï¿½ Play
+				isOnScoopUpSound = false; // 1È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ boolï¿½ï¿½
 			}
 		}
 		else if (scoopUpTime >= 1.5f && scoopUpTime < 4.5f) {
@@ -154,8 +161,13 @@ void Player::ScoopUp(float delta)
 			int count = c->colliderManager->GetCountCollidersAtType(m_collider, fishs, 20, TYPE::FISH);
 			for (int i = 0; i < count; i++) {
 				fishs[i]->parent->OnTrigger();
+				if (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) {
+					SoberUp();
+				}
 				cnt++;
-				std::cout << cnt << '\n';
+				cout << cnt << '\n';
+				cout << (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) << '\n';
+				wcout << fishs[i]->parent->m_name << endl;
 			}
 		}
 		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {
@@ -176,6 +188,12 @@ void Player::SetMoveDirection(Vector2 _up, Vector2 _down, Vector2 _left, Vector2
 	down = _down;
 	left = _left;
 	right = _right;
+}
+
+void Player::SoberUp()
+{
+	isAwake = true;
+	awakeTime = 15.f;
 }
 
 
