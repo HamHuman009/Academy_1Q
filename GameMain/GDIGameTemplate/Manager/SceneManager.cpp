@@ -14,6 +14,7 @@ void SceneManager::Init() {
 	m_sceneArr[(UINT)SceneType::STAGE_04] = new Stage04();
 	m_sceneArr[(UINT)SceneType::STAGE_05] = new Stage05();
 	m_sceneArr[(UINT)SceneType::Ending] = new Ending();
+	m_sceneArr[(UINT)SceneType::Score] = new ScoreScene();
 	SetCurScene((UINT)SceneType::START);
 }
 

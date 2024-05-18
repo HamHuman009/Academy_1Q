@@ -18,22 +18,18 @@ void IntroScene::Init()
 {
 	WCHAR* _str = new WCHAR[255];
 	WCHAR t_str[] = L"물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하";
-
 	wcscpy_s(_str, 255, t_str);
-
+	UIDialog* dialog = new UIDialog();
+	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);
 
 	CResourceManager* CRM = CResourceManager::GetInstance();
 	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.bmp");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 640.f,360.f });
 
-	UIDialog* dialog = new UIDialog();
-	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);
+	
 
-	Gdiplus::Bitmap* NextBt = CRM->LoadBitmapResouce(L"startBtn", L"startbtn_sample.bmp");
 	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::STAGE_01);
-	//UIButton* nextButton = new UIButton(Vector2{ 200.0f,300.0f }, e_NextScn, NextBt);
-
 
 	Gdiplus::Bitmap* daughterFace = CRM->LoadBitmapResouce(L"Face", L"FaceTest.png");
 	UIFace* myFace = new UIFace(Vector2{ 400.f , 600.f }, daughterFace);

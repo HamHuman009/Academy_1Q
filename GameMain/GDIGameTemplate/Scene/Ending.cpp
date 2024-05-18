@@ -1,6 +1,7 @@
 #include "Ending.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Event.h"
+#include "../GameLogic/Objects/KeyInput.h"
 
 void Ending::Init()
 {
@@ -32,6 +33,13 @@ void Ending::Init()
 	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);
 	AddObject(myBack);
     AddObject(dialog);
+
+	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::Score);
+	AddEvent(e_NextScn);
+
+	KeyInput* mykey = new KeyInput();
+	mykey->m_Event = e_NextScn;
+	AddObject(mykey);
 }
 
 void Ending::Start()

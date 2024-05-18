@@ -127,6 +127,13 @@ void Stage02::Init()
 
 	alpha = 1.0f;
 
+	WCHAR* _str = new WCHAR[255];
+	WCHAR t_str[] = L"Á¡¼öÃ¢";
+	wcscpy_s(_str, 255, t_str);
+	UIDialog* ScoreBox = new UIDialog();
+	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
+	AddObject(ScoreBox);
+
 }
 
 Stage02::~Stage02() {

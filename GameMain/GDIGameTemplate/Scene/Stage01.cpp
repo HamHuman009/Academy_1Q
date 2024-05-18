@@ -3,6 +3,7 @@
 #include "../GameLogic/Objects/Fish.h"
 #include "../System/TimeSystem.h"
 #include "../GameLogic/Event.h"
+
 //#define TEST
 void Stage01::Init()
 {
@@ -111,13 +112,13 @@ void Stage01::Init()
 	AddObject(myUPBackGround);
 	AddObject(pauseBack);
 #ifndef TEST
-	SelectScnEvent* e_TEST[9];
+	SelectScnEvent* e_TEST[10];
 	for (int i = 0; i < (int)SceneType::END; i++) {
 		e_TEST[i] = new SelectScnEvent(i+1);
 		AddEvent(e_TEST[i]);
 	}
 
-	UIButton* ub_S1 = new UIButton(Vector2{ 100,000 }, e_TEST[0], exitBtn);
+	/*UIButton* ub_S1 = new UIButton(Vector2{ 100,000 }, e_TEST[0], exitBtn);
 	UIButton* ub_S2 = new UIButton(Vector2{ 100,200 }, e_TEST[1], exitBtn);
 	UIButton* ub_S3 = new UIButton(Vector2{ 100,400 }, e_TEST[2], exitBtn);
 	UIButton* ub_S4 = new UIButton(Vector2{ 100,600 }, e_TEST[3], exitBtn);
@@ -128,12 +129,12 @@ void Stage01::Init()
 
 	UIButton* ub_S5 = new UIButton(Vector2{ 400,000 }, e_TEST[4], exitBtn);
 	UIButton* ub_S6 = new UIButton(Vector2{ 400,200 }, e_TEST[5], exitBtn);
-	UIButton* ub_S7 = new UIButton(Vector2{ 400,400 }, e_TEST[6], exitBtn);
+	UIButton* ub_S7 = new UIButton(Vector2{ 400,400 }, e_TEST[6], exitBtn);*/
 	UIButton* ub_S8 = new UIButton(Vector2{ 400,600 }, e_TEST[7], exitBtn);
 
-	AddObject(ub_S5);
+	/*AddObject(ub_S5);
 	AddObject(ub_S6);
-	AddObject(ub_S7);
+	AddObject(ub_S7);*/
 	AddObject(ub_S8);
 	
 #endif // !TEST
@@ -151,6 +152,14 @@ void Stage01::Init()
 	AddObject(myFace);
 
 	alpha = 1.0f;
+
+	WCHAR* _str = new WCHAR[255];
+	WCHAR t_str[] = L"점수창";			// 점수 받아오는 함수 만들거나 넣어서 출력시키기
+	wcscpy_s(_str, 255, t_str);
+	UIDialog* ScoreBox = new UIDialog();
+	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
+	AddObject(ScoreBox);
+
 
 }
 

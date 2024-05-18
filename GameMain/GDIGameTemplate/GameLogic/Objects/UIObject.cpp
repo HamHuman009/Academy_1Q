@@ -192,7 +192,7 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 }
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
-	Render::DrawFont(x, y, cx, cx, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
+	Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
 }
 
 void UIDialog::Update(float delta) {

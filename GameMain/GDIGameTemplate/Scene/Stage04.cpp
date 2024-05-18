@@ -125,11 +125,21 @@ void Stage04::Init()
 	AddObject(retry);
 	AddObject(exit);
 
+	Gdiplus::Bitmap* daughterFace = CRM->LoadBitmapResouce(L"Face", L"FaceTest.png");
+	UIFace* myFace = new UIFace(Vector2{ 1200,300 }, daughterFace);
+	AddObject(myFace);
 
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
 
 	alpha = 1.0f;
+
+	WCHAR* _str = new WCHAR[255];
+	WCHAR t_str[] = L"Á¡¼öÃ¢";
+	wcscpy_s(_str, 255, t_str);
+	UIDialog* ScoreBox = new UIDialog();
+	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
+	AddObject(ScoreBox);
 
 }
 
