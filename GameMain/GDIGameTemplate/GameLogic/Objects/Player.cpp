@@ -10,6 +10,7 @@ Player::Player()
 	pauseEvent = nullptr;
 	moveDirection = { 0.f, 0.f };
 	m_AnimationMotionIndex = 0;
+	cnt = 0;
 	Init();
 }
 
@@ -152,6 +153,8 @@ void Player::ScoopUp(float delta)
 			int count = c->colliderManager->GetCountCollidersAtType(m_collider, fishs, 20, TYPE::FISH);
 			for (int i = 0; i < count; i++) {
 				fishs[i]->parent->OnTrigger();
+				cnt++;
+				cout << cnt << '\n';
 			}
 		}
 		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {
