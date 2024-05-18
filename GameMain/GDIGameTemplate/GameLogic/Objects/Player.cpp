@@ -165,9 +165,9 @@ void Player::ScoopUp(float delta)
 					SoberUp();
 				}
 				cnt++;
-				cout << cnt << '\n';
-				cout << (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) << '\n';
-				wcout << fishs[i]->parent->m_name << endl;
+				std::cout << cnt << '\n';
+				std::cout << (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) << '\n';
+				std::wcout << fishs[i]->parent->m_name << std::endl;
 			}
 		}
 		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {

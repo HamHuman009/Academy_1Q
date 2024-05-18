@@ -22,7 +22,7 @@ class UIImage : public UIObject
 {
 	// Object을(를) 통해 상속됨
 public:
-	void Init(Gdiplus::Bitmap* myBitMap , Vector2 myVector);
+	void Init(Gdiplus::Bitmap* myBitMap, Vector2 myVector);
 	UIImage() {};
 	~UIImage() override {};//{ delete m_BackGround; }
 	//void Update(float delta) override;
@@ -40,10 +40,10 @@ class UIButton : public UIObject
 	// Object을(를) 통해 상속됨
 public:
 	void Init(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap);
-	
+
 
 	UIButton(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
-		Init(myPos,myEvent, myBitMap);
+		Init(myPos, myEvent, myBitMap);
 		m_Event = myEvent;
 		m_renderBounds = { {0.f, 0.f },{(float)x,(float)y} };
 	}
@@ -56,7 +56,7 @@ public:
 	~UIButton() override {}; /*{
 		delete m_Bitmap;
 	}*/
-	
+
 private:
 	Gdiplus::Bitmap* m_Bitmap;
 	UINT cx = 0;
@@ -73,11 +73,11 @@ class UITimer : public UIObject
 {
 	// Object을(를) 통해 상속됨
 public:
-	void Init(Vector2 myPos,Event* myEvent,float _setTime);
+	void Init(Vector2 myPos, Event* myEvent, float _setTime);
 
 
-	UITimer(Vector2 myPos, Event* myEvent,float _setTime) {
-		Init(myPos,myEvent,_setTime);
+	UITimer(Vector2 myPos, Event* myEvent, float _setTime) {
+		Init(myPos, myEvent, _setTime);
 		//m_Event = myEvent;
 		//m_renderBounds = { {(float)cx,(float)cy},{(float)x,(float)y} };
 	}
@@ -125,7 +125,7 @@ public:
 	//void OnTrigger() override;
 	~UIBackGround() override {};
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
-	
+
 
 };
 
@@ -140,7 +140,7 @@ public:
 	~UIDialog()override {
 		delete[] string;
 	};
-	void Init(Vector2 myPos, Vector2 endPos,WCHAR* _string);
+	void Init(Vector2 myPos, Vector2 endPos, WCHAR* _string);
 	void Update(float delta) override;
 	void Render(float alpha)override;
 	void OnTrigger() override;

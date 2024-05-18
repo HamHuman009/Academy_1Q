@@ -77,6 +77,9 @@
     <ClCompile Include="System\SoundSystem.cpp">
       <Filter>System\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="GameLogic\Objects\KeyInput.cpp">
+      <Filter>GamaLogic\Objects\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -159,6 +162,9 @@
     </ClInclude>
     <ClInclude Include="System\SoundSystem.h">
       <Filter>System\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\Objects\KeyInput.h">
+      <Filter>GamaLogic\Objects\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

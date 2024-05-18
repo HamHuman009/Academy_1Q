@@ -86,7 +86,6 @@ namespace Game
 
 		//mySound::SoundManager::DestroyInstance();
 		//SMInstance->RelaseSounds();
-		//SMInstance->DestroyInstance(); //153���� �޸� ���� ��ü..
 
 	}
 	void GameManager::Run()

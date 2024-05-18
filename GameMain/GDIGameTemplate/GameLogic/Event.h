@@ -13,16 +13,16 @@ protected:
 public:
 	virtual void Init() {};
 	virtual void OnTrigger() = 0;
-	Event() { 
+	Event() {
 		m_SoundManager = mySound::SoundManager::GetInstance();
 		m_Sound = mySound::eSoundList::Void;
 	}
-	Event(mySound::eSoundList mSound) { 
+	Event(mySound::eSoundList mSound) {
 		m_SoundManager = mySound::SoundManager::GetInstance();
 		m_Sound = mSound;
 	}
-	virtual ~Event() { 
-		std::cout << "d�̺�Ʈ �Ҹ�" << std::endl; 
+	virtual ~Event() {
+		std::cout << "d�̺�Ʈ �Ҹ�" << std::endl;
 	}
 
 };
@@ -56,14 +56,13 @@ public:
 
 	/*void Init() override {
 		scnManager = SceneManager::GetInstance();
-		
-		
+
+
 	}*/
 
 	void OnTrigger() override {
-		
 		if (m_Sound != mySound::eSoundList::Void) {
-			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound,mySound::eSoundChannel::Effect);
+			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
 		}
 		SelectScene(nextSceneNum);
 	}
@@ -72,8 +71,8 @@ public:
 		scnManager->SetCurScene(i);
 	}
 	~SelectScnEvent() {
-		std::cout << "d�̺�Ʈ �Ҹ�dwadawdawd" << std::endl;
-		//m_Sound = mySound::eSoundList::Void;
+		std::cout << "d�̺�Ʈ �Ҹ�dwadawdawd" << std::endl;
+		m_Sound = mySound::eSoundList::Void;
 	}
 };
 
@@ -85,7 +84,7 @@ public:
 	UIButton* Resume;
 	UIButton* Retry;
 	UIButton* Exit;
-	
+
 	void OnTrigger() override
 	{
 		PauseBack->m_isActive = true;
@@ -98,7 +97,7 @@ public:
 };
 
 class ResumeEvent : public Event
-{	
+{
 public:
 	UIImage* PauseBack;
 	UIButton* Resume;
@@ -117,8 +116,6 @@ public:
 
 class RetryEvent : public Event
 {
-	// retry ��ư�� �������� �׳� ��ó�� �ʱ�ȭ������ ���ư��Բ�
-	// + �ð��ʰ� �ٵǸ� retry �̺�Ʈ�� �ڵ����� ����ǰԲ�
 
 private:
 	SceneManager* scnManager = SceneManager::GetInstance();
@@ -127,7 +124,7 @@ private:
 public:
 
 	void OnTrigger() override
-	{	
+	{
 		scnManager->SetCurScene(1);
 		High_Resolution_Time::SetTimeScale(1.f);
 	}
@@ -136,12 +133,12 @@ public:
 class ExitEvent : public Event
 {
 	void OnTrigger() override
-	{	
+	{
 		Game::GameManager::GetInstance()->Finalize();
 		Game::GameManager::GetInstance()->ReleaseResource();
 		Game::GameManager::GetInstance()->DestroyInstance();
 		_CrtDumpMemoryLeaks();
-		PostQuitMessage(1);
+		PostQuitMessage(0);
 	}
 };
 
@@ -152,7 +149,7 @@ public:
 	UIButton* Resume;
 
 	void OnTrigger() override
-	{	
+	{
 		Close->m_isActive = true;
 		Resume->m_isActive = true;
 		High_Resolution_Time::SetTimeScale(0.f);

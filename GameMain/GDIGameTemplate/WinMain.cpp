@@ -11,9 +11,6 @@
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 bool g_Mirror = false;
-// ���־� ��Ʃ����� ���� ���ø��� �ٸ� �߰����� ������ ���� �����ϱ� ����� ���� �����ϰ� �ۼ���.
-
-// ������ ���ν��� �Լ� ����
 
 //void LoadResource();
 //void ReleaseResource();
@@ -68,7 +65,6 @@ void WinApp::Initialize(HINSTANCE hInstance)
 
 	// Step 2: Creating the Window
 
-	// ���ϴ� ũ�Ⱑ �����Ǿ� ����
 	SIZE clientSize = { 1280, 720 };
 	RECT clientRect = { 0, 0, clientSize.cx, clientSize.cy };
 	int width = GetSystemMetrics(SM_CXSCREEN);
@@ -104,8 +100,6 @@ void WinApp::Initialize(HINSTANCE hInstance)
 }
 
 
-// ������Ʈ �Ӽ� -> ��Ŀ -> �ý��� -> ���� �ý��� -> Windows�� ����
-// ������ �Լ� ����
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -130,11 +124,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
 	//LoadResource();
 
-	// ��Ⱑ ���� �޼��� ����
 	MSG msg;
 	while (true)
 	{
-		// �޽����� ������ ó��, ������ �ٷ� ���� ������ �̵�
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			// WM_QUIT �޽��� Ȯ��
@@ -159,7 +151,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		else
 		{
-			// ���� ����			
 			Game::GameManager::GetInstance()->Run();
 		}
 	}

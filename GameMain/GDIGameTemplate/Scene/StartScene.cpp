@@ -20,7 +20,7 @@ void StartScene::Init()
 	Gdiplus::Bitmap* startBtn = CR->LoadBitmapResouce(L"startBtn", L"startbtn_sample.bmp");
 	Gdiplus::Bitmap* exitBtn = CR->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_01,mySound::eSoundList::Singing); // 씬전환 이벤트 테스트
+	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO,mySound::eSoundList::Singing); // 씬전환 이벤트 테스트
 	UIButton* gameStartButton = new UIButton(Vector2{200.0f,300.0f}, e_nextScn, startBtn); // 객체 테스트
 	
 	scoreRect = { 400,200,800,800 };
