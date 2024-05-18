@@ -1,98 +1,70 @@
 #include "SoundSystem.h"
 
+
 namespace mySound
 {
+    SoundManager* SoundManager::mInstance = nullptr;
+    SoundManager* soundManager = SoundManager::GetInstance();  // 초기화  
 
-	SoundManager* SoundManager::mInstance = nullptr;
-	//SoundManager* soundManger = SoundManager::GetInstance();		// 초기화
+    SoundManager* SoundManager::GetInstance()
+    {
+        if (mInstance == nullptr)
+            mInstance = new SoundManager();
+        return mInstance;
+    }
 
-	SoundManager* SoundManager::GetInstance()
-	{
-		/*if (mInstance == nullptr)
-		{
-			mInstance = new SoundManager();
-			
-		}*/
-		return mInstance;
-	}
+    void SoundManager::DestroyInstance()
+    {
+        delete mInstance;
+        mInstance = nullptr;
+    }
 
-	void SoundManager::DestroyInstance()
-	{	
-		if (mInstance != nullptr) {
-			delete mInstance;
-		}
-		
-		//mInstance = nullptr;
-	}
+    void SoundManager::LoadMusic(eSoundList soundlist, bool loopcheck, const char* music)
+    {
+        System_Create(&mSystem);
+        mSystem->init(2, FMOD_INIT_NORMAL, 0);
 
-	void SoundManager::Init()
-	{
-		mInstance = new SoundManager();
-	}
+        if (loopcheck)
+            mSystem->createSound(music, FMOD_LOOP_NORMAL, 0, &mSoundList[static_cast<int>(soundlist)]);
+        else
+            mSystem->createSound(music, FMOD_LOOP_OFF, 0, &mSoundList[static_cast<int>(soundlist)]);
+    }
 
-	void SoundManager::LoadSounds(SoundList list, bool loopCheck, const char* music)
-	{
-		System_Create(&mSystem);
-		mSystem->init(3, FMOD_INIT_NORMAL, 0);			// 최대 3개 채널 동시에 재생 가능
+    void SoundManager::PlayMusic(eSoundList soundlist, eSoundChannel channel)
+    {
+        mChannel[static_cast<int>(channel)]->stop();
+        mSystem->playSound(mSoundList[static_cast<int>(soundlist)], nullptr, false, &mChannel[static_cast<int>(channel)]);
+        mChannel[static_cast<int>(channel)]->setVolume(mVolume);
+    }
 
-		if (loopCheck == true)
-		{
-			mSystem->createSound(music, FMOD_LOOP_NORMAL, 0, &mSoundList[static_cast<int>(list)]);
-		}
-		else
-		{
-			mSystem->createSound(music, FMOD_LOOP_OFF, 0, &mSoundList[static_cast<int>(list)]);
-		}
-	}
+    void SoundManager::StopMusic(eSoundChannel channel)
+    {
+        mChannel[static_cast<int>(channel)]->stop();
+    }
 
-	void SoundManager::PlaySounds(SoundList list, SoundChannel channel)
-	{
-		//std::cout << "Attempting to play sound with list: " << static_cast<int>(list) << std::endl;
-		//std::cout << "Attempting to play sound with channel: " << static_cast<int>(channel) << std::endl;
-		mChannel[static_cast<int>(channel)]->stop();
-		// static_cast<int>(list)값이 이상하므로 다른 방식을 써야함.
-		mSystem->playSound(mSoundList[static_cast<int>(list)], NULL, 0, &mChannel[static_cast<int>(channel)]);
-		mChannel[static_cast<int>(channel)]->setVolume(mVolume);
-	}
+    void SoundManager::SetVolume(float volume)
+    {
+        mVolume = volume;
+        for (unsigned int i = 0; i < static_cast<unsigned int>(eSoundChannel::Size); ++i)
+            mChannel[i]->setVolume(mVolume);
+    }
 
-	void SoundManager::StopSounds(SoundChannel channel)
-	{
-		mChannel[static_cast<int>(channel)]->stop();
-	}
+    void SoundManager::RelaseSounds()
+    {
+        for (int i = 0; i < (int)eSoundList::Size; i++) {
+            mSoundList[i]->release();
+        }
+        mSystem->release();
+        mSystem->close();
+    }
 
-	void SoundManager::SetVolume(float volume)
-	{
-		mVolume = volume;
-		for (unsigned int i = 0; i < static_cast<unsigned int>(SoundChannel::Size); i++)
-		{
-			mChannel[i]->setVolume(mVolume);
-		}
-	}
+    SoundManager::SoundManager(): mSystem(), mChannel{}, mSoundList{}, mVolume(0.5f)
+    {
+    }
 
-	void SoundManager::RelaseSounds()
-	{	
-		for (int i = 0; i < (int)SoundList::Size; i++) {
-			mSoundList[i]->release();
-		}
-		mSystem->release();
-		mSystem->close();
-	}
-
-	bool SoundManager::isChannelPlaying(SoundChannel channel) {
-		bool isPlaying = false;
-		mChannel[(UINT)channel]->isPlaying(&isPlaying);
-		return isPlaying;
-	}
-
-	SoundManager::SoundManager() :mSystem(), mChannel{}, mSoundList{}, mVolume(0.5f)
-	{
-	}
-
-	SoundManager::~SoundManager()
-	{
-	}
-
-
-
-}
-
+    SoundManager::~SoundManager()
+    {
+        mSystem->release();
+        mSystem->close();
+    }
+};

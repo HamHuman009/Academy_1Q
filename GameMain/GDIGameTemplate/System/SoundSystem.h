@@ -1,69 +1,62 @@
 #pragma once
-
-#include "../WinMain.h"
+// FMOD
+#ifndef _WIN64
 #include "../inc/fmod.hpp"
 #pragma comment (lib, "fmod_vc.lib")
-#include "TimeSystem.h"
-
-using namespace std;
 using namespace FMOD;
+#endif
+#ifdef _WIN64
+#include "../inc/fmod.hpp"
+#pragma comment (lib, "fmod_vc.lib")
+using namespace FMOD;
+#endif
 
 namespace mySound
 {
-	enum class SoundChannel
-	{
-		/* 예시 */
-		BGM,
-		Effect,
-		Size
-	};
+    enum class eSoundChannel
+    {
+        BGM,
+        Effect,
+        Size
+    };
 
-	enum class SoundList
-	{
-		/* 추가 */
-		Void,
-		Drum,
-		Singing,
-		Size
-	};
+    enum class eSoundList
+    {
+        Void,
+        Singing,
+        Size
+    };
+    class SoundManager;  // 클래스 전방 선언
+    extern SoundManager* soundManager;  // extern을 사용하여 외부에서 접근 가능하도록 선언
 
-	class SoundManager;
-	extern SoundManager* soundManager;
+    class SoundManager final
+    {
+    public:
+        static SoundManager* GetInstance();
 
-	class SoundManager final
-	{
-	public:
-		static SoundManager* GetInstance();
+        static void DestroyInstance();
 
-		static void DestroyInstance();
+        void LoadMusic(eSoundList list, bool loopcheck, const char* music);
 
-		static void Init();
+        void PlayMusic(eSoundList list, eSoundChannel channel);
 
-		void LoadSounds(SoundList list, bool loopCheck, const char* music);
+        void StopMusic(eSoundChannel channel);
 
-		void PlaySounds(SoundList list, SoundChannel channel);
+        void SetVolume(float volume);
 
-		void StopSounds(SoundChannel channel);
+        void RelaseSounds();
 
-		void SetVolume(float volume);
+    private:
+        SoundManager();
 
-		void RelaseSounds();
+        ~SoundManager();
 
-		bool isChannelPlaying(SoundChannel channel);
+        static SoundManager* mInstance;
 
-	private:
-		SoundManager();
+        FMOD::System* mSystem;
+        FMOD::Channel* mChannel[static_cast<int>(eSoundChannel::Size)];
+        FMOD::Sound* mSoundList[static_cast<int>(eSoundList::Size)];
+        float mVolume;
+    };
 
-		~SoundManager();
-
-		static SoundManager* mInstance;
-		
-		FMOD::System* mSystem;
-		FMOD::Channel* mChannel[static_cast<int>(SoundChannel::Size)];
-		FMOD::Sound* mSoundList[static_cast<int>(SoundList::Size)];
-		FMOD_RESULT result[static_cast<int>(SoundChannel::Size)];
-		float mVolume;
-
-	};
 }
-

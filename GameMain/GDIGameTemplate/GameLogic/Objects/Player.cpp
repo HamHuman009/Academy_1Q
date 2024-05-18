@@ -155,7 +155,7 @@ void Player::ScoopUp(float delta)
 			for (int i = 0; i < count; i++) {
 				fishs[i]->parent->OnTrigger();
 				cnt++;
-				cout << cnt << '\n';
+				std::cout << cnt << '\n';
 			}
 		}
 		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {

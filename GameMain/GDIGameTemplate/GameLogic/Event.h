@@ -8,16 +8,16 @@
 class Event {
 protected:
 	mySound::SoundManager* m_SoundManager = nullptr;
-	mySound::SoundList m_Sound = mySound::SoundList::Void;
+	mySound::eSoundList m_Sound = mySound::eSoundList::Void;
 
 public:
 	virtual void Init() {};
 	virtual void OnTrigger() = 0;
 	Event() { 
 		m_SoundManager = mySound::SoundManager::GetInstance();
-		m_Sound = mySound::SoundList::Void;
+		m_Sound = mySound::eSoundList::Void;
 	}
-	Event(mySound::SoundList mSound) { 
+	Event(mySound::eSoundList mSound) { 
 		m_SoundManager = mySound::SoundManager::GetInstance();
 		m_Sound = mSound;
 	}
@@ -43,10 +43,10 @@ public:
 		gameManager = Game::GameManager::GetInstance();
 		m_SoundManager = mySound::SoundManager::GetInstance();
 		nextSceneNum = sceneNum;
-		m_Sound = mySound::SoundList::Void;
+		m_Sound = mySound::eSoundList::Void;
 	}
 
-	SelectScnEvent(int sceneNum, mySound::SoundList mSound) {
+	SelectScnEvent(int sceneNum, mySound::eSoundList mSound) {
 		scnManager = SceneManager::GetInstance();
 		gameManager = Game::GameManager::GetInstance();
 		m_SoundManager = mySound::SoundManager::GetInstance();
@@ -62,8 +62,8 @@ public:
 
 	void OnTrigger() override {
 		SelectScene(nextSceneNum);
-		if (m_Sound != mySound::SoundList::Void) {
-			mySound::SoundManager::GetInstance()->PlaySounds(m_Sound,mySound::SoundChannel::Effect);
+		if (m_Sound != mySound::eSoundList::Void) {
+			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound,mySound::eSoundChannel::Effect);
 		}
 	}
 

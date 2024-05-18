@@ -7,7 +7,7 @@ namespace Game
 	
 	//Gdiplus::Bitmap* hTestBitmap = nullptr; // ���� ����
 	GameManager* GameManager::instance = nullptr;
-	//mySound::SoundManager* SMInstance = nullptr;
+	mySound::SoundManager* SMInstance = nullptr;
 	GameManager::GameManager()
 	{
 	}
@@ -20,10 +20,10 @@ namespace Game
 		High_Resolution_Time::InitTime();
 		m_hWnd = global::GetWinApp().GetWindow();
 		m_hdc = GetDC(m_hWnd);
-		mySound::SoundManager::Init();
-		mySound::SoundManager::GetInstance()->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");
-		//SMInstance = mySound::SoundManager::GetInstance();
-		//SMInstance->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");
+		/*mySound::SoundManager::Init();
+		mySound::SoundManager::GetInstance()->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");*/
+		SMInstance = mySound::SoundManager::GetInstance();
+		SMInstance->LoadMusic(mySound::eSoundList::Singing, false, "singing.wav");
 		m_sceneManager = SceneManager::GetInstance();
 		m_curScene = m_sceneManager->GetCurScene();
 	}
