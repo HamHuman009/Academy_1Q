@@ -82,6 +82,7 @@ void Player::Render(float alpha)
 	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(255, 0, 0));
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight());
 	//if(r) Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
+	Render::DrawTextW(10, 30, std::to_string(cnt).c_str(), RGB(255, 0, 0));
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight(), alpha, scale);
 }
 
@@ -93,16 +94,16 @@ void Player::movePlayer(float delta)
 {
 	moveDirection = { 0.f, 0.f };
 	if (Input::IsKey('W')) {
-		moveDirection.y = isAwake ? -1 : up;
+		moveDirection += isAwake ? Vector2(0.f, -1.f) : up;
 	}
 	else if (Input::IsKey('S')) {
-		moveDirection.y = isAwake ? 1 : down;
+		moveDirection += isAwake ? Vector2(0.f, 1.f) : down;
 	}
 	if (Input::IsKey('A')) {
-		moveDirection.x = isAwake ? -1 : left;
+		moveDirection += isAwake ? Vector2(-1.f, 0.f) : left;
 	}
 	else if (Input::IsKey('D')) {
-		moveDirection.x = isAwake ? 1 : right;
+		moveDirection += isAwake ? Vector2(1.f, 0.f) : right;
 	}
 	if(moveDirection != Vector2(0.f, 0.f))
 		moveDirection.Normalize();
@@ -168,4 +169,14 @@ void Player::ScoopUp(float delta)
 		}
 	}
 }
+
+void Player::SetMoveDirection(Vector2 _up, Vector2 _down, Vector2 _left, Vector2 _right)
+{
+	up = _up;
+	down = _down;
+	left = _left;
+	right = _right;
+}
+
+
 

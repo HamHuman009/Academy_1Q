@@ -22,7 +22,7 @@ namespace mySound
 			delete mInstance;
 		}
 		
-		mInstance = nullptr;
+		//mInstance = nullptr;
 	}
 
 	void SoundManager::Init()
@@ -47,7 +47,10 @@ namespace mySound
 
 	void SoundManager::PlaySounds(SoundList list, SoundChannel channel)
 	{
+		//std::cout << "Attempting to play sound with list: " << static_cast<int>(list) << std::endl;
+		//std::cout << "Attempting to play sound with channel: " << static_cast<int>(channel) << std::endl;
 		mChannel[static_cast<int>(channel)]->stop();
+		// static_cast<int>(list)값이 이상하므로 다른 방식을 써야함.
 		mSystem->playSound(mSoundList[static_cast<int>(list)], NULL, 0, &mChannel[static_cast<int>(channel)]);
 		mChannel[static_cast<int>(channel)]->setVolume(mVolume);
 	}

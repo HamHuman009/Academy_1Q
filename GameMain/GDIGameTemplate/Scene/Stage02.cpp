@@ -107,6 +107,7 @@ void Stage02::Init()
 	//***************************************
 	AddObject(m_Player);
 	m_Player->m_pos = { 600.f, 350.f };
+	m_Player->SetMoveDirection({0.f, 1.f}, {0.f, -1.f}, {1.f, 0.f}, {-1.f, 0.f});
 	UIBackGround* myUPBackGround = new UIBackGround();
 	myUPBackGround->Init(L"물결+그림자_00.png", CRM);
 	AddObject(myUPBackGround);

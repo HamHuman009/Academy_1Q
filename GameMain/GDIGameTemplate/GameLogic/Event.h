@@ -63,7 +63,7 @@ public:
 	void OnTrigger() override {
 		SelectScene(nextSceneNum);
 		if (m_Sound != mySound::SoundList::Void) {
-			m_SoundManager->PlaySounds(m_Sound,mySound::SoundChannel::Effect);
+			mySound::SoundManager::GetInstance()->PlaySounds(m_Sound,mySound::SoundChannel::Effect);
 		}
 	}
 

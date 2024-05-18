@@ -5,7 +5,7 @@
 namespace Game
 {
 	
-	//Gdiplus::Bitmap* hTestBitmap = nullptr; // Àü¿ª º¯¼ö
+	//Gdiplus::Bitmap* hTestBitmap = nullptr; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	GameManager* GameManager::instance = nullptr;
 	//mySound::SoundManager* SMInstance = nullptr;
 	GameManager::GameManager()
@@ -48,7 +48,7 @@ namespace Game
 
 		elapsedTime += High_Resolution_Time::GetDeltaTime();
 		
-		while (elapsedTime >= 20) //0.02ÃÊ
+		while (elapsedTime >= 20) //0.02ï¿½ï¿½
 		{
 			++m_FixedUpdateCount;
 			
@@ -82,8 +82,10 @@ namespace Game
 		CResourceManager::GetInstance()->DestroyInstance();
 		
 		Render::ReleaseRender();
+		mySound::SoundManager::GetInstance()->RelaseSounds();
+		mySound::SoundManager::DestroyInstance();
 		//SMInstance->RelaseSounds();
-		//SMInstance->DestroyInstance(); //153¹øÁö ¸Þ¸ð¸® ¸¯ÀÇ Á¤Ã¼..
+		//SMInstance->DestroyInstance(); //153ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼..
 
 	}
 	void GameManager::Run()

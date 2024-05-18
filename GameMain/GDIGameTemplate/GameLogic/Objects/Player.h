@@ -8,10 +8,10 @@ private:
 	float moveSpeed;
 	float radius;
 	Vector2 moveDirection;
-	float up = -1;
-	float down = 1;
-	float left = -1;
-	float right = 1;
+	Vector2 up = { 0.f, -1.f };
+	Vector2 down = { 0.f, 1.f };
+	Vector2 left = { -1.f, 0.f };
+	Vector2 right = { 1.f, 0.f };
 
 	Gdiplus::Bitmap* playerBitmap;
 
@@ -33,6 +33,7 @@ public:
 
 	void movePlayer(float delta);
 	void ScoopUp(float delta);
+	void SetMoveDirection(Vector2 _up, Vector2 _down, Vector2 _left, Vector2 _right);
 	UINT cnt;
 };
 
