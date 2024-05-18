@@ -17,7 +17,7 @@ IntroScene::~IntroScene()
 void IntroScene::Init()
 {
 	WCHAR* _str = new WCHAR[255];
-	WCHAR t_str[] = L"물고기에 대한 설명 + 스토리";
+	WCHAR t_str[] = L"물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하";
 
 	wcscpy_s(_str, 255, t_str);
 
@@ -45,9 +45,9 @@ void IntroScene::Init()
 	AddEvent(e_NextScn);
 
 	AddObject(myBack);
+	AddObject(myFace);
 	AddObject(dialog);
 
-	AddObject(myFace);
 
 	AddObject(myKey);
 }

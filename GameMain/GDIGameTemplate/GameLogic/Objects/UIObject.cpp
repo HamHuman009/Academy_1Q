@@ -186,13 +186,29 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 	cx = endPos.x;
 	cy = endPos.y;
 	string = _string;
+	strCount = 0;
+	memset(t_str, '\0', 255);
+	timer = maxTime;
 }
 void UIDialog::Render(float alpha) {
-	Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
+	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
+	Render::DrawFont(x, y, cx, cx, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
 }
 
 void UIDialog::Update(float delta) {
-
+	timer -= delta;
+	if (timer <= 0.f) {
+		timer += maxTime;
+		if (string[strCount] != '\0') {
+			t_str[strCount] = string[strCount];
+			strCount++;
+		}
+	}
+	if (strCount < 256 && string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
+		// 아직 대화가 남아있다면 대화를 모두 출력.
+		wcscpy_s(t_str, 255, string);
+	}
+	//else if()
 }
 
 void UIDialog::OnTrigger() {

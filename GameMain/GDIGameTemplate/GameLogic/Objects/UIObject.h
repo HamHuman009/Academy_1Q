@@ -136,6 +136,10 @@ private:
 	UINT x = 0;
 	UINT y = 0;
 	WCHAR* string;
+	WCHAR t_str[255];
+	int strCount;
+	float timer;
+	const float maxTime = 0.1f;
 public:
 	~UIDialog()override {
 		delete[] string;
