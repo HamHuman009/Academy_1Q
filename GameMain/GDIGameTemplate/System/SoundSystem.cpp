@@ -76,8 +76,9 @@ namespace mySound
 	}
 
 	bool SoundManager::isChannelPlaying(SoundChannel channel) {
-		//if(mChannel[(UINT)channel])
-		return true;
+		bool isPlaying = false;
+		mChannel[(UINT)channel]->isPlaying(&isPlaying);
+		return isPlaying;
 	}
 
 	SoundManager::SoundManager() :mSystem(), mChannel{}, mSoundList{}, mVolume(0.5f)
