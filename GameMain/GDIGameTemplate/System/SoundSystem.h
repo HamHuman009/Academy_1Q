@@ -47,17 +47,19 @@ namespace mySound
 
 		void RelaseSounds();
 
+		bool isChannelPlaying(SoundChannel channel);
 
 	private:
 		SoundManager();
 
 		~SoundManager();
-	private:
+
 		static SoundManager* mInstance;
 		
 		FMOD::System* mSystem;
 		FMOD::Channel* mChannel[static_cast<int>(SoundChannel::Size)];
 		FMOD::Sound* mSoundList[static_cast<int>(SoundList::Size)];
+		FMOD_RESULT result[static_cast<int>(SoundChannel::Size)];
 		float mVolume;
 
 	};

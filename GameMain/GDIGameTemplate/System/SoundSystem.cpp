@@ -70,6 +70,11 @@ namespace mySound
 		mSystem->close();
 	}
 
+	bool SoundManager::isChannelPlaying(SoundChannel channel) {
+		//if(mChannel[(UINT)channel])
+		return true;
+	}
+
 	SoundManager::SoundManager() :mSystem(), mChannel{}, mSoundList{}, mVolume(0.5f)
 	{
 	}
