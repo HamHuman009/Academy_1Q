@@ -33,5 +33,6 @@ public:
 
 	void movePlayer(float delta);
 	void ScoopUp(float delta);
+	UINT cnt;
 };
 

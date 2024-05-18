@@ -24,3 +24,6 @@ public:
 	~Stage05();
 };
 
+	Stage05() {};
+	~Stage05();
+};
