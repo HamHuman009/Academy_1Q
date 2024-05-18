@@ -31,7 +31,7 @@ void StartScene::Init()
 	wcscpy_s(_str, 255, t_str);
 
 	UIDialog* dialog = new UIDialog();
-	dialog->Init({ 400.f,200.f }, { 800.f,800.f}, _str, RGB(255, 0, 0), 20);
+	dialog->Init({ 400.f,200.f }, { 800.f,800.f}, _str);
 
 	ExitEvent* e_exit = new ExitEvent;
 	UIButton* exit = new UIButton(Vector2{ 200.0f,600.0f }, e_exit, exitBtn);

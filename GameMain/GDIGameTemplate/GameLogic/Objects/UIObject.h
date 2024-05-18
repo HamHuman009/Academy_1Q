@@ -155,3 +155,39 @@ public:
 	void Update(float delta) override;
 	void Render(float alpha) override;
 };
+
+class UIFace : public UIObject
+{
+	// Object을(를) 통해 상속됨
+public:
+	void Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent = nullptr);
+
+	UIFace(Vector2 myPos, Gdiplus::Bitmap* myBitMap) {
+		Init(myPos, myBitMap);
+		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
+	}
+
+	UIFace(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
+		Init(myPos, myBitMap, myEvent);
+		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
+	}
+
+	void Update(float delta) override;
+	void Render(float alpha) override;
+
+	//void SetMotion(int index)override;
+	//void UpdateAnimation(float delta)override;
+	//void ChangeStatus(ObjectStatus status)override;
+
+	void OnTrigger() override;
+	~UIFace() override {}; /*{
+		delete m_Bitmap;
+	}*/
+
+private:
+	Gdiplus::Bitmap* m_Bitmap;
+	UINT cx = 0;
+	UINT cy = 0;
+	UINT x = 120;
+	UINT y = 90;
+};

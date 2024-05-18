@@ -26,7 +26,7 @@ void IntroScene::Init()
 	myBack->Init(myBitmap, { 500.f,400.f });
 
 	UIDialog* dialog = new UIDialog();
-	dialog->Init({ 100.f,100.f }, { 500.f,400.f }, _str,RGB(0,0,0),20);
+	dialog->Init({ 100.f,100.f }, { 500.f,400.f }, _str);
 
 	SelectScnEvent* e_NextScn = new SelectScnEvent(2); // 씬전환 이벤트 테스트
 	AddEvent(e_NextScn);
