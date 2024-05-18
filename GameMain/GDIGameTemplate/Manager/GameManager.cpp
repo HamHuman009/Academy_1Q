@@ -22,6 +22,7 @@ namespace Game
 		m_hWnd = global::GetWinApp().GetWindow();
 		m_hdc = GetDC(m_hWnd);
 		m_curScene = m_sceneManager->GetCurScene();
+		mySound::SoundManager::Init();
 		SMInstance = mySound::SoundManager::GetInstance();
 		SMInstance->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");
 		

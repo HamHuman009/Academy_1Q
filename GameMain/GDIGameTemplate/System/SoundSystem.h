@@ -37,6 +37,8 @@ namespace mySound
 
 		static void DestroyInstance();
 
+		static void Init();
+
 		void LoadSounds(SoundList list, bool loopCheck, const char* music);
 
 		void PlaySounds(SoundList list, SoundChannel channel);

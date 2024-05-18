@@ -8,11 +8,11 @@ namespace mySound
 
 	SoundManager* SoundManager::GetInstance()
 	{
-		if (mInstance == nullptr)
+		/*if (mInstance == nullptr)
 		{
 			mInstance = new SoundManager();
 			
-		}
+		}*/
 		return mInstance;
 	}
 
@@ -23,6 +23,11 @@ namespace mySound
 		}
 		
 		mInstance = nullptr;
+	}
+
+	void SoundManager::Init()
+	{
+		mInstance = new SoundManager();
 	}
 
 	void SoundManager::LoadSounds(SoundList list, bool loopCheck, const char* music)
