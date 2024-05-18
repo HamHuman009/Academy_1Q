@@ -118,6 +118,7 @@ void Stage02::Init()
 	AddObject(exit);
 
 
+
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
 
