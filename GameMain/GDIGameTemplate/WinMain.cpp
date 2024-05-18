@@ -40,7 +40,6 @@ void ChangeToFullScreen(int width, int height);
 void WinApp::Initialize(HINSTANCE hInstance)
 {
 	m_hInstance = hInstance;
-
 	//const TCHAR* appName = TEXT("Test Game Framework");
 
 	//Step 1: Registering the Window Class

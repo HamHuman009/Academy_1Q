@@ -7,6 +7,7 @@
 #include "../Scene/Stage03.h"
 #include "../Scene/Stage04.h"
 #include "../Scene/Stage05.h"
+#include "../Scene/Ending.h"
 
 class CScene;
 enum class SceneType
@@ -19,6 +20,7 @@ enum class SceneType
 	STAGE_03,
 	STAGE_04,
 	STAGE_05,
+	Ending,
 	END
 };
 

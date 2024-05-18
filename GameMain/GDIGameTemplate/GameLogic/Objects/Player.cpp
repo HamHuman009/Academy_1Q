@@ -88,7 +88,7 @@ void Player::Render(float alpha)
 
 void Player::OnTrigger()
 {
-	// ������ ������ Ʈ����
+	
 }
 void Player::movePlayer(float delta)
 {
@@ -142,7 +142,7 @@ void Player::ScoopUp(float delta)
 	if (isScoopUp == true) {
 		scoopUpTime += delta;
 		if (scoopUpTime >= 0.f && scoopUpTime < 1.5f) {
-			scale -= delta * 0.25f / 1.5f; // 1.5�ʿ� ���ļ� 0.75 scale���� �پ��.
+			scale -= delta * 0.25f / 1.5f; 
 			if (scale < 0.75f)
 				scale = 0.75f;
 		}
@@ -159,7 +159,7 @@ void Player::ScoopUp(float delta)
 			//r = true;
 			if (isOnScoopUpSound == true) {
 				// Sound Play
-				isOnScoopUpSound = false; // 1ȸ�� �����ϱ� ���� bool��
+				isOnScoopUpSound = false; 
 			}
 		}
 		else if (scoopUpTime >= 1.5f && scoopUpTime < 4.5f) {
