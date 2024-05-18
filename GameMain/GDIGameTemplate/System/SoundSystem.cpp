@@ -16,7 +16,7 @@ namespace mySound
     void SoundManager::DestroyInstance()
     {
         delete mInstance;
-        mInstance = nullptr;
+        //mInstance = nullptr;
     }
 
     void SoundManager::LoadMusic(eSoundList soundlist, bool loopcheck, const char* music)
@@ -25,27 +25,28 @@ namespace mySound
         mSystem->init(2, FMOD_INIT_NORMAL, 0);
 
         if (loopcheck)
-            mSystem->createSound(music, FMOD_LOOP_NORMAL, 0, &mSoundList[static_cast<int>(soundlist)]);
+            mSystem->createSound(music, FMOD_LOOP_NORMAL, 0, &mSoundList[(int)(soundlist)]);
         else
-            mSystem->createSound(music, FMOD_LOOP_OFF, 0, &mSoundList[static_cast<int>(soundlist)]);
+            mSystem->createSound(music, FMOD_LOOP_OFF, 0, &mSoundList[(int)(soundlist)]);
     }
 
     void SoundManager::PlayMusic(eSoundList soundlist, eSoundChannel channel)
-    {
-        mChannel[static_cast<int>(channel)]->stop();
-        mSystem->playSound(mSoundList[static_cast<int>(soundlist)], nullptr, false, &mChannel[static_cast<int>(channel)]);
-        mChannel[static_cast<int>(channel)]->setVolume(mVolume);
+    {   
+        int k = (int)(channel);
+        mChannel[k]->stop();
+        mSystem->playSound(mSoundList[(int)(soundlist)], nullptr, false, &mChannel[k]);
+        mChannel[k]->setVolume(mVolume);
     }
 
     void SoundManager::StopMusic(eSoundChannel channel)
     {
-        mChannel[static_cast<int>(channel)]->stop();
+        mChannel[(int)(channel)]->stop();
     }
 
     void SoundManager::SetVolume(float volume)
     {
         mVolume = volume;
-        for (unsigned int i = 0; i < static_cast<unsigned int>(eSoundChannel::Size); ++i)
+        for (unsigned int i = 0; i < (int)(eSoundChannel::Size); ++i)
             mChannel[i]->setVolume(mVolume);
     }
 
@@ -54,8 +55,12 @@ namespace mySound
         for (int i = 0; i < (int)eSoundList::Size; i++) {
             mSoundList[i]->release();
         }
-        mSystem->release();
-        mSystem->close();
+    }
+
+    bool SoundManager::isChannelPlaying(eSoundChannel channel) {
+        bool isPlaying = false;
+        mChannel[(int)channel]->isPlaying(&isPlaying);
+        return isPlaying;
     }
 
     SoundManager::SoundManager(): mSystem(), mChannel{}, mSoundList{}, mVolume(0.5f)
@@ -66,5 +71,6 @@ namespace mySound
     {
         mSystem->release();
         mSystem->close();
+        DestroyInstance();
     }
 };

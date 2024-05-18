@@ -44,6 +44,8 @@ namespace mySound
 
         void SetVolume(float volume);
 
+        bool isChannelPlaying(eSoundChannel channel);
+
         void RelaseSounds();
 
     private:

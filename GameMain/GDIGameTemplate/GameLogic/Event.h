@@ -61,10 +61,11 @@ public:
 	}*/
 
 	void OnTrigger() override {
-		SelectScene(nextSceneNum);
+		
 		if (m_Sound != mySound::eSoundList::Void) {
 			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound,mySound::eSoundChannel::Effect);
 		}
+		SelectScene(nextSceneNum);
 	}
 
 	void SelectScene(int i) {
@@ -72,6 +73,7 @@ public:
 	}
 	~SelectScnEvent() {
 		std::cout << "dÀÌº¥Æ® ¼Ò¸êdwadawdawd" << std::endl;
+		//m_Sound = mySound::eSoundList::Void;
 	}
 };
 

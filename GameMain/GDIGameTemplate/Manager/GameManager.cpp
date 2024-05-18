@@ -83,7 +83,8 @@ namespace Game
 		
 		Render::ReleaseRender();
 		mySound::SoundManager::GetInstance()->RelaseSounds();
-		mySound::SoundManager::DestroyInstance();
+
+		//mySound::SoundManager::DestroyInstance();
 		//SMInstance->RelaseSounds();
 		//SMInstance->DestroyInstance(); //153���� �޸� ���� ��ü..
 
