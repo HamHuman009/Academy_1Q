@@ -117,10 +117,19 @@ void Player::movePlayer(float delta)
 
 void Player::ScoopUp(float delta)
 {
+	//cheat key
+	if (Input::IsKeyDown('I')) {
+		SoberUp();
+	}
+	if (Input::IsKeyDown('U')) {
+		CancelSoberUp();
+	}
+	//---------
+
 	if (isAwake == true) {
 		awakeTime -= delta;
 		if (awakeTime <= 0.f) {
-			isAwake = false;
+			CancelSoberUp();
 		}
 	}
 
@@ -149,7 +158,7 @@ void Player::ScoopUp(float delta)
 		if (scoopUpTime >= 1.3f && scoopUpTime < 1.5f) {
 			//r = true;
 			if (isOnScoopUpSound == true) {
-				// ����, �ð�ȿ�� Play
+				// Sound Play
 				isOnScoopUpSound = false; // 1ȸ�� �����ϱ� ���� bool��
 			}
 		}
@@ -162,9 +171,15 @@ void Player::ScoopUp(float delta)
 			for (int i = 0; i < count; i++) {
 				fishs[i]->parent->OnTrigger();
 				if (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) {
+					cnt--;
 					SoberUp();
 				}
-				cnt++;
+				else if (std::wcsstr(fishs[i]->parent->m_name, L"Boss") != nullptr) {
+					cnt += 3;
+				}
+				else
+					cnt++;
+
 				std::cout << cnt << '\n';
 				std::cout << (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) << '\n';
 				std::wcout << fishs[i]->parent->m_name << std::endl;
@@ -194,6 +209,12 @@ void Player::SoberUp()
 {
 	isAwake = true;
 	awakeTime = 15.f;
+}
+
+void Player::CancelSoberUp()
+{
+	isAwake = false;
+	awakeTime = 0.f;
 }
 
 

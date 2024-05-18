@@ -55,7 +55,7 @@ Vector2 Fish::GetRandomPosition() {
 	return { (float)width, (float)height };
 }
 
-Fish::Fish(const WCHAR* name, float moveSpeed, float angulerSpeed, const WCHAR* fileName, CResourceManager* CRM, const WCHAR* imageType, float rotateInterval1, float rotateInterval2, float colliderWidth, float colliderHeight)
+Fish::Fish(const WCHAR* name, float moveSpeed, float angulerSpeed, const WCHAR* fileName, CResourceManager* CRM, const WCHAR* imageType, float rotateInterval1, float rotateInterval2, float colliderWidth, float colliderHeight, bool noRandomPos)
 {
 	memset(m_name, '\0', 255);
 	wcscpy_s(m_name, 255, name);
@@ -69,6 +69,9 @@ Fish::Fish(const WCHAR* name, float moveSpeed, float angulerSpeed, const WCHAR* 
 	m_collider = new RectangleCollider({ 0.f,0.f }, colliderWidth, colliderHeight);
 	m_collider->parent = this;
 
+	if(noRandomPos == false)
+		m_pos = GetRandomPosition();
+
 	Init();
 }
 
@@ -76,7 +79,7 @@ void Fish::Init() {
 	// 테스트용
 	
 	m_renderBounds = { {0.f, 0.f}, {m_bitmap[0]->GetWidth() / 2.f, m_bitmap[0]->GetHeight() / 2.f}};
-	m_pos = GetRandomPosition();
+	
 	m_moveDirection = GetRandomDirection() * -1.f;
 
 	animationFrame = rand() % 30;
@@ -128,7 +131,7 @@ void Fish::Render(float alpha) {
 	RectangleCollider* r = dynamic_cast<RectangleCollider*>(m_collider);
 	
 	// 테스트용
-	Render::DrawRect(m_pos.x - r->bounds.extents.x, m_pos.y - r->bounds.extents.y, r->bounds.extents.x * 2, r->bounds.extents.x * 2, RGB(0, 255, 0));
+	/*Render::DrawRect(m_pos.x - r->bounds.extents.x, m_pos.y - r->bounds.extents.y, r->bounds.extents.x * 2, r->bounds.extents.x * 2, RGB(0, 255, 0));
 
 	Render::DrawLine((int)m_pos.x - m_renderBounds.extents.x,
 		(int)m_pos.y + m_renderBounds.extents.y,
@@ -150,7 +153,7 @@ void Fish::Render(float alpha) {
 	Render::DrawLine(x1, y1, x2, y1 + 1, RGB(0, 255, 0));
 	Render::DrawLine(x1, y2, x2, y2 - 1, RGB(0, 255, 0));
 	Render::DrawLine(x1, y1, x1 + 1, y2, RGB(0, 255, 0));
-	Render::DrawLine(x2, y1, x2 - 1, y2 - 1, RGB(0, 255, 0));
+	Render::DrawLine(x2, y1, x2 - 1, y2 - 1, RGB(0, 255, 0));*/
 
 	////Render::DrawText(10, 10, std::to_string(dirScale).c_str(), RGB(255, 0, 0));
 	//Render::DrawTextW(10, 70, std::to_string(time).c_str(), RGB(255, 0, 0));

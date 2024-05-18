@@ -81,6 +81,18 @@ void Stage04::Init()
 	//*************물고기 생성****************
 	srand(std::time(NULL));
 	Fish* myFish;
+	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
+	myFish->m_pos = { 1480.f, float(rand() % 720) };
+	AddObject(myFish);
+	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
+	myFish->m_pos = { -400.f, float(rand() % 720) };
+	AddObject(myFish);
+	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
+	myFish->m_pos = { float(rand() % 1280), -800.f };
+	AddObject(myFish);
+	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	for (int i = 0; i < 4; i++) {
 		myFish = new Fish(L"Fish1", 50.f, 4.36f, L"Fish_01_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
 		AddObject(myFish);
@@ -98,9 +110,6 @@ void Stage04::Init()
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}
-	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f);
-	AddObject(myFish);
-	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	myFish = new Fish(L"BossFish", 60.f, 8.7f, L"BossFish_04_Anim_00.png", CRM, L".png", 2.f, 4.f, 30.f, 30.f);
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
