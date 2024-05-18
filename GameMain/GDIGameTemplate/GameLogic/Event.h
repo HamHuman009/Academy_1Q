@@ -41,7 +41,7 @@ public:
 	SelectScnEvent(int sceneNum) {
 		scnManager = SceneManager::GetInstance();
 		gameManager = Game::GameManager::GetInstance();
-		mySound::SoundManager::GetInstance();
+		m_SoundManager = mySound::SoundManager::GetInstance();
 		nextSceneNum = sceneNum;
 		m_Sound = mySound::SoundList::Void;
 	}
@@ -49,7 +49,7 @@ public:
 	SelectScnEvent(int sceneNum, mySound::SoundList mSound) {
 		scnManager = SceneManager::GetInstance();
 		gameManager = Game::GameManager::GetInstance();
-		mySound::SoundManager::GetInstance();
+		m_SoundManager = mySound::SoundManager::GetInstance();
 		nextSceneNum = sceneNum;
 		m_Sound = mSound;
 	}

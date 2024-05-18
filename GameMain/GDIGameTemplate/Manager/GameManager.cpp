@@ -7,7 +7,7 @@ namespace Game
 	
 	//Gdiplus::Bitmap* hTestBitmap = nullptr; // 전역 변수
 	GameManager* GameManager::instance = nullptr;
-	mySound::SoundManager* SMInstance = nullptr;
+	//mySound::SoundManager* SMInstance = nullptr;
 	GameManager::GameManager()
 	{
 	}
@@ -18,14 +18,14 @@ namespace Game
 	{
 		Input::InitInput();
 		High_Resolution_Time::InitTime();
-		m_sceneManager = SceneManager::GetInstance();
 		m_hWnd = global::GetWinApp().GetWindow();
 		m_hdc = GetDC(m_hWnd);
-		m_curScene = m_sceneManager->GetCurScene();
 		mySound::SoundManager::Init();
-		SMInstance = mySound::SoundManager::GetInstance();
-		SMInstance->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");
-		
+		mySound::SoundManager::GetInstance()->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");
+		//SMInstance = mySound::SoundManager::GetInstance();
+		//SMInstance->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");
+		m_sceneManager = SceneManager::GetInstance();
+		m_curScene = m_sceneManager->GetCurScene();
 	}
 
 	void GameManager::Update()
@@ -82,8 +82,8 @@ namespace Game
 		CResourceManager::GetInstance()->DestroyInstance();
 		
 		Render::ReleaseRender();
-		SMInstance->RelaseSounds();
-		SMInstance->DestroyInstance(); //153번지 메모리 릭의 정체..
+		//SMInstance->RelaseSounds();
+		//SMInstance->DestroyInstance(); //153번지 메모리 릭의 정체..
 
 	}
 	void GameManager::Run()
