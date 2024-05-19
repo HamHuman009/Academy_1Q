@@ -155,3 +155,13 @@ public:
 		High_Resolution_Time::SetTimeScale(0.f);
 	}
 };
+
+class FeedbackEvent : public Event {
+public:
+	UISpeech* feedbackObject;
+	int feedbackNumber;
+	void OnTrigger() override {
+		if(feedbackObject != nullptr)
+			feedbackObject->AddFeedback(feedbackNumber);
+	}
+};

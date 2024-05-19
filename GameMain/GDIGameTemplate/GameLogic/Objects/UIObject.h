@@ -231,3 +231,55 @@ private:
 	WCHAR inputStr[9]; // 8글자까지 9번째는 \0
 	float timer;
 };
+
+class UISpeech : public UIObject
+{
+	// Object을(를) 통해 상속됨
+public:
+	void Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent = nullptr);
+
+	UISpeech(Vector2 myPos, Gdiplus::Bitmap* myBitMap) {
+		Init(myPos, myBitMap);
+		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
+	}
+
+	UISpeech(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
+		Init(myPos, myBitMap, myEvent);
+		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
+	}
+
+	void Update(float delta) override;
+	void Render(float alpha) override;
+
+	//void SetMotion(int index)override;
+	//void UpdateAnimation(float delta)override;
+	//void ChangeStatus(ObjectStatus status)override;
+
+	void OnTrigger() override;
+	~UISpeech() override  {
+		delete m_Bitmap;
+	} 
+
+	void AddFeedback(int feedbackNumber) {
+		feedbackQueue.push(feedbackNumber);
+
+		std::cout << "button click" << std::endl;
+	}
+
+private:
+	Gdiplus::Bitmap * m_Bitmap;
+	UINT cx = 0;
+	UINT cy = 0;
+	UINT x = 120;
+	UINT y = 90;
+	WCHAR string[255];
+	WCHAR t_str[255];
+	int strCount;
+	float timer;
+	const float maxTime = 0.1f;
+	float elepsedTime;
+	bool textEnd = false;
+
+	std::queue<int> feedbackQueue;
+	void GetFeedBack(int feedbackNumber, WCHAR* out);
+};

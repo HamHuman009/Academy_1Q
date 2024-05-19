@@ -189,8 +189,8 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 	strCount = 0;
 	memset(t_str, '\0', 255);
 	timer = maxTime;
-	Input::SetInputState(true);
 }
+
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
 	Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
@@ -359,4 +359,120 @@ void UIInputField::Render(float alpha)
 
 void UIInputField::OnTrigger()
 {
+
+}
+
+void UISpeech::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent) {
+	m_pos = myPos;
+	m_Bitmap = myBitMap;
+	m_Event = myEvent;
+	if (m_Bitmap == nullptr) return;
+	cx = m_Bitmap->GetWidth();
+	cy = m_Bitmap->GetHeight();
+	elepsedTime = 0.0f;
+	wmemset(string, L'\0', 255);
+	strCount = 0;
+	memset(t_str, '\0', 255);
+	timer = maxTime;
+}
+
+
+void UISpeech::Render(float alpha) {
+	//if (m_isActive == false) return;
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
+	Render::DrawFont(x, y, cx, cx, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
+
+}
+
+void UISpeech::OnTrigger() {
+	if (m_Event != nullptr) m_Event->OnTrigger();
+}
+
+void UISpeech::GetFeedBack(int feedbackNumber, WCHAR* out)
+{
+	switch (feedbackNumber) {
+	case 1:
+		wcscpy_s(out, 1, L"");
+		break;
+	case 2:
+		wcscpy_s(out, 16, L"힘내! 저 애 꼭 데려가자!");
+		break;
+	case 3:
+		wcscpy_s(out, 28, L"조심해 아빠! 가재 잡으면 아빠도 물고기도 아야해");
+		break;
+	case 4:
+		wcscpy_s(out, 19, L"가재가 물고기를 다치게 했어...");
+		break;
+	case 5:
+		wcscpy_s(out, 13, L"물렸어? 아빠 괜찮아?");
+		break;
+	case 6:
+		wcscpy_s(out, 3, L"와~");
+		break;
+	case 7:
+		wcscpy_s(out, 25, L"예쁜 애 진짜 잡았다! 아빠, 정말 대단해!");
+		break;
+	case 8:
+		wcscpy_s(out, 20, L"뜰채가 이상해... 찢어질 것 같아");
+		break;
+	case 9:
+		wcscpy_s(out, 22, L"아빠는 할 수 있어! 만능 아빠 힘내!");
+		break;
+	case 10:
+		wcscpy_s(out, 5, L"우와~!");
+		break;
+	case 11:
+		wcscpy_s(out, 24, L"엄청 많다~! 아빠 물고기 엄청 잘 잡아!");
+		break;
+	case 12:
+		wcscpy_s(out, 3, L"♪~");
+		break;
+	default:
+		std::cout << "Error: 범위를 넘은 값이 들어왔습니다." << std::endl;
+		break;
+	}
+}
+
+void UISpeech::Update(float delta) {
+	//if (m_isActive == false) return;
+	if (textEnd == true)
+	{
+		elepsedTime += delta;
+	}
+	else {
+		if (!feedbackQueue.empty()) {
+			int feedbackNum = feedbackQueue.front();
+			feedbackQueue.pop();
+			WCHAR in[255];
+			GetFeedBack(feedbackNum, in);
+			wcscpy_s(string, 255, in);
+			strCount = 0;
+			memset(t_str, '\0', 255);
+			timer = maxTime;
+		}
+	}
+	timer -= delta;
+	if (timer <= 0.f) {
+		timer += maxTime;
+		if (string[strCount] != '\0') {
+			t_str[strCount] = string[strCount];
+			strCount++;
+		}
+		else {
+			textEnd = true;
+		}
+	}
+	if (strCount < 256 && this->string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
+		// 아직 대화가 남아있다면 대화를 모두 출력.
+		wcscpy_s(t_str, 255, string);
+		textEnd = true;
+	}
+
+	if (elepsedTime > 1.5f)
+	{
+		memset(t_str, '\0', 255);
+		m_isActive = false;
+		textEnd = false;
+		elepsedTime = 0.0f;
+	}
 }

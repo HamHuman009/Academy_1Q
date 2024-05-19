@@ -138,10 +138,7 @@ void Player::ScoopUp(float delta)
 		isScoopUp = true;
 		moveSpeed = 45.f;
 		isOnScoopUpSound = true;
-		if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect) == false) {
-			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Water, mySound::eSoundChannel::Effect);
-			
-		}
+		
 	}
 
 	if (isScoopUp == true) {
@@ -164,6 +161,9 @@ void Player::ScoopUp(float delta)
 			//r = true;
 			if (isOnScoopUpSound == true) {
 				// Sound Play
+				if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect) == false) {
+					mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Water, mySound::eSoundChannel::Effect);
+				}
 				isOnScoopUpSound = false; 
 			}
 		}
