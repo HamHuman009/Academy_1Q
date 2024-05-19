@@ -134,10 +134,10 @@ class ExitEvent : public Event
 {
 	void OnTrigger() override
 	{
-		Game::GameManager::GetInstance()->Finalize();
+		/*Game::GameManager::GetInstance()->Finalize();
 		Game::GameManager::GetInstance()->ReleaseResource();
 		Game::GameManager::GetInstance()->DestroyInstance();
-		_CrtDumpMemoryLeaks();
+		_CrtDumpMemoryLeaks();*/
 		PostQuitMessage(0);
 	}
 };
