@@ -205,7 +205,7 @@ public:
 	};
 	void Init(Vector2 myPos, Vector2 endPos, std::wstring _string);
 	void Update(float delta) override;
-	void Render(float alpha)override;
+	void Render(float alpha) override;
 	void OnTrigger() override;
 private:
 	UINT cx = 0;
@@ -213,6 +213,6 @@ private:
 	UINT x = 0;
 	UINT y = 0;
 	std::wstring string;
-	WCHAR t_str[255];
+	
 
 };

@@ -6,7 +6,7 @@
 void CScene::Update() {
 	if(g_player != nullptr)
 	{
-		g_Score += g_player->cnt;
+		g_Score = g_player->cnt;
 	}
 	for (int i = 0; i < m_arrObj.size(); i++) {
 		m_arrObj[i]->Update(High_Resolution_Time::GetDeltaTime() / 1000.0f);

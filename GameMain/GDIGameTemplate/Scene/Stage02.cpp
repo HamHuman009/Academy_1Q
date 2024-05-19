@@ -22,7 +22,9 @@ void Stage02::Init()
 
 	colliderManager = new ColliderManager();
 
-	Player* m_Player = new Player();
+	Player* m_Player;
+	m_Player = new Player();
+	g_player = m_Player;
 	UIImage* pauseBack = new UIImage();
 	m_Player->Init();
 
@@ -128,12 +130,18 @@ void Stage02::Init()
 
 	alpha = 1.0f;
 
-	WCHAR* _str = new WCHAR[255];
+	/*WCHAR* _str = new WCHAR[255];
 	WCHAR t_str[] = L"점수창";
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* ScoreBox = new UIDialog();
 	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
-	AddObject(ScoreBox);
+	AddObject(ScoreBox);*/
+
+	std::wstring _wstr = L"점수 창 : ";
+	_wstr.append(std::to_wstring(g_Score));
+	In_ScoreBoard* myBoard = new In_ScoreBoard();
+	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
+	AddObject(myBoard);
 
 }
 
@@ -160,6 +168,8 @@ void Stage02::FixedUpdate() {
 }
 
 void Stage02::Exit() {
+	Game::GameManager::GetInstance()->FinalScore += g_Score;
+
 	if (Game::GameManager::GetInstance()->sceneBitmap != nullptr)
 		delete Game::GameManager::GetInstance()->sceneBitmap;
 	Game::GameManager::GetInstance()->sceneBitmap = Render::GetFrontHDC();

@@ -39,7 +39,7 @@ public:
 
 	float alpha;					  // ¾ËÆÄ
 	bool isCapture = false;
-
+	UINT g_Score;
 	//static Gdiplus::Bitmap* prevBitmap;
 	//Gdiplus::Bitmap* Getbitmap() {
 	//	return prevBitmap;
@@ -55,7 +55,7 @@ protected:
 	void AddEvent(Event* evt);
 
 	Player* g_player;
-	UINT g_Score;
+	
 
 public:
 	CScene() {};

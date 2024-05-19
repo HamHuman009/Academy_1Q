@@ -281,7 +281,9 @@ void In_ScoreBoard::Init(Vector2 myPos, Vector2 endPos, std::wstring _string)
 }
 
 void In_ScoreBoard::Update(float delta)
-{
+{	
+	string = L"Á¡¼öÃ¢ :";
+	string.append(std::to_wstring(SceneManager::GetInstance()->GetCurScene()->g_Score));
 	//Render(1.0f);
 }
 
