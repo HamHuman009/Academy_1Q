@@ -70,7 +70,7 @@ void Stage04::Init()
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_05);
 	AddEvent(e_nextScn);
-	UITimer* myTimer = new UITimer(Vector2{ 310,100 }, e_nextScn, 5.0f/*40.f*/);
+	UITimer* myTimer = new UITimer(Vector2{ 310,100 }, e_nextScn, 1.0f/*40.f*/);
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");

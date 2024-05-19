@@ -1,18 +1,18 @@
 #include "Ranking.h"
 
-Renking::Renking() {
+Ranking::Ranking() {
     filename = L"rankings.txt";
     loadRankings();
     sortRank();
     rankToStr();
 }
 
-bool comparePlayer(const Renking::Player& p1, const Renking::Player& p2)
+bool comparePlayer(const Ranking::Player& p1, const Ranking::Player& p2)
 {
     return p1.score > p2.score;
 }
 
-void Renking::saveRankings()
+void Ranking::saveRankings()
 {
     std::ofstream file(filename);
 
@@ -28,7 +28,7 @@ void Renking::saveRankings()
     file.close();
 }
 
-void Renking::loadRankings()
+void Ranking::loadRankings()
 {
     std::ifstream file(filename);
 
@@ -47,12 +47,12 @@ void Renking::loadRankings()
     file.close();
 }
 
-void Renking::sortRank()
+void Ranking::sortRank()
 {
     std::sort(players.begin(), players.end(), comparePlayer);
 }
 
-void Renking::rankToStr()
+void Ranking::rankToStr()
 {
     str_rank = "";
     int rank = 1;
@@ -63,6 +63,6 @@ void Renking::rankToStr()
     }
 }
 
-Renking::~Renking() {
+Ranking::~Ranking() {
 
 }

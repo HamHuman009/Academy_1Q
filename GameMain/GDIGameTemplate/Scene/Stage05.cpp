@@ -21,6 +21,7 @@ void Stage05::Init()
 	//AddObject(myBack);
 
 	colliderManager = new ColliderManager();
+	
 
 	Player* m_Player;
 	m_Player = new Player();
@@ -38,6 +39,13 @@ void Stage05::Init()
 	AddEvent(e_exit);
 
 	CResourceManager* CRM = CResourceManager::GetInstance();
+	UIImage* myBackGround = new UIImage();
+	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
+	myBackGround->Init(waterBack, { 640.f, 360.f });
+	//UIBackGround* myBackGround = new UIBackGround();
+	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
+	AddObject(myBackGround);
+
 	Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
 
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
@@ -71,15 +79,10 @@ void Stage05::Init()
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Ending);
 	AddEvent(e_nextScn);
-	UITimer* myTimer = new UITimer(Vector2{ 310,100 }, e_nextScn, 5.0f);
+	UITimer* myTimer = new UITimer(Vector2{ 310,100 }, e_nextScn, 1.0f);
 	AddObject(myTimer);
 
-	UIImage* myBackGround = new UIImage();
-	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
-	myBackGround->Init(waterBack, { 640.f, 360.f });
-	//UIBackGround* myBackGround = new UIBackGround();
-	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
-	AddObject(myBackGround);
+	
 	
 
 	//*************물고기 생성****************

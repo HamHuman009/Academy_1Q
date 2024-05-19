@@ -26,13 +26,13 @@ void ScoreScene::Init()
 	/*UIDialog* inputScore= new UIDialog();
 	inputScore->Init(Vector2{ 100.f, 250.f }, Vector2{ 1000.f, 350.f }, _str2);
 	AddObject(inputScore);*/
-	/*_father_str = new WCHAR[255];
+	_father_str = new WCHAR[255];
 	wcscpy_s(_father_str, 255, L"우리 아빠 이름은");
 	UIDialog* myFatherName = new UIDialog();
-	myScore->Init(Vector2{ 350.f, 350.f }, Vector2{ 500.f, 100.f }, _father_str);
-	AddObject(myFatherName);*/
+	myFatherName->Init(Vector2{ 100.f,250.f }, Vector2{ 500.f, 50.f }, _father_str);
+	AddObject(myFatherName);
 
-	UIInputField* myInputField = new UIInputField(Vector2{ 450.f,350.f }, 500.f, 100.f);
+	UIInputField* myInputField = new UIInputField(Vector2{ 350.f,350.f }, 500.f, 100.f);
 	myInputField->Init();
 	AddObject(myInputField);
 
