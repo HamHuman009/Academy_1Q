@@ -23,7 +23,9 @@ namespace mySound
     enum class eSoundList
     {
         Void,
-        Singing,
+        BGM,
+        Button,
+        Water,
         Size
     };
     class SoundManager;  // 클래스 전방 선언

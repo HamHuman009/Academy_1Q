@@ -23,9 +23,12 @@ namespace Game
 		/*mySound::SoundManager::Init();
 		mySound::SoundManager::GetInstance()->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");*/
 		SMInstance = mySound::SoundManager::GetInstance();
-		SMInstance->LoadMusic(mySound::eSoundList::Singing, false, "singing.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::BGM, true, "BGM.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Button, false, "button.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Water, false, "water.wav");
 		m_sceneManager = SceneManager::GetInstance();
 		m_curScene = m_sceneManager->GetCurScene();
+		SMInstance->PlayMusic(mySound::eSoundList::BGM, mySound::eSoundChannel::BGM);
 	}
 
 	void GameManager::Update()

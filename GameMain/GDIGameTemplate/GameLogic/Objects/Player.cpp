@@ -2,7 +2,7 @@
 #include "Fish.h"
 #include "../../System/InputSystem.h"
 #include "../Event.h"
-
+#include "../../System/SoundSystem.h"
 Player::Player()
 {
 	moveSpeed = 70.0f;
@@ -137,6 +137,10 @@ void Player::ScoopUp(float delta)
 		isScoopUp = true;
 		moveSpeed = 45.f;
 		isOnScoopUpSound = true;
+		if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect) == false) {
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Water, mySound::eSoundChannel::Effect);
+			
+		}
 	}
 
 	if (isScoopUp == true) {
@@ -195,6 +199,8 @@ void Player::ScoopUp(float delta)
 			//r = false;
 		}
 	}
+
+	
 }
 
 void Player::SetMoveDirection(Vector2 _up, Vector2 _down, Vector2 _left, Vector2 _right)

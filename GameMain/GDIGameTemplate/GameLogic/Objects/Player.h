@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+
 class Event;
 
 class Player : public Object
