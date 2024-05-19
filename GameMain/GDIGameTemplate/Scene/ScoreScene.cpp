@@ -1,10 +1,11 @@
 #include "ScoreScene.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Event.h"
-
+WCHAR* _str;
+WCHAR* _father_str;
 void ScoreScene::Init()
 {
-	WCHAR* _str = new WCHAR[255];
+	_str = new WCHAR[255];
 	// _str = 점수;
 	wcscpy_s(_str, 255, L"1등 : 100점");
 	CResourceManager* CRM = CResourceManager::GetInstance();
@@ -18,20 +19,29 @@ void ScoreScene::Init()
 	myScore->Init(Vector2{ 100.f, 100.f }, Vector2{ 1000.f, 150.f }, _str);
 	AddObject(myScore);
 
-	WCHAR* _str2 = new WCHAR[255];
-	// _str = 점수;
-	wcscpy_s(_str2, 255, L"점수 입력");
+	//WCHAR* _str2 = new WCHAR[255];
+	//// _str = 점수;
+	//wcscpy_s(_str2, 255, L"점수 입력");
 
-	UIDialog* inputScore= new UIDialog();
+	/*UIDialog* inputScore= new UIDialog();
 	inputScore->Init(Vector2{ 100.f, 250.f }, Vector2{ 1000.f, 350.f }, _str2);
-	AddObject(inputScore);
+	AddObject(inputScore);*/
+	/*_father_str = new WCHAR[255];
+	wcscpy_s(_father_str, 255, L"우리 아빠 이름은");
+	UIDialog* myFatherName = new UIDialog();
+	myScore->Init(Vector2{ 350.f, 350.f }, Vector2{ 500.f, 100.f }, _father_str);
+	AddObject(myFatherName);*/
+
+	UIInputField* myInputField = new UIInputField(Vector2{ 450.f,350.f }, 500.f, 100.f);
+	myInputField->Init();
+	AddObject(myInputField);
 
 	RetryEvent* e_retry = new RetryEvent;
 	Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
 	UIButton* retry = new UIButton(Vector2{ 910, 600 }, e_retry, exitBtn);
 	AddEvent(e_retry);
 	AddObject(retry);
-
+	
 }
 
 void ScoreScene::Start()
@@ -68,4 +78,6 @@ ScoreScene::ScoreScene()
 
 ScoreScene::~ScoreScene()
 {
+	delete[] _str;
+	delete[] _father_str;
 }

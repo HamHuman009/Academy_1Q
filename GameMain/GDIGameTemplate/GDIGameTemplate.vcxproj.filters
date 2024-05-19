@@ -83,6 +83,9 @@
     <ClCompile Include="Scene\Ending.cpp">
       <Filter>Scene\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\ScoreScene.cpp">
+      <Filter>Scene\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -170,6 +173,9 @@
       <Filter>GamaLogic\Objects\h</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Ending.h">
+      <Filter>Scene\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ScoreScene.h">
       <Filter>Scene\h</Filter>
     </ClInclude>
   </ItemGroup>

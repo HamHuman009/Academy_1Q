@@ -72,6 +72,7 @@ void Stage05::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Ending);
 	AddEvent(e_nextScn);
 	UITimer* myTimer = new UITimer(Vector2{ 310,100 }, e_nextScn, 5.0f);
+	AddObject(myTimer);
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
@@ -79,7 +80,7 @@ void Stage05::Init()
 	//UIBackGround* myBackGround = new UIBackGround();
 	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
 	AddObject(myBackGround);
-	AddObject(myTimer);
+	
 
 	//*************물고기 생성****************
 	srand(std::time(NULL));
