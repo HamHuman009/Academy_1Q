@@ -43,6 +43,9 @@ namespace Game
 		static void DestroyInstance();
 
 		Gdiplus::Bitmap* sceneBitmap;
+
+		UINT FinalScore;
+
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;

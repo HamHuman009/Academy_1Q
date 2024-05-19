@@ -195,3 +195,24 @@ private:
 	UINT x = 120;
 	UINT y = 90;
 };
+
+class In_ScoreBoard : public UIObject
+{
+public:
+	~In_ScoreBoard()override 
+	{
+		/*delete string;*/
+	};
+	void Init(Vector2 myPos, Vector2 endPos, std::wstring _string);
+	void Update(float delta) override;
+	void Render(float alpha)override;
+	void OnTrigger() override;
+private:
+	UINT cx = 0;
+	UINT cy = 0;
+	UINT x = 0;
+	UINT y = 0;
+	std::wstring string;
+	WCHAR t_str[255];
+
+};

@@ -269,3 +269,27 @@ void UIFace::Update(float delta) {
 	if (m_isActive == false) return;
 	// 상태변화 이벤트? 아무튼 얼굴변화 여기서 주기
 }
+
+void In_ScoreBoard::Init(Vector2 myPos, Vector2 endPos, std::wstring _string)
+{
+	x = myPos.x;
+	y = myPos.y;
+	cx = endPos.x;
+	cy = endPos.y;
+	string = _string;
+	/*memset(t_str, '\0', 255);*/
+}
+
+void In_ScoreBoard::Update(float delta)
+{
+	//Render(1.0f);
+}
+
+void In_ScoreBoard::Render(float alpha)
+{
+	Render::DrawFont(x, y, cx, cy, string.c_str(), RGB(0, 255, 0), 12, L"Arial", 1);
+}
+
+void In_ScoreBoard::OnTrigger()
+{
+}

@@ -5,6 +5,8 @@
 
 class ColliderManager;
 
+class Player;
+
 enum class TYPE
 {
 	DEFAULT,
@@ -52,7 +54,11 @@ protected:
 	void AddObject(Object* obj);
 	void AddEvent(Event* evt);
 
+	Player* g_player;
+	UINT g_Score;
+
 public:
 	CScene() {};
 	~CScene();
+	
 };

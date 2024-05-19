@@ -3,6 +3,7 @@
 #include "../../System/InputSystem.h"
 #include "../Event.h"
 #include "../../System/SoundSystem.h"
+
 Player::Player()
 {
 	moveSpeed = 70.0f;
