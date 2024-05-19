@@ -5,8 +5,9 @@
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 
-
-
+#include <tchar.h>
+#pragma comment(lib, "imm32.lib")
+bool isIMEActive = false;
 //AnimationResource* g_PlayerAnim;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -91,15 +92,15 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	
 	UpdateWindow(m_hWnd);
 
+	HIMC hIMC = ImmCreateContext();
+	ImmAssociateContext(m_hWnd, hIMC);
+
 	//Render::InitRender(m_hWnd, clientSize.cx, clientSize.cy);
 	Render::InitRender(m_hWnd, width, height);
 
 	// Step 3: Game Initialize Here
 	Game::GameManager::GetInstance()->Initialize();
 }
-
-
-
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {	
@@ -112,7 +113,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	global::winApp.Initialize(hInstance);
 
-	bool bUseConsole = false;
+	bool bUseConsole = true;
 	if (bUseConsole)
 	{
 		AllocConsole();
@@ -120,7 +121,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		freopen_s(&_tempFile, "CONOUT$", "w", stdout);
 	}	
 
-	
+
 	//LoadResource();
 
 	MSG msg;
@@ -132,7 +133,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			if (msg.message == WM_QUIT)
 				break;
 
-			if (msg.message == WM_KEYDOWN)
+			else if (msg.message == WM_KEYDOWN)
 			{
 				Input::KeyDown(msg.wParam);
 			}
@@ -146,7 +147,35 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 
 			TranslateMessage(&msg);
+			/*if (msg.message == WM_CHAR) {
+				Input::AddBuffer((WCHAR)msg.wParam);
+			}*/
+			if (WM_IME_STARTCOMPOSITION) {
+				isIMEActive = true;
+			}
+			else if (WM_IME_ENDCOMPOSITION) {
+				isIMEActive = false;
+			}
+
+			if (msg.message == WM_CHAR) {
+				if (isIMEActive == false)
+				Input::AddBuffer((WCHAR)msg.wParam);
+			}
+			else if(WM_IME_COMPOSITION) {
+				HIMC hIMC = ImmGetContext(global::GetWinApp().GetWindow());
+				if (hIMC) {
+					if (msg.lParam & GCS_RESULTSTR) {
+						//WCHAR buffer[256];
+						//LONG length = ImmGetCompositionStringW(hIMC, GCS_RESULTSTR, buffer, sizeof(buffer) - 1);
+						//buffer[length / sizeof(WCHAR)] = '\0';
+						Input::AddBuffer((WCHAR)msg.wParam);
+						ImmReleaseContext(global::GetWinApp().GetWindow(), hIMC);
+					}
+				}
+			}
 			DispatchMessage(&msg);
+
+
 		}
 		else
 		{
@@ -155,6 +184,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	//ReleaseResource();
+	HIMC hIMC = ImmGetContext(global::GetWinApp().GetWindow());
+	ImmDestroyContext(hIMC);
+
 	Game::GameManager::GetInstance()->Finalize();
 	Game::GameManager::GetInstance()->ReleaseResource();
 	Game::GameManager::GetInstance()->DestroyInstance();

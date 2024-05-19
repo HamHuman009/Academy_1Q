@@ -43,4 +43,7 @@ namespace Input
     const MouseState& GetMouseState();
     const MouseState& GetPrevMouseState();
 
+    void AddBuffer(TCHAR buffer);
+    void SetInputState(bool on);
+    int GetInputBuffer(TCHAR* in, int count, int maxLength);
 }

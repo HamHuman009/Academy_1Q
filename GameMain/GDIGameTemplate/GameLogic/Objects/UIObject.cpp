@@ -189,13 +189,14 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 	strCount = 0;
 	memset(t_str, '\0', 255);
 	timer = maxTime;
+	Input::SetInputState(true);
 }
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
 	Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
 }
 
-void UIDialog::Update(float delta) {
+void UIDialog::Update(float delta) {	
 	timer -= delta;
 	if (timer <= 0.f) {
 		timer += maxTime;
@@ -208,7 +209,6 @@ void UIDialog::Update(float delta) {
 		// 아직 대화가 남아있다면 대화를 모두 출력.
 		wcscpy_s(t_str, 255, string);
 	}
-	//else if()
 }
 
 void UIDialog::OnTrigger() {
@@ -293,5 +293,70 @@ void In_ScoreBoard::Render(float alpha)
 }
 
 void In_ScoreBoard::OnTrigger()
+{
+}
+
+UIInputField::UIInputField(Vector2 position, float width, float height)
+{
+	wmemset(inputStr, L'\0', 9);
+	isInput = false;
+	strCount = 0;
+
+	m_collider = new RectangleCollider({ 0.f,0.f }, width, height);
+	m_collider->parent = this;
+	m_pos = position;
+	m_renderBounds = { {0.f, 0.f}, {width / 2.f, height / 2.f} };
+	timer = 0.f;
+}
+
+void UIInputField::Init()
+{
+	
+}
+
+void UIInputField::Update(float delta)
+{
+	if (m_isActive == false) return;
+	if (isInput == true) {
+		strCount = Input::GetInputBuffer(inputStr, strCount, 9);
+		if (Input::IsKeyDown('\b')) {
+			if(strCount > 0)
+				inputStr[strCount--] = L'\0';
+		}
+		timer -= delta;
+		if (strCount < 8)
+			inputStr[strCount] = timer >= 1.f ? L'_' : L' ';
+		if (timer < 0.f) {
+			timer = 2.f;
+		}
+
+		if (Input::IsKeyDown('\r')) {
+			inputStr[strCount] = L'\0';
+			std::wcout << inputStr << std::endl;
+		}
+	}
+	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
+		Vector2 temp = Vector2(Input::GetMouseState().x, Input::GetMouseState().y);
+		if (m_collider->isPointColliding(temp)) {
+			isInput = true;
+			Input::SetInputState(true);
+		}
+		else {
+			isInput = false;
+			Input::SetInputState(false);
+			inputStr[strCount] = L'\0';
+		}
+	}
+}
+
+void UIInputField::Render(float alpha)
+{
+	//Render::DrawRect(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
+	//	m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 0));
+	Render::DrawFont(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, 
+		m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, inputStr, RGB(0, 255, 0), 20, L"Arial", 1);
+}
+
+void UIInputField::OnTrigger()
 {
 }

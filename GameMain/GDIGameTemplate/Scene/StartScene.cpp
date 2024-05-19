@@ -36,7 +36,7 @@ void StartScene::Init()
 	ExitEvent* e_exit = new ExitEvent;
 	UIButton* exit = new UIButton(Vector2{ 200.0f,600.0f }, e_exit, exitBtn);
 
-	
+	UIInputField* inputField = new UIInputField({500.f, 500.f}, 200.f, 150.f);
 
 	AddObject(myBack);
 	AddObject(dialog);
@@ -45,7 +45,7 @@ void StartScene::Init()
 	AddEvent(e_nextScn);
 	AddEvent(e_exit);
 
-
+	AddObject(inputField);
 	
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);

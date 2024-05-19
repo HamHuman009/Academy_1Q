@@ -9,6 +9,9 @@ namespace Input
     MouseState curMouse;
     MouseState prevMouse;
 
+    TCHAR buffer[255] = {0};
+    int length = 0;
+    bool isInputKey = false;
 
     void ResetInput()
     {
@@ -88,6 +91,30 @@ namespace Input
         return prevMouse;
     }
 
+    void AddBuffer(TCHAR _buffer)
+    {
+        if (isInputKey == true) {
+            buffer[length++] = _buffer;
+        }
+    }
+    void SetInputState(bool on) {
+        isInputKey = on;
+    }
+    // in은 바꿀 str, count는 in의 길이, maxlength는 in 최대길이
+    int GetInputBuffer(TCHAR* in, int count, int maxLength) {
+        for (int i = count; i < maxLength - 1; i++) {
+            in[i] = buffer[i - count];
+        }
+        in[maxLength - 1] = L'\0';
+        for (int i = 0; i < 255; i++) buffer[i] = L'\0';
+        int a = length;
+        length = 0;
+        if (a + count > maxLength - 1)
+            return maxLength - 1;
+
+        return a + count;
+    }
+
     void InitInput()
     {
         for (int i = 0; i < 256; i++)
@@ -96,7 +123,7 @@ namespace Input
             isKeyUp[i] = false;
             isKey[i] = false;
         }
-
+        memset(buffer, '\0', 255);
         InitMouse();
     }
 

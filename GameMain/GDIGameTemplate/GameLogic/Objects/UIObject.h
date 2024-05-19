@@ -216,3 +216,18 @@ private:
 	
 
 };
+
+class UIInputField : public UIObject {
+public:
+	UIInputField(Vector2 position, float width, float height);
+	~UIInputField() override {}
+	void Init();
+	void Update(float delta) override;
+	void Render(float alpha) override;
+	void OnTrigger() override;
+	bool isInput;
+private:
+	int strCount;
+	WCHAR inputStr[9]; // 8글자까지 9번째는 \0
+	float timer;
+};
