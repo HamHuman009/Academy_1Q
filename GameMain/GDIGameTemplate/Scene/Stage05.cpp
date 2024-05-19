@@ -140,12 +140,11 @@ void Stage05::Init()
 	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
 	AddObject(ScoreBox);*/
 
-	WCHAR* _str = new WCHAR[255];
-	WCHAR t_str[] = L"점수창";
-	wcscpy_s(_str, 255, t_str);
-	UIDialog* ScoreBox = new UIDialog();
-	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
-	AddObject(ScoreBox);
+	std::wstring _wstr = L"점수 창 : ";
+	_wstr.append(std::to_wstring(g_Score));
+	In_ScoreBoard* myBoard = new In_ScoreBoard();
+	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
+	AddObject(myBoard);
 
 }
 
