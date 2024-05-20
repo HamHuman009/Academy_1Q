@@ -1,6 +1,16 @@
 #pragma once
 #include "../Scene/CScene.h"
 
+enum class EndRoot
+{
+    Poor = 1,
+    Normal,
+    Maniac,
+    Great,
+    Professional,
+    Best
+};
+
 class Ending : public CScene
 {
 public:

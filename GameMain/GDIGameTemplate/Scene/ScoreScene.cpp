@@ -9,7 +9,7 @@ void ScoreScene::Init()
 	std::wstring _wstr = L"점수 창 : ";
 	_wstr.append(std::to_wstring(Game::GameManager::GetInstance()->FinalScore));
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.bmp");
+	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 640.f,360.f });
 
