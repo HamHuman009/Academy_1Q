@@ -218,16 +218,16 @@ void UIDialog::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
-UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap)
+UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime)
 {
 	m_pos = position;
 	m_BackGround = bitmap;
+	alphaValue = alphatime;
 	Init();
 }
 
 void UICrossDissolve::Init()
 {
-	alphaValue = 1.f;
 	if (m_BackGround == nullptr) return;
 	m_renderBounds = { {0.f, 0.f}, {m_BackGround->GetWidth() / 2.f, m_BackGround->GetHeight() / 2.f} };
 }
