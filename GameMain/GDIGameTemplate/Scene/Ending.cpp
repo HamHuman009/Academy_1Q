@@ -18,19 +18,19 @@ void Ending::Init()
 	{
 		root = static_cast<int>(EndRoot::Poor);
 	}
-	else if (g_Score < 28 && g_BossCnt < 5)
+	else if (g_Score <= 12 && g_BossCnt <= 4)
 	{
 		root = static_cast<int>(EndRoot::Normal);
 	}
-	else if (g_Score < 28 && g_BossCnt >= 5)
+	else if (g_Score <= 12 && g_BossCnt >= 5)
 	{
 		root = static_cast<int>(EndRoot::Maniac);
 	}
-	else if (g_Score < 50 && g_BossCnt < 5)
+	else if (g_Score <= 28 && g_BossCnt <= 4)
 	{
 		root = static_cast<int>(EndRoot::Great);
 	}
-	else if (g_Score < 50 && g_BossCnt >= 5)
+	else if (g_Score <= 28 && g_BossCnt >= 5)
 	{
 		root = static_cast<int>(EndRoot::Professional);
 	}
