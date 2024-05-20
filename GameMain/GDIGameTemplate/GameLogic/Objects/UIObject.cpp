@@ -68,10 +68,10 @@ void UIButton::Update(float delta) {
 
 //제한-시간-게이지-바-게이지-1	600*50
 //제한 - 시간 - 게이지 - 바 - 배경 - 1	600 * 50
-void UITimer::Init(Vector2 myPos, Event* myEvent, float _setTime) {
-	/*CResourceManager CR = CResourceManager::CResourceManager();
-	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
-	//m_Bitmap = Gdiplus::Bitmap::FromFile(L"sampleButton.png");
+void UITimer::Init(CResourceManager* CRM, Vector2 myPos, Event* myEvent, float _setTime) {
+	m_BitmapBack = CRM->LoadBitmapResouce(L"timerBack", L"UI_Image_Stage_TimeBar_Off_01.png");
+	m_BitmapBar = CRM->LoadBitmapResouce(L"timerbar", L"UI_Image_Stage_TimeBar_On_01.png");
+	m_BitmapClock = CRM->LoadBitmapResouce(L"timerClock", L"UI_Image_Stage_TimeBar_Off_02.png");
 	m_pos = myPos;
 	m_Event = myEvent;
 
@@ -100,8 +100,11 @@ void UITimer::Update(float delta) {
 
 void UITimer::Render(float alpha) {
 	if (m_isActive == false) return;
-	Render::DrawRect(m_pos.x, m_pos.y, cx, cy, RGB(255, 255, 255));
-	Render::DrawRect(m_pos.x, m_pos.y, (UINT)deltaCx, cy, RGB(255, 255, 0));
+	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapBack, 0, 0, cx, cy);
+	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapBar, 0, 0, (UINT)deltaCx, cy);
+	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapClock, 0, 0, 68, 50);
+	/*Render::DrawRect(m_pos.x, m_pos.y, cx, cy, RGB(255, 255, 255));
+	Render::DrawRect(m_pos.x, m_pos.y, (UINT)deltaCx, cy, RGB(255, 255, 0));*/
 }
 
 void UITimer::OnTrigger() {

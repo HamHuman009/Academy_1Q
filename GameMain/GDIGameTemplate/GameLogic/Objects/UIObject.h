@@ -73,11 +73,11 @@ class UITimer : public UIObject
 {
 	// Object을(를) 통해 상속됨
 public:
-	void Init(Vector2 myPos, Event* myEvent, float _setTime);
+	void Init(CResourceManager* CRM, Vector2 myPos, Event* myEvent, float _setTime);
 
 
-	UITimer(Vector2 myPos, Event* myEvent, float _setTime) {
-		Init(myPos, myEvent, _setTime);
+	UITimer(CResourceManager* CRM, Vector2 myPos, Event* myEvent, float _setTime) {
+		Init(CRM, myPos, myEvent, _setTime);
 		//m_Event = myEvent;
 		//m_renderBounds = { {(float)cx,(float)cy},{(float)x,(float)y} };
 	}
@@ -92,7 +92,9 @@ public:
 	}*/
 
 private:
-	Gdiplus::Bitmap* m_Bitmap;
+	Gdiplus::Bitmap* m_BitmapClock;
+	Gdiplus::Bitmap* m_BitmapBack;
+	Gdiplus::Bitmap* m_BitmapBar;
 	UINT cx;
 	UINT cy;
 	UINT x;
