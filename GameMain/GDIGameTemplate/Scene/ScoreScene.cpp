@@ -1,7 +1,7 @@
 #include "ScoreScene.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Event.h"
-#include "../"
+
 
 
 WCHAR* _str = new WCHAR[255];

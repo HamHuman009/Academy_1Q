@@ -26,6 +26,8 @@ namespace Render
 	
 	void DrawFont(int x, int y, int cx, int cy, const WCHAR* text, COLORREF color, int fontSize, const wchar_t* fontName, int fontStyle);
 
+	void DrawFontS(int x, int y, int cx, int cy, const WCHAR* text, COLORREF color, int fontSize, const WCHAR* fontfilepath, int fontStyle);
+
 	SIZE GetScreenSize();
 
 	void DrawImage(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight, float alpha, float scale = 1.f);

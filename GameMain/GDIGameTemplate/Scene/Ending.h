@@ -19,10 +19,10 @@ public:
     void Init() override;
     void Start() override;
     void Exit() override;
-    static int getRoot();
+    int getRoot();
     Ending();
     ~Ending();
 
-    static int root;
+    int root;
 };
 

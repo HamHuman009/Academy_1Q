@@ -196,10 +196,11 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
-	Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
+	//Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
+	Render::DrawFontS(x, y, cx, cy, t_str, RGB(0, 0, 255), 24, L"Freesentation-1Thin.ttf", 1);
 }
 
-void UIDialog::Update(float delta) {	
+void UIDialog::Update(float delta) {
 	timer -= delta;
 	if (timer <= 0.f) {
 		timer += maxTime;
@@ -224,7 +225,7 @@ UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, floa
 	m_BackGround = bitmap;
 	alphaValue = alphatime;
 	isClickable = _isClickable;
- 	Init();
+	Init();
 }
 
 void UICrossDissolve::Init()
@@ -295,7 +296,7 @@ void In_ScoreBoard::Init(Vector2 myPos, Vector2 endPos, std::wstring _string)
 }
 
 void In_ScoreBoard::Update(float delta)
-{	
+{
 	string = L"점수창 :";
 	string.append(std::to_wstring(SceneManager::GetInstance()->GetCurScene()->g_Score));
 	//Render(1.0f);
@@ -325,7 +326,7 @@ UIInputField::UIInputField(Vector2 position, float width, float height)
 
 void UIInputField::Init()
 {
-	
+
 }
 
 
@@ -336,7 +337,7 @@ void UIInputField::Update(float delta)
 	if (isInput == true) {
 		strCount = Input::GetInputBuffer(inputStr, strCount, 9);
 		if (Input::IsKeyDown('\b')) {
-			if(strCount > 0)
+			if (strCount > 0)
 				inputStr[strCount--] = L'\0';
 		}
 		timer -= delta;
@@ -349,12 +350,12 @@ void UIInputField::Update(float delta)
 		if (Input::IsKeyDown('\r')) {
 			inputStr[strCount] = L'\0';
 			std::wcout << inputStr << std::endl;
-			
+
 			int strSize = WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, NULL, 0, NULL, NULL);
 			char* myName = new char[strSize];
 			WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, myName, strSize, 0, 0);
-			
-			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore});
+
+			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore });
 			//오류 가능성 있음 주의
 		}
 	}
@@ -376,7 +377,7 @@ void UIInputField::Render(float alpha)
 {
 	//Render::DrawRect(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
 	//	m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 0));
-	Render::DrawFont(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, 
+	Render::DrawFont(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
 		m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, inputStr, RGB(0, 255, 0), 20, L"Arial", 1);
 }
 
@@ -463,7 +464,7 @@ void UISpeech::Update(float delta) {
 		elepsedTime += delta;
 	}
 	else {
-		
+
 	}
 	timer -= delta;
 	if (timer <= 0.f) {
