@@ -48,6 +48,7 @@ namespace Game
 
 		UINT BossCount;
 
+		int GetRoot();
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;
@@ -56,6 +57,8 @@ namespace Game
 		HDC m_hdc = nullptr;
 		int m_UpdateCount = { 0 };
 		int m_FixedUpdateCount = { 0 };
+
+		
 	};
 }
 

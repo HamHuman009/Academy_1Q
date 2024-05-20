@@ -156,8 +156,9 @@ public:
 class UICrossDissolve : public UIObject {
 	Gdiplus::Bitmap* m_BackGround;
 	float alphaValue;
+	bool isClickable;
 public:
-	UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime = 1.f);
+	UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime = 1.f, bool _isClickable = false);
 	void Init();
 	void Update(float delta) override;
 	void Render(float alpha) override;

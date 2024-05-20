@@ -218,12 +218,13 @@ void UIDialog::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
-UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime)
+UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime, bool _isClickable)
 {
 	m_pos = position;
 	m_BackGround = bitmap;
 	alphaValue = alphatime;
-	Init();
+	isClickable = _isClickable;
+ 	Init();
 }
 
 void UICrossDissolve::Init()
@@ -235,10 +236,20 @@ void UICrossDissolve::Init()
 void UICrossDissolve::Update(float delta)
 {
 	if (m_isActive == false) return;
-	alphaValue -= delta;
-	if (alphaValue < 0.f) {
-		alphaValue = 0;
-		m_isActive = false;
+	if (isClickable == false)
+	{
+		alphaValue -= delta;
+		if (alphaValue < 0.f) {
+			alphaValue = 0;
+			m_isActive = false;
+		}
+	}
+	else
+	{
+		if (Input::GetMouseState().left && !Input::GetPrevMouseState().left)
+		{
+			alphaValue = 0.f;
+		}
 	}
 }
 
