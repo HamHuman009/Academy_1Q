@@ -1,22 +1,22 @@
 #include "ScoreScene.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Event.h"
-WCHAR* _str;
-WCHAR* _father_str;
+WCHAR* _str = new WCHAR[255];
+WCHAR* _father_str = new WCHAR[255];
 void ScoreScene::Init()
 {
 	// _str = 점수;
 	std::wstring _wstr = L"점수 창 : ";
 	_wstr.append(std::to_wstring(Game::GameManager::GetInstance()->FinalScore));
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.bmp");
+	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 640.f,360.f });
 
 	AddObject(myBack);
 
 	UIDialog* myScore = new UIDialog();
-	_str = new WCHAR[255];
+	;
 	wcscpy_s(_str,255,_wstr.c_str());
 	myScore->Init(Vector2{ 100.f, 100.f }, Vector2{ 1000.f, 150.f }, _str);
 	AddObject(myScore);
@@ -28,7 +28,7 @@ void ScoreScene::Init()
 	/*UIDialog* inputScore= new UIDialog();
 	inputScore->Init(Vector2{ 100.f, 250.f }, Vector2{ 1000.f, 350.f }, _str2);
 	AddObject(inputScore);*/
-	_father_str = new WCHAR[255];
+	
 	wcscpy_s(_father_str, 255, L"우리 아빠 이름은");
 	UIDialog* myFatherName = new UIDialog();
 	myFatherName->Init(Vector2{ 100.f,250.f }, Vector2{ 500.f, 50.f }, _father_str);

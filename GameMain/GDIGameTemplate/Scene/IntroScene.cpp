@@ -23,7 +23,7 @@ void IntroScene::Init()
 	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);
 
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.bmp");
+	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.png");
 	UIImage* myBack = new UIImage(); // °´Ã¼ Å×½ºÆ® 
 	myBack->Init(myBitmap, { 640.f,360.f });
 
