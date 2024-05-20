@@ -369,8 +369,10 @@ void UIInputField::Update(float delta)
 			int strSize = WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, NULL, 0, NULL, NULL);
 			char* myName = new char[strSize];
 			WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, myName, strSize, 0, 0);
-
+			
 			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore });
+			
+			
 			//오류 가능성 있음 주의
 		}
 	}

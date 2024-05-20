@@ -20,7 +20,7 @@ public:
 
 	Ranking();
 	~Ranking();
-
+	int InRenkPlayer(UINT score);
 	void saveRankings();
 	void loadRankings();
 	void sortRank();

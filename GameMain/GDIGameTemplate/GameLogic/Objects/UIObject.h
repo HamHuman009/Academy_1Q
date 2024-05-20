@@ -139,8 +139,8 @@ private:
 	UINT cy = 0;
 	UINT x = 0;
 	UINT y = 0;
-	WCHAR string[255];
-	WCHAR t_str[255];
+	WCHAR string[500];
+	WCHAR t_str[500];
 	int strCount;
 	float timer;
 	const float maxTime = 0.1f;

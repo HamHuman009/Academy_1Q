@@ -11,6 +11,9 @@ void StartScene::Start()
 
 void StartScene::Init()
 {	
+	Ranking* myRang = Game::GameManager::GetInstance()->m_Ranking;
+	myRang->sortRank();
+	myRang->rankToStr();
 	CResourceManager* CR = CResourceManager::GetInstance();
 	myBitmap = CR->LoadBitmapResouce(L"image1",L"startback.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
@@ -33,8 +36,8 @@ void StartScene::Init()
 	
 	scoreRect = { 400,200,800,800 };
 	
-	WCHAR _str[255];
-	memset(_str, L'\0', 255);
+	WCHAR _str[500];
+	memset(_str, L'\0', 500);
 	//WCHAR t_str[] = L"랭킹 보드 구현할 장소\n 불러오는건 사이즈 보고 구현할것";
 	std::string myRank;
 	int fromRank = strlen(Game::GameManager::GetInstance()->m_Ranking->str_rank.c_str());
