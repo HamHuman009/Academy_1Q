@@ -80,7 +80,7 @@ void Stage05::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Ending);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 1.0f);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 10.0f);
 	AddObject(myTimer);
 
 	

@@ -11,7 +11,6 @@ void StartScene::Start()
 
 void StartScene::Init()
 {	
-
 	CResourceManager* CR = CResourceManager::GetInstance();
 	myBitmap = CR->LoadBitmapResouce(L"image1",L"startback.png");
 	UIImage* myBack = new UIImage(); // °´Ã¼ Å×½ºÆ® 
