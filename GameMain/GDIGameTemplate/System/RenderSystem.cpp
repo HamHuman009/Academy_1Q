@@ -260,7 +260,8 @@ namespace Render
 			// Handle the error if font file is not found or invalid.
 			return;
 		}
-
+		Gdiplus::Color m_Color;
+		m_Color.SetFromCOLORREF(color);
 		// Get the font family from the collection.
 		int familyCount = fontCollection.GetFamilyCount();
 		Gdiplus::FontFamily* fontFamilies = new Gdiplus::FontFamily[familyCount];
@@ -275,7 +276,7 @@ namespace Render
 			/*Gdiplus::FontFamily   fontFamily(fontName);*/
 			Gdiplus::Font         font(fontFamily, fontSize, fontStyle, Gdiplus::UnitPoint);
 			Gdiplus::RectF        rectF(x, y, cx, cy);
-			Gdiplus::SolidBrush   solidBrush(Gdiplus::Color(255, 0, 0, 0));
+			Gdiplus::SolidBrush   solidBrush(m_Color);
 
 			//graphics.DrawString(string, -1, &font, rectF, NULL, &solidBrush);
 			/*graphics.DrawString(text, -1, &font, rectF, NULL, &solidBrush);*/
