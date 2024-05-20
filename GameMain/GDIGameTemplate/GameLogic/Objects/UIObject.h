@@ -144,7 +144,7 @@ private:
 	const float maxTime = 0.1f;
 public:
 	~UIDialog()override {
-		delete[] string;
+		//delete[] string;
 	};
 	void Init(Vector2 myPos, Vector2 endPos, WCHAR* _string);
 	//void Init(Vector2 myPos, Vector2)

@@ -7,19 +7,21 @@ void Ending::Init()
 {
 	WCHAR* _str = new WCHAR[255];
 	WCHAR t_str[] = { 0 };
-	g_Score = 51;
-	g_BossCnt = 5;
+
+	SelectScnEvent* e_NextScn1 = new SelectScnEvent((UINT)SceneType::Score);
+	AddEvent(e_NextScn1);
+
 	CResourceManager* CRM = CResourceManager::GetInstance();
 
-	if (g_Score <= -1 && g_BossCnt <= 0)
+	if (g_Score <= 11 && g_BossCnt <= 0)
 	{
 		num = static_cast<int>(EndRoot::Poor);
 	}
-	else if (g_Score < 40 && g_BossCnt < 3)
+	else if (g_Score < 28 && g_BossCnt < 3)
 	{
 		num = static_cast<int>(EndRoot::Normal);
 	}
-	else if (g_Score < 40 && g_BossCnt >= 5)
+	else if (g_Score < 28 && g_BossCnt >= 5)
 	{
 		num = static_cast<int>(EndRoot::Maniac);
 	}
@@ -40,8 +42,8 @@ void Ending::Init()
 	switch (num)
 	{
 	case 1:
-		wcscpy_s(_str, 255, L"수수"); // num이 1일 때 문자열 할당
-		myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.png");
+		
+		e_NextScn1->OnTrigger();
 		break;
 	case 2:
 		wcscpy_s(_str, 255, L"노말"); // num이 2일 때 문자열 할당
