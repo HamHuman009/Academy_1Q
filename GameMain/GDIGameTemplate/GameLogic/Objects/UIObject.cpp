@@ -196,10 +196,11 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
-	Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
+	//Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
+	Render::DrawFontS(x, y, cx, cy, t_str, RGB(0, 0, 255), 24, L"Freesentation-1Thin.ttf", 1);
 }
 
-void UIDialog::Update(float delta) {	
+void UIDialog::Update(float delta) {
 	timer -= delta;
 	if (timer <= 0.f) {
 		timer += maxTime;
@@ -218,11 +219,12 @@ void UIDialog::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
-UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime)
+UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime, bool _isClickable)
 {
 	m_pos = position;
 	m_BackGround = bitmap;
 	alphaValue = alphatime;
+	isClickable = _isClickable;
 	Init();
 }
 
@@ -235,10 +237,20 @@ void UICrossDissolve::Init()
 void UICrossDissolve::Update(float delta)
 {
 	if (m_isActive == false) return;
-	alphaValue -= delta;
-	if (alphaValue < 0.f) {
-		alphaValue = 0;
-		m_isActive = false;
+	if (isClickable == false)
+	{
+		alphaValue -= delta;
+		if (alphaValue < 0.f) {
+			alphaValue = 0;
+			m_isActive = false;
+		}
+	}
+	else
+	{
+		if (Input::GetMouseState().left && !Input::GetPrevMouseState().left)
+		{
+			alphaValue = 0.f;
+		}
 	}
 }
 
@@ -284,7 +296,7 @@ void In_ScoreBoard::Init(Vector2 myPos, Vector2 endPos, std::wstring _string)
 }
 
 void In_ScoreBoard::Update(float delta)
-{	
+{
 	string = L"점수창 :";
 	string.append(std::to_wstring(SceneManager::GetInstance()->GetCurScene()->g_Score));
 	//Render(1.0f);
@@ -314,7 +326,7 @@ UIInputField::UIInputField(Vector2 position, float width, float height)
 
 void UIInputField::Init()
 {
-	
+
 }
 
 
@@ -325,7 +337,7 @@ void UIInputField::Update(float delta)
 	if (isInput == true) {
 		strCount = Input::GetInputBuffer(inputStr, strCount, 9);
 		if (Input::IsKeyDown('\b')) {
-			if(strCount > 0)
+			if (strCount > 0)
 				inputStr[strCount--] = L'\0';
 		}
 		timer -= delta;
@@ -338,12 +350,12 @@ void UIInputField::Update(float delta)
 		if (Input::IsKeyDown('\r')) {
 			inputStr[strCount] = L'\0';
 			std::wcout << inputStr << std::endl;
-			
+
 			int strSize = WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, NULL, 0, NULL, NULL);
 			char* myName = new char[strSize];
 			WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, myName, strSize, 0, 0);
-			
-			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore});
+
+			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore });
 			//오류 가능성 있음 주의
 		}
 	}
@@ -365,7 +377,7 @@ void UIInputField::Render(float alpha)
 {
 	//Render::DrawRect(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
 	//	m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 0));
-	Render::DrawFont(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, 
+	Render::DrawFont(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
 		m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, inputStr, RGB(0, 255, 0), 20, L"Arial", 1);
 }
 
@@ -452,17 +464,7 @@ void UISpeech::Update(float delta) {
 		elepsedTime += delta;
 	}
 	else {
-		if (!feedbackQueue.empty()) {
-			int feedbackNum = feedbackQueue.front();
-			feedbackQueue.pop();
-			WCHAR in[255];
-			GetFeedBack(feedbackNum, in);
-			wcscpy_s(string, 255, in);
-			strCount = 0;
-			memset(t_str, '\0', 255);
-			timer = maxTime;
-			m_isActive = true;
-		}
+
 	}
 	timer -= delta;
 	if (timer <= 0.f) {
@@ -486,6 +488,23 @@ void UISpeech::Update(float delta) {
 		memset(t_str, '\0', 255);
 		m_isActive = false;
 		textEnd = false;
-		elepsedTime = 0.0f;
+		if (!feedbackQueue.empty()) {
+			int feedbackNum = feedbackQueue.front();
+			feedbackQueue.pop();
+			WCHAR in[255];
+			GetFeedBack(feedbackNum, in);
+			wcscpy_s(string, 255, in);
+			strCount = 0;
+			memset(t_str, '\0', 255);
+			timer = maxTime;
+			m_isActive = true;
+			elepsedTime = 0.0f;
+		}
 	}
+
+	// 포획조건 
+	// 처음 포획 조건 감지하면 텀 0.3초 둬서 그 안에 추가 조건 
+	// 들어오면 우선순위에 따라 최상위만 출력하고 출력하는 동안 들어오는 포획 조건은 다 무시
+	// 그리고 분노상태일 때 가재 트리거 비활성화
+	// 목표물고기 트리거 줄이고 속도 높이기
 }

@@ -160,6 +160,11 @@ class FeedbackEvent : public Event {
 public:
 	UISpeech* feedbackObject;
 	int feedbackNumber;
+
+	FeedbackEvent(UISpeech* speech, int number) {
+		feedbackObject = speech;
+		feedbackNumber = number;
+	}
 	void OnTrigger() override {
 		if(feedbackObject != nullptr)
 			feedbackObject->AddFeedback(feedbackNumber);

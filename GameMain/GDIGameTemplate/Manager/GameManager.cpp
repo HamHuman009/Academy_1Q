@@ -124,6 +124,16 @@ namespace Game
 		}
 	}
 
+	int GameManager::GetRoot()
+	{
+		return g_root;
+	}
+
+	void GameManager::SetRoot(int root)
+	{
+		g_root = root;
+	}
+
 
 	
 	//AnimationResource* g_PlayerAnim = nullptr;

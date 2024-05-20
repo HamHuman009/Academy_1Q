@@ -36,30 +36,9 @@ void Player::Init()
 
 void Player::Update(float delta)
 {
-	/*sScale -= delta;
-	if (sScale <= 0.7f)
-	{
-		sScale = 0.7f;
-	}*/
 	movePlayer(delta);
 
 	ScoopUp(delta);
-
-	//if (flag == true)
-	//{
-	//	ChangeStatus(ObjectStatus::OBJECT_STATUS_MOVE);
-	//}
-	//else
-	//{
-	//	ChangeStatus(ObjectStatus::OBJECT_STATUS_IDLE);
-	//}
-	//
-	////if(Input::IsKeyDown('F'))
-	//if (m_pAnimationResource && m_AnimationMotionIndex != -1)
-	//{
-	//	UpdateAnimation(delta);
-	//}
-
 }
 
 void Player::Render(float alpha)
@@ -176,17 +155,27 @@ void Player::ScoopUp(float delta)
 			Collider* fishs[24];
 			int count = c->colliderManager->GetCountCollidersAtType(m_collider, fishs, 20, TYPE::FISH);
 			for (int i = 0; i < count; i++) {
-				fishs[i]->parent->OnTrigger();
 				if (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) {
-					cnt--;
-					SoberUp();
+					if (cnt >= 1) {
+
+					}
+					if (!isAwake) {
+						fishs[i]->parent->OnTrigger();
+						cnt--;
+						SoberUp();
+					}
 				}
 				else if (std::wcsstr(fishs[i]->parent->m_name, L"Boss") != nullptr) {
 					cnt += 3;
 					BossCnt++;
+
+					fishs[i]->parent->OnTrigger();
 				}
-				else
+				else {
 					cnt++;
+
+					fishs[i]->parent->OnTrigger();
+				}
 
 				std::cout << cnt << '\n';
 				std::cout << (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) << '\n';

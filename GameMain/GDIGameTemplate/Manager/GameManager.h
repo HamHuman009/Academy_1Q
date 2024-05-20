@@ -49,6 +49,9 @@ namespace Game
 
 		UINT BossCount;
 
+		int GetRoot();
+
+		void SetRoot(int root);
 		Ranking* m_Ranking;
 	private:
 		static GameManager* instance;
@@ -59,6 +62,8 @@ namespace Game
 		HDC m_hdc = nullptr;
 		int m_UpdateCount = { 0 };
 		int m_FixedUpdateCount = { 0 };
+
+		int g_root;
 	};
 }
 

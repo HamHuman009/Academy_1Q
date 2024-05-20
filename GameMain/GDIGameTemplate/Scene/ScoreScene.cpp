@@ -1,6 +1,9 @@
 #include "ScoreScene.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Event.h"
+
+
+
 WCHAR* _str = new WCHAR[255];
 WCHAR* _father_str = new WCHAR[255];
 void ScoreScene::Init()
@@ -43,6 +46,24 @@ void ScoreScene::Init()
 	AddEvent(e_retry);
 	AddObject(retry);
 	
+	int root = Game::GameManager::GetInstance()->GetRoot();
+
+	switch (root)
+	{
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		break;
+	}
+
 }
 
 void ScoreScene::Start()

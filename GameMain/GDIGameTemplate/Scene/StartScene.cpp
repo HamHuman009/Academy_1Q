@@ -55,24 +55,12 @@ void StartScene::Init()
 	
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
-	//Test-------------start
-	FeedbackEvent* e_feedBack = new FeedbackEvent;
-	FeedbackEvent* e_feedBack2 = new FeedbackEvent;
-	UIButton* TestButton = new UIButton(Vector2{ 500.0f, 300.0f }, e_feedBack, startBtn);
-	UIButton* TestButton2 = new UIButton(Vector2{ 700.0f, 300.0f }, e_feedBack2, startBtn);
-	UISpeech* speech = new UISpeech({ 500.f, 500.f }, startBtn);
-	e_feedBack->feedbackObject = speech;
-	e_feedBack->feedbackNumber = 2;
-	e_feedBack2->feedbackObject = speech;
-	e_feedBack2->feedbackNumber = 5;
-	AddObject(speech);
-	AddObject(TestButton);
-	AddObject(TestButton2);
-	AddEvent(e_feedBack);
-	AddEvent(e_feedBack2);
+	
 	alpha = 1.0f;
+
 	AddObject(rankDialog);
 	//Test-------------end
+
 }
 
 StartScene::~StartScene() {

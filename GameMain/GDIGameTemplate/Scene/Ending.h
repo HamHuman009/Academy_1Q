@@ -1,5 +1,5 @@
 #pragma once
-#include "../Scene/CScene.h"
+#include "CScene.h"
 
 enum class EndRoot
 {
@@ -19,10 +19,10 @@ public:
     void Init() override;
     void Start() override;
     void Exit() override;
-
+    int getRoot();
     Ending();
     ~Ending();
 
-    int num;
+    int root;
 };
 

@@ -156,8 +156,9 @@ public:
 class UICrossDissolve : public UIObject {
 	Gdiplus::Bitmap* m_BackGround;
 	float alphaValue;
+	bool isClickable;
 public:
-	UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime = 1.f);
+	UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime = 1.f, bool _isClickable = false);
 	void Init();
 	void Update(float delta) override;
 	void Render(float alpha) override;
@@ -264,7 +265,8 @@ public:
 	~UISpeech() override {}
 
 	void AddFeedback(int feedbackNumber) {
-		feedbackQueue.push(feedbackNumber);
+		if (elepsedTime > 1.5f)
+			feedbackQueue.push(feedbackNumber);
 
 		std::cout << "button click" << std::endl;
 	}
@@ -282,6 +284,11 @@ private:
 	const float maxTime = 0.1f;
 	float elepsedTime;
 	bool textEnd = false;
+
+	float ignoreTimer = 0.f;
+	std::vector<int> feedbackSort;
+
+	std::vector<int> ignoreQueue;
 
 	std::queue<int> feedbackQueue;
 	void GetFeedBack(int feedbackNumber, WCHAR* out);

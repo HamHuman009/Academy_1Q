@@ -24,6 +24,30 @@ void Stage01::Init()
 
 	colliderManager = new ColliderManager();
 
+
+	UISpeech* speech = new UISpeech({ 500.f, 500.f }, nullptr);
+	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, 2);
+	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, 3);
+	FeedbackEvent* e_feedBack4 = new FeedbackEvent(speech, 4);
+	FeedbackEvent* e_feedBack5 = new FeedbackEvent(speech, 5);
+	FeedbackEvent* e_feedBack6 = new FeedbackEvent(speech, 6);
+	FeedbackEvent* e_feedBack7 = new FeedbackEvent(speech, 7);
+	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, 8);
+	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, 9);
+	FeedbackEvent* e_feedBack10 = new FeedbackEvent(speech, 10);
+	FeedbackEvent* e_feedBack11 = new FeedbackEvent(speech, 11);
+	AddEvent(e_feedBack2);
+	AddEvent(e_feedBack3);
+	AddEvent(e_feedBack4);
+	AddEvent(e_feedBack5);
+	AddEvent(e_feedBack6);
+	AddEvent(e_feedBack7);
+	AddEvent(e_feedBack8);
+	AddEvent(e_feedBack9);
+	AddEvent(e_feedBack10);
+	AddEvent(e_feedBack11);
+	AddObject(speech);
+
 	Player* m_Player;
 	m_Player = new Player();
 	g_player = m_Player;
@@ -73,8 +97,7 @@ void Stage01::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_02);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM,Vector2{ 310,100 }, e_nextScn, 1.0f/*20.f*/);
-
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 20.f);
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
@@ -171,6 +194,7 @@ void Stage01::Init()
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
 	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
 	AddObject(myBoard);
+
 }
 
 Stage01::~Stage01() {

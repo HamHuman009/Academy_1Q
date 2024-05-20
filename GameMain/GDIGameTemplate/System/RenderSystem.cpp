@@ -250,4 +250,41 @@ namespace Render
 		Gdiplus::Pen pen(Gdiplus::Color(0, 0, 0, 1));
 		graphics->DrawRectangle(&pen, rectF);
 	}
+
+	void DrawFontS(int x, int y, int cx, int cy, const WCHAR* text, COLORREF color, int fontSize, const WCHAR* fontfilepath, int fontStyle) {
+
+		Gdiplus::Graphics Font(backMemDC);
+
+		Gdiplus::PrivateFontCollection fontCollection;
+		if (fontCollection.AddFontFile(fontfilepath) != Gdiplus::Ok) {
+			// Handle the error if font file is not found or invalid.
+			return;
+		}
+		Gdiplus::Color m_Color;
+		m_Color.SetFromCOLORREF(color);
+		// Get the font family from the collection.
+		int familyCount = fontCollection.GetFamilyCount();
+		Gdiplus::FontFamily* fontFamilies = new Gdiplus::FontFamily[familyCount];
+		int foundCount = 0;
+		fontCollection.GetFamilies(familyCount, fontFamilies, &foundCount);
+
+		if (familyCount > 0)
+		{
+			Gdiplus::FontFamily* fontFamily = &fontFamilies[0];
+			Gdiplus::SolidBrush semiTransBrush(Gdiplus::Color(100, 0, 0, 0)); // 50% Åõ¸í »¡°£»ö
+			graphics->FillRectangle(&semiTransBrush, x, y, cx, cy);
+			/*Gdiplus::FontFamily   fontFamily(fontName);*/
+			Gdiplus::Font         font(fontFamily, fontSize, fontStyle, Gdiplus::UnitPoint);
+			Gdiplus::RectF        rectF(x, y, cx, cy);
+			Gdiplus::SolidBrush   solidBrush(m_Color);
+
+			//graphics.DrawString(string, -1, &font, rectF, NULL, &solidBrush);
+			/*graphics.DrawString(text, -1, &font, rectF, NULL, &solidBrush);*/
+			graphics->DrawString(text, -1, &font, rectF, NULL, &solidBrush);
+
+			Gdiplus::Pen pen(Gdiplus::Color(0, 0, 0, 1));
+			graphics->DrawRectangle(&pen, rectF);
+		}
+	}
+
 }
