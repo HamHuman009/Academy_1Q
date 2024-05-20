@@ -19,15 +19,15 @@ void StartScene::Init()
 	
 	/*SelectScnEvent* a = new SelectScnEvent(3);
 	delete a;*/
-	Gdiplus::Bitmap* startBtn = CR->LoadBitmapResouce(L"startBtn", L"startbtn_sample.bmp");
-	Gdiplus::Bitmap* exitBtn = CR->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
+	/*Gdiplus::Bitmap* startBtn = CR->LoadBitmapResouce(L"startBtn", L"startbtn_sample.bmp");
+	Gdiplus::Bitmap* exitBtn = CR->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");*/
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO,mySound::eSoundList::Button); // 씬전환 이벤트 테스트
-	UIButton* gameStartButton = new UIButton(Vector2{200.0f,300.0f}, e_nextScn, startBtn); // 객체 테스트
+	UIButton* gameStartButton = new UIButton(Vector2{200.0f,300.0f}, e_nextScn, L"UI_Button_Title_StartGame",L".png"); // 객체 테스트
 	
 	scoreRect = { 400,200,800,800 };
 	
-	_str = new WCHAR[255];
+	WCHAR _str[255];
 	memset(_str, L'\0', 255);
 	//WCHAR t_str[] = L"랭킹 보드 구현할 장소\n 불러오는건 사이즈 보고 구현할것";
 	std::string myRank;
@@ -40,8 +40,8 @@ void StartScene::Init()
 	rankDialog->Init({ 400.f,200.f }, { 800.f,800.f}, _str);
 
 	ExitEvent* e_exit = new ExitEvent;
-	UIButton* exit = new UIButton(Vector2{ 200.0f,600.0f }, e_exit, exitBtn);
-
+	//UIButton* exit = new UIButton(Vector2{ 200.0f,600.0f }, e_exit, exitBtn);
+	UIButton* exit = new UIButton(Vector2{ 200,600 }, e_exit, L"UI_Button_Title_GameOver", L".png");
 	UIInputField* inputField = new UIInputField({500.f, 500.f}, 200.f, 150.f);
 
 	AddObject(myBack);
@@ -64,7 +64,7 @@ void StartScene::Init()
 }
 
 StartScene::~StartScene() {
-	delete[] _str;
+	//delete[] _str;
 }
 
 void StartScene::Exit() {

@@ -42,9 +42,9 @@ void Stage04::Init()
 
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
 
-	UIButton* resume = new UIButton(Vector2{ 710,200 }, e_resume, exitBtn);
-	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry, exitBtn);
-	UIButton* exit = new UIButton(Vector2{ 710,600 }, e_exit, exitBtn);
+	UIButton* resume = new UIButton(Vector2{ 710,200 }, e_resume, L"UI_Button_Resume", L".png");
+	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry, L"UI_Button_MainMenu", L".png");
+	UIButton* exit = new UIButton(Vector2{ 710,600 }, e_exit, L"UI_Button_Title_GameOver", L".png");
 
 	e_resume->Resume = resume;
 	e_resume->Retry = retry;

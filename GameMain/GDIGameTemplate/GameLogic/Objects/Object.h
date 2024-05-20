@@ -38,7 +38,7 @@ struct Object
 	Vector2 m_moveDirPrev = { 0.0f,0.0f };
 	Vector2 m_inputDir;
 	ObjectStatus m_status = OBJECT_STATUS_IDLE;	// 플레이어의 상태 나타낼 때 사용
-
+	CResourceManager* CRM;
 	AnimationResource* m_pAnimationResource = nullptr;
 	Event* m_Event = nullptr;
 	int m_AnimationMotionIndex = -1;

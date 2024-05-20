@@ -34,22 +34,29 @@ void UIImage::Render(float _alpha) {
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_BackGround, 0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, alpha);
 }
 //게임 - 시작 - 버튼 - 기본 - 1	200 * 100
-void UIButton::Init(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
-	/*CResourceManager CR = CResourceManager::CResourceManager();
-	m_Bitmap = CR.LoadBitmapResouce(L"버튼",L"sampleButton.png");*/
+void UIButton::Init(Vector2 myPos, Event* myEvent, const std::wstring& _strkey, const std::wstring& _extention) {
+	CRM = CResourceManager::GetInstance();
+	std::wstring fullPath_On = _strkey;
+	std::wstring fullPath_Off = _strkey;
+	fullPath_On.append(L"_On");
+	fullPath_Off.append(L"_Off");
+	m_Bitmap_On = CRM->LoadBitmapResouce(fullPath_On, fullPath_On.append(_extention));
+	m_Bitmap_Off = CRM->LoadBitmapResouce(fullPath_Off, fullPath_Off.append(_extention));
+
+	std::wstring off;
 	m_pos = myPos;
 	m_Event = myEvent;
-	m_Bitmap = myBitMap;
-	if (m_Bitmap == nullptr) return;
-	cx = m_Bitmap->GetWidth();
-	cy = m_Bitmap->GetHeight();
+	if (m_Bitmap_On == nullptr) return;
+	cx = m_Bitmap_On->GetWidth();
+	cy = m_Bitmap_On->GetHeight();
 	m_collider = new RectangleCollider({ 0.f,0.f }, { (float)cx, (float)cy });
 	m_collider->parent = this;
+	m_CurBitMap = m_Bitmap_On;
 }
 
 void UIButton::Render(float alpha) {
 	if (m_isActive == false) return;
-	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_CurBitMap, 0, 0, cx, cy, 1.0f);
 }
 
 void UIButton::OnTrigger() {
@@ -62,6 +69,7 @@ void UIButton::Update(float delta) {
 		Vector2 temp = Vector2(Input::GetMouseState().x, Input::GetMouseState().y);
 		if (m_collider->isPointColliding(temp)) {
 			// 애니메이션
+			m_CurBitMap = m_Bitmap_Off;
 		}
 	}
 	else if (Input::GetPrevMouseState().left && !Input::GetMouseState().left) {
@@ -194,7 +202,8 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 	y = myPos.y;
 	cx = endPos.x;
 	cy = endPos.y;
-	string = _string;
+	//string = _string;
+	wcscpy_s(string, 255, _string);
 	strCount = 0;
 	memset(t_str, '\0', 255);
 	timer = maxTime;

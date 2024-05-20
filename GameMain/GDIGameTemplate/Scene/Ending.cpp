@@ -5,7 +5,7 @@
 
 void Ending::Init()
 {
-	WCHAR* _str = new WCHAR[255];
+	
 	WCHAR t_str[] = { 0 };
 
 	SelectScnEvent* e_NextScn1 = new SelectScnEvent((UINT)SceneType::Score);
@@ -71,10 +71,10 @@ void Ending::Init()
 
 	UIImage* myBack = new UIImage(); // °´Ã¼ Å×½ºÆ® 
 	myBack->Init(myBitmap, { 640.f,360.f });
-	UIDialog* dialog = new UIDialog();
-	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);
+	/*UIDialog* dialog = new UIDialog();
+	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);*/
 	AddObject(myBack);
-	AddObject(dialog);
+	//AddObject(dialog);
 
 	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::Score);
 	AddEvent(e_NextScn);
@@ -129,6 +129,7 @@ Ending::Ending()
 
 Ending::~Ending()
 {
+	
 }
 
 

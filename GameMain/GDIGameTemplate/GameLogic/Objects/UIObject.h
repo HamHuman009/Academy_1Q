@@ -39,11 +39,11 @@ class UIButton : public UIObject
 {
 	// Object을(를) 통해 상속됨
 public:
-	void Init(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap);
+	void Init(Vector2 myPos, Event* myEvent, const std::wstring& _strkey, const std::wstring& _extention);
 
 
-	UIButton(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
-		Init(myPos, myEvent, myBitMap);
+	UIButton(Vector2 myPos, Event* myEvent, const std::wstring& _strkey, const std::wstring& _extention) {
+		Init(myPos, myEvent, _strkey, _extention);
 		m_Event = myEvent;
 		m_renderBounds = { {0.f, 0.f },{(float)x,(float)y} };
 	}
@@ -58,7 +58,9 @@ public:
 	}*/
 
 private:
-	Gdiplus::Bitmap* m_Bitmap;
+	Gdiplus::Bitmap* m_Bitmap_On;
+	Gdiplus::Bitmap* m_Bitmap_Off;
+	Gdiplus::Bitmap* m_CurBitMap;
 	UINT cx = 0;
 	UINT cy = 0;
 	UINT x = 120;
@@ -137,7 +139,7 @@ private:
 	UINT cy = 0;
 	UINT x = 0;
 	UINT y = 0;
-	WCHAR* string;
+	WCHAR string[255];
 	WCHAR t_str[255];
 	int strCount;
 	float timer;

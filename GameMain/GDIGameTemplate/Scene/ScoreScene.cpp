@@ -15,7 +15,6 @@ void ScoreScene::Init()
 	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.png");
 	UIImage* myBack = new UIImage(); // °´Ã¼ Å×½ºÆ® 
 	myBack->Init(myBitmap, { 640.f,360.f });
-
 	AddObject(myBack);
 
 	UIDialog* myScore = new UIDialog();
@@ -41,8 +40,8 @@ void ScoreScene::Init()
 	AddObject(myInputField);
 
 	RetryEvent* e_retry = new RetryEvent;
-	Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
-	UIButton* retry = new UIButton(Vector2{ 910, 600 }, e_retry, exitBtn);
+	//Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
+	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry, L"UI_Button_MainMenu", L".png");
 	AddEvent(e_retry);
 	AddObject(retry);
 	
