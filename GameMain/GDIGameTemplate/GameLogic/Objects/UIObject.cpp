@@ -197,7 +197,7 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
 	//Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
-	Render::DrawFontS(x, y, cx, cy, t_str, RGB(0, 0, 255), 24, L"Freesentation-1Thin.ttf", 1);
+	Render::DrawFontS(x, y, cx, cy, t_str, RGB(0, 0, 255), 24, L"KOTRAHOPE.ttf", 1);
 }
 
 void UIDialog::Update(float delta) {
@@ -304,7 +304,7 @@ void In_ScoreBoard::Update(float delta)
 
 void In_ScoreBoard::Render(float alpha)
 {
-	Render::DrawFont(x, y, cx, cy, string.c_str(), RGB(0, 255, 0), 12, L"Arial", 1);
+	Render::DrawFontS(x, y, cx, cy, string.c_str(), RGB(0, 255, 0), 12, L"KOTRAHOPE.ttf", 1);
 }
 
 void In_ScoreBoard::OnTrigger()
@@ -377,8 +377,8 @@ void UIInputField::Render(float alpha)
 {
 	//Render::DrawRect(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
 	//	m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 0));
-	Render::DrawFont(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
-		m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, inputStr, RGB(0, 255, 0), 20, L"Arial", 1);
+	Render::DrawFontS(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
+		m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, inputStr, RGB(0, 255, 0), 20, L"KOTRAHOPE.ttf", 1);
 }
 
 void UIInputField::OnTrigger()
@@ -404,7 +404,7 @@ void UISpeech::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent) {
 void UISpeech::Render(float alpha) {
 	if (m_isActive == false) return;
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
-	Render::DrawFont(x, y, cx, cx, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
+	Render::DrawFontS(x, y, cx, cx, t_str, RGB(0, 255, 0), 12, L"KOTRAHOPE.ttf", 1);
 
 }
 
