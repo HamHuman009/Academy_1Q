@@ -174,6 +174,7 @@ void Stage04::FixedUpdate() {
 
 void Stage04::Exit() {
 	Game::GameManager::GetInstance()->FinalScore += g_Score;
+	Game::GameManager::GetInstance()->BossCount += g_BossCnt;
 
 	if (Game::GameManager::GetInstance()->sceneBitmap != nullptr)
 		delete Game::GameManager::GetInstance()->sceneBitmap;

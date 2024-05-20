@@ -13,6 +13,7 @@ Player::Player()
 	m_AnimationMotionIndex = 0;
 	cnt = 0;
 	Init();
+	BossCnt = 0;
 }
 
 //Player::~Player()
@@ -84,6 +85,7 @@ void Player::Render(float alpha)
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight());
 	//if(r) Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
 	Render::DrawTextW(10, 30, std::to_string(cnt).c_str(), RGB(255, 0, 0));
+	Render::DrawTextW(10, 70, std::to_string(BossCnt).c_str(), RGB(0, 0, 255));
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight(), alpha, scale);
 }
 
@@ -181,6 +183,7 @@ void Player::ScoopUp(float delta)
 				}
 				else if (std::wcsstr(fishs[i]->parent->m_name, L"Boss") != nullptr) {
 					cnt += 3;
+					BoosCnt++;
 				}
 				else
 					cnt++;

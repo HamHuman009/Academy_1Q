@@ -145,6 +145,7 @@ public:
 		delete[] string;
 	};
 	void Init(Vector2 myPos, Vector2 endPos, WCHAR* _string);
+	//void Init(Vector2 myPos, Vector2)
 	void Update(float delta) override;
 	void Render(float alpha)override;
 	void OnTrigger() override;
