@@ -266,7 +266,7 @@ public:
 
 	void AddFeedback(int feedbackNumber) {
 		if (elepsedTime > 1.5f)
-			feedbackQueue.push(feedbackNumber);
+			feedbackSort.push_back(feedbackNumber);
 
 		std::cout << "button click" << std::endl;
 	}
@@ -287,9 +287,5 @@ private:
 
 	float ignoreTimer = 0.f;
 	std::vector<int> feedbackSort;
-
-	std::vector<int> ignoreQueue;
-
-	std::queue<int> feedbackQueue;
 	void GetFeedBack(int feedbackNumber, WCHAR* out);
 };

@@ -99,6 +99,8 @@ void Player::movePlayer(float delta)
 
 void Player::ScoopUp(float delta)
 {
+	event4timer -= delta;
+	event5timer -= delta;
 	//cheat key
 	if (Input::IsKeyDown('I')) {
 		SoberUp();
@@ -156,22 +158,46 @@ void Player::ScoopUp(float delta)
 			int count = c->colliderManager->GetCountCollidersAtType(m_collider, fishs, 20, TYPE::FISH);
 			for (int i = 0; i < count; i++) {
 				if (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) {
-					if (cnt >= 1) {
-
-					}
 					if (!isAwake) {
+						if (cnt == 0) {
+							if (feedbackEvent1_ifCrawCaptureScoreZero != nullptr)
+								feedbackEvent1_ifCrawCaptureScoreZero->OnTrigger();
+						}
+						else if (cnt >= 1) {
+							if (feedbackEvent2_ifCrawCaptureScoreOne != nullptr)
+								feedbackEvent2_ifCrawCaptureScoreOne->OnTrigger();
+						}
 						fishs[i]->parent->OnTrigger();
 						cnt--;
 						SoberUp();
 					}
 				}
 				else if (std::wcsstr(fishs[i]->parent->m_name, L"Boss") != nullptr) {
+					if (feedbackEvent3_CaptureBossFish != nullptr)
+						feedbackEvent3_CaptureBossFish->OnTrigger();
 					cnt += 3;
 					BossCnt++;
-
 					fishs[i]->parent->OnTrigger();
 				}
 				else {
+					if (event4timer <= 0.f) {
+						event4timer = event4timerMax;
+						if (feedbackEvent4_CaptureFish != nullptr)
+							feedbackEvent4_CaptureFish->OnTrigger();
+					}
+					if (event5timer <= 0.f) {
+						event5timer = event5timerMax;
+						event5count = 0;
+					}
+					else {
+						event5count++;
+						if (event5count >= 2) {
+							event5count = 0;
+							event5timer = 0.f;
+							if (feedbackEvent5_OneCaptureTwoKill != nullptr)
+								feedbackEvent5_OneCaptureTwoKill->OnTrigger();
+						}
+					}
 					cnt++;
 
 					fishs[i]->parent->OnTrigger();
@@ -181,6 +207,23 @@ void Player::ScoopUp(float delta)
 				std::cout << (std::wcsstr(fishs[i]->parent->m_name, L"Craw") != nullptr) << '\n';
 				std::wcout << fishs[i]->parent->m_name << std::endl;
 			}
+			if (isSevenScore == false && cnt >= 7) {
+				isSevenScore = true;
+				if (feedbackEvent6_SevenScore != nullptr)
+					feedbackEvent6_SevenScore->OnTrigger();
+			}
+
+			if (prevCnt != cnt) {
+				event9timer = event9timerMax;
+			}
+			else {
+				event9timer -= delta;
+				if (event9timer <= 0.f) {
+					if (feedbackEvent9_10secNothingAnd14sec != nullptr)
+						feedbackEvent9_10secNothingAnd14sec->OnTrigger();
+				}
+			}
+			prevCnt = cnt;
 		}
 		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {
 			

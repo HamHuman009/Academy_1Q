@@ -58,7 +58,13 @@ void UIButton::OnTrigger() {
 
 void UIButton::Update(float delta) {
 	if (m_isActive == false) return;
-	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
+	if (Input::GetPrevMouseState().left && Input::GetMouseState().left) {
+		Vector2 temp = Vector2(Input::GetMouseState().x, Input::GetMouseState().y);
+		if (m_collider->isPointColliding(temp)) {
+			// 애니메이션
+		}
+	}
+	else if (Input::GetPrevMouseState().left && !Input::GetMouseState().left) {
 		Vector2 temp = Vector2(Input::GetMouseState().x, Input::GetMouseState().y);
 		if (m_collider->isPointColliding(temp)) {
 			OnTrigger();
@@ -416,40 +422,40 @@ void UISpeech::GetFeedBack(int feedbackNumber, WCHAR* out)
 {
 	switch (feedbackNumber) {
 	case 1:
-		wcscpy_s(out, 1, L"");
+		wcscpy_s(out, 13, L"물렸어? 아빠 괜찮아?"); // 점수가 0인 상태에서 가재를 삭제한 경우
 		break;
 	case 2:
-		wcscpy_s(out, 16, L"힘내! 저 애 꼭 데려가자!");
+		wcscpy_s(out, 19, L"가재가 물고기를 다치게 했어..."); // 점수가 1 이상인 상태에서 가재를 삭제한 경우
 		break;
 	case 3:
-		wcscpy_s(out, 28, L"조심해 아빠! 가재 잡으면 아빠도 물고기도 아야해");
+		wcscpy_s(out, 25, L"예쁜 애 진짜 잡았다! 아빠, 정말 대단해!"); // 목표 물고기를 삭제한 경우
 		break;
 	case 4:
-		wcscpy_s(out, 19, L"가재가 물고기를 다치게 했어...");
+		wcscpy_s(out, 3, L"와~"); // 이전 FB_06 출력완료 후 4초가 지났고, 물고기를 삭제한 경우
 		break;
 	case 5:
-		wcscpy_s(out, 13, L"물렸어? 아빠 괜찮아?");
+		wcscpy_s(out, 5, L"우와~!"); // 물고기 포획 후 1초 내에 두 마리 더 포획
 		break;
 	case 6:
-		wcscpy_s(out, 3, L"와~");
+		wcscpy_s(out, 24, L"엄청 많다~! 아빠 물고기 엄청 잘 잡아!"); // 한 스테이지에서 점수 7점 이상 달성
 		break;
 	case 7:
-		wcscpy_s(out, 25, L"예쁜 애 진짜 잡았다! 아빠, 정말 대단해!");
+		wcscpy_s(out, 20, L"뜰채가 이상해... 찢어질 것 같아"); // 스테이지 제한 시간이 7초 남은 경우
 		break;
 	case 8:
-		wcscpy_s(out, 20, L"뜰채가 이상해... 찢어질 것 같아");
+		wcscpy_s(out, 28, L"조심해 아빠! 가재 잡으면 아빠도 물고기도 아야해"); // 가재 생성 후, 가재의 콜라이더가 최초로 화면 안에 진입한 경우
 		break;
 	case 9:
-		wcscpy_s(out, 22, L"아빠는 할 수 있어! 만능 아빠 힘내!");
+		wcscpy_s(out, 22, L"아빠는 할 수 있어! 만능 아빠 힘내!"); // 점수 변동 없이 10초 경과/이전 FB_09 재생 후 14초 경과
 		break;
 	case 10:
-		wcscpy_s(out, 5, L"우와~!");
+		wcscpy_s(out, 3, L"♪~"); // FB_01이 10초 이상 지속되었고, 제한 시간이 10초 이상 남은 경우
 		break;
 	case 11:
-		wcscpy_s(out, 24, L"엄청 많다~! 아빠 물고기 엄청 잘 잡아!");
+		wcscpy_s(out, 16, L"힘내! 저 애 꼭 데려가자!"); // 스테이지 시작 후
 		break;
 	case 12:
-		wcscpy_s(out, 3, L"♪~");
+		wcscpy_s(out, 1, L""); // X
 		break;
 	default:
 		std::cout << "Error: 범위를 넘은 값이 들어왔습니다." << std::endl;
@@ -459,12 +465,25 @@ void UISpeech::GetFeedBack(int feedbackNumber, WCHAR* out)
 
 void UISpeech::Update(float delta) {
 	//if (m_isActive == false) return;
+	if (ignoreTimer > 0.f) {
+		ignoreTimer -= delta;
+		if (ignoreTimer <= 0.f) {
+			std::sort(feedbackSort.begin(), feedbackSort.end());
+			int feedbackNum = feedbackSort.front();
+			feedbackSort.clear();
+			WCHAR in[255];
+			GetFeedBack(feedbackNum, in);
+			wcscpy_s(string, 255, in);
+			strCount = 0;
+			timer = maxTime;
+			m_isActive = true;
+			elepsedTime = 0.0f;
+		}
+	}
+
 	if (textEnd == true)
 	{
 		elepsedTime += delta;
-	}
-	else {
-
 	}
 	timer -= delta;
 	if (timer <= 0.f) {
@@ -488,17 +507,10 @@ void UISpeech::Update(float delta) {
 		memset(t_str, '\0', 255);
 		m_isActive = false;
 		textEnd = false;
-		if (!feedbackQueue.empty()) {
-			int feedbackNum = feedbackQueue.front();
-			feedbackQueue.pop();
-			WCHAR in[255];
-			GetFeedBack(feedbackNum, in);
-			wcscpy_s(string, 255, in);
-			strCount = 0;
-			memset(t_str, '\0', 255);
-			timer = maxTime;
-			m_isActive = true;
-			elepsedTime = 0.0f;
+	}
+	if (ignoreTimer <= 0.f) {
+		if (!feedbackSort.empty()) {
+			ignoreTimer = 0.3f;
 		}
 	}
 

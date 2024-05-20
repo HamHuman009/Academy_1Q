@@ -43,12 +43,27 @@ public:
 	UINT BossCnt;
 	WCHAR name[9];
 
-	Event* feedbackEvent4_ifCrawCaptureScoreOne;
-	Event* feedbackEvent5_ifCrawCaptureScoreZero;
-	Event* feedbackEvent6_CaptureFish;
-	Event* feedbackEvent7_CaptureBossFish;
-	Event* feedbackEvent9_10secNothing;
-	Event* feedbackEvent10_OneCaptureTwoKill;
-	Event* feedbackEvent11_SevenScore;
+	Event* feedbackEvent1_ifCrawCaptureScoreZero;
+	Event* feedbackEvent2_ifCrawCaptureScoreOne;
+	Event* feedbackEvent3_CaptureBossFish;
+	Event* feedbackEvent4_CaptureFish;
+	float event4timer = 0.f;
+	float event4timerMax = 4.f;
+	Event* feedbackEvent5_OneCaptureTwoKill;
+	float event5timer = 0.f;
+	float event5timerMax = 1.f;
+	int event5count = 0;
+	Event* feedbackEvent6_SevenScore;
+	bool isSevenScore = false;
+
+	//Event* feedbackEvent7_CaptureBossFish; 스테이지 제한시간
+	//Event* feedbackEvent8_; 가재 출현시
+	Event* feedbackEvent9_10secNothingAnd14sec;
+	float event9timer = 10.f;
+	float event9timerMax = 10.f;
+	float event9timerMaxAfter = 14.f;
+	int prevCnt = 0;
+	Event* feedbackEvent10_10secNothingAndRemain10sec;
+	//Event* feedbackEvent11_StageStart;
 };
 

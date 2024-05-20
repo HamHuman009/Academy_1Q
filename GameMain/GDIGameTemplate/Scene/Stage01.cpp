@@ -24,8 +24,8 @@ void Stage01::Init()
 
 	colliderManager = new ColliderManager();
 
-
 	UISpeech* speech = new UISpeech({ 500.f, 500.f }, nullptr);
+	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, 1);
 	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, 2);
 	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, 3);
 	FeedbackEvent* e_feedBack4 = new FeedbackEvent(speech, 4);
@@ -36,6 +36,7 @@ void Stage01::Init()
 	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, 9);
 	FeedbackEvent* e_feedBack10 = new FeedbackEvent(speech, 10);
 	FeedbackEvent* e_feedBack11 = new FeedbackEvent(speech, 11);
+	AddEvent(e_feedBack1);
 	AddEvent(e_feedBack2);
 	AddEvent(e_feedBack3);
 	AddEvent(e_feedBack4);
@@ -46,10 +47,16 @@ void Stage01::Init()
 	AddEvent(e_feedBack9);
 	AddEvent(e_feedBack10);
 	AddEvent(e_feedBack11);
-	AddObject(speech);
 
 	Player* m_Player;
 	m_Player = new Player();
+	m_Player->feedbackEvent1_ifCrawCaptureScoreZero = e_feedBack1;
+	m_Player->feedbackEvent2_ifCrawCaptureScoreOne = e_feedBack2;
+	m_Player->feedbackEvent3_CaptureBossFish = e_feedBack3;
+	m_Player->feedbackEvent4_CaptureFish = e_feedBack4;
+	m_Player->feedbackEvent5_OneCaptureTwoKill = e_feedBack5;
+	m_Player->feedbackEvent6_SevenScore = e_feedBack6;
+	m_Player->feedbackEvent9_10secNothingAnd14sec = e_feedBack9;
 	g_player = m_Player;
 	UIImage* pauseBack = new UIImage();
 	m_Player->Init();
@@ -195,6 +202,8 @@ void Stage01::Init()
 	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
 	AddObject(myBoard);
 
+	e_feedBack11->OnTrigger();
+	AddObject(speech);
 }
 
 Stage01::~Stage01() {
