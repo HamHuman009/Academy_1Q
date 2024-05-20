@@ -9,6 +9,7 @@
 #include "../Manager/SceneManager.h"
 
 #include "../GameLogic/Animation.h"
+#include "../GameLogic/Ranking.h"
 namespace Game
 {
 	class GameManager
@@ -49,10 +50,12 @@ namespace Game
 		UINT BossCount;
 
 		int GetRoot();
+		Ranking* m_Ranking;
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;
 		CScene* m_curScene;
+		
 		HWND m_hWnd = nullptr;
 		HDC m_hdc = nullptr;
 		int m_UpdateCount = { 0 };

@@ -53,7 +53,9 @@ namespace mySound
     void SoundManager::RelaseSounds()
     {
         for (int i = 0; i < (int)eSoundList::Size; i++) {
-            mSoundList[i]->release();
+            if (mSoundList[i] != nullptr) {
+                mSoundList[i]->release();
+            }
         }
     }
 

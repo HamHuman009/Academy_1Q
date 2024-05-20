@@ -210,6 +210,7 @@ public:
 	void Init(Vector2 myPos, Vector2 endPos, std::wstring _string);
 	void Update(float delta) override;
 	void Render(float alpha) override;
+
 	void OnTrigger() override;
 private:
 	UINT cx = 0;
@@ -230,6 +231,7 @@ public:
 	void Render(float alpha) override;
 	void OnTrigger() override;
 	bool isInput;
+	
 private:
 	int strCount;
 	WCHAR inputStr[9]; // 8글자까지 9번째는 \0
@@ -263,7 +265,8 @@ public:
 	~UISpeech() override {}
 
 	void AddFeedback(int feedbackNumber) {
-		feedbackQueue.push(feedbackNumber);
+		if (elepsedTime > 1.5f)
+			feedbackQueue.push(feedbackNumber);
 
 		std::cout << "button click" << std::endl;
 	}
@@ -281,6 +284,11 @@ private:
 	const float maxTime = 0.1f;
 	float elepsedTime;
 	bool textEnd = false;
+
+	float ignoreTimer = 0.f;
+	std::vector<int> feedbackSort;
+
+	std::vector<int> ignoreQueue;
 
 	std::queue<int> feedbackQueue;
 	void GetFeedBack(int feedbackNumber, WCHAR* out);

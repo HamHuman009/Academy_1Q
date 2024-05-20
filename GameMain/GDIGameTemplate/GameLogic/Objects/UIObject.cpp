@@ -328,6 +328,8 @@ void UIInputField::Init()
 	
 }
 
+
+
 void UIInputField::Update(float delta)
 {
 	if (m_isActive == false) return;
@@ -347,6 +349,13 @@ void UIInputField::Update(float delta)
 		if (Input::IsKeyDown('\r')) {
 			inputStr[strCount] = L'\0';
 			std::wcout << inputStr << std::endl;
+			
+			int strSize = WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, NULL, 0, NULL, NULL);
+			char* myName = new char[strSize];
+			WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, myName, strSize, 0, 0);
+			
+			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore});
+			//오류 가능성 있음 주의
 		}
 	}
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
@@ -454,17 +463,7 @@ void UISpeech::Update(float delta) {
 		elepsedTime += delta;
 	}
 	else {
-		if (!feedbackQueue.empty()) {
-			int feedbackNum = feedbackQueue.front();
-			feedbackQueue.pop();
-			WCHAR in[255];
-			GetFeedBack(feedbackNum, in);
-			wcscpy_s(string, 255, in);
-			strCount = 0;
-			memset(t_str, '\0', 255);
-			timer = maxTime;
-			m_isActive = true;
-		}
+		
 	}
 	timer -= delta;
 	if (timer <= 0.f) {
@@ -488,6 +487,23 @@ void UISpeech::Update(float delta) {
 		memset(t_str, '\0', 255);
 		m_isActive = false;
 		textEnd = false;
-		elepsedTime = 0.0f;
+		if (!feedbackQueue.empty()) {
+			int feedbackNum = feedbackQueue.front();
+			feedbackQueue.pop();
+			WCHAR in[255];
+			GetFeedBack(feedbackNum, in);
+			wcscpy_s(string, 255, in);
+			strCount = 0;
+			memset(t_str, '\0', 255);
+			timer = maxTime;
+			m_isActive = true;
+			elepsedTime = 0.0f;
+		}
 	}
+
+	// 포획조건 
+	// 처음 포획 조건 감지하면 텀 0.3초 둬서 그 안에 추가 조건 
+	// 들어오면 우선순위에 따라 최상위만 출력하고 출력하는 동안 들어오는 포획 조건은 다 무시
+	// 그리고 분노상태일 때 가재 트리거 비활성화
+	// 목표물고기 트리거 줄이고 속도 높이기
 }

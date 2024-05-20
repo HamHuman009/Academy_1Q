@@ -7,7 +7,7 @@ Ranking::Ranking() {
     rankToStr();
 }
 
-bool comparePlayer(const Ranking::Player& p1, const Ranking::Player& p2)
+bool comparePlayer(const Ranking::r_Player& p1, const Ranking::r_Player& p2)
 {
     return p1.score > p2.score;
 }
@@ -21,7 +21,7 @@ void Ranking::saveRankings()
         return;
     }
 
-    for (const Player& player : players) {
+    for (const r_Player& player : players) {
         file << player.name << " " << player.score << std::endl;
     }
 
@@ -41,7 +41,7 @@ void Ranking::loadRankings()
     int score;
 
     while (file >> name >> score) {
-        players.push_back(Player(name, score));
+        players.push_back(r_Player(name, score));
     }
 
     file.close();
@@ -57,7 +57,7 @@ void Ranking::rankToStr()
     str_rank = "";
     int rank = 1;
 
-    for (const Player& player : players) {
+    for (const r_Player& player : players) {
         str_rank += rank + ". " + player.name + " - " + std::to_string(player.score) + "\n";
         rank++;
     }

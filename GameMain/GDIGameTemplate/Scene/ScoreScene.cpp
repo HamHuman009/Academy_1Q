@@ -19,7 +19,6 @@ void ScoreScene::Init()
 	AddObject(myBack);
 
 	UIDialog* myScore = new UIDialog();
-	;
 	wcscpy_s(_str,255,_wstr.c_str());
 	myScore->Init(Vector2{ 100.f, 100.f }, Vector2{ 1000.f, 150.f }, _str);
 	AddObject(myScore);
