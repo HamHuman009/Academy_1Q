@@ -183,7 +183,7 @@ void Player::ScoopUp(float delta)
 				}
 				else if (std::wcsstr(fishs[i]->parent->m_name, L"Boss") != nullptr) {
 					cnt += 3;
-					BoosCnt++;
+					BossCnt++;
 				}
 				else
 					cnt++;

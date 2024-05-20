@@ -127,4 +127,5 @@ void CResourceManager::DestroyInstance()
 	{
 		delete instance;
 	}
+	instance = nullptr;
 }
