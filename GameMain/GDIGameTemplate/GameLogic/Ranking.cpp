@@ -20,14 +20,9 @@ void Ranking::saveRankings()
         std::cerr << "Error: Could not open file for writing.\n";
         return;
     }
-    int rank = 1;
+
     for (const r_Player& player : players) {
         file << player.name << " " << player.score << std::endl;
-        rank++;
-        if (rank == 10)
-        {
-            break;
-        }
     }
 
     file.close();
@@ -44,14 +39,9 @@ void Ranking::loadRankings()
 
     std::string name;
     int score;
-    int rank = 1;
+
     while (file >> name >> score) {
         players.push_back(r_Player(name, score));
-        rank++;
-        if (rank == 10)
-        {
-            break;
-        }
     }
 
     file.close();
@@ -70,24 +60,7 @@ void Ranking::rankToStr()
     for (const r_Player& player : players) {
         str_rank += "   " + std::to_string(rank)  + "." + player.name + " - " + std::to_string(player.score) + "\n";
         rank++;
-        if (rank == 10)
-        {
-            break;
-        }
     }
-}
-
-int Ranking::InRenkPlayer(UINT score)
-{
-    r_Player tmpP = { "temp" ,(int)score };
-    int rank = 1;
-    for (const r_Player& player : players) {
-        if (comparePlayer(tmpP, player)) {
-            break;
-        }
-        rank++;
-    }
-    return rank;
 }
 
 Ranking::~Ranking() {

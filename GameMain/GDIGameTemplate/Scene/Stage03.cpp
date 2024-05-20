@@ -22,8 +22,36 @@ void Stage03::Init()
 
 	colliderManager = new ColliderManager();
 
+	UISpeech* speech = new UISpeech({ 900.f, 300.f }, nullptr);
+	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, 1);
+	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, 2);
+	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, 3);
+	FeedbackEvent* e_feedBack4 = new FeedbackEvent(speech, 4);
+	FeedbackEvent* e_feedBack5 = new FeedbackEvent(speech, 5);
+	FeedbackEvent* e_feedBack6 = new FeedbackEvent(speech, 6);
+	FeedbackEvent* e_feedBack7 = new FeedbackEvent(speech, 7);
+	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, 8);
+	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, 9);
+	AddEvent(e_feedBack1);
+	AddEvent(e_feedBack2);
+	AddEvent(e_feedBack3);
+	AddEvent(e_feedBack4);
+	AddEvent(e_feedBack5);
+	AddEvent(e_feedBack6);
+	AddEvent(e_feedBack7);
+	AddEvent(e_feedBack8);
+	AddEvent(e_feedBack9);
+
 	Player* m_Player;
 	m_Player = new Player();
+	m_Player->feedbackEvent1_ifCrawCaptureScoreZero = e_feedBack1;
+	m_Player->feedbackEvent2_ifCrawCaptureScoreOne = e_feedBack2;
+	m_Player->feedbackEvent3_CaptureBossFish = e_feedBack3;
+	m_Player->feedbackEvent4_CaptureFish = e_feedBack4;
+	m_Player->feedbackEvent5_OneCaptureTwoKill = e_feedBack5;
+	m_Player->feedbackEvent6_SevenScore = e_feedBack6;
+	m_Player->feedbackEvent9_10secNothingAnd14sec = e_feedBack9;
+
 	g_player = m_Player;
 	UIImage* pauseBack = new UIImage();
 	m_Player->Init();
@@ -71,7 +99,8 @@ void Stage03::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog3);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 10.0f/*40.f*/);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 20.0f/*40.f*/);
+	myTimer->remainningTimeEvent = e_feedBack7;
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
@@ -85,6 +114,7 @@ void Stage03::Init()
 	srand(std::time(NULL));
 	Fish* myFish;
 	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
+	myFish->CrawAppearEvent = e_feedBack8;
 	myFish->m_pos = { float(rand() % 1280), -480.f };
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
@@ -128,8 +158,11 @@ void Stage03::Init()
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
 
-	Gdiplus::Bitmap* daughterFace = CRM->LoadBitmapResouce(L"Face", L"FaceTest.png");
-	UIFace* myFace = new UIFace(Vector2{ 1200,300 }, daughterFace);
+	Gdiplus::Bitmap* daughterFace1 = CRM->LoadBitmapResouce(L"Face1", L"UI_Image_Talk_CharaFace_Normal_01.png");
+	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
+	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
+	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");
+	UIFace* myFace = new UIFace(Vector2{ 1200,300 }, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
 	AddObject(myFace);
 
 	alpha = 1.0f;
@@ -146,6 +179,9 @@ void Stage03::Init()
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
 	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
 	AddObject(myBoard);
+
+	AddObject(speech);
+	speech->face = myFace;
 }
 
 Stage03::~Stage03() {

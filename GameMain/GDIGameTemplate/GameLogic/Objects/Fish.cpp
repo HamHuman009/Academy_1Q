@@ -1,5 +1,5 @@
 #include "Fish.h"
-
+#include "../Event.h"
 
 void Fish::Move(float delta) {
 	m_pos += m_moveDirection * m_speed * delta;
@@ -114,6 +114,14 @@ void Fish::Update(float delta) {
 			animationFrame = (animationFrame + 1) % 30;
 		}
 	}
+
+	if (std::wcsstr(m_name, L"Craw") != nullptr && isCrawAppear == false) {
+		if (m_pos.x < 1280.f && m_pos.x > 0.f && m_pos.y > 0.f && m_pos.y < 720.f) {
+			isCrawAppear = true;
+			if (CrawAppearEvent != nullptr)
+				CrawAppearEvent->OnTrigger();
+		}
+	}
 }
 
 void Fish::Render(float alpha) {
@@ -189,7 +197,7 @@ void Fish::LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM, const WCH
 		}
 		const std::wstring& filekey= m_fileName[i].c_str();
 		const std::wstring& realFileName = m_fileName[i].append(imageType).c_str();
-		
+		std::wcout << m_fileName[i] << std::endl;
 		m_bitmap[i] = CRM->LoadBitmapResouce(filekey, realFileName);
 		noNumFileName = noNumFileName.substr(0, fileNameLength - 6);
 	}

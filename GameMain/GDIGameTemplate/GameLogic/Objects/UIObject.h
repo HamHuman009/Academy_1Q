@@ -93,6 +93,8 @@ public:
 		delete m_Bitmap;
 	}*/
 
+	Event* remainningTimeEvent;
+	bool isOn = false;
 private:
 	Gdiplus::Bitmap* m_BitmapClock;
 	Gdiplus::Bitmap* m_BitmapBack;
@@ -139,8 +141,8 @@ private:
 	UINT cy = 0;
 	UINT x = 0;
 	UINT y = 0;
-	WCHAR string[500];
-	WCHAR t_str[500];
+	WCHAR string[255];
+	WCHAR t_str[255];
 	int strCount;
 	float timer;
 	const float maxTime = 0.1f;
@@ -171,18 +173,18 @@ class UIFace : public UIObject
 {
 	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
 public:
-	void Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent = nullptr);
 
-	UIFace(Vector2 myPos, Gdiplus::Bitmap* myBitMap) {
-		Init(myPos, myBitMap);
-		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
+	UIFace(Vector2 myPos, Gdiplus::Bitmap* normalFace, Gdiplus::Bitmap* sadFace, Gdiplus::Bitmap* smileFace, Gdiplus::Bitmap* happyFace) {
+		m_Bitmap = normalFace;
+		m_faceImage[0] = normalFace;
+		m_faceImage[1] = sadFace;
+		m_faceImage[2] = smileFace;
+		m_faceImage[3] = happyFace;
+
+		Init(myPos, m_Bitmap);
 	}
 
-	UIFace(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
-		Init(myPos, myBitMap, myEvent);
-		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
-	}
-
+	void Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap);
 	void Update(float delta) override;
 	void Render(float alpha) override;
 
@@ -191,16 +193,20 @@ public:
 	//void ChangeStatus(ObjectStatus status)override;
 
 	void OnTrigger() override;
-	~UIFace() override {}; /*{
+	~UIFace() override {} /*{
 		delete m_Bitmap;
 	}*/
 
+	void SetFace(int faceNumber, float duration); // 0 ³ë¸Ö, 1 ½½ÇÄ, 2 ¿ôÀ½, 3 Çàº¹
 private:
 	Gdiplus::Bitmap* m_Bitmap;
+	Gdiplus::Bitmap* m_faceImage[4];
 	UINT cx = 0;
 	UINT cy = 0;
 	UINT x = 120;
 	UINT y = 90;
+
+	float timer = 0.f;
 };
 
 class In_ScoreBoard : public UIObject
@@ -250,11 +256,15 @@ public:
 	UISpeech(Vector2 myPos, Gdiplus::Bitmap* myBitMap) {
 		Init(myPos, myBitMap);
 		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
+		feedbackSort.push_back(11);
+		elepsedTime = 1.6f;
 	}
 
 	UISpeech(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
 		Init(myPos, myBitMap, myEvent);
 		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
+		feedbackSort.push_back(11);
+		elepsedTime = 1.6f;
 	}
 
 	void Update(float delta) override;
@@ -268,12 +278,15 @@ public:
 	~UISpeech() override {}
 
 	void AddFeedback(int feedbackNumber) {
-		if (elepsedTime > 1.5f)
+		if (elepsedTime > 1.5f) {
 			feedbackSort.push_back(feedbackNumber);
+			nothingTimer = 10.f;
+		}
 
 		std::cout << "button click" << std::endl;
 	}
 
+	UIFace* face;
 private:
 	Gdiplus::Bitmap * m_Bitmap;
 	UINT cx = 0;
@@ -288,16 +301,10 @@ private:
 	float elepsedTime;
 	bool textEnd = false;
 
+	float nothingTimer = 10.f;
+
 	float ignoreTimer = 0.f;
 	std::vector<int> feedbackSort;
 	void GetFeedBack(int feedbackNumber, WCHAR* out);
+
 };
-
-class UIManuel : public UIObject
-{
-public:
-
-private:
-
-
-}

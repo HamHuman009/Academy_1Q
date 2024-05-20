@@ -2,6 +2,9 @@
 #include "Object.h"
 
 class Fish : public Object {
+public:
+	Event* CrawAppearEvent;
+	bool isCrawAppear = false;
 private:
 	float m_speed = 50.f;
 	float time = 0.f;
@@ -42,7 +45,7 @@ public:
 
 	void SetRandomPosition();
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM, const WCHAR* imageType);
-	
+
 	void setAngleDirection(Vector2 dir) { m_AngulerDirection = dir;}
 
 	float ScaleX = 1.f;

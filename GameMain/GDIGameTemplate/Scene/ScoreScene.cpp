@@ -72,9 +72,8 @@ void ScoreScene::Start()
 void ScoreScene::Exit()
 {	
 	Game::GameManager* myGame = Game::GameManager::GetInstance();
-	myGame->m_Ranking->saveRankings();
 	/*myGame->m_Ranking->sortRank();
-	
+	myGame->m_Ranking->saveRankings();
 	myGame->m_Ranking->loadRankings();
 	myGame->m_Ranking->rankToStr();*/
 	if (Game::GameManager::GetInstance()->sceneBitmap != nullptr)

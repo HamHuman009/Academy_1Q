@@ -147,13 +147,11 @@ class Discription : public Event
 public:
 	UIButton* Close;
 	UIButton* Resume;
-	UIButton* Retry;
 
 	void OnTrigger() override
 	{
 		Close->m_isActive = true;
 		Resume->m_isActive = true;
-		Retry->m_isActive = false;
 		High_Resolution_Time::SetTimeScale(0.f);
 	}
 };

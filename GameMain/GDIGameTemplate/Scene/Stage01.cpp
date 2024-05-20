@@ -24,7 +24,7 @@ void Stage01::Init()
 
 	colliderManager = new ColliderManager();
 
-	UISpeech* speech = new UISpeech({ 500.f, 500.f }, nullptr);
+	UISpeech* speech = new UISpeech({ 900.f, 300.f }, nullptr);
 	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, 1);
 	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, 2);
 	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, 3);
@@ -34,8 +34,6 @@ void Stage01::Init()
 	FeedbackEvent* e_feedBack7 = new FeedbackEvent(speech, 7);
 	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, 8);
 	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, 9);
-	FeedbackEvent* e_feedBack10 = new FeedbackEvent(speech, 10);
-	FeedbackEvent* e_feedBack11 = new FeedbackEvent(speech, 11);
 	AddEvent(e_feedBack1);
 	AddEvent(e_feedBack2);
 	AddEvent(e_feedBack3);
@@ -45,8 +43,6 @@ void Stage01::Init()
 	AddEvent(e_feedBack7);
 	AddEvent(e_feedBack8);
 	AddEvent(e_feedBack9);
-	AddEvent(e_feedBack10);
-	AddEvent(e_feedBack11);
 
 	Player* m_Player;
 	m_Player = new Player();
@@ -57,6 +53,7 @@ void Stage01::Init()
 	m_Player->feedbackEvent5_OneCaptureTwoKill = e_feedBack5;
 	m_Player->feedbackEvent6_SevenScore = e_feedBack6;
 	m_Player->feedbackEvent9_10secNothingAnd14sec = e_feedBack9;
+
 	g_player = m_Player;
 	UIImage* pauseBack = new UIImage();
 	m_Player->Init();
@@ -105,7 +102,8 @@ void Stage01::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 10.f);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 20.f);
+	myTimer->remainningTimeEvent = e_feedBack7;
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
@@ -185,8 +183,11 @@ void Stage01::Init()
 	UICrossDissolve* backEffect = new UICrossDissolve({640.f, 360.f}, Game::GameManager::GetInstance()->sceneBitmap);
 	AddObject(backEffect);
 
-	Gdiplus::Bitmap* daughterFace = CRM->LoadBitmapResouce(L"Face", L"FaceTest.png");
-	UIFace* myFace = new UIFace(Vector2{1200,300}, daughterFace);
+	Gdiplus::Bitmap* daughterFace1 = CRM->LoadBitmapResouce(L"Face1", L"UI_Image_Talk_CharaFace_Normal_01.png");
+	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
+	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
+	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");
+	UIFace* myFace = new UIFace(Vector2{1200,300}, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
 	AddObject(myFace);
 
 	alpha = 1.0f;
@@ -203,8 +204,8 @@ void Stage01::Init()
 	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
 	AddObject(myBoard);
 
-	e_feedBack11->OnTrigger();
 	AddObject(speech);
+	speech->face = myFace;
 }
 
 Stage01::~Stage01() {
