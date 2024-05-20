@@ -42,5 +42,13 @@ public:
 	UINT cnt;
 	UINT BossCnt;
 	WCHAR name[9];
+
+	Event* feedbackEvent4_ifCrawCaptureScoreOne;
+	Event* feedbackEvent5_ifCrawCaptureScoreZero;
+	Event* feedbackEvent6_CaptureFish;
+	Event* feedbackEvent7_CaptureBossFish;
+	Event* feedbackEvent9_10secNothing;
+	Event* feedbackEvent10_OneCaptureTwoKill;
+	Event* feedbackEvent11_SevenScore;
 };
 
