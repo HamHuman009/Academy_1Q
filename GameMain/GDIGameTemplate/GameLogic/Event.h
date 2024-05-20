@@ -136,8 +136,8 @@ class ExitEvent : public Event
 	{
 		/*Game::GameManager::GetInstance()->Finalize();
 		Game::GameManager::GetInstance()->ReleaseResource();
-		Game::GameManager::GetInstance()->DestroyInstance();
-		_CrtDumpMemoryLeaks();*/
+		Game::GameManager::GetInstance()->DestroyInstance();*/
+		//_CrtDumpMemoryLeaks();*/
 		PostQuitMessage(0);
 	}
 };

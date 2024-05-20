@@ -73,6 +73,6 @@ namespace mySound
     {
         mSystem->release();
         mSystem->close();
-        DestroyInstance();
+
     }
 };

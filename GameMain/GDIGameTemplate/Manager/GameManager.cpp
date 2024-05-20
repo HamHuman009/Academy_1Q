@@ -15,7 +15,8 @@ namespace Game
 	{
 	}
 	void GameManager::Initialize()
-	{
+	{	
+		m_Ranking = new Ranking();
 		Input::InitInput();
 		High_Resolution_Time::InitTime();
 		m_hWnd = global::GetWinApp().GetWindow();
@@ -30,7 +31,7 @@ namespace Game
 		m_sceneManager->Init();
 		m_curScene = m_sceneManager->GetCurScene();
 		SMInstance->PlayMusic(mySound::eSoundList::BGM, mySound::eSoundChannel::BGM);
-		m_Ranking = new Ranking();
+		
 	}
 
 	void GameManager::Update()
@@ -84,14 +85,15 @@ namespace Game
 	void GameManager::Finalize()
 	{	
 		m_Ranking->saveRankings();
+		delete m_Ranking;
 		SceneManager::GetInstance()->DestroyInstance();
 		CResourceManager::GetInstance()->DestroyInstance();
 		
 		Render::ReleaseRender();
-		mySound::SoundManager::GetInstance()->RelaseSounds();
-
-		//mySound::SoundManager::DestroyInstance();
-		//SMInstance->RelaseSounds();
+		//mySound::SoundManager::GetInstance()->RelaseSounds();
+		SMInstance->RelaseSounds();
+		mySound::SoundManager::DestroyInstance();
+		
 
 	}
 	void GameManager::Run()

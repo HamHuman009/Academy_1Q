@@ -106,7 +106,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {	
 	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	//_CrtSetBreakAlloc(161);
+	_CrtSetBreakAlloc(36738);
 
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
@@ -190,6 +190,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Game::GameManager::GetInstance()->Finalize();
 	Game::GameManager::GetInstance()->ReleaseResource();
 	Game::GameManager::GetInstance()->DestroyInstance();
+	_CrtDumpMemoryLeaks();
 	if (bUseConsole)
 	{
 		FreeConsole();
@@ -206,11 +207,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_DESTROY:
-		Game::GameManager::GetInstance()->Finalize();
-		Game::GameManager::GetInstance()->ReleaseResource();
-		Game::GameManager::GetInstance()->DestroyInstance();
 
-		_CrtDumpMemoryLeaks();
+
+		
 		PostQuitMessage(0);
 		
 		break;

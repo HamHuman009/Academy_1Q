@@ -15,6 +15,7 @@ private:
 	// CScene을(를) 통해 상속됨
 	Gdiplus::Bitmap* myBitmap = nullptr;
 	RECT scoreRect;
+	WCHAR* _str;
 public:
 	void Init() override;
 	void Start() override;

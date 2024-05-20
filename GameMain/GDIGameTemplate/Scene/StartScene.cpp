@@ -2,6 +2,8 @@
 #include "../System/InputSystem.h"
 
 #include "../GameLogic/Event.h"
+
+
 void StartScene::Start() 
 {
 
@@ -14,7 +16,7 @@ void StartScene::Init()
 	myBitmap = CR->LoadBitmapResouce(L"image1",L"startback.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 640.f,360.f });
-
+	
 	/*SelectScnEvent* a = new SelectScnEvent(3);
 	delete a;*/
 	Gdiplus::Bitmap* startBtn = CR->LoadBitmapResouce(L"startBtn", L"startbtn_sample.bmp");
@@ -25,13 +27,17 @@ void StartScene::Init()
 	
 	scoreRect = { 400,200,800,800 };
 	
-	WCHAR* _str = new WCHAR[255];
-	WCHAR t_str[] = L"랭킹 보드 구현할 장소\n 불러오는건 사이즈 보고 구현할것";
-
-	wcscpy_s(_str, 255, t_str);
-
-	UIDialog* dialog = new UIDialog();
-	dialog->Init({ 400.f,200.f }, { 800.f,800.f}, _str);
+	_str = new WCHAR[255];
+	memset(_str, L'\0', 255);
+	//WCHAR t_str[] = L"랭킹 보드 구현할 장소\n 불러오는건 사이즈 보고 구현할것";
+	std::string myRank;
+	int fromRank = strlen(Game::GameManager::GetInstance()->m_Ranking->str_rank.c_str());
+	myRank.assign(Game::GameManager::GetInstance()->m_Ranking->str_rank);
+	
+	int sizeNeeded = MultiByteToWideChar(CP_UTF8, 0, &myRank[0], (int)myRank.size(), NULL, 0);
+	MultiByteToWideChar(CP_UTF8, 0, &myRank[0], fromRank, &_str[0], sizeNeeded);
+	UIDialog* rankDialog = new UIDialog();
+	rankDialog->Init({ 400.f,200.f }, { 800.f,800.f}, _str);
 
 	ExitEvent* e_exit = new ExitEvent;
 	UIButton* exit = new UIButton(Vector2{ 200.0f,600.0f }, e_exit, exitBtn);
@@ -39,7 +45,7 @@ void StartScene::Init()
 	UIInputField* inputField = new UIInputField({500.f, 500.f}, 200.f, 150.f);
 
 	AddObject(myBack);
-	AddObject(dialog);
+	
 	AddObject(gameStartButton);
 	AddObject(exit);
 	AddEvent(e_nextScn);
@@ -65,11 +71,12 @@ void StartScene::Init()
 	AddEvent(e_feedBack);
 	AddEvent(e_feedBack2);
 	alpha = 1.0f;
+	AddObject(rankDialog);
 	//Test-------------end
 }
 
 StartScene::~StartScene() {
-
+	delete[] _str;
 }
 
 void StartScene::Exit() {

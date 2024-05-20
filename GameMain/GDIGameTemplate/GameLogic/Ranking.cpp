@@ -58,7 +58,7 @@ void Ranking::rankToStr()
     int rank = 1;
 
     for (const r_Player& player : players) {
-        str_rank += rank + ". " + player.name + " - " + std::to_string(player.score) + "\n";
+        str_rank += "   " + std::to_string(rank)  + "." + player.name + " - " + std::to_string(player.score) + "\n";
         rank++;
     }
 }
