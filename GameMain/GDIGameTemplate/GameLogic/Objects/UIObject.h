@@ -144,7 +144,7 @@ private:
 	const float maxTime = 0.1f;
 public:
 	~UIDialog()override {
-		delete[] string;
+		//delete[] string;
 	};
 	void Init(Vector2 myPos, Vector2 endPos, WCHAR* _string);
 	//void Init(Vector2 myPos, Vector2)
@@ -157,7 +157,7 @@ class UICrossDissolve : public UIObject {
 	Gdiplus::Bitmap* m_BackGround;
 	float alphaValue;
 public:
-	UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap);
+	UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime = 1.f);
 	void Init();
 	void Update(float delta) override;
 	void Render(float alpha) override;
