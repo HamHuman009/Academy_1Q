@@ -1,8 +1,8 @@
 #include "ScoreScene.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Event.h"
-WCHAR* _str;
-WCHAR* _father_str;
+WCHAR* _str = new WCHAR[255];
+WCHAR* _father_str = new WCHAR[255];
 void ScoreScene::Init()
 {
 	// _str = 점수;
@@ -16,7 +16,7 @@ void ScoreScene::Init()
 	AddObject(myBack);
 
 	UIDialog* myScore = new UIDialog();
-	_str = new WCHAR[255];
+	;
 	wcscpy_s(_str,255,_wstr.c_str());
 	myScore->Init(Vector2{ 100.f, 100.f }, Vector2{ 1000.f, 150.f }, _str);
 	AddObject(myScore);
@@ -28,7 +28,7 @@ void ScoreScene::Init()
 	/*UIDialog* inputScore= new UIDialog();
 	inputScore->Init(Vector2{ 100.f, 250.f }, Vector2{ 1000.f, 350.f }, _str2);
 	AddObject(inputScore);*/
-	_father_str = new WCHAR[255];
+	
 	wcscpy_s(_father_str, 255, L"우리 아빠 이름은");
 	UIDialog* myFatherName = new UIDialog();
 	myFatherName->Init(Vector2{ 100.f,250.f }, Vector2{ 500.f, 50.f }, _father_str);
