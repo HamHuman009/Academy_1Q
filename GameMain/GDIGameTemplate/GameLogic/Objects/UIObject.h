@@ -292,3 +292,12 @@ private:
 	std::vector<int> feedbackSort;
 	void GetFeedBack(int feedbackNumber, WCHAR* out);
 };
+
+class UIManuel : public UIObject
+{
+public:
+
+private:
+
+
+}
