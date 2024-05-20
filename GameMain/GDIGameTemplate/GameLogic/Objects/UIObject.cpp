@@ -378,7 +378,7 @@ void UISpeech::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent) {
 
 
 void UISpeech::Render(float alpha) {
-	//if (m_isActive == false) return;
+	if (m_isActive == false) return;
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
 	Render::DrawFont(x, y, cx, cx, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
 
@@ -449,6 +449,7 @@ void UISpeech::Update(float delta) {
 			strCount = 0;
 			memset(t_str, '\0', 255);
 			timer = maxTime;
+			m_isActive = true;
 		}
 	}
 	timer -= delta;
@@ -462,7 +463,7 @@ void UISpeech::Update(float delta) {
 			textEnd = true;
 		}
 	}
-	if (strCount < 256 && this->string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
+	if (strCount < 255 && this->string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
 		// 아직 대화가 남아있다면 대화를 모두 출력.
 		wcscpy_s(t_str, 255, string);
 		textEnd = true;

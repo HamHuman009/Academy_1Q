@@ -256,9 +256,7 @@ public:
 	//void ChangeStatus(ObjectStatus status)override;
 
 	void OnTrigger() override;
-	~UISpeech() override  {
-		delete m_Bitmap;
-	} 
+	~UISpeech() override {}
 
 	void AddFeedback(int feedbackNumber) {
 		feedbackQueue.push(feedbackNumber);
