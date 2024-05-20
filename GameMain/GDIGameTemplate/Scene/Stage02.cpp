@@ -68,7 +68,7 @@ void Stage02::Init()
 	exit->m_isActive = false;
 
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_03);
+	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog2);
 	AddEvent(e_nextScn);
 
 	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 30.0f/*40.f*/);

@@ -89,6 +89,18 @@
     <ClCompile Include="GameLogic\Ranking.cpp">
       <Filter>GamaLogic\cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Dialog1.cpp">
+      <Filter>Scene\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Dialog2.cpp">
+      <Filter>Scene\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Dialog3.cpp">
+      <Filter>Scene\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Dialog4.cpp">
+      <Filter>Scene\cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -183,6 +195,18 @@
     </ClInclude>
     <ClInclude Include="GameLogic\Ranking.h">
       <Filter>GamaLogic\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Dialog1.h">
+      <Filter>Scene\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Dialog2.h">
+      <Filter>Scene\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Dialog3.h">
+      <Filter>Scene\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Dialog4.h">
+      <Filter>Scene\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

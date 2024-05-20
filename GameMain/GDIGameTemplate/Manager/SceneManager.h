@@ -9,7 +9,10 @@
 #include "../Scene/Stage05.h"
 #include "../Scene/Ending.h"
 #include "../Scene/ScoreScene.h"
-
+#include "../Scene/Dialog1.h"
+#include "../Scene/Dialog2.h"
+#include "../Scene/Dialog3.h"
+#include "../Scene/Dialog4.h"
 
 class CScene;
 enum class SceneType
@@ -24,6 +27,10 @@ enum class SceneType
 	STAGE_05,
 	Ending,
 	Score,
+	Dialog1,
+	Dialog2,
+	Dialog3,
+	Dialog4,
 	END
 };
 

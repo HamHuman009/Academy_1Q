@@ -152,6 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameLogic\Ranking.cpp" />
+    <ClCompile Include="Scene\Dialog1.cpp" />
+    <ClCompile Include="Scene\Dialog2.cpp" />
+    <ClCompile Include="Scene\Dialog3.cpp" />
+    <ClCompile Include="Scene\Dialog4.cpp" />
     <ClCompile Include="Scene\Ending.cpp" />
     <ClCompile Include="GameLogic\Animation.cpp" />
     <ClCompile Include="GameLogic\Collider.cpp" />
@@ -184,6 +188,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameLogic\Ranking.h" />
+    <ClInclude Include="Scene\Dialog1.h" />
+    <ClInclude Include="Scene\Dialog2.h" />
+    <ClInclude Include="Scene\Dialog3.h" />
+    <ClInclude Include="Scene\Dialog4.h" />
     <ClInclude Include="Scene\Ending.h" />
     <ClInclude Include="GameLogic\Animation.h" />
     <ClInclude Include="GameLogic\Bounds.h" />
