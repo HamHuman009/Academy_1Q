@@ -56,7 +56,7 @@ void UIButton::Init(Vector2 myPos, Event* myEvent, const std::wstring& _strkey, 
 
 void UIButton::Render(float alpha) {
 	if (m_isActive == false) return;
-	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_CurBitMap, 0, 0, cx, cy, 1.0f);
+	Render::DrawImage(m_pos.x - (cx / 2), m_pos.y - (cy / 2), m_CurBitMap, 0, 0, cx, cy, 1.0f);
 }
 
 void UIButton::OnTrigger() {
