@@ -79,14 +79,19 @@ public:
 class PauseEvent : public Event
 {
 public:
+	/*PauseEvent(mySound::eSoundList mSound) : Event(mSound) {
 
+	}*/ //생성자 상속 예시
 	UIImage* PauseBack;
 	UIButton* Resume;
 	UIButton* Retry;
 	UIButton* Exit;
 
 	void OnTrigger() override
-	{
+	{	
+		if (m_Sound != mySound::eSoundList::Void) {
+			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
+		}
 		PauseBack->m_isActive = true;
 		Resume->m_isActive = true;
 		Retry->m_isActive = true;
@@ -99,13 +104,22 @@ public:
 class ResumeEvent : public Event
 {
 public:
+	ResumeEvent() : Event() {};
+
+	ResumeEvent(mySound::eSoundList mSound) : Event(mSound) {
+
+	}
+
 	UIImage* PauseBack;
 	UIButton* Resume;
 	UIButton* Retry;
 	UIButton* Exit;
 
 	void OnTrigger() override
-	{
+	{	
+		if (m_Sound != mySound::eSoundList::Void) {
+			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
+		}
 		PauseBack->m_isActive = false;
 		Resume->m_isActive = false;
 		Retry->m_isActive = false;
@@ -122,18 +136,36 @@ private:
 	Game::GameManager* gameManager = Game::GameManager::GetInstance();
 
 public:
+	RetryEvent() : Event() {};
+
+	RetryEvent(mySound::eSoundList mSound) : Event(mSound) {
+
+	}
 
 	void OnTrigger() override
-	{
+	{	
+		if (m_Sound != mySound::eSoundList::Void) {
+			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
+		}
 		scnManager->SetCurScene(1);
 		High_Resolution_Time::SetTimeScale(1.f);
 	}
 };
 
 class ExitEvent : public Event
-{
+{	
+public:
+	ExitEvent() : Event() {};
+
+	ExitEvent(mySound::eSoundList mSound) : Event(mSound) {
+
+	}
+
 	void OnTrigger() override
-	{
+	{	
+		if (m_Sound != mySound::eSoundList::Void) {
+			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
+		}
 		/*Game::GameManager::GetInstance()->Finalize();
 		Game::GameManager::GetInstance()->ReleaseResource();
 		Game::GameManager::GetInstance()->DestroyInstance();*/

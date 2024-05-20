@@ -24,8 +24,30 @@ namespace mySound
     {
         Void,
         BGM,
+        BGM2,
+        BGM3,
         Button,
         Water,
+        /*s_title,
+        s_intro,
+        s_talk,
+        s_ingame,
+        s_ending,
+        s_button,
+        s_dialogue,
+        s_talkbubble,
+        s_scooperDown,
+        s_scooperUp,
+        s_fishMove,
+        s_fishCaught,
+        s_bossCaught,
+        s_sceneTrans,
+        s_angerStart,
+        s_angerTerm,
+        s_bubble,
+        s_finalscoreShownup,
+        s_dadVoice,
+        s_kidVoice,*/
         Size
     };
     class SoundManager;  // 클래스 전방 선언

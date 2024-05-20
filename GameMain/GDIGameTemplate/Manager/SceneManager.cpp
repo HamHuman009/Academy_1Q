@@ -28,6 +28,7 @@ void SceneManager::SetCurScene(int i) {
 		m_curScene->Exit();
 	m_curScene = m_sceneArr[i];
  	m_curScene->Init();
+	m_curScene->Start();
 }
 
 CScene* SceneManager::GetCurScene() {

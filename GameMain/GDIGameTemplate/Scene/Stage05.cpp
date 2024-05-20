@@ -56,10 +56,10 @@ void Stage05::Init()
 	UIImage* pauseBack = new UIImage();
 	m_Player->Init();
 
-	PauseEvent* e_pause = new PauseEvent;
-	ResumeEvent* e_resume = new ResumeEvent;
-	RetryEvent* e_retry = new RetryEvent;
-	ExitEvent* e_exit = new ExitEvent;
+	PauseEvent* e_pause = new PauseEvent(/*mySound::eSoundList::s_button*/);
+	ResumeEvent* e_resume = new ResumeEvent(/*mySound::eSoundList::s_button*/);
+	RetryEvent* e_retry = new RetryEvent(/*mySound::eSoundList::s_button*/);
+	ExitEvent* e_exit = new ExitEvent(/*mySound::eSoundList::s_button*/);
 	AddEvent(e_pause);
 	AddEvent(e_resume);
 	AddEvent(e_retry);

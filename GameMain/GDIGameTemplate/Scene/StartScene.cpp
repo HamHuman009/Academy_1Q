@@ -6,7 +6,9 @@
 
 void StartScene::Start() 
 {
-
+	mySound::SoundManager* meSound = mySound::SoundManager::GetInstance();
+	meSound->StopMusic(mySound::eSoundChannel::BGM);
+	meSound->PlayMusic(mySound::eSoundList::BGM/*s_ending*/, mySound::eSoundChannel::BGM);
 }
 
 void StartScene::Init()
@@ -32,7 +34,7 @@ void StartScene::Init()
 	////544,144
 	titleImg->Init(titleBitmap, { 70 + (544 / 2),48 + (144 / 2) });
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO,mySound::eSoundList::Button); // 씬전환 이벤트 테스트
+	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO,mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
 	UIButton* gameStartButton = new UIButton(Vector2{ 70 + (200 / 2),254 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame",L".png"); // 객체 테스트
 	
 	scoreRect = { 400,200,800,800 };
@@ -49,7 +51,7 @@ void StartScene::Init()
 	UIDialog* rankDialog = new UIDialog();
 	rankDialog->Init({ 752,48 }, { 432,624 }, _str);
 
-	ExitEvent* e_exit = new ExitEvent;
+	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button);
 	//UIButton* exit = new UIButton(Vector2{ 200.0f,600.0f }, e_exit, exitBtn);
 	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),472 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
 	UIInputField* inputField = new UIInputField({500.f, 500.f}, 200.f, 150.f);

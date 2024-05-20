@@ -41,7 +41,7 @@ void ScoreScene::Init()
 	myInputField->Init();
 	AddObject(myInputField);
 
-	RetryEvent* e_retry = new RetryEvent;
+	RetryEvent* e_retry = new RetryEvent(/*mySound::eSoundList::s_button*/);
 	//Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
 	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry, L"UI_Button_MainMenu", L".png");
 	AddEvent(e_retry);
