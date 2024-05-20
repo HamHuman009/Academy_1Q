@@ -113,7 +113,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	global::winApp.Initialize(hInstance);
 
-	bool bUseConsole = true;
+	bool bUseConsole = false;
 	if (bUseConsole)
 	{
 		AllocConsole();

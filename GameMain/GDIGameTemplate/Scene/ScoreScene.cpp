@@ -5,9 +5,9 @@ WCHAR* _str;
 WCHAR* _father_str;
 void ScoreScene::Init()
 {
-	_str = new WCHAR[255];
 	// _str = 점수;
-	wcscpy_s(_str, 255, L"1등 : 100점");
+	std::wstring _wstr = L"점수 창 : ";
+	_wstr.append(std::to_wstring(Game::GameManager::GetInstance()->FinalScore));
 	CResourceManager* CRM = CResourceManager::GetInstance();
 	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.bmp");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
@@ -16,6 +16,8 @@ void ScoreScene::Init()
 	AddObject(myBack);
 
 	UIDialog* myScore = new UIDialog();
+	_str = new WCHAR[255];
+	wcscpy_s(_str,255,_wstr.c_str());
 	myScore->Init(Vector2{ 100.f, 100.f }, Vector2{ 1000.f, 150.f }, _str);
 	AddObject(myScore);
 

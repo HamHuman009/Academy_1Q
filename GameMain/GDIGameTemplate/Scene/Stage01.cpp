@@ -72,13 +72,15 @@ void Stage01::Init()
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::STAGE_02);
 	AddEvent(e_nextScn);
-	UITimer* myTimer = new UITimer(Vector2{ 310,100 }, e_nextScn, 1.0f/*20.f*/);
+	UITimer* myTimer = new UITimer(Vector2{ 310,100 }, e_nextScn, 20.f);
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
 	myBackGround->Init(waterBack, { 640.f, 360.f });
+
 	//UIBackGround* myBackGround = new UIBackGround();
 	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
+
 	AddObject(myBackGround);
 	AddObject(myTimer);
 
@@ -194,6 +196,7 @@ void Stage01::FixedUpdate() {
 void Stage01::Exit() {
 
 	Game::GameManager::GetInstance()->FinalScore += g_Score;
+	Game::GameManager::GetInstance()->BossCount += g_BossCnt;
 
 	if (Game::GameManager::GetInstance()->sceneBitmap != nullptr)
 		delete Game::GameManager::GetInstance()->sceneBitmap;
