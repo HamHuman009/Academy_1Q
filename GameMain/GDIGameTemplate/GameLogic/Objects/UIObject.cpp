@@ -317,6 +317,8 @@ void UIInputField::Init()
 	
 }
 
+
+
 void UIInputField::Update(float delta)
 {
 	if (m_isActive == false) return;
@@ -336,6 +338,15 @@ void UIInputField::Update(float delta)
 		if (Input::IsKeyDown('\r')) {
 			inputStr[strCount] = L'\0';
 			std::wcout << inputStr << std::endl;
+			// WCHAR 배열을 std::wstring으로 변환
+			std::wstring wideString(inputStr);
+
+			// std::wstring을 std::string으로 변환
+			std::string myName = std::string(wideString.begin(),wideString.end());
+			
+			
+			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore});
+			//오류 가능성 있음 주의
 		}
 	}
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {

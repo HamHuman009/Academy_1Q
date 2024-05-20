@@ -5,14 +5,14 @@ class Ranking
 {
 
 public:
-	struct Player {
+	struct r_Player {
 		std::string name;
 		int score;
 
-		Player(const std::string& n, int s) :name(n), score(s) {}
+		r_Player(const std::string& n, int s) :name(n), score(s) {}
 	};
 
-	std::vector<Player> players;
+	std::vector<r_Player> players;
 	//std::string filename;
 	std::wstring filename;
 

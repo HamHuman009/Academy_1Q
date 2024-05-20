@@ -30,6 +30,7 @@ namespace Game
 		m_sceneManager->Init();
 		m_curScene = m_sceneManager->GetCurScene();
 		SMInstance->PlayMusic(mySound::eSoundList::BGM, mySound::eSoundChannel::BGM);
+		m_Ranking = new Ranking();
 	}
 
 	void GameManager::Update()
@@ -81,7 +82,8 @@ namespace Game
 		
 	}
 	void GameManager::Finalize()
-	{
+	{	
+		m_Ranking->saveRankings();
 		SceneManager::GetInstance()->DestroyInstance();
 		CResourceManager::GetInstance()->DestroyInstance();
 		

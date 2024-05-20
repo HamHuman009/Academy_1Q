@@ -23,6 +23,7 @@ private:
 
 	bool isAwake;
 	float awakeTime;
+	
 public:
 	Event* pauseEvent;
 	Player();
@@ -40,5 +41,6 @@ public:
 	void CancelSoberUp();
 	UINT cnt;
 	UINT BossCnt;
+	WCHAR name[9];
 };
 
