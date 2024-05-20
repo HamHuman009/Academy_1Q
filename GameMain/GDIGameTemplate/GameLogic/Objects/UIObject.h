@@ -144,14 +144,15 @@ private:
 	int strCount;
 	float timer;
 	const float maxTime = 0.1f;
+	COLORREF m_Color;
 public:
 	~UIDialog()override {
 		//delete[] string;
 	};
-	void Init(Vector2 myPos, Vector2 endPos, WCHAR* _string);
+	void Init(Vector2 myPos, Vector2 endPos, WCHAR* _string, COLORREF _Color = RGB(0,0,0));
 	//void Init(Vector2 myPos, Vector2)
 	void Update(float delta) override;
-	void Render(float alpha)override;
+	void Render(float alpha) override;
 	void OnTrigger() override;
 };
 

@@ -200,7 +200,7 @@ namespace Render
 		//graphics->DrawImage()
 	}
 
-	void DrawRotateImage(int centerX, int centerY, Gdiplus::Bitmap* bitmap, float rad, float alpha) {
+	void DrawRotateImage(int centerX, int centerY, Gdiplus::Bitmap* bitmap, float rad, float alpha, float ScaleX, float ScaleY) {
 		Gdiplus::Graphics ScreenG(backMemDC);
 		Gdiplus::Matrix mat;
 
@@ -219,9 +219,12 @@ namespace Render
 		imageAttributes.SetColorMatrix(&colorMatrix);
 
 		mat.RotateAt(rad, Gdiplus::PointF((float)centerX + bitmap->GetWidth() / 2.f, (float)centerY + bitmap->GetHeight()/ 2.f));
+		
+		mat.Scale(ScaleX, ScaleY, Gdiplus::MatrixOrderAppend);
+
 		ScreenG.SetTransform(&mat);
 		Gdiplus::Rect srcRect(0, 0, bitmap->GetWidth(), bitmap->GetHeight()); // 소스의 영역
-		Gdiplus::Rect destRect(centerX, centerY, srcRect.Width, srcRect.Height);
+		Gdiplus::Rect destRect(centerX, centerY, srcRect.Width * ScaleX, srcRect.Height * ScaleY);
 
 		ScreenG.DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel, &imageAttributes);
 		//ScreenG.DrawImage(bitmap, centerX, centerY);

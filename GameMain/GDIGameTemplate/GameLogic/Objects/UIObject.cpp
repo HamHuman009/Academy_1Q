@@ -197,7 +197,7 @@ void UIBackGround::FixedUpdate() {
 //}
 
 
-void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
+void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string, COLORREF myColor) {
 	x = myPos.x;
 	y = myPos.y;
 	cx = endPos.x;
@@ -207,12 +207,13 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string) {
 	strCount = 0;
 	memset(t_str, '\0', 255);
 	timer = maxTime;
+	m_Color = myColor;
 }
 
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
 	//Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
-	Render::DrawFontS(x, y, cx, cy, t_str, RGB(0, 0, 255), 24, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(x, y, cx, cy, t_str, m_Color, 24, L"KOTRAHOPE.ttf", 1);
 }
 
 void UIDialog::Update(float delta) {
@@ -252,16 +253,15 @@ void UICrossDissolve::Init()
 void UICrossDissolve::Update(float delta)
 {
 	if (m_isActive == false) return;
-	if (isClickable == false)
-	{
-		alphaValue -= delta;
-		if (alphaValue < 0.f) {
-			alphaValue = 0;
-			m_isActive = false;
-		}
+
+	alphaValue -= delta;
+	if (alphaValue < 0.f) {
+		alphaValue = 0;
+		m_isActive = false;
 	}
-	else
+	if (isClickable == true)
 	{
+
 		if (Input::GetMouseState().left && !Input::GetPrevMouseState().left)
 		{
 			alphaValue = 0.f;
@@ -319,7 +319,7 @@ void In_ScoreBoard::Update(float delta)
 
 void In_ScoreBoard::Render(float alpha)
 {
-	Render::DrawFontS(x, y, cx, cy, string.c_str(), RGB(0, 255, 0), 12, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(x, y, cx, cy, string.c_str(), RGB(255, 255, 255), 12, L"KOTRAHOPE.ttf", 1);
 }
 
 void In_ScoreBoard::OnTrigger()

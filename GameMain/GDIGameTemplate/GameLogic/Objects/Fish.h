@@ -42,4 +42,9 @@ public:
 
 	void SetRandomPosition();
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM, const WCHAR* imageType);
+	
+	void setAngleDirection(Vector2 dir) { m_AngulerDirection = dir;}
+
+	float ScaleX = 1.f;
+	float ScaleY = 1.f;
 };

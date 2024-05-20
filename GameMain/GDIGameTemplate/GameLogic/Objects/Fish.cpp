@@ -126,7 +126,7 @@ void Fish::Render(float alpha) {
 
 	float dirScale = deg > 0 ? deg2 : -deg2;
 
-	Render::DrawRotateImage((int)m_pos.x - m_renderBounds.extents.x, (int)m_pos.y - m_renderBounds.extents.y, m_bitmap[animationFrame], dirScale, alphaTime);
+	Render::DrawRotateImage((int)m_pos.x - m_renderBounds.extents.x, (int)m_pos.y - m_renderBounds.extents.y, m_bitmap[animationFrame], dirScale, alphaTime, ScaleX, ScaleY);
 
 	RectangleCollider* r = dynamic_cast<RectangleCollider*>(m_collider);
 	

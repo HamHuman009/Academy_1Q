@@ -3,6 +3,7 @@
 #include "../GameLogic/Event.h"
 #include "../System/InputSystem.h"
 #include "../GameLogic/Objects/KeyInput.h"
+#include "../GameLogic/Objects/Fish.h"
 
 Dialog4::Dialog4()
 {
@@ -17,7 +18,7 @@ Dialog4::~Dialog4()
 void Dialog4::Init()
 {
 	WCHAR* _str = new WCHAR[255];
-	WCHAR t_str[] = L"물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하 물고기에 대한 설명 + 스토리 가나다라마다사아자차카타파하";
+	WCHAR t_str[] = L"아빠! 저 애는 진짜 정말 꼭! 잡아줘. 꼭이야!";
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();
 	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);
@@ -46,6 +47,14 @@ void Dialog4::Init()
 
 
 	AddObject(myKey);
+
+	Fish* myFish;
+	myFish = new Fish(L"BossFish", 0, 0, L"BossFish_05_Anim_00.png", CRM, L".png", 0, 0, 0, 0, true);
+	myFish->m_pos = Vector2{ 400 , 200 };
+	myFish->setAngleDirection(Vector2{ 1,0 });
+	myFish->ScaleX = 1.5f;
+	myFish->ScaleY = 1.5f;
+	AddObject(myFish);
 }
 
 
