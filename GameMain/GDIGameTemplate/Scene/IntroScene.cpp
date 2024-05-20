@@ -52,9 +52,10 @@ void IntroScene::Init()
 	AddObject(myKey);
 
 	Fish* myFish;
-	myFish = new Fish(L"BossFish", 0, 0, L"BossFish_00.png", CRM, L".png", 0, 0, 0, 0, true);
+	myFish = new Fish(L"BossFish", 0, 10, L"BossFish_00.png", CRM, L".png", 0, 0, 0, 0, true);
 	myFish->m_pos = Vector2{ 400 , 200 };
 	myFish->setAngleDirection(Vector2{ 1,0 });
+	myFish->SetMoveDirection(Vector2{ -1,0 });
 	myFish->ScaleX = 1.5f;
 	myFish->ScaleY = 1.5f;
 	AddObject(myFish);

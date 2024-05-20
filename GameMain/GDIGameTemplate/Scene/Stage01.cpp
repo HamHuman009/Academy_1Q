@@ -109,43 +109,12 @@ void Stage01::Init()
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
 	myBackGround->Init(waterBack, { 640.f, 360.f });
 
-	//UIBackGround* myBackGround = new UIBackGround();
-	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
-
-	AddObject(myBackGround);
-	AddObject(myTimer);
-
-	//*************물고기 생성****************
-	srand(std::time(NULL));
-	Fish* myFish;
-	for (int i = 0; i < 4; i++) {
-		myFish = new Fish(L"Fish1", 50.f, 4.36f, L"Fish_01_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
-		AddObject(myFish);
-		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
-	}for (int i = 0; i < 4; i++) {
-		myFish = new Fish(L"Fish2", 50.f, 4.36f, L"Fish_02_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
-		AddObject(myFish);
-		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
-	}for (int i = 0; i < 4; i++) {
-		myFish = new Fish(L"Fish3", 50.f, 4.36f, L"Fish_03_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
-		AddObject(myFish);
-		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
-	}for (int i = 0; i < 4; i++) {
-		myFish = new Fish(L"Fish4", 50.f, 4.36f, L"Fish_04_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
-		AddObject(myFish);
-		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
-	}
-	myFish = new Fish(L"BossFish", 60.f, 8.7f, L"BossFish_00.png", CRM, L".png", 2.f, 4.f, 30.f, 30.f);
-	AddObject(myFish);
-	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
-	//***************************************
-	AddObject(m_Player);
+	
 	m_Player->m_pos = { 600.f, 350.f };
 
 	UIBackGround* myUPBackGround = new UIBackGround();
 	myUPBackGround->Init(L"물결+그림자_00.png", CRM);
-	AddObject(myUPBackGround);
-	AddObject(pauseBack);
+	
 #ifndef TEST
 
 	/*SelectScnEvent* e_TEST[(int)SceneType::END];
@@ -174,22 +143,14 @@ void Stage01::Init()
 	AddObject(ub_S8);*/
 	
 #endif // !TEST
-
-	AddObject(resume);
-	AddObject(retry);
-	AddObject(exit);
-	
-
 	UICrossDissolve* backEffect = new UICrossDissolve({640.f, 360.f}, Game::GameManager::GetInstance()->sceneBitmap);
-	AddObject(backEffect);
-
+	
 	Gdiplus::Bitmap* daughterFace1 = CRM->LoadBitmapResouce(L"Face1", L"UI_Image_Talk_CharaFace_Normal_01.png");
 	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
 	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
 	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");
 	UIFace* myFace = new UIFace(Vector2{1200,300}, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
-	AddObject(myFace);
-
+	
 	alpha = 1.0f;
 	//WCHAR* _str = new WCHAR[255];
 	//WCHAR t_str[] = L"점수창 : ";  // 점수 받아오는 함수 만들거나 넣어서 출력시키기
@@ -202,10 +163,52 @@ void Stage01::Init()
 	_wstr.append(std::to_wstring(g_Score));
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
 	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
-	AddObject(myBoard);
 
-	AddObject(speech);
 	speech->face = myFace;
+
+	//---------------------------------------- 렌더 순서------------------------------------------
+	//***************배경뒤******************
+	AddObject(myBackGround);
+	//*************물고기 생성****************
+	srand(std::time(NULL));
+	Fish* myFish;
+	for (int i = 0; i < 4; i++) {
+		myFish = new Fish(L"Fish1", 50.f, 4.36f, L"Fish_01_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
+		AddObject(myFish);
+		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	}for (int i = 0; i < 4; i++) {
+		myFish = new Fish(L"Fish2", 50.f, 4.36f, L"Fish_02_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
+		AddObject(myFish);
+		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	}for (int i = 0; i < 4; i++) {
+		myFish = new Fish(L"Fish3", 50.f, 4.36f, L"Fish_03_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
+		AddObject(myFish);
+		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	}for (int i = 0; i < 4; i++) {
+		myFish = new Fish(L"Fish4", 50.f, 4.36f, L"Fish_04_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
+		AddObject(myFish);
+		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	}
+	myFish = new Fish(L"BossFish", 60.f, 8.7f, L"BossFish_00.png", CRM, L".png", 2.f, 4.f, 30.f, 30.f);
+	AddObject(myFish);
+	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+	//****************배경앞*******************
+	AddObject(myUPBackGround);
+	//*************플레이어(뜰채)**************
+	AddObject(m_Player);
+	//******************UI********************
+	AddObject(myTimer);
+
+	AddObject(pauseBack);
+	AddObject(resume);
+	AddObject(retry);
+	AddObject(exit);
+	//****************딸 이미지****************
+	AddObject(myBoard);
+	AddObject(speech);
+	AddObject(myFace);
+	//****************씬전환효과***************
+	AddObject(backEffect);
 }
 
 Stage01::~Stage01() {

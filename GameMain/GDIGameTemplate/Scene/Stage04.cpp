@@ -89,7 +89,6 @@ void Stage04::Init()
 	pauseBack->Init(pauseBackImage, Vector2{ 500.f,400.f });
 
 
-
 	pauseBack->m_isActive = false;
 	resume->m_isActive = false;
 	retry->m_isActive = false;
@@ -107,9 +106,43 @@ void Stage04::Init()
 	myBackGround->Init(waterBack, { 640.f, 360.f });
 	//UIBackGround* myBackGround = new UIBackGround();
 	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
-	AddObject(myBackGround);
-	AddObject(myTimer);
+	
+	
+	m_Player->m_pos = { 600.f, 350.f };
+	m_Player->SetMoveDirection({ 0.f, -1.f }, { 1.f, 0.f }, { -1.f, 0.f }, { 0.f, 1.f });
+	UIBackGround* myUPBackGround = new UIBackGround();
+	myUPBackGround->Init(L"물결+그림자_00.png", CRM);
+	
+	
+	Gdiplus::Bitmap* daughterFace1 = CRM->LoadBitmapResouce(L"Face1", L"UI_Image_Talk_CharaFace_Normal_01.png");
+	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
+	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
+	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");
+	UIFace* myFace = new UIFace(Vector2{1200,300}, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
 
+
+	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
+	
+
+	alpha = 1.0f;
+
+	/*WCHAR* _str = new WCHAR[255];
+	WCHAR t_str[] = L"점수창";
+	wcscpy_s(_str, 255, t_str);
+	UIDialog* ScoreBox = new UIDialog();
+	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
+	AddObject(ScoreBox);*/
+
+	std::wstring _wstr = L"점수 창 : ";
+	_wstr.append(std::to_wstring(g_Score));
+	In_ScoreBoard* myBoard = new In_ScoreBoard();
+	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
+	
+	speech->face = myFace;
+
+	//---------------------------------------- 렌더 순서------------------------------------------
+	//***************배경뒤******************
+	AddObject(myBackGround);
 	//*************물고기 생성****************
 	srand(std::time(NULL));
 	Fish* myFish;
@@ -146,45 +179,23 @@ void Stage04::Init()
 	myFish = new Fish(L"BossFish", 60.f, 8.7f, L"BossFish_04_Anim_00.png", CRM, L".png", 2.f, 4.f, 30.f, 30.f);
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
-	//***************************************
-	AddObject(m_Player);
-	m_Player->m_pos = { 600.f, 350.f };
-	m_Player->SetMoveDirection({ 0.f, -1.f }, { 1.f, 0.f }, { -1.f, 0.f }, { 0.f, 1.f });
-	UIBackGround* myUPBackGround = new UIBackGround();
-	myUPBackGround->Init(L"물결+그림자_00.png", CRM);
+	//****************배경앞*******************
 	AddObject(myUPBackGround);
+	//*************플레이어(뜰채)**************
+	AddObject(m_Player);
+	//******************UI********************
+	AddObject(myTimer);
+
 	AddObject(pauseBack);
 	AddObject(resume);
 	AddObject(retry);
 	AddObject(exit);
-
-	Gdiplus::Bitmap* daughterFace1 = CRM->LoadBitmapResouce(L"Face1", L"UI_Image_Talk_CharaFace_Normal_01.png");
-	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
-	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
-	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");
-	UIFace* myFace = new UIFace(Vector2{1200,300}, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
-	AddObject(myFace);
-
-	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
-	AddObject(backEffect);
-
-	alpha = 1.0f;
-
-	/*WCHAR* _str = new WCHAR[255];
-	WCHAR t_str[] = L"점수창";
-	wcscpy_s(_str, 255, t_str);
-	UIDialog* ScoreBox = new UIDialog();
-	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
-	AddObject(ScoreBox);*/
-
-	std::wstring _wstr = L"점수 창 : ";
-	_wstr.append(std::to_wstring(g_Score));
-	In_ScoreBoard* myBoard = new In_ScoreBoard();
-	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
+	//****************딸 이미지****************
 	AddObject(myBoard);
-
 	AddObject(speech);
-	speech->face = myFace;
+	AddObject(myFace);
+	//****************씬전환효과***************
+	AddObject(backEffect);
 }
 
 Stage04::~Stage04() {

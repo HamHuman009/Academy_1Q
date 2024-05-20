@@ -37,7 +37,9 @@ private:
 	Gdiplus::Bitmap* m_bitmap[30] = { nullptr, };
 
 public:
-	Fish(const WCHAR* name, float moveSpeed, float angulerSpeed, const WCHAR* fileName, CResourceManager* CRM, const WCHAR* imageType, float rotateInterval1, float rotateInterval2, float colliderWidth, float colliderHeight, bool noRandomPos = false);
+	Fish(const WCHAR* name, float moveSpeed, float angulerSpeed, const WCHAR* fileName, 
+		CResourceManager* CRM, const WCHAR* imageType, float rotateInterval1, float rotateInterval2, 
+		float colliderWidth, float colliderHeight, bool noRandomPos = false);
 	void Init() override;
 	void Update(float delta) override;
 	void Render(float alpha) override;
@@ -46,6 +48,7 @@ public:
 	void SetRandomPosition();
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM, const WCHAR* imageType);
 
+	void SetMoveDirection(Vector2 dir) { m_moveDirection = dir; }
 	void setAngleDirection(Vector2 dir) { m_AngulerDirection = dir;}
 
 	float ScaleX = 1.f;

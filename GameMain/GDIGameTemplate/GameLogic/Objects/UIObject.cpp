@@ -73,6 +73,7 @@ void UIButton::Update(float delta) {
 			m_CurBitMap = m_Bitmap_Off;
 		}
 		else if (Input::GetPrevMouseState().left && !Input::GetMouseState().left) {
+			m_CurBitMap = m_Bitmap_On;
 			OnTrigger();
 		}
 	}
