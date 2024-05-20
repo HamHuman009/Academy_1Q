@@ -39,5 +39,6 @@ public:
 	void SoberUp();
 	void CancelSoberUp();
 	UINT cnt;
+	UINT BoosCnt;
 };
 

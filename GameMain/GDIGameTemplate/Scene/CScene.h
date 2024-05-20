@@ -40,6 +40,7 @@ public:
 	float alpha;					  // ¾ËÆÄ
 	bool isCapture = false;
 	UINT g_Score;
+	UINT g_BossCnt;
 	//static Gdiplus::Bitmap* prevBitmap;
 	//Gdiplus::Bitmap* Getbitmap() {
 	//	return prevBitmap;

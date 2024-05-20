@@ -46,6 +46,8 @@ namespace Game
 
 		UINT FinalScore;
 
+		UINT BossCount;
+
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;
