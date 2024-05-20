@@ -33,7 +33,7 @@ CScene* SceneManager::GetCurScene() {
 SceneManager* SceneManager::GetInstance() {
 	if (m_Instance == nullptr) {
 		m_Instance = new SceneManager();
-		m_Instance->Init();
+		
 	}
 	return m_Instance;
 }

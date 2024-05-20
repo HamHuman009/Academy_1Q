@@ -27,6 +27,7 @@ namespace Game
 		SMInstance->LoadMusic(mySound::eSoundList::Button, false, "button.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Water, false, "water.wav");
 		m_sceneManager = SceneManager::GetInstance();
+		m_sceneManager->Init();
 		m_curScene = m_sceneManager->GetCurScene();
 		SMInstance->PlayMusic(mySound::eSoundList::BGM, mySound::eSoundChannel::BGM);
 	}
