@@ -51,9 +51,15 @@ namespace mySound
     }
 
     void SoundManager::RelaseSounds()
-    {
+    {   
+        for (int i = 0; i < (int)eSoundChannel::Size; i++) {
+            mChannel[i]->stop();
+        }
+        //https://www.fmod.com/docs/2.03/api/core-api-sound.html#sound_release 참고.
+        //소리가 재생중이면 해제를 보장하지 못 하므로 stop() 시행 후 해제. 
         for (int i = 0; i < (int)eSoundList::Size; i++) {
             if (mSoundList[i] != nullptr) {
+
                 mSoundList[i]->release();
             }
         }
@@ -70,9 +76,11 @@ namespace mySound
     }
 
     SoundManager::~SoundManager()
-    {
+    {   
+        //mSystem->close();
         mSystem->release();
-        mSystem->close();
+        //https://www.fmod.com/docs/2.03/api/core-api-system.html 참고.
+        //release가 close를 겸함.
 
     }
 };

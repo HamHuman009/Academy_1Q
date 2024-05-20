@@ -17,7 +17,8 @@ Dialog1::~Dialog1()
 
 void Dialog1::Init()
 {
-	WCHAR* _str = new WCHAR[255];
+	//WCHAR* _str = new WCHAR[255]; 메모리 릭 발생!
+	WCHAR _str[255];
 	WCHAR t_str[] = L"얘는 어때, 아빠? 동그랗고 귀여워!";
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();

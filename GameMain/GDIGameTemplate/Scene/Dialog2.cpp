@@ -17,7 +17,8 @@ Dialog2::~Dialog2()
 
 void Dialog2::Init()
 {
-	WCHAR* _str = new WCHAR[255];
+	//WCHAR* _str = new WCHAR[255]; ¸Þ¸ð¸® ¸¯ ¹ß»ý!!
+	WCHAR _str[255];
 	WCHAR t_str[] = L"¿ì¿Í... À÷ ºÁ! ³Ê¹« ¿¹»Ú´Ù! ¿äÁ¤´Ô °°¾Æ!";
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();

@@ -17,7 +17,8 @@ Dialog4::~Dialog4()
 
 void Dialog4::Init()
 {
-	WCHAR* _str = new WCHAR[255];
+	//WCHAR* _str = new WCHAR[255]; 메모리 발생!!
+	WCHAR _str[255];
 	WCHAR t_str[] = L"아빠! 저 애는 진짜 정말 꼭! 잡아줘. 꼭이야!";
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();

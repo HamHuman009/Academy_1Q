@@ -195,8 +195,9 @@ void Fish::LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM, const WCH
 		else {
 			m_fileName[i] = noNumFileName.append(wNum);
 		}
-		const std::wstring& filekey= m_fileName[i].c_str();
-		const std::wstring& realFileName = m_fileName[i].append(imageType).c_str();
+		//잠시 고침
+		const std::wstring filekey= m_fileName[i].c_str();
+		const std::wstring realFileName = m_fileName[i].append(imageType).c_str();
 		std::wcout << m_fileName[i] << std::endl;
 		m_bitmap[i] = CRM->LoadBitmapResouce(filekey, realFileName);
 		noNumFileName = noNumFileName.substr(0, fileNameLength - 6);

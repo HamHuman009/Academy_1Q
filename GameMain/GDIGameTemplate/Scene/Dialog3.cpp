@@ -17,7 +17,8 @@ Dialog3::~Dialog3()
 
 void Dialog3::Init()
 {
-	WCHAR* _str = new WCHAR[255];
+	//WCHAR* _str = new WCHAR[255]; 메모리릭 발생!!
+	WCHAR _str[255];
 	WCHAR t_str[] = L"꼬리가 밤하늘같아... 아빠, 저 애 잡아줄 수 있어?";
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();

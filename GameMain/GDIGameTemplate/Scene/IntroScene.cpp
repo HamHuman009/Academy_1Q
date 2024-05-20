@@ -17,7 +17,8 @@ IntroScene::~IntroScene()
 
 void IntroScene::Init()
 {
-	WCHAR* _str = new WCHAR[255];
+	//WCHAR* _str = new WCHAR[255]; 메모리 릭 발생!!
+	WCHAR _str[255];
 	WCHAR t_str[] = L"이 애, 솜사탕같지 않아? 같이 많이 먹었잖아!";
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();

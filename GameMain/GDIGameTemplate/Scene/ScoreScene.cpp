@@ -4,10 +4,12 @@
 
 
 
-WCHAR* _str = new WCHAR[255];
-WCHAR* _father_str = new WCHAR[255];
+
+
 void ScoreScene::Init()
-{
+{	
+	WCHAR _str[255];
+	WCHAR _father_str[255];
 	// _str = 점수;
 	std::wstring _wstr = L"점수 창 : ";
 	_wstr.append(std::to_wstring(Game::GameManager::GetInstance()->FinalScore));
@@ -72,8 +74,9 @@ void ScoreScene::Start()
 void ScoreScene::Exit()
 {	
 	Game::GameManager* myGame = Game::GameManager::GetInstance();
-	/*myGame->m_Ranking->sortRank();
 	myGame->m_Ranking->saveRankings();
+	/*myGame->m_Ranking->sortRank();
+	
 	myGame->m_Ranking->loadRankings();
 	myGame->m_Ranking->rankToStr();*/
 	if (Game::GameManager::GetInstance()->sceneBitmap != nullptr)
@@ -104,6 +107,6 @@ ScoreScene::ScoreScene()
 
 ScoreScene::~ScoreScene()
 {
-	delete[] _str;
-	delete[] _father_str;
+	//delete[] _str;
+	//delete[] _father_str;
 }
