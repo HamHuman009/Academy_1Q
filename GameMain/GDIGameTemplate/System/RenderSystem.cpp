@@ -285,6 +285,7 @@ namespace Render
 			Gdiplus::Pen pen(Gdiplus::Color(0, 0, 0, 1));
 			graphics->DrawRectangle(&pen, rectF);
 		}
-	}
 
+		delete[] fontFamilies;
+	}
 }
