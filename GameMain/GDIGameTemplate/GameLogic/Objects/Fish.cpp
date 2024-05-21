@@ -170,6 +170,10 @@ void Fish::Render(float alpha) {
 void Fish::OnTrigger() {
 	isCatch = true;
 	m_collider->isActive = false;
+
+	if (std::wcsstr(m_name, L"Boss") != nullptr) {
+
+	}
 }
 
 void Fish::SetRandomPosition()

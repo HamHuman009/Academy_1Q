@@ -32,6 +32,12 @@ void Stage01::Init()
 	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, CrawAppear);
 	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, TenSecNothingAnd14sec);
 
+	AddEvent(e_tutorialFeedback1);
+	AddEvent(e_tutorialFeedback2);
+	AddEvent(e_tutorialFeedback3);
+	AddEvent(e_tutorialFeedback4);
+	AddEvent(e_tutorialFeedback5);
+
 	AddEvent(e_feedBack1);
 	AddEvent(e_feedBack2);
 	AddEvent(e_feedBack3);
@@ -108,6 +114,7 @@ void Stage01::Init()
 	UITimer* myTimer = new UITimer(CRM, Vector2{ 353 ,14  }, e_nextScn, 20.f);
 	myTimer->remainningTimeEvent = e_feedBack7;
 	EndgameEvent* e_endGame = new EndgameEvent(m_Player);
+	AddEvent(e_endGame);
 	myTimer->gameOverTimerEvent = e_endGame;
 	myTimer->tutorialEvent2 = e_tutorialFeedback2;
 	myTimer->tutorialEvent3 = e_tutorialFeedback3;
@@ -135,19 +142,25 @@ void Stage01::Init()
 	
 	alpha = 1.0f;
 	
+
 	//200*100 / 1040/286
 	std::wstring _wstr = L"점수 창 : ";
 	_wstr.append(std::to_wstring(g_Score));
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
-	Gdiplus::Bitmap* bossFishTarget = CRM->LoadBitmapResouce(L"BossFish1", L"BossFish_00.png");
-	myBoard->Init(CRM, { 300.f, 100.f }, { 700.f, 150.f }, bossFishTarget, _wstr);
+	CatchBossEvent* e_CatchBoss = new CatchBossEvent(myBoard);
+	AddEvent(e_CatchBoss);
+	m_Player->CatchBossFish = e_CatchBoss;
+	Gdiplus::Bitmap* bossFishTarget = CRM->LoadBitmapResouce(L"BossFish1_Objective", L"ScoreBoard_Objective_01.png");
+	Gdiplus::Bitmap* bossFishTargetGray = CRM->LoadBitmapResouce(L"BossFish1_ObjectiveBW", L"ScoreBoard_ObjectiveBW_01.png");
+	myBoard->Init(CRM, { 1040, 286 }, { 200, 100 }, bossFishTarget, bossFishTargetGray, _wstr);
 
 	speech->face = myFace;
 
 	KeyInput* swapObject = new KeyInput(); // 스왑용 빈 오브젝트 삭제금지
 	swapObject->m_isActive = false;
-	SwapObjectEvent* swapTest = new SwapObjectEvent(dynamic_cast<Object*>(m_Player), dynamic_cast<Object*>(swapObject), m_arrObj);
-	m_Player->temp = swapTest;
+	SwapObjectEvent* e_swapEvent = new SwapObjectEvent(dynamic_cast<Object*>(m_Player), dynamic_cast<Object*>(swapObject), m_arrObj);
+	m_Player->temp = e_swapEvent;
+	AddEvent(e_swapEvent);
 	//---------------------------------------- 렌더 순서------------------------------------------
 	//***************배경뒤******************
 	AddObject(myBackGround);

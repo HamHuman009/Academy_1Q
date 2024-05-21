@@ -144,7 +144,7 @@ void UITimer::Render(float alpha) {
 	if (m_isActive == false) return;
 	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapBack, 0, 0, cx, cy);
 	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapBar, 0, 0, (UINT)deltaCx, cy);
-	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapClock, 0, 0, 68, 50);
+	Render::DrawBitmap(m_pos.x - 30, m_pos.y - 25, m_BitmapClock, 0, 0, 100, 100);
 	/*Render::DrawRect(m_pos.x, m_pos.y, cx, cy, RGB(255, 255, 255));
 	Render::DrawRect(m_pos.x, m_pos.y, (UINT)deltaCx, cy, RGB(255, 255, 0));*/
 }
@@ -253,7 +253,7 @@ void UIDialog::Update(float delta) {
 			strCount++;
 		}
 	}
-	if (strCount < 256 && string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
+	if (strCount < 255 && string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
 		// 아직 대화가 남아있다면 대화를 모두 출력.
 		wcscpy_s(t_str, 255, string);
 	}
@@ -342,7 +342,7 @@ void UIFace::Update(float delta) {
 	}
 }
 
-void In_ScoreBoard::Init(CResourceManager* CRM,Vector2 myPos, Vector2 endPos,Gdiplus::Bitmap* _bitmap, std::wstring _string)
+void In_ScoreBoard::Init(CResourceManager* CRM,Vector2 myPos, Vector2 endPos,Gdiplus::Bitmap* _bitmap, Gdiplus::Bitmap* _backBitmap, std::wstring _string)
 {
 	x = myPos.x;
 	y = myPos.y;
@@ -350,6 +350,7 @@ void In_ScoreBoard::Init(CResourceManager* CRM,Vector2 myPos, Vector2 endPos,Gdi
 	cy = endPos.y;
 	m_bitmapBack = CRM->LoadBitmapResouce(L"boaodBack", L"scoreboard_back.bmp");
 	m_bitmapTarget = _bitmap;
+	m_bitmapTargetGray = _backBitmap;
 	string = _string;
 	/*memset(t_str, '\0', 255);*/
 }
@@ -365,13 +366,19 @@ void In_ScoreBoard::Update(float delta)
 void In_ScoreBoard::Render(float alpha)
 {
 	Render::DrawImage(x, y, m_bitmapBack, 0, 0, cx, cy, 1.0f);
-	Render::DrawFontS(x+20, y + 10, cx-40, cy-60, string.c_str(), RGB(255, 255, 255), 12, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(x+20, y + 10, cx-40, cy-70, string.c_str(), RGB(255, 255, 255), 12, L"KOTRAHOPE.ttf", 1);
 	//Render::DrawImage(x, y, m_bitmapTarget, 0, 0, cx, cy, 1.0f);
-	Render::DrawRotateImage(x+40, y-5, m_bitmapTarget, 270,1.0f,0.5f,0.5f);
+	if(m_bitmapTargetGray != nullptr)
+		Render::DrawRotateImage(x+60, y-60, m_bitmapTargetGray, 270,1.0f,0.5f,0.5f);
 }
 
 void In_ScoreBoard::OnTrigger()
 {
+}
+
+void In_ScoreBoard::SwapBitmap()
+{
+	m_bitmapTargetGray = m_bitmapTarget;
 }
 
 UIInputField::UIInputField(Vector2 position, float width, float height)
@@ -559,12 +566,8 @@ bool SortEnumFeedback(Speechenum a, Speechenum b) {
 }
 
 void UISpeech::Update(float delta) {
-
-	if (Input::IsKeyDown('M')) {
-		AddFeedback(TUTORIALONE_Explanation_Control);
-	}
 	if (isTutorial) {
-		if (Input::IsKeyDown(' ')) {
+		if (string[strCount] == L'\0') {
 			isTutorial = false;
 			High_Resolution_Time::SetTimeScale(1.f);
 			memset(t_str, '\0', 255);

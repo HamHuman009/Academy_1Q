@@ -245,3 +245,14 @@ public:
 		player->gameOver = true;
 	}
 };
+
+class CatchBossEvent : public Event {
+public:
+	In_ScoreBoard* scoreBoard;
+	CatchBossEvent(In_ScoreBoard* _scoreBoard) {
+		scoreBoard = _scoreBoard;
+	}
+	void OnTrigger() override {
+		scoreBoard->SwapBitmap();
+	}
+};

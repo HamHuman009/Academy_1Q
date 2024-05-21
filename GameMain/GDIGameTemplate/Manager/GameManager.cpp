@@ -67,6 +67,27 @@ namespace Game
 		++m_UpdateCount;
 
 		Input::UpdateMouse();
+
+		if (Input::IsKeyDown('1')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::START);
+		}if (Input::IsKeyDown('2')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::INTRO);
+		}if (Input::IsKeyDown('3')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_01);
+		}if (Input::IsKeyDown('4')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_02);
+		}if (Input::IsKeyDown('5')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_03);
+		}if (Input::IsKeyDown('6')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_04);
+		}if (Input::IsKeyDown('7')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_05);
+		}if (Input::IsKeyDown('8')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::Ending);
+		}if (Input::IsKeyDown('9')) {
+			m_sceneManager->SetCurScene((UINT)SceneType::Score);
+		}
+
 		if (m_curScene != m_sceneManager->GetCurScene()) {
 			m_curScene = m_sceneManager->GetCurScene();
 		}

@@ -76,5 +76,7 @@ public:
 	float alphaValue = 1.f;
 	Event* temp;
 	bool gameOver = false;
+
+	Event* CatchBossFish;
 };
 

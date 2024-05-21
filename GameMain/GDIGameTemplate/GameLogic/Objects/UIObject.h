@@ -228,14 +228,17 @@ public:
 	{
 		/*delete string;*/
 	};
-	void Init(CResourceManager* CRM, Vector2 myPos, Vector2 endPos, Gdiplus::Bitmap* _bitmap, std::wstring _string);
+	void Init(CResourceManager* CRM, Vector2 myPos, Vector2 endPos, Gdiplus::Bitmap* _bitmap, Gdiplus::Bitmap* _targetGray, std::wstring _string);
 	void Update(float delta) override;
 	void Render(float alpha) override;
 
 	void OnTrigger() override;
+
+	void SwapBitmap();
 private:
 	Gdiplus::Bitmap* m_bitmapBack;
 	Gdiplus::Bitmap* m_bitmapTarget;
+	Gdiplus::Bitmap* m_bitmapTargetGray;
 	UINT cx = 0;
 	UINT cy = 0;
 	UINT x = 0;

@@ -99,10 +99,11 @@ void Stage04::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog5);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 2.0f/*40.f*/);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 40.0f/*40.f*/);
 	myTimer->remainningTimeEvent = e_feedBack7;
 	EndgameEvent* e_endGame = new EndgameEvent(m_Player);
 	myTimer->gameOverTimerEvent = e_endGame;
+	AddEvent(e_endGame);
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
@@ -139,14 +140,20 @@ void Stage04::Init()
 	std::wstring _wstr = L"점수 창 : ";
 	_wstr.append(std::to_wstring(g_Score));
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
-	//myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
+	CatchBossEvent* e_CatchBoss = new CatchBossEvent(myBoard);
+	AddEvent(e_CatchBoss);
+	m_Player->CatchBossFish = e_CatchBoss;
+	Gdiplus::Bitmap* bossFishTarget = CRM->LoadBitmapResouce(L"BossFish4_Objective", L"ScoreBoard_Objective_04.png");
+	Gdiplus::Bitmap* bossFishTargetGray = CRM->LoadBitmapResouce(L"BossFish4_ObjectiveBW", L"ScoreBoard_ObjectiveBW_04.png");
+	myBoard->Init(CRM, { 1040, 286 }, { 200, 100 }, bossFishTarget, bossFishTargetGray, _wstr);
 	
 	speech->face = myFace;
 
 	KeyInput* swapObject = new KeyInput(); // 스왑용 빈 오브젝트 삭제금지
 	swapObject->m_isActive = false;
-	SwapObjectEvent* swapTest = new SwapObjectEvent(dynamic_cast<Object*>(m_Player), dynamic_cast<Object*>(swapObject), m_arrObj);
-	m_Player->temp = swapTest;
+	SwapObjectEvent* e_swapEvent = new SwapObjectEvent(dynamic_cast<Object*>(m_Player), dynamic_cast<Object*>(swapObject), m_arrObj);
+	m_Player->temp = e_swapEvent;
+	AddEvent(e_swapEvent);
 	//---------------------------------------- 렌더 순서------------------------------------------
 	//***************배경뒤******************
 	AddObject(myBackGround);

@@ -76,7 +76,7 @@ void Player::Render(float alpha)
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x + 10, m_pos.y - m_renderBounds.extents.y + 51, 
 		(scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? Target_playerBitmap : Default_playerBitmap,
 		0, 0, Default_playerBitmap->GetWidth(), Default_playerBitmap->GetHeight(), alpha, scale);
-	Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
+	//Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
 }
 
 void Player::OnTrigger()
@@ -190,6 +190,8 @@ void Player::ScoopUp(float delta)
 				else if (std::wcsstr(fishs[i]->parent->m_name, L"Boss") != nullptr) {
 					if (feedbackEvent3_CaptureBossFish != nullptr)
 						feedbackEvent3_CaptureBossFish->OnTrigger();
+					if (CatchBossFish != nullptr)
+						CatchBossFish->OnTrigger();
 					cnt += 3;
 					BossCnt++;
 					fishs[i]->parent->OnTrigger();
