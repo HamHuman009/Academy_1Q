@@ -2,9 +2,10 @@
 #include "../System/InputSystem.h"
 
 #include "../GameLogic/Event.h"
+#include "../GameLogic/Objects/Fish.h"
 
 
-void StartScene::Start() 
+void StartScene::Start()
 {
 	mySound::SoundManager* meSound = mySound::SoundManager::GetInstance();
 	meSound->StopMusic(mySound::eSoundChannel::BGM);
@@ -12,7 +13,7 @@ void StartScene::Start()
 }
 
 void StartScene::Init()
-{	
+{
 	//필요 인스턴스 로드
 	CResourceManager* CR = CResourceManager::GetInstance();
 	Ranking* myRang = Game::GameManager::GetInstance()->m_Ranking;
@@ -22,10 +23,15 @@ void StartScene::Init()
 	myRang->rankToStr();
 
 	//배경
-	myBitmap = CR->LoadBitmapResouce(L"image1",L"startback.png");
-	UIImage* myBack = new UIImage(); // 객체 테스트 
-	myBack->Init(myBitmap, { 640.f,360.f });
-	
+	//myBitmap = CR->LoadBitmapResouce(L"image1",L"startback.png");
+	//UIImage* myBack = new UIImage(); // 객체 테스트 
+	//myBack->Init(myBitmap, { 640.f,360.f });
+	UIImage* myBackGround = new UIImage();
+	Gdiplus::Bitmap* waterBack = CR->LoadBitmapResouce(L"waterImage", L"Water.png");
+	myBackGround->Init(waterBack, { 640.f, 360.f });
+	UIBackGround* myUPBackGround = new UIBackGround();
+	myUPBackGround->Init(L"물결+그림자_00.png", CR);
+
 	//타이틀 //70 , 48 //544,144
 	Gdiplus::Bitmap* titleBitmap = CR->LoadBitmapResouce(L"title", L"titled_sample.bmp");
 	UIImage* titleImg = new UIImage(); // 객체 테스트 
@@ -38,7 +44,7 @@ void StartScene::Init()
 	//시작버튼 
 	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
 
-	UIButton* gameStartButton = new UIButton(Vector2{ 70 + (200 / 2),254 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame",L".png"); // 객체 테스트
+	UIButton* gameStartButton = new UIButton(Vector2{ 70 + (200 / 2),254 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // 객체 테스트
 	//종료버튼
 	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),472 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
 
@@ -54,13 +60,13 @@ void StartScene::Init()
 	UIButton* controll = new UIButton(Vector2{ 70 + (200 / 2),363 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
 
 	//게임 방법 돌아오기
-	
+
 
 	//랭크보드
 	scoreRect = { 400,200,800,800 };
 	WCHAR _str[500];
 	memset(_str, L'\0', 500);
-	
+
 	std::string myRank;
 	int fromRank = strlen(Game::GameManager::GetInstance()->m_Ranking->str_rank.c_str());
 	myRank.assign(Game::GameManager::GetInstance()->m_Ranking->str_rank);
@@ -74,12 +80,25 @@ void StartScene::Init()
 
 	//화면전환
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
-	
-	
+
+
 
 
 	//오브젝트 등록
-	AddObject(myBack);
+	AddObject(myBackGround);
+
+	Fish* myFish;
+	myFish = new Fish(L"Fish1", 50.f, 4.36f, L"Fish_01_Anim_00.png", CR, L".png", 3.f, 4.f, 23.f, 23.f);
+	AddObject(myFish);
+	myFish = new Fish(L"Fish2", 50.f, 4.36f, L"Fish_02_Anim_00.png", CR, L".png", 3.f, 4.f, 23.f, 23.f);
+	AddObject(myFish);
+	myFish = new Fish(L"Fish3", 50.f, 4.36f, L"Fish_03_Anim_00.png", CR, L".png", 3.f, 4.f, 23.f, 23.f);
+	AddObject(myFish);
+	myFish = new Fish(L"Fish4", 50.f, 4.36f, L"Fish_04_Anim_00.png", CR, L".png", 3.f, 4.f, 23.f, 23.f);
+	AddObject(myFish);
+
+	AddObject(myUPBackGround);
+
 	AddObject(titleImg);
 	AddObject(gameStartButton);
 	AddObject(controll);
