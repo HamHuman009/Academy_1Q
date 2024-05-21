@@ -203,21 +203,31 @@ public:
 	}
 };
 
+
 class SwapObjectEvent : public Event {
 public:
-	std::vector<Object*> *swapObject;
+	std::vector<Object*>* swapObject;
 	Object* swap1;
 	Object* swap2;
 
-	SwapObjectEvent(Object* _swap1, Object* _swap2, std::vector<Object*> &swap) {
+	SwapObjectEvent(Object* _swap1, Object* _swap2, std::vector<Object*>& swap) {
 		swap1 = _swap1;
 		swap2 = _swap2;
 		swapObject = &swap;
 	}
-
 	void OnTrigger() override {
 		auto it_a = std::find(swapObject->begin(), swapObject->end(), swap1);
 		auto it_b = std::find(swapObject->begin(), swapObject->end(), swap2);
 		std::swap(*it_a, *it_b);
+	}
+};
+
+class HowToEvent : public Event {
+public:
+	UIImage* howToImg;
+
+	void OnTrigger() override
+	{
+		howToImg->m_isActive = true;
 	}
 };
