@@ -7,24 +7,13 @@
 //#define TEST
 void Stage01::Init()
 {
-	// 작성요령
-	// 1. object를 생성자로 생성 ex) (원하는 클래스) obj = new (원하는 클래스)();
-	// 2. AddObject(obj); 를 통해 생성된 오브젝트 씬에 넣기.
-	// 3. 콜라이더가 필요한 object의 경우 object가 내부적으로 콜라이더를 생성하지 않는다면 직접 넣기.
-	// 3-1. 콜라이더를 넣을 때 콜라이더안에 object도 넣어주기.
-	// 3-2. 해당 콜라이더를 ColliderManager에 넣기.
-	// 4. 이벤트도 필요하다면 붙이기.
-
-	// 따로 존재하는 객체 ex)Button은 Update에서 마우스 클릭시 마우스가 해당 콜라이더 안인지 판단하는 용도로 사용 가능.
-	// 또는 오브젝트 자체가 Update에서 마우스 클릭을 받아서 사용도 가능.
-	// 하나하나 event나 객체 생성을 해야하므로 init함수 내부가 꽉찰 예정.
-
-	//UIBackGround* myBack = new UIBackGround();
-	//AddObject(myBack);
-
 	colliderManager = new ColliderManager();
+	//200*100//766/103
 
-	UISpeech* speech = new UISpeech({ 900.f, 300.f }, nullptr);
+
+	UISpeech* speech = new UISpeech({ 766, 103}, nullptr);
+
+	//FeedbackEvent
 	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, 1);
 	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, 2);
 	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, 3);
@@ -34,6 +23,7 @@ void Stage01::Init()
 	FeedbackEvent* e_feedBack7 = new FeedbackEvent(speech, 7);
 	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, 8);
 	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, 9);
+
 	AddEvent(e_feedBack1);
 	AddEvent(e_feedBack2);
 	AddEvent(e_feedBack3);
@@ -62,6 +52,7 @@ void Stage01::Init()
 	ResumeEvent* e_resume = new ResumeEvent(/*mySound::eSoundList::s_button*/);
 	RetryEvent* e_retry = new RetryEvent(/*mySound::eSoundList::Button*/);
 	ExitEvent* e_exit = new ExitEvent(/*mySound::eSoundList::s_button*/);
+
 	AddEvent(e_pause);
 	AddEvent(e_resume);
 	AddEvent(e_retry);
@@ -70,6 +61,10 @@ void Stage01::Init()
 	CResourceManager* CRM = CResourceManager::GetInstance();
 	
 	//Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
+
+	
+	Gdiplus::Bitmap* speechBack = CRM->LoadBitmapResouce(L"speechBack", L"UI_Image_Stage_TalkBar_01.png");
+	speech->Init({ 766, 103 }, speechBack);
 
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
 
@@ -101,8 +96,8 @@ void Stage01::Init()
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1);
 	AddEvent(e_nextScn);
-
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 20.f);
+	// 600*20 //353*14
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 353 ,14  }, e_nextScn, 20.f);
 	myTimer->remainningTimeEvent = e_feedBack7;
 
 	UIImage* myBackGround = new UIImage();
@@ -115,60 +110,29 @@ void Stage01::Init()
 	UIBackGround* myUPBackGround = new UIBackGround();
 	myUPBackGround->Init(L"물결+그림자_00.png", CRM);
 	
-#ifndef TEST
-
-	/*SelectScnEvent* e_TEST[(int)SceneType::END];
-	for (int i = 0; i < (int)SceneType::END; i++) {
-		e_TEST[i] = new SelectScnEvent(i+1);
-		AddEvent(e_TEST[i]);
-	}
-
-	UIButton* ub_S1 = new UIButton(Vector2{ 100,000 }, e_TEST[0], exitBtn);
-	UIButton* ub_S2 = new UIButton(Vector2{ 100,200 }, e_TEST[1], exitBtn);
-	UIButton* ub_S3 = new UIButton(Vector2{ 100,400 }, e_TEST[2], exitBtn);
-	UIButton* ub_S4 = new UIButton(Vector2{ 100,600 }, e_TEST[3], exitBtn);
-	AddObject(ub_S1);
-	AddObject(ub_S2);
-	AddObject(ub_S3);
-	AddObject(ub_S4);
-
-	UIButton* ub_S5 = new UIButton(Vector2{ 400,000 }, e_TEST[4], exitBtn);
-	UIButton* ub_S6 = new UIButton(Vector2{ 400,200 }, e_TEST[5], exitBtn);
-	UIButton* ub_S7 = new UIButton(Vector2{ 400,400 }, e_TEST[6], exitBtn);
-	UIButton* ub_S8 = new UIButton(Vector2{ 400,600 }, e_TEST[7], exitBtn);
-
-	AddObject(ub_S5);
-	AddObject(ub_S6);
-	AddObject(ub_S7);
-	AddObject(ub_S8);*/
-	
-#endif // !TEST
 	UICrossDissolve* backEffect = new UICrossDissolve({640.f, 360.f}, Game::GameManager::GetInstance()->sceneBitmap);
 	
+	//250*250 //1015/14
 	Gdiplus::Bitmap* daughterFace1 = CRM->LoadBitmapResouce(L"Face1", L"UI_Image_Talk_CharaFace_Normal_01.png");
 	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
 	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
 	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");
-	UIFace* myFace = new UIFace(Vector2{1200,300}, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
+	UIFace* myFace = new UIFace(Vector2{ 1115+(250/2),120+(250/2)}, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
 	
 	alpha = 1.0f;
-	//WCHAR* _str = new WCHAR[255];
-	//WCHAR t_str[] = L"점수창 : ";  // 점수 받아오는 함수 만들거나 넣어서 출력시키기
-	/*wcscpy_s(_str, 255, t_str);*/
-	/*UIDialog* ScoreBox = new UIDialog();
-	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
-	AddObject(ScoreBox);*/
-
+	
+	//200*100 / 1040/286
 	std::wstring _wstr = L"점수 창 : ";
 	_wstr.append(std::to_wstring(g_Score));
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
-	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
+	myBoard->Init({ 1040, 286 }, { 200, 100 }, _wstr);
 
 	speech->face = myFace;
 
 	//---------------------------------------- 렌더 순서------------------------------------------
 	//***************배경뒤******************
 	AddObject(myBackGround);
+
 	//*************물고기 생성****************
 	srand(std::time(NULL));
 	Fish* myFish;
@@ -192,10 +156,13 @@ void Stage01::Init()
 	myFish = new Fish(L"BossFish", 60.f, 8.7f, L"BossFish_00.png", CRM, L".png", 2.f, 4.f, 30.f, 30.f);
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
+
 	//****************배경앞*******************
 	AddObject(myUPBackGround);
+
 	//*************플레이어(뜰채)**************
 	AddObject(m_Player);
+
 	//******************UI********************
 	AddObject(myTimer);
 
@@ -203,10 +170,12 @@ void Stage01::Init()
 	AddObject(resume);
 	AddObject(retry);
 	AddObject(exit);
+
 	//****************딸 이미지****************
 	AddObject(myBoard);
 	AddObject(speech);
 	AddObject(myFace);
+
 	//****************씬전환효과***************
 	AddObject(backEffect);
 }
