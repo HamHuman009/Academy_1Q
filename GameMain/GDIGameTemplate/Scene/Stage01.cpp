@@ -98,7 +98,7 @@ void Stage01::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog2);
 	AddEvent(e_nextScn);
 	// 600*20 //353*14
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 353 ,14  }, e_nextScn, 1.f);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 353 ,14  }, e_nextScn, 20.f);
 	myTimer->remainningTimeEvent = e_feedBack7;
 
 	UIImage* myBackGround = new UIImage();
@@ -126,7 +126,8 @@ void Stage01::Init()
 	std::wstring _wstr = L"Á¡¼ö Ã¢ : ";
 	_wstr.append(std::to_wstring(g_Score));
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
-	myBoard->Init({ 1040, 286 }, { 200, 100 }, _wstr);
+	Gdiplus::Bitmap* bossFishTarget = CRM->LoadBitmapResouce(L"BossFish1", L"BossFish_00.png");
+	myBoard->Init(CRM, { 300.f, 100.f }, { 700.f, 150.f }, bossFishTarget, _wstr);
 
 	speech->face = myFace;
 

@@ -134,11 +134,12 @@ void Stage03::Init()
 	UIDialog* ScoreBox = new UIDialog();
 	ScoreBox->Init({ 300.f, 100.f }, { 700.f, 150.f }, _str);
 	AddObject(ScoreBox);*/
-
+	
 	std::wstring _wstr = L"Á¡¼ö Ã¢ : ";
 	_wstr.append(std::to_wstring(g_Score));
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
-	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
+	Gdiplus::Bitmap* bossFishTarget = CRM->LoadBitmapResouce(L"BossFish1", L"BossFish_00.png");
+	myBoard->Init(CRM, { 300.f, 100.f }, { 700.f, 150.f }, bossFishTarget, _wstr);
 	
 	speech->face = myFace;
 

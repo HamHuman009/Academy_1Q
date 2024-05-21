@@ -41,8 +41,20 @@ void StartScene::Init()
 	UIButton* gameStartButton = new UIButton(Vector2{ 70 + (200 / 2),254 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame",L".png"); // 객체 테스트
 	//종료버튼
 	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),472 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
-	//조작
-	UIButton* controll = new UIButton(Vector2{ 70 + (200 / 2),363 + (50 / 2) }, nullptr, L"UI_Button_Title_ToMove", L".png"); 
+
+	//게임 방법
+	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"image1.png");
+	UIImage* howToPlay = new UIImage();
+	howToPlay->Init(howToPlayImage, { 500.f,400.f });
+	howToPlay->m_isActive = false;
+	HowToEvent* myHow = new HowToEvent();
+	myHow->howToImg = howToPlay;
+
+	//게임 방법 버튼
+	UIButton* controll = new UIButton(Vector2{ 70 + (200 / 2),363 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
+
+	//게임 방법 돌아오기
+	
 
 	//랭크보드
 	scoreRect = { 400,200,800,800 };
@@ -62,6 +74,9 @@ void StartScene::Init()
 
 	//화면전환
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
+	
+	
+
 
 	//오브젝트 등록
 	AddObject(myBack);
@@ -71,11 +86,11 @@ void StartScene::Init()
 	AddObject(exit);
 	AddObject(rankDialog);
 	AddObject(backEffect);
-
+	AddObject(howToPlay);
 	//이벤트 등록
 	AddEvent(e_nextScn);
 	AddEvent(e_exit);
-
+	AddEvent(myHow);
 	//화면 알파 값 초기화
 	alpha = 1.0f;
 }

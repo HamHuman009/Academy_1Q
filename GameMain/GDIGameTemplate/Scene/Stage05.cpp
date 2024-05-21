@@ -139,7 +139,7 @@ void Stage05::Init()
 	std::wstring _wstr = L"Á¡¼ö Ã¢ : ";
 	_wstr.append(std::to_wstring(g_Score));
 	In_ScoreBoard* myBoard = new In_ScoreBoard();
-	myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
+	//myBoard->Init({ 300.f, 100.f }, { 700.f, 150.f }, _wstr);
 	
 	speech->face = myFace;
 

@@ -217,7 +217,7 @@ public:
 	{
 		/*delete string;*/
 	};
-	void Init(CResourceManager* CRM,Vector2 myPos, Vector2 endPos, Gdiplus::Bitmap* _bitmap,std::wstring _string);
+	void Init(CResourceManager* CRM, Vector2 myPos, Vector2 endPos, Gdiplus::Bitmap* _bitmap, std::wstring _string);
 	void Update(float delta) override;
 	void Render(float alpha) override;
 
@@ -320,7 +320,7 @@ private:
 	int backGroundFrameFlag;
 
 public:
-	// Object��(��) ���� ��ӵ�
+	
 	void Init(const WCHAR* fileName, CResourceManager* CRM);
 
 	void Update(float delta) override;

@@ -227,7 +227,9 @@ public:
 	UIImage* howToImg;
 
 	void OnTrigger() override
-	{
-		howToImg->m_isActive = true;
+	{	
+		if (howToImg->m_isActive == true) howToImg->m_isActive = false;
+		else howToImg->m_isActive = true;
+		
 	}
 };
