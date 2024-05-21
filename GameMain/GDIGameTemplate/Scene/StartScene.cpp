@@ -33,20 +33,13 @@ void StartScene::Init()
 	myUPBackGround->Init(L"물결+그림자_00.png", CR);
 
 	//타이틀 //70 , 48 //544,144
-	Gdiplus::Bitmap* titleBitmap = CR->LoadBitmapResouce(L"title", L"titled_sample.bmp");
+	Gdiplus::Bitmap* titleBitmap = CR->LoadBitmapResouce(L"logo", L"Logo_final.png");
 	UIImage* titleImg = new UIImage(); // 객체 테스트 
-	titleImg->Init(titleBitmap, { 70 + (544 / 2),48 + (144 / 2) });
+	titleImg->Init(titleBitmap, { 70 + (328 / 2),48 + (223 / 2) });
 
 	//이벤트
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO, mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
 	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button);
-
-	//시작버튼 
-	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
-
-	UIButton* gameStartButton = new UIButton(Vector2{ 70 + (200 / 2),254 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // 객체 테스트
-	//종료버튼
-	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),472 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
 
 	//게임 방법
 	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"image1.png");
@@ -56,8 +49,17 @@ void StartScene::Init()
 	HowToEvent* myHow = new HowToEvent();
 	myHow->howToImg = howToPlay;
 
+
+	//시작버튼 
+	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
+
+	UIButton* gameStartButton = new UIButton(Vector2{ 70 + (200 / 2),330 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // 객체 테스트
 	//게임 방법 버튼
-	UIButton* controll = new UIButton(Vector2{ 70 + (200 / 2),363 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
+	UIButton* controll = new UIButton(Vector2{ 70 + (200 / 2),450 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
+
+	//종료버튼
+	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),570 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
+	
 
 	//게임 방법 돌아오기
 
@@ -99,7 +101,7 @@ void StartScene::Init()
 
 	AddObject(myUPBackGround);
 
-	AddObject(titleImg);
+	
 	AddObject(gameStartButton);
 	AddObject(controll);
 	AddObject(exit);
@@ -110,6 +112,7 @@ void StartScene::Init()
 	AddEvent(e_nextScn);
 	AddEvent(e_exit);
 	AddEvent(myHow);
+	AddObject(titleImg);
 	//화면 알파 값 초기화
 	alpha = 1.0f;
 }

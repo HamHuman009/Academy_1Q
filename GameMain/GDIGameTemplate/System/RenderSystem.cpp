@@ -220,7 +220,7 @@ namespace Render
 
 		mat.RotateAt(rad, Gdiplus::PointF((float)centerX + bitmap->GetWidth() / 2.f, (float)centerY + bitmap->GetHeight()/ 2.f));
 		
-		mat.Scale(ScaleX, ScaleY, Gdiplus::MatrixOrderAppend);
+		//mat.Scale(ScaleX, ScaleY, Gdiplus::MatrixOrderAppend);
 
 		ScreenG.SetTransform(&mat);
 		Gdiplus::Rect srcRect(0, 0, bitmap->GetWidth(), bitmap->GetHeight()); // 소스의 영역
