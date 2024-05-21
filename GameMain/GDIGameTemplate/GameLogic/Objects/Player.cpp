@@ -25,11 +25,17 @@ Player::Player()
 
 void Player::Init()
 {
-	playerBitmap = Gdiplus::Bitmap::FromFile(L"Player.png");
+	//playerBitmap = Gdiplus::Bitmap::FromFile(L"Player.png");
+	Default_playerBitmap		 =	Gdiplus::Bitmap::FromFile(L"Scooper_Defalt_Body.png");
+	Default_playerBitmap_Paper	 = 	Gdiplus::Bitmap::FromFile(L"Scooper_Defalt_Paper.png");
+	Target_playerBitmap			 = 	Gdiplus::Bitmap::FromFile(L"Scooper_Target_Body.png");
+	Target_playerBitmap_Paper	 = 	Gdiplus::Bitmap::FromFile(L"Scooper_Target_Paper.png");
+	TimeOver_playerBitmap		 = 	Gdiplus::Bitmap::FromFile(L"Scooper_Ripped_Paper.png");
+
 	m_collider = new CircleCollider({ 0,0 }, radius);
 	m_collider->parent = this;
 
-	m_renderBounds = { { 0,0 }, {playerBitmap->GetWidth() / 2.f, playerBitmap->GetHeight() / 2.f}};
+	m_renderBounds = { { -10, -71 }, {Default_playerBitmap->GetWidth() / 2.f, Default_playerBitmap->GetHeight() / 2.f}};
 
 	isAwake = false;
 }
@@ -59,13 +65,18 @@ void Player::Render(float alpha)
 
 		Render::DrawImage(x, y, bitmap, srcX, srcY, frame.Size.cx, frame.Size.cy , alpha);
 	}
-	//Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
 	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(255, 0, 0));
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight());
 	//if(r) Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
 	Render::DrawTextW(10, 30, std::to_string(cnt).c_str(), RGB(255, 0, 0));
 	Render::DrawTextW(10, 70, std::to_string(BossCnt).c_str(), RGB(0, 0, 255));
-	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight(), alpha, scale);
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x + 10, m_pos.y - m_renderBounds.extents.y + 51, 
+		(scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? Target_playerBitmap_Paper : Default_playerBitmap_Paper,
+		0, 0, Default_playerBitmap_Paper->GetWidth(), Default_playerBitmap_Paper->GetHeight(), alpha, scale);
+	Render::DrawImage(m_pos.x - m_renderBounds.extents.x + 10, m_pos.y - m_renderBounds.extents.y + 51, 
+		(scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? Target_playerBitmap : Default_playerBitmap,
+		0, 0, Default_playerBitmap->GetWidth(), Default_playerBitmap->GetHeight(), alpha, scale);
+	//Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
 }
 
 void Player::OnTrigger()
@@ -128,16 +139,18 @@ void Player::ScoopUp(float delta)
 		scoopUpTime += delta;
 		if (scoopUpTime >= 0.f && scoopUpTime < 1.5f) {
 			scale -= delta * 0.25f / 1.5f; 
-			if (scale < 0.75f)
+			if (scale < 0.75f) {
 				scale = 0.75f;
+			}
 		}
 		else if (scoopUpTime >= 1.5f && scoopUpTime < 4.5f) {
 			// nothing
 		}
 		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {
 			scale += delta * 0.25f / 1.5f;
-			if (scale > 1.f)
+			if (scale > 1.f) {
 				scale = 1.f;
+			}
 		}
 
 		if (scoopUpTime >= 1.3f && scoopUpTime < 1.5f) {
@@ -147,6 +160,8 @@ void Player::ScoopUp(float delta)
 				if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect) == false) {
 					mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Water, mySound::eSoundChannel::Effect);
 				}
+				if(temp != nullptr)
+					temp->OnTrigger();
 				isOnScoopUpSound = false; 
 			}
 		}
@@ -226,7 +241,11 @@ void Player::ScoopUp(float delta)
 			prevCnt = cnt;
 		}
 		else if (scoopUpTime >= 4.5f && scoopUpTime < 6.f) {
-			
+			if (isOnScoopUpSound == false) {
+				isOnScoopUpSound = true;
+				if (temp != nullptr)
+					temp->OnTrigger();
+			}
 		}
 		else if (scoopUpTime >= 6.f){
 			isScoopUp = false;

@@ -17,9 +17,9 @@ Dialog4::~Dialog4()
 
 void Dialog4::Init()
 {
-	//WCHAR* _str = new WCHAR[255]; 메모리 발생!!
+	//WCHAR* _str = new WCHAR[255]; 메모리릭 발생!!
 	WCHAR _str[255];
-	WCHAR t_str[] = L"아빠! 저 애는 진짜 정말 꼭! 잡아줘. 꼭이야!";
+	WCHAR t_str[] = L"꼬리가 밤하늘같아... 아빠, 저 애 잡아줄 수 있어?";
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();
 	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);
@@ -31,7 +31,7 @@ void Dialog4::Init()
 
 
 
-	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::STAGE_05);
+	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::STAGE_04);
 
 	Gdiplus::Bitmap* daughterFace1 = CRM->LoadBitmapResouce(L"Face1", L"UI_Image_Talk_CharaFace_Normal_01.png");
 	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
@@ -53,7 +53,7 @@ void Dialog4::Init()
 	AddObject(myKey);
 
 	Fish* myFish;
-	myFish = new Fish(L"BossFish", 0, 10, L"BossFish_05_Anim_00.png", CRM, L".png", 0, 0, 0, 0, true);
+	myFish = new Fish(L"BossFish", 0, 10, L"BossFish_04_Anim_00.png", CRM, L".png", 0, 0, 0, 0, true);
 	myFish->m_pos = Vector2{ 400 , 200 };
 	myFish->setAngleDirection(Vector2{ 1,0 });
 	myFish->SetMoveDirection(Vector2{ -1,0 });

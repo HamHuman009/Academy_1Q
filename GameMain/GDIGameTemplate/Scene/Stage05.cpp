@@ -1,6 +1,7 @@
 #include "Stage05.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Objects/Fish.h"
+#include "../GameLogic/Objects/KeyInput.h"
 #include "../System/TimeSystem.h"
 #include "../GameLogic/Event.h"
 void Stage05::Init()
@@ -106,7 +107,7 @@ void Stage05::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Ending);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 20.0f);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 2.0f);
 	myTimer->remainningTimeEvent = e_feedBack7;
 	
 	m_Player->m_pos = { 600.f, 350.f };
@@ -142,9 +143,14 @@ void Stage05::Init()
 	
 	speech->face = myFace;
 
+	KeyInput* swapObject = new KeyInput(); // 스왑용 빈 오브젝트 삭제금지
+	swapObject->m_isActive = false;
+	SwapObjectEvent* swapTest = new SwapObjectEvent(dynamic_cast<Object*>(m_Player), dynamic_cast<Object*>(swapObject), m_arrObj);
+	m_Player->temp = swapTest;
 	//---------------------------------------- 렌더 순서------------------------------------------
 	//***************배경뒤******************
 	AddObject(myBackGround);
+	AddObject(swapObject);
 	//*************물고기 생성****************
 	srand(std::time(NULL));
 	Fish* myFish;
@@ -154,11 +160,11 @@ void Stage05::Init()
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
-	myFish->m_pos = { -400.f, float(rand() % 720) };
+	myFish->m_pos = { 1880.f, float(rand() % 720) };
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
-	myFish->m_pos = { -400.f, float(rand() % 720) };
+	myFish->m_pos = { -1200.f, float(rand() % 720) };
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	for (int i = 0; i < 4; i++) {

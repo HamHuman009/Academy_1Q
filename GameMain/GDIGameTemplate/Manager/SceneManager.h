@@ -13,6 +13,7 @@
 #include "../Scene/Dialog2.h"
 #include "../Scene/Dialog3.h"
 #include "../Scene/Dialog4.h"
+#include "../Scene/Dialog5.h"
 
 class CScene;
 enum class SceneType
@@ -31,6 +32,7 @@ enum class SceneType
 	Dialog2,
 	Dialog3,
 	Dialog4,
+	Dialog5,
 	END
 };
 

@@ -156,6 +156,7 @@
     <ClCompile Include="Scene\Dialog2.cpp" />
     <ClCompile Include="Scene\Dialog3.cpp" />
     <ClCompile Include="Scene\Dialog4.cpp" />
+    <ClCompile Include="Scene\Dialog5.cpp" />
     <ClCompile Include="Scene\Ending.cpp" />
     <ClCompile Include="GameLogic\Animation.cpp" />
     <ClCompile Include="GameLogic\Collider.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="Scene\Dialog2.h" />
     <ClInclude Include="Scene\Dialog3.h" />
     <ClInclude Include="Scene\Dialog4.h" />
+    <ClInclude Include="Scene\Dialog5.h" />
     <ClInclude Include="Scene\Ending.h" />
     <ClInclude Include="GameLogic\Animation.h" />
     <ClInclude Include="GameLogic\Bounds.h" />

@@ -1,5 +1,6 @@
 #include "StartScene.h"
 #include "../System/InputSystem.h"
+
 #include "../GameLogic/Event.h"
 
 
@@ -35,6 +36,8 @@ void StartScene::Init()
 	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button);
 
 	//시작버튼 
+	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
+
 	UIButton* gameStartButton = new UIButton(Vector2{ 70 + (200 / 2),254 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame",L".png"); // 객체 테스트
 	//종료버튼
 	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),472 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
@@ -53,7 +56,10 @@ void StartScene::Init()
 	MultiByteToWideChar(CP_UTF8, 0, &myRank[0], fromRank, &_str[0], sizeNeeded);
 	UIDialog* rankDialog = new UIDialog();
 	rankDialog->Init({ 752,48 }, { 432,624 }, _str);
-	
+
+	//조작
+	//UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),472 + (50 / 2) }, e_exit, exitBtn);
+
 	//화면전환
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 

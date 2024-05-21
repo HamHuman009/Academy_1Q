@@ -1,6 +1,7 @@
 #include "Stage03.h"
 #include "../GameLogic/Objects/UIObject.h"
 #include "../GameLogic/Objects/Fish.h"
+#include "../GameLogic/Objects/KeyInput.h"
 #include "../System/TimeSystem.h"
 #include "../GameLogic/Event.h"
 void Stage03::Init()
@@ -96,10 +97,10 @@ void Stage03::Init()
 	exit->m_isActive = false;
 
 
-	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog3);
+	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog4);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 20.0f/*40.f*/);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 2.0f/*40.f*/);
 	myTimer->remainningTimeEvent = e_feedBack7;
 
 	UIImage* myBackGround = new UIImage();
@@ -141,9 +142,14 @@ void Stage03::Init()
 	
 	speech->face = myFace;
 
+	KeyInput* swapObject = new KeyInput(); // 스왑용 빈 오브젝트 삭제금지
+	swapObject->m_isActive = false;
+	SwapObjectEvent* swapTest = new SwapObjectEvent(dynamic_cast<Object*>(m_Player), dynamic_cast<Object*>(swapObject), m_arrObj);
+	m_Player->temp = swapTest;
 	//---------------------------------------- 렌더 순서------------------------------------------
 	//***************배경뒤******************
 	AddObject(myBackGround);
+	AddObject(swapObject);
 	//*************물고기 생성****************
 	srand(std::time(NULL));
 	Fish* myFish;

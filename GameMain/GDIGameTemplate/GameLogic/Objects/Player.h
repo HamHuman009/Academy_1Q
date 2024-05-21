@@ -14,7 +14,11 @@ private:
 	Vector2 left = { -1.f, 0.f };
 	Vector2 right = { 1.f, 0.f };
 
-	Gdiplus::Bitmap* playerBitmap;
+	Gdiplus::Bitmap* Default_playerBitmap;
+	Gdiplus::Bitmap* Default_playerBitmap_Paper;
+	Gdiplus::Bitmap* Target_playerBitmap;
+	Gdiplus::Bitmap* Target_playerBitmap_Paper;
+	Gdiplus::Bitmap* TimeOver_playerBitmap;
 
 	bool isScoopUp = false;
 	float scoopUpTime = 0.f;
@@ -27,7 +31,13 @@ private:
 public:
 	Event* pauseEvent;
 	Player();
-	~Player() override { delete playerBitmap; }
+	~Player() override { 
+		delete Default_playerBitmap;
+		delete Default_playerBitmap_Paper;
+		delete Target_playerBitmap;
+		delete Target_playerBitmap_Paper;
+		delete TimeOver_playerBitmap;
+	}
 
 	void Init() override;
 	void Update(float delta) override;
@@ -62,5 +72,8 @@ public:
 	float event9timerMaxAfter = 14.f;
 	int prevCnt = 0;
 	Event* feedbackEvent10_10secNothingAndRemain10sec;
+
+	float alphaValue = 1.f;
+	Event* temp;
 };
 

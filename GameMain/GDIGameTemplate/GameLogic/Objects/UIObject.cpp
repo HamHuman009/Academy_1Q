@@ -382,16 +382,20 @@ void UIInputField::Update(float delta)
 			timer = 2.f;
 		}
 
+		// 엔터
 		if (Input::IsKeyDown('\r')) {
 			inputStr[strCount] = L'\0';
-			std::wcout << inputStr << std::endl;
-
+			//std::wcout << inputStr << std::endl;
+			/*if (strCount < 8 && inputStr[strCount] == L'_') {
+				inputStr[strCount] = L'\0';
+			}*/
 			int strSize = WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, NULL, 0, NULL, NULL);
 			char* myName = new char[strSize];
 			WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, myName, strSize, 0, 0);
 
 			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore });
 			//오류 가능성 있음 주의
+			wmemset(inputStr, L'\0', 9);
 		}
 	}
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {

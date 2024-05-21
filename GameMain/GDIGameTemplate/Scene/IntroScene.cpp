@@ -17,6 +17,8 @@ IntroScene::~IntroScene()
 
 void IntroScene::Init()
 {
+	// dialog1로 옮겨져서 사용 X
+
 	CResourceManager* CRM = CResourceManager::GetInstance();
 
 	//배경

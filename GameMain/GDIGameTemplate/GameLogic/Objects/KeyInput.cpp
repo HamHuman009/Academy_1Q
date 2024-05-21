@@ -6,7 +6,6 @@ void KeyInput::Init() {
     m_delayActive = false;
 }
 
-
 void KeyInput::Init(float i)
 {
     m_delay = i;
@@ -15,13 +14,13 @@ void KeyInput::Init(float i)
 
 // 모든 키 입력 받음 (마우스 제외)
 void KeyInput::Update(float delta)
-{   
-    
+{
+    if (m_isActive == false) return;
+
     if (m_delay != 0) {
         m_elapsedTime += delta;
     }
-
-    if (m_delayActive ==false || (m_delayActive == true && m_elapsedTime>m_delay)) {
+    if (m_delayActive == false || (m_delayActive == true && m_elapsedTime > m_delay)) {
         bool temp = false;
         for (int key = 0; key <= 255; ++key) {
             if (Input::IsKeyDown(key)) {
@@ -41,7 +40,6 @@ void KeyInput::Update(float delta)
             m_Event->OnTrigger();
         }
     }
-    
 }
 
 void KeyInput::OnTrigger()

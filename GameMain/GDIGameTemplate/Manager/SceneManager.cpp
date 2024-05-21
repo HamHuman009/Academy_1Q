@@ -19,6 +19,7 @@ void SceneManager::Init() {
 	m_sceneArr[(UINT)SceneType::Dialog2] = new Dialog2();
 	m_sceneArr[(UINT)SceneType::Dialog3] = new Dialog3();
 	m_sceneArr[(UINT)SceneType::Dialog4] = new Dialog4();
+	m_sceneArr[(UINT)SceneType::Dialog5] = new Dialog5();
 	SetCurScene((UINT)SceneType::START);
 }
 
