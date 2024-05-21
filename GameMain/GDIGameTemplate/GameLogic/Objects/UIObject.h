@@ -1,11 +1,12 @@
-#pragma once
+ï»¿#pragma once
 #include "Object.h"
 //#include "../Event.h"
 #define BACK_GROUND_ANIM_FRAME 60
 #define INTRO_ANIM_FRAME 20
+
 class UIObject : public Object
 {
-	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	// Objectì„(ë¥¼) í†µí•´ ìƒì†ë¨
 	void Init() override;
 	//void Update(float delta) override;
 	void Render(float alpha) override;
@@ -20,7 +21,7 @@ public:
 
 class UIImage : public UIObject
 {
-	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	// Objectì„(ë¥¼) í†µí•´ ìƒì†ë¨
 public:
 	void Init(Gdiplus::Bitmap* myBitMap, Vector2 myVector);
 	UIImage() {};
@@ -37,7 +38,7 @@ private:
 
 class UIButton : public UIObject
 {
-	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	// Objectì„(ë¥¼) í†µí•´ ìƒì†ë¨
 public:
 	void Init(Vector2 myPos, Event* myEvent, const std::wstring& _strkey, const std::wstring& _extention);
 
@@ -73,7 +74,7 @@ private:
 //sceneTimer->Update(High_Resolution_Time::GetDeltaTime() / 1000.0f);
 class UITimer : public UIObject
 {
-	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	// Objectì„(ë¥¼) í†µí•´ ìƒì†ë¨
 public:
 	void Init(CResourceManager* CRM, Vector2 myPos, Event* myEvent, float _setTime);
 
@@ -115,13 +116,13 @@ private:
 	Gdiplus::Bitmap* m_bitmap[BACK_GROUND_ANIM_FRAME] = { nullptr, };
 	int backGroundFrame;
 	int backGroundFrameFlag;
+	const static int backGroundFrameInterval = 10;
 
 	float time = 0.f;
 	float maxTime = 0.2f;
 public:
-	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	// Objectì„(ë¥¼) í†µí•´ ìƒì†ë¨
 	void Init(const WCHAR* fileName, CResourceManager* CRM);
-
 	void Update(float delta) override;
 	void Render(float alpha) override;
 	void FixedUpdate();
@@ -131,6 +132,8 @@ public:
 	//void OnTrigger() override;
 	~UIBackGround() override {};
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
+
+
 };
 
 class UIDialog : public UIObject {
@@ -169,7 +172,7 @@ public:
 
 class UIFace : public UIObject
 {
-	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	// Objectì„(ë¥¼) í†µí•´ ìƒì†ë¨
 public:
 
 	UIFace(Vector2 myPos, Gdiplus::Bitmap* normalFace, Gdiplus::Bitmap* sadFace, Gdiplus::Bitmap* smileFace, Gdiplus::Bitmap* happyFace) {
@@ -195,7 +198,7 @@ public:
 		delete m_Bitmap;
 	}*/
 
-	void SetFace(int faceNumber, float duration); // 0 ³ë¸Ö, 1 ½½ÇÄ, 2 ¿ôÀ½, 3 Çàº¹
+	void SetFace(int faceNumber, float duration); // 0 ë…¸ë©€, 1 ìŠ¬í””, 2 ì›ƒìŒ, 3 í–‰ë³µ
 private:
 	Gdiplus::Bitmap* m_Bitmap;
 	Gdiplus::Bitmap* m_faceImage[4];
@@ -214,19 +217,19 @@ public:
 	{
 		/*delete string;*/
 	};
-	void Init(Vector2 myPos, Vector2 endPos, std::wstring _string);
+	void Init(CResourceManager* CRM,Vector2 myPos, Vector2 endPos, Gdiplus::Bitmap* _bitmap,std::wstring _string);
 	void Update(float delta) override;
 	void Render(float alpha) override;
 
 	void OnTrigger() override;
 private:
+	Gdiplus::Bitmap* m_bitmapBack;
+	Gdiplus::Bitmap* m_bitmapTarget;
 	UINT cx = 0;
 	UINT cy = 0;
 	UINT x = 0;
 	UINT y = 0;
 	std::wstring string;
-	
-
 };
 
 class UIInputField : public UIObject {
@@ -241,13 +244,13 @@ public:
 	
 private:
 	int strCount;
-	WCHAR inputStr[9]; // 8±ÛÀÚ±îÁö 9¹øÂ°´Â \0
+	WCHAR inputStr[9]; // 8ê¸€ìê¹Œì§€ 9ë²ˆì§¸ëŠ” \0
 	float timer;
 };
 
 class UISpeech : public UIObject
 {
-	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	// Objectì„(ë¥¼) í†µí•´ ìƒì†ë¨
 public:
 	void Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent = nullptr);
 
@@ -307,6 +310,7 @@ private:
 
 };
 
+
 class UIIntroBack : public UIObject
 {
 private:
@@ -316,7 +320,7 @@ private:
 	int backGroundFrameFlag;
 
 public:
-	// ObjectÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	// Objectï¿½ï¿½(ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Óµï¿½
 	void Init(const WCHAR* fileName, CResourceManager* CRM);
 
 	void Update(float delta) override;

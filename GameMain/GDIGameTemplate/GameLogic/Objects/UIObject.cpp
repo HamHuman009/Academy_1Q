@@ -320,26 +320,32 @@ void UIFace::Update(float delta) {
 	}
 }
 
-void In_ScoreBoard::Init(Vector2 myPos, Vector2 endPos, std::wstring _string)
+void In_ScoreBoard::Init(CResourceManager* CRM,Vector2 myPos, Vector2 endPos,Gdiplus::Bitmap* _bitmap, std::wstring _string)
 {
 	x = myPos.x;
 	y = myPos.y;
 	cx = endPos.x;
 	cy = endPos.y;
+	m_bitmapBack = CRM->LoadBitmapResouce(L"boaodBack", L"scoreboard_back.bmp");
+	m_bitmapTarget = _bitmap;
 	string = _string;
 	/*memset(t_str, '\0', 255);*/
 }
 
 void In_ScoreBoard::Update(float delta)
 {
-	string = L"점수창 :";
+	//Score : 0000
+	string = L"Score :";
 	string.append(std::to_wstring(SceneManager::GetInstance()->GetCurScene()->g_Score));
 	//Render(1.0f);
 }
 
 void In_ScoreBoard::Render(float alpha)
 {
-	Render::DrawFontS(x, y, cx, cy, string.c_str(), RGB(255, 255, 255), 12, L"KOTRAHOPE.ttf", 1);
+	Render::DrawImage(x, y, m_bitmapBack, 0, 0, cx, cy, 1.0f);
+	Render::DrawFontS(x+20, y + 10, cx-40, cy-60, string.c_str(), RGB(255, 255, 255), 12, L"KOTRAHOPE.ttf", 1);
+	//Render::DrawImage(x, y, m_bitmapTarget, 0, 0, cx, cy, 1.0f);
+	Render::DrawRotateImage(x+40, y-5, m_bitmapTarget, 270,1.0f,0.5f,0.5f);
 }
 
 void In_ScoreBoard::OnTrigger()
@@ -382,20 +388,16 @@ void UIInputField::Update(float delta)
 			timer = 2.f;
 		}
 
-		// 엔터
 		if (Input::IsKeyDown('\r')) {
 			inputStr[strCount] = L'\0';
-			//std::wcout << inputStr << std::endl;
-			/*if (strCount < 8 && inputStr[strCount] == L'_') {
-				inputStr[strCount] = L'\0';
-			}*/
+			std::wcout << inputStr << std::endl;
+
 			int strSize = WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, NULL, 0, NULL, NULL);
 			char* myName = new char[strSize];
 			WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, myName, strSize, 0, 0);
 
 			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore });
 			//오류 가능성 있음 주의
-			wmemset(inputStr, L'\0', 9);
 		}
 	}
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
@@ -443,8 +445,8 @@ void UISpeech::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent) {
 
 void UISpeech::Render(float alpha) {
 	if (m_isActive == false) return;
-	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
-	Render::DrawFontS(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, cx, cx, t_str, RGB(0, 255, 0), 12, L"KOTRAHOPE.ttf", 1);
+	Render::DrawImage(m_pos.x, m_pos.y , m_Bitmap, 0, 0, cx, cy, 1.0f);
+	Render::DrawFontS(m_pos.x+25 , m_pos.y+25, cx-70, cy-40, t_str, COLORREF(0x091f29), 12, L"KOTRAHOPE.ttf", 1);
 
 }
 
@@ -569,64 +571,64 @@ void UISpeech::Update(float delta) {
 	// 들어오면 우선순위에 따라 최상위만 출력하고 출력하는 동안 들어오는 포획 조건은 다 무시
 	// 그리고 분노상태일 때 가재 트리거 비활성화
 	// 목표물고기 트리거 줄이고 속도 높이기
-}
 
-void UIIntroBack::Init(const WCHAR* fileName, CResourceManager* CRM) {
-	LoadAnimImage(fileName, CRM);
-	m_pos = { 960.f, 540.f };
-	m_renderBounds = { {0,0},{m_bitmap[0]->GetWidth() / 2.f,m_bitmap[0]->GetHeight() / 2.f} };
-	backGroundFrame = 0;
-	backGroundFrameFlag = 0;
-}
-
-void UIIntroBack::LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM)
-{
-	int fileNameLength = wcslen(fileName);
-
-	m_fileName[0] = fileName;
-	m_bitmap[0] = CRM->LoadBitmapResouce(fileName, fileName);
-	std::wstring noNumFileName = m_fileName[0].substr(0, fileNameLength - 6);
-
-	for (int i = 1; i < INTRO_ANIM_FRAME; i++) {
-		std::wstring wZero = std::to_wstring(0);
-
-		std::wstring wNum = std::to_wstring(i);
-		if (i < 10) {
-			m_fileName[i] = noNumFileName.append(wZero).append(wNum);
-		}
-		else {
-			m_fileName[i] = noNumFileName.append(wNum);
-		}
-
-		m_bitmap[i] = CRM->LoadBitmapResouce(m_fileName[i].c_str(), m_fileName[i].append(L".png").c_str());
-		noNumFileName = noNumFileName.substr(0, fileNameLength - 6);
+	void UIIntroBack::Init(const WCHAR * fileName, CResourceManager * CRM) {
+		LoadAnimImage(fileName, CRM);
+		m_pos = { 960.f, 540.f };
+		m_renderBounds = { {0,0},{m_bitmap[0]->GetWidth() / 2.f,m_bitmap[0]->GetHeight() / 2.f} };
+		backGroundFrame = 0;
+		backGroundFrameFlag = 0;
 	}
 
+	void UIIntroBack::LoadAnimImage(const WCHAR * fileName, CResourceManager * CRM)
+	{
+		int fileNameLength = wcslen(fileName);
 
-}
+		m_fileName[0] = fileName;
+		m_bitmap[0] = CRM->LoadBitmapResouce(fileName, fileName);
+		std::wstring noNumFileName = m_fileName[0].substr(0, fileNameLength - 6);
 
-void UIIntroBack::OnTrigger() {
-	if (m_Event != nullptr) m_Event->OnTrigger();
-}
+		for (int i = 1; i < INTRO_ANIM_FRAME; i++) {
+			std::wstring wZero = std::to_wstring(0);
 
-void UIIntroBack::Update(float delta) {
-	bool temp = false;
-	if (Input::IsKeyDown(' ')) temp = true;
-	if (temp) {
-		backGroundFrame = (backGroundFrame + 1) % INTRO_ANIM_FRAME + 1;
-		if (backGroundFrame == INTRO_ANIM_FRAME) m_Event->OnTrigger();
+			std::wstring wNum = std::to_wstring(i);
+			if (i < 10) {
+				m_fileName[i] = noNumFileName.append(wZero).append(wNum);
+			}
+			else {
+				m_fileName[i] = noNumFileName.append(wNum);
+			}
+
+			m_bitmap[i] = CRM->LoadBitmapResouce(m_fileName[i].c_str(), m_fileName[i].append(L".png").c_str());
+			noNumFileName = noNumFileName.substr(0, fileNameLength - 6);
+		}
+
+
 	}
 
-	
-}
+	void UIIntroBack::OnTrigger() {
+		if (m_Event != nullptr) m_Event->OnTrigger();
+	}
 
-void UIIntroBack::Render(float alpha) {
+	void UIIntroBack::Update(float delta) {
+		bool temp = false;
+		if (Input::IsKeyDown(' ')) temp = true;
+		if (temp) {
+			backGroundFrame = (backGroundFrame + 1) % INTRO_ANIM_FRAME + 1;
+			if (backGroundFrame == INTRO_ANIM_FRAME) m_Event->OnTrigger();
+		}
 
-	/*Render::DrawImage(m_pos.x - m_renderBounds.extents.x,
-		m_pos.y - m_renderBounds.extents.y, m_bitmap[backGroundFrame],
-		0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);*/
 
-		//Render::DrawImage(50, 200, m_bitmap[backGroundFrame], 0, 0, 1250, 800);
-	Render::DrawBitmap(0, 0, m_bitmap[backGroundFrame], 0, 0, 1280, 720);
+	}
 
+	void UIIntroBack::Render(float alpha) {
+
+		/*Render::DrawImage(m_pos.x - m_renderBounds.extents.x,
+			m_pos.y - m_renderBounds.extents.y, m_bitmap[backGroundFrame],
+			0, 0, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2);*/
+
+			//Render::DrawImage(50, 200, m_bitmap[backGroundFrame], 0, 0, 1250, 800);
+		Render::DrawBitmap(0, 0, m_bitmap[backGroundFrame], 0, 0, 1280, 720);
+
+	}
 }

@@ -198,7 +198,7 @@ public:
 		feedbackNumber = number;
 	}
 	void OnTrigger() override {
-		if(feedbackObject != nullptr)
+		if (feedbackObject != nullptr)
 			feedbackObject->AddFeedback(feedbackNumber);
 	}
 };
