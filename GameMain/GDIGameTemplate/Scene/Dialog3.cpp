@@ -42,7 +42,7 @@ void Dialog3::Init()
 	KeyInput* myKey = new KeyInput();
 
 	myKey->m_Event = e_NextScn;
-
+	myKey->Init(2.0f);
 	AddEvent(e_NextScn);
 
 	AddObject(myBack);

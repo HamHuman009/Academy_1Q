@@ -40,7 +40,7 @@ void Dialog2::Init()
 	UIFace* myFace = new UIFace(Vector2{ 1200,300 }, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
 
 	KeyInput* myKey = new KeyInput();
-
+	myKey->Init(2.0f);
 	myKey->m_Event = e_NextScn;
 
 	AddEvent(e_NextScn);

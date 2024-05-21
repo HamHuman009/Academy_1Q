@@ -27,6 +27,7 @@ void IntroScene::Init()
 	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::STAGE_01);
 
 	KeyInput* myKey = new KeyInput();
+	myKey->Init(2.0f);
 	myKey->m_Event = e_NextScn;
 
 	//다이얼로그 배경 //1216*176
