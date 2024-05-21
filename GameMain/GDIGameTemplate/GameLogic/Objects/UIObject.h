@@ -2,7 +2,7 @@
 #include "Object.h"
 //#include "../Event.h"
 #define BACK_GROUND_ANIM_FRAME 60
-
+#define INTRO_ANIM_FRAME 20
 class UIObject : public Object
 {
 	// Object을(를) 통해 상속됨
@@ -115,13 +115,13 @@ private:
 	Gdiplus::Bitmap* m_bitmap[BACK_GROUND_ANIM_FRAME] = { nullptr, };
 	int backGroundFrame;
 	int backGroundFrameFlag;
-	const static int backGroundFrameInterval = 10;
 
 	float time = 0.f;
 	float maxTime = 0.2f;
 public:
 	// Object을(를) 통해 상속됨
 	void Init(const WCHAR* fileName, CResourceManager* CRM);
+
 	void Update(float delta) override;
 	void Render(float alpha) override;
 	void FixedUpdate();
@@ -131,8 +131,6 @@ public:
 	//void OnTrigger() override;
 	~UIBackGround() override {};
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
-
-
 };
 
 class UIDialog : public UIObject {
@@ -307,4 +305,26 @@ private:
 	std::vector<int> feedbackSort;
 	void GetFeedBack(int feedbackNumber, WCHAR* out);
 
+};
+
+class UIIntroBack : public UIObject
+{
+private:
+	std::wstring m_fileName[INTRO_ANIM_FRAME];
+	Gdiplus::Bitmap* m_bitmap[INTRO_ANIM_FRAME] = { nullptr, };
+	int backGroundFrame;
+	int backGroundFrameFlag;
+
+public:
+	// Object을(를) 통해 상속됨
+	void Init(const WCHAR* fileName, CResourceManager* CRM);
+
+	void Update(float delta) override;
+	void Render(float alpha) override;
+	//void SetMotion(int index)override;
+	//void UpdateAnimation(float delta)override;
+	//void ChangeStatus(ObjectStatus status)override;
+	void OnTrigger() override;
+	~UIIntroBack() override {};
+	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
 };

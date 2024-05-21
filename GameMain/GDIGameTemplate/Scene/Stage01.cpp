@@ -98,7 +98,7 @@ void Stage01::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog2);
 	AddEvent(e_nextScn);
 	// 600*20 //353*14
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 353 ,14  }, e_nextScn, 20.f);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 353 ,14  }, e_nextScn, 1.f);
 	myTimer->remainningTimeEvent = e_feedBack7;
 
 	UIImage* myBackGround = new UIImage();

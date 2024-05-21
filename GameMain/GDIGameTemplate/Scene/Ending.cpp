@@ -12,8 +12,8 @@ void Ending::Init()
 	AddEvent(e_NextScn1);
 
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	g_Score = 50;
-	g_BossCnt = 5;
+	/*g_Score = 29;
+	g_BossCnt = 5;*/
 	if (g_Score <= 1 && g_BossCnt <= 0)
 	{
 		root = static_cast<int>(EndRoot::Poor);
@@ -26,7 +26,7 @@ void Ending::Init()
 	{
 		root = static_cast<int>(EndRoot::Maniac);
 	}
-	else if (g_Score <= 28 && g_BossCnt <= 4)
+	else if (g_Score <= 28 && g_BossCnt <= 2)
 	{
 		root = static_cast<int>(EndRoot::Great);
 	}
@@ -34,7 +34,7 @@ void Ending::Init()
 	{
 		root = static_cast<int>(EndRoot::Professional);
 	}
-	else if (g_Score >= 50 && g_BossCnt >= 5)
+	else if (g_Score >= 29 && g_BossCnt >= 5)
 	{
 		root = static_cast<int>(EndRoot::Best);
 	}
@@ -48,24 +48,24 @@ void Ending::Init()
 		break;
 	case 2:
 		//wcscpy_s(_str, 255, L"노말"); // num이 2일 때 문자열 할당
-		myBitmap = CRM->LoadBitmapResouce(L"image2", L"startback2.png");
+		myBitmap = CRM->LoadBitmapResouce(L"Ending_Normal", L"ending_scene_normal.png");
 		break;
 	case 3:
 		//wcscpy_s(_str, 255, L"매니악"); // num이 3일 때 문자열 할당
-		myBitmap = CRM->LoadBitmapResouce(L"image3", L"startback3.png");
+		myBitmap = CRM->LoadBitmapResouce(L"Ending_Manic", L"ending_scene_maniac.png");
 		break;
 	case 4:
 		//wcscpy_s(_str, 255, L"우수"); // num이 4일 때 문자열 할당
-		myBitmap = CRM->LoadBitmapResouce(L"image4", L"startback4.png");
+		myBitmap = CRM->LoadBitmapResouce(L"Ending_Great", L"ending_scene_excellent.png");
 		break;
 	case 5:
 		//wcscpy_s(_str, 255, L"프로"); // num이 5일 때 문자열 할당
-		myBitmap = CRM->LoadBitmapResouce(L"image5", L"startback5.png");
+		myBitmap = CRM->LoadBitmapResouce(L"Ending_Professional", L"ending_scene_pro_best1.png");
 		break;
 	case 6:
 		//wcscpy_s(_str, 255, L"최고");
-		backBitmap = CRM->LoadBitmapResouce(L"image6", L"startback6.png");
-		myBitmap = CRM->LoadBitmapResouce(L"image7", L"startback7.png");
+		backBitmap = CRM->LoadBitmapResouce(L"Ending_Professional", L"ending_scene_pro_best1.png");
+		myBitmap = CRM->LoadBitmapResouce(L"Ending_Best_2", L"ending_scene_best2.png");
 		break;
 	}
 
@@ -83,7 +83,7 @@ void Ending::Init()
 	mykey->m_Event = e_NextScn;
 	AddObject(mykey);
 
-	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, backBitmap , 1.f, true);
+	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, backBitmap , 4.f, true);
 	AddObject(backEffect);
 }
 
