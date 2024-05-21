@@ -14,16 +14,23 @@ void Stage01::Init()
 
 	UISpeech* speech = new UISpeech({ 766, 103}, nullptr);
 
+	//FeedbackTutorialEvent
+	FeedbackEvent* e_tutorialFeedback1 = new FeedbackEvent(speech, TUTORIALONE_Explanation_Control);
+	FeedbackEvent* e_tutorialFeedback2 = new FeedbackEvent(speech, TUTORIALTWO_Explanation_Scoop);
+	FeedbackEvent* e_tutorialFeedback3 = new FeedbackEvent(speech, TUTORIALTHREE_Explanation_Boss);
+	FeedbackEvent* e_tutorialFeedback4 = new FeedbackEvent(speech, TUTORIALFOUR_Explanation_REMAINNINGTIME);
+	FeedbackEvent* e_tutorialFeedback5 = new FeedbackEvent(speech, TUTORIALFIVE_Explanation_CRAW);
+	e_tutorialFeedback1->OnTrigger();
 	//FeedbackEvent
-	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, 1);
-	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, 2);
-	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, 3);
-	FeedbackEvent* e_feedBack4 = new FeedbackEvent(speech, 4);
-	FeedbackEvent* e_feedBack5 = new FeedbackEvent(speech, 5);
-	FeedbackEvent* e_feedBack6 = new FeedbackEvent(speech, 6);
-	FeedbackEvent* e_feedBack7 = new FeedbackEvent(speech, 7);
-	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, 8);
-	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, 9);
+	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, IfCrawCaptureScoreZero);
+	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, IfCrawCaptureScoreOne);
+	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, CaptureBossFish);
+	FeedbackEvent* e_feedBack4 = new FeedbackEvent(speech, CaptureFish);
+	FeedbackEvent* e_feedBack5 = new FeedbackEvent(speech, OneCaptureTwoKill);
+	FeedbackEvent* e_feedBack6 = new FeedbackEvent(speech, SevenScore);
+	FeedbackEvent* e_feedBack7 = new FeedbackEvent(speech, RemainningTime);
+	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, CrawAppear);
+	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, TenSecNothingAnd14sec);
 
 	AddEvent(e_feedBack1);
 	AddEvent(e_feedBack2);
@@ -100,6 +107,12 @@ void Stage01::Init()
 	// 600*20 //353*14
 	UITimer* myTimer = new UITimer(CRM, Vector2{ 353 ,14  }, e_nextScn, 20.f);
 	myTimer->remainningTimeEvent = e_feedBack7;
+	EndgameEvent* e_endGame = new EndgameEvent(m_Player);
+	myTimer->gameOverTimerEvent = e_endGame;
+	myTimer->tutorialEvent2 = e_tutorialFeedback2;
+	myTimer->tutorialEvent3 = e_tutorialFeedback3;
+	myTimer->tutorialEvent4 = e_tutorialFeedback4;
+	myTimer->tutorialEvent5 = e_tutorialFeedback5;
 
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");

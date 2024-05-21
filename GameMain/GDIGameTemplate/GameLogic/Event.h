@@ -191,9 +191,9 @@ public:
 class FeedbackEvent : public Event {
 public:
 	UISpeech* feedbackObject;
-	int feedbackNumber;
+	Speechenum feedbackNumber;
 
-	FeedbackEvent(UISpeech* speech, int number) {
+	FeedbackEvent(UISpeech* speech, Speechenum number) {
 		feedbackObject = speech;
 		feedbackNumber = number;
 	}
@@ -227,9 +227,21 @@ public:
 	UIImage* howToImg;
 
 	void OnTrigger() override
-	{	
+	{
 		if (howToImg->m_isActive == true) howToImg->m_isActive = false;
 		else howToImg->m_isActive = true;
-		
+
+	}
+};
+
+class EndgameEvent : public Event {
+public:
+	Player* player;
+
+	EndgameEvent(Player* _player) {
+		player = _player;
+	}
+	void OnTrigger() override {
+		player->gameOver = true;
 	}
 };

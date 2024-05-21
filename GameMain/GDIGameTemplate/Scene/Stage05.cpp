@@ -24,15 +24,15 @@ void Stage05::Init()
 	colliderManager = new ColliderManager();
 	
 	UISpeech* speech = new UISpeech({ 900.f, 300.f }, nullptr);
-	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, 1);
-	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, 2);
-	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, 3);
-	FeedbackEvent* e_feedBack4 = new FeedbackEvent(speech, 4);
-	FeedbackEvent* e_feedBack5 = new FeedbackEvent(speech, 5);
-	FeedbackEvent* e_feedBack6 = new FeedbackEvent(speech, 6);
-	FeedbackEvent* e_feedBack7 = new FeedbackEvent(speech, 7);
-	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, 8);
-	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, 9);
+	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, IfCrawCaptureScoreZero);
+	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, IfCrawCaptureScoreOne);
+	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, CaptureBossFish);
+	FeedbackEvent* e_feedBack4 = new FeedbackEvent(speech, CaptureFish);
+	FeedbackEvent* e_feedBack5 = new FeedbackEvent(speech, OneCaptureTwoKill);
+	FeedbackEvent* e_feedBack6 = new FeedbackEvent(speech, SevenScore);
+	FeedbackEvent* e_feedBack7 = new FeedbackEvent(speech, RemainningTime);
+	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, CrawAppear);
+	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, TenSecNothingAnd14sec);
 	AddEvent(e_feedBack1);
 	AddEvent(e_feedBack2);
 	AddEvent(e_feedBack3);
@@ -109,6 +109,8 @@ void Stage05::Init()
 
 	UITimer* myTimer = new UITimer(CRM, Vector2{ 310,100 }, e_nextScn, 2.0f);
 	myTimer->remainningTimeEvent = e_feedBack7;
+	EndgameEvent* e_endGame = new EndgameEvent(m_Player);
+	myTimer->gameOverTimerEvent = e_endGame;
 	
 	m_Player->m_pos = { 600.f, 350.f };
 	m_Player->SetMoveDirection({ 1.f, 0.f }, { 0.f, -1.f }, { 0.f, 1.f }, { -1.f, 0.f });

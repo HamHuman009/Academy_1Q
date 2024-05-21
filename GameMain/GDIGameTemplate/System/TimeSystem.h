@@ -25,4 +25,8 @@ namespace High_Resolution_Time
 	const float GetFrameRate();
 
 	const float GetDeltaTime();
+
+	const float GetUnScaleDeltaTime();
+
+	const float GetTimeScale();
 }

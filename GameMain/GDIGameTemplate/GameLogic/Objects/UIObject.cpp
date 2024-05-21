@@ -107,10 +107,32 @@ void UITimer::Update(float delta) {
 	if (deltaTime > 0) {
 
 		deltaCx = (deltaTime / setTime) * cx;
+
+		if (deltaTime < 18.f && istutorial2 == false) {
+			if (tutorialEvent2 != nullptr) tutorialEvent2->OnTrigger();
+			istutorial2 = true;
+		}if (deltaTime < 14.f && istutorial3 == false) {
+			if (tutorialEvent3 != nullptr) tutorialEvent3->OnTrigger();
+			istutorial3 = true;
+		}if (deltaTime < 10.f && istutorial4 == false) {
+			if (tutorialEvent4 != nullptr) tutorialEvent4->OnTrigger();
+			istutorial4 = true;
+		}if (deltaTime < 1.5f && istutorial5 == false) {
+			if (tutorialEvent5 != nullptr) tutorialEvent5->OnTrigger();
+			istutorial5 = true;
+		}
+
 		if (deltaTime < 7.f && isOn == false) {
 			isOn = true;
 			if (remainningTimeEvent != nullptr)
 				remainningTimeEvent->OnTrigger();
+		}
+
+		if (deltaTime < .5f && isGameOverOn == false) {
+			isGameOverOn = true;
+			if (gameOverTimerEvent != nullptr) {
+				gameOverTimerEvent->OnTrigger();
+			}
 		}
 	}
 	else {
@@ -260,7 +282,7 @@ void UICrossDissolve::Update(float delta)
 {
 	if (m_isActive == false) return;
 
-	alphaValue -= delta;
+	alphaValue -= High_Resolution_Time::GetUnScaleDeltaTime() / 1000.f;
 	if (alphaValue < 0.f) {
 		alphaValue = 0;
 		m_isActive = false;
@@ -454,55 +476,77 @@ void UISpeech::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
-void UISpeech::GetFeedBack(int feedbackNumber, WCHAR* out)
+void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 {
 	switch (feedbackNumber) {
-	case 1:
+	case TUTORIALONE_Explanation_Control:
+		wcscpy_s(out, 29, L"아빠! 뜰채는 WASD키를 사용해 이동할 수 있어!");
+		isTutorial = true;
+		High_Resolution_Time::SetTimeScale(0.f);
+		break;
+	case TUTORIALTWO_Explanation_Scoop:
+		wcscpy_s(out, 49, L"Space키를 누르면 3초동안 뜰채가 물속으로 들어가는데 그때 물고기를 잡을 수 있어!");
+		isTutorial = true;
+		High_Resolution_Time::SetTimeScale(0.f);
+		break;
+	case TUTORIALTHREE_Explanation_Boss:
+		wcscpy_s(out, 56, L"아빠! 목표 물고기는 다른 물고기보다 더 예쁘게 생긴 물고기인데... 어 잡으면 내가 더 행복해져!");
+		isTutorial = true;
+		High_Resolution_Time::SetTimeScale(0.f);
+		break;
+	case TUTORIALFOUR_Explanation_REMAINNINGTIME:
+		wcscpy_s(out, 60, L"아빠! 모든 스테이지에는 제한시간이 있어! 그러니까 제한시간 안에 최대한 이쁜 물고기를 많이 잡아야 해! ");
+		isTutorial = true;
+		High_Resolution_Time::SetTimeScale(0.f);
+		break;
+	case TUTORIALFIVE_Explanation_CRAW:
+		wcscpy_s(out, 51, L"아빠! 가재는 아빠를 콕! 찝어서 아빠가 만들어줘서 물고기를 더 잘 잡을 수 있게 해줘! ");
+		isTutorial = true;
+		High_Resolution_Time::SetTimeScale(0.f);
+		break;
+	case IfCrawCaptureScoreZero:
 		wcscpy_s(out, 13, L"물렸어? 아빠 괜찮아?"); // 점수가 0인 상태에서 가재를 삭제한 경우
 		face->SetFace(1, 3.f);
 		break;
-	case 2:
+	case IfCrawCaptureScoreOne:
 		wcscpy_s(out, 19, L"가재가 물고기를 다치게 했어..."); // 점수가 1 이상인 상태에서 가재를 삭제한 경우
 		face->SetFace(1, 3.f);
 		break;
-	case 3:
+	case CaptureBossFish:
 		wcscpy_s(out, 25, L"진짜 예쁜 애 잡았다! 아빠, 정말 대단해!"); // 목표 물고기를 삭제한 경우
 		face->SetFace(3, 4.f);
 		break;
-	case 4:
+	case CaptureFish:
 		wcscpy_s(out, 3, L"와~"); // 이전 FB_06 출력완료 후 4초가 지났고, 물고기를 삭제한 경우
 		face->SetFace(2, 2.f);
 		break;
-	case 5:
+	case OneCaptureTwoKill:
 		wcscpy_s(out, 5, L"우와~!"); // 물고기 포획 후 1초 내에 두 마리 더 포획
 		face->SetFace(3, 2.f);
 		break;
-	case 6:
+	case SevenScore:
 		wcscpy_s(out, 24, L"엄청 많다~! 아빠 물고기 엄청 잘 잡아!"); // 한 스테이지에서 점수 7점 이상 달성
 		face->SetFace(3, 4.f);
 		break;
-	case 7:
+	case RemainningTime:
 		wcscpy_s(out, 20, L"뜰채가 이상해... 찢어질 것 같아"); // 스테이지 제한 시간이 7초 남은 경우
 		face->SetFace(1, 3.f);
 		break;
-	case 8:
+	case CrawAppear:
 		wcscpy_s(out, 28, L"조심해 아빠! 가재 잡으면 아빠도 물고기도 아야해"); // 가재 생성 후, 가재의 콜라이더가 최초로 화면 안에 진입한 경우
 		face->SetFace(1, 4.f);
 		break;
-	case 9:
+	case TenSecNothingAnd14sec:
 		wcscpy_s(out, 22, L"아빠는 할 수 있어! 만능 아빠 힘내!"); // 점수 변동 없이 10초 경과/이전 FB_09 재생 후 14초 경과
 		face->SetFace(2, 3.f);
 		break;
-	case 10:
+	case Encouragement:
 		wcscpy_s(out, 8, L"♪~ ♪♪~ "); // FB_01이 10초 이상 지속되었고, 제한 시간이 10초 이상 남은 경우
 		face->SetFace(2, 2.f);
 		break;
-	case 11:
+	case StageStart:
 		wcscpy_s(out, 16, L"힘내! 저 애 꼭 데려가자!"); // 스테이지 시작 후
 		face->SetFace(0, 2.f);
-		break;
-	case 12:
-		wcscpy_s(out, 1, L""); // X
 		break;
 	default:
 		std::cout << "Error: 범위를 넘은 값이 들어왔습니다." << std::endl;
@@ -510,19 +554,38 @@ void UISpeech::GetFeedBack(int feedbackNumber, WCHAR* out)
 	}
 }
 
+bool SortEnumFeedback(Speechenum a, Speechenum b) {
+	return a < b;
+}
+
 void UISpeech::Update(float delta) {
+
+	if (Input::IsKeyDown('M')) {
+		AddFeedback(TUTORIALONE_Explanation_Control);
+	}
+	if (isTutorial) {
+		if (Input::IsKeyDown(' ')) {
+			isTutorial = false;
+			High_Resolution_Time::SetTimeScale(1.f);
+			memset(t_str, '\0', 255);
+			memset(string, '\0', 255);
+			strCount = 0;
+		}
+	}
+
 	//if (m_isActive == false) return;
 	nothingTimer -= delta;
 	if (nothingTimer < 0.f) {
-		AddFeedback(10);
+		AddFeedback(Speechenum::Encouragement); // 격려
 	}
 
 	if (ignoreTimer > 0.f) {
 		ignoreTimer -= delta;
 		if (ignoreTimer <= 0.f) {
-			std::sort(feedbackSort.begin(), feedbackSort.end());
-			int feedbackNum = feedbackSort.front();
+			std::sort(feedbackSort.begin(), feedbackSort.end(), SortEnumFeedback);
+			Speechenum feedbackNum = feedbackSort.front();
 			feedbackSort.clear();
+			memset(t_str, '\0', 255);
 			WCHAR in[255];
 			GetFeedBack(feedbackNum, in);
 			wcscpy_s(string, 255, in);
@@ -537,7 +600,7 @@ void UISpeech::Update(float delta) {
 	{
 		elepsedTime += delta;
 	}
-	timer -= delta;
+	timer -= isTutorial ? High_Resolution_Time::GetUnScaleDeltaTime() / 1000.f : delta;
 	if (timer <= 0.f) {
 		timer += maxTime;
 		if (string[strCount] != '\0') {

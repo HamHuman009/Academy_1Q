@@ -96,6 +96,17 @@ public:
 
 	Event* remainningTimeEvent;
 	bool isOn = false;
+	Event* gameOverTimerEvent;
+	bool isGameOverOn = false;
+
+	Event* tutorialEvent2;
+	Event* tutorialEvent3;
+	Event* tutorialEvent4;
+	Event* tutorialEvent5;
+	bool istutorial2 = false;
+	bool istutorial3 = false;
+	bool istutorial4 = false;
+	bool istutorial5 = false;
 private:
 	Gdiplus::Bitmap* m_BitmapClock;
 	Gdiplus::Bitmap* m_BitmapBack;
@@ -248,6 +259,26 @@ private:
 	float timer;
 };
 
+enum Speechenum {
+	TUTORIALONE_Explanation_Control,
+	TUTORIALTWO_Explanation_Scoop,
+	TUTORIALTHREE_Explanation_Boss,
+	TUTORIALFOUR_Explanation_REMAINNINGTIME,
+	TUTORIALFIVE_Explanation_CRAW,
+
+	IfCrawCaptureScoreZero,
+	IfCrawCaptureScoreOne,
+	CaptureBossFish,
+	CaptureFish,
+	RemainningTime,
+	CrawAppear,
+	OneCaptureTwoKill,
+	SevenScore,
+	TenSecNothingAnd14sec,
+	Encouragement,
+	StageStart
+};
+
 class UISpeech : public UIObject
 {
 	// Object을(를) 통해 상속됨
@@ -257,14 +288,14 @@ public:
 	UISpeech(Vector2 myPos, Gdiplus::Bitmap* myBitMap) {
 		Init(myPos, myBitMap);
 		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
-		feedbackSort.push_back(11);
+		feedbackSort.push_back(Speechenum::StageStart);
 		elepsedTime = 1.6f;
 	}
 
 	UISpeech(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
 		Init(myPos, myBitMap, myEvent);
 		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
-		feedbackSort.push_back(11);
+		feedbackSort.push_back(Speechenum::StageStart);
 		elepsedTime = 1.6f;
 	}
 
@@ -278,8 +309,8 @@ public:
 	void OnTrigger() override;
 	~UISpeech() override {}
 
-	void AddFeedback(int feedbackNumber) {
-		if (elepsedTime > 1.5f) {
+	void AddFeedback(Speechenum feedbackNumber) {
+		if (elepsedTime > 1.5f || (UINT)feedbackNumber < 5) {
 			feedbackSort.push_back(feedbackNumber);
 			nothingTimer = 10.f;
 		}
@@ -288,6 +319,7 @@ public:
 	}
 
 	UIFace* face;
+	bool isTutorial = false;
 private:
 	Gdiplus::Bitmap * m_Bitmap;
 	UINT cx = 0;
@@ -305,8 +337,8 @@ private:
 	float nothingTimer = 10.f;
 
 	float ignoreTimer = 0.f;
-	std::vector<int> feedbackSort;
-	void GetFeedBack(int feedbackNumber, WCHAR* out);
+	std::vector<Speechenum> feedbackSort;
+	void GetFeedBack(Speechenum feedbackNumber, WCHAR* out);
 
 };
 

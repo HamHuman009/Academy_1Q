@@ -68,4 +68,8 @@ namespace High_Resolution_Time
 	}
 
 	const float GetDeltaTime() { return deltaTime * timeScale; }
+
+	const float GetUnScaleDeltaTime() { return deltaTime; }
+
+	const float GetTimeScale() { return timeScale; }
 }

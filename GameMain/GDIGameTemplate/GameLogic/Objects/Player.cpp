@@ -7,7 +7,7 @@
 Player::Player()
 {
 	moveSpeed = 70.0f;
-	radius = 50.0f;
+	radius = 25.0f;
 	pauseEvent = nullptr;
 	moveDirection = { 0.f, 0.f };
 	m_AnimationMotionIndex = 0;
@@ -71,12 +71,12 @@ void Player::Render(float alpha)
 	Render::DrawTextW(10, 30, std::to_string(cnt).c_str(), RGB(255, 0, 0));
 	Render::DrawTextW(10, 70, std::to_string(BossCnt).c_str(), RGB(0, 0, 255));
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x + 10, m_pos.y - m_renderBounds.extents.y + 51, 
-		(scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? Target_playerBitmap_Paper : Default_playerBitmap_Paper,
-		0, 0, Default_playerBitmap_Paper->GetWidth(), Default_playerBitmap_Paper->GetHeight(), alpha, scale);
+		gameOver ? TimeOver_playerBitmap : (scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? Target_playerBitmap_Paper : Default_playerBitmap_Paper,
+		0, 0, Default_playerBitmap_Paper->GetWidth(), Default_playerBitmap_Paper->GetHeight(), (scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? 0.2f : 0.5f, scale);
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x + 10, m_pos.y - m_renderBounds.extents.y + 51, 
 		(scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? Target_playerBitmap : Default_playerBitmap,
 		0, 0, Default_playerBitmap->GetWidth(), Default_playerBitmap->GetHeight(), alpha, scale);
-	//Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
+	Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
 }
 
 void Player::OnTrigger()
@@ -128,7 +128,7 @@ void Player::ScoopUp(float delta)
 		}
 	}
 
-	if (Input::IsKeyDown(' ') && isScoopUp == false) {
+	if (Input::IsKeyDown(' ') && isScoopUp == false && High_Resolution_Time::GetDeltaTime() != 0.f) {
 		isScoopUp = true;
 		moveSpeed = 45.f;
 		isOnScoopUpSound = true;
