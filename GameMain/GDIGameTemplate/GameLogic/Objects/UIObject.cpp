@@ -510,7 +510,7 @@ void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALTHREE_Explanation_Boss:
-		wcscpy_s(out, 56, L"아빠! 목표 물고기는 다른 물고기보다 더 예쁘게 생긴 물고기인데... 어 잡으면 내가 더 행복해져!");
+		wcscpy_s(out, 57, L"아빠! 목표 물고기는 다른 물고기보다 더 예쁘게 생긴 물고기인데...어.. 잡으면 내가 더 행복해져!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
