@@ -19,7 +19,9 @@ void StartScene::Init()
 	Ranking* myRang = Game::GameManager::GetInstance()->m_Ranking;
 
 	//스코어 초기화
-	Game::GameManager::GetInstance().g_sc
+	Game::GameManager::GetInstance()->BossCount = 0;
+	Game::GameManager::GetInstance()->FinalScore = 0;
+	Game::GameManager::GetInstance()->SetRoot(0);
 
 	//랭크 불러오기
 	myRang->sortRank();
