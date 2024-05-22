@@ -254,6 +254,7 @@ public:
 	}
 	void OnTrigger() override {
 		scoreBoard->SwapBitmap();
+		m_SoundManager->PlayMusic(mySound::eSoundList::Boss_Fish_Catch, mySound::eSoundChannel::Effect);
 	}
 };
 

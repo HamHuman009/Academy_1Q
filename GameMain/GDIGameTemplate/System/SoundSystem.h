@@ -17,6 +17,7 @@ namespace mySound
     {
         BGM,
         Effect,
+        Voice,
         Size
     };
 
@@ -24,31 +25,27 @@ namespace mySound
     {
         Void,
         Main_Theme,
+        Intro_Theme,
+        Talk_Theme,
         Ingame_Theme,
         Ending_Theme,
         Button_Use,
+        Talk_Output,
+        Comic_Talk,
         Scooper_Down,
         Scooper_Up,
-        /*s_title,
-        s_intro,
-        s_talk,
-        s_ingame,
-        s_ending,
-        s_button,
-        s_dialogue,
-        s_talkbubble,
-        s_scooperDown,
-        s_scooperUp,
-        s_fishMove,
-        s_fishCaught,
-        s_bossCaught,
-        s_sceneTrans,
-        s_angerStart,
-        s_angerTerm,
-        s_bubble,
-        s_finalscoreShownup,
-        s_dadVoice,
-        s_kidVoice,*/
+        Fish_Move,
+        Fish_Catch,
+        Boss_Fish_Catch,
+        Move_Scene_Theme,
+        Anger_Sound_Start,
+        Anger_Sound_End,
+        Fish_breathing1,
+        Fish_breathing2,
+        Fish_breathing3,
+        Final_Score_Sound,
+        Stage_End_Counting,
+        Scooper_Broken,
         Size
     };
     class SoundManager;  // 클래스 전방 선언

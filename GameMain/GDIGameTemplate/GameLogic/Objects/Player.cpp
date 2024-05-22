@@ -23,6 +23,8 @@ Player::Player()
 //	}*/
 //}
 
+float randomSoundTimer;
+
 void Player::Init()
 {
 	//playerBitmap = Gdiplus::Bitmap::FromFile(L"Player.png");
@@ -36,14 +38,31 @@ void Player::Init()
 	m_collider->parent = this;
 
 	m_renderBounds = { { -10, -71 }, {Default_playerBitmap->GetWidth() / 2.f, Default_playerBitmap->GetHeight() / 2.f}};
-
+	randomSoundTimer = (rand() % 300 + 400)/100.f;
 	isAwake = false;
 }
 
 void Player::Update(float delta)
 {
 	movePlayer(delta);
-
+	randomSoundTimer = randomSoundTimer - delta;
+	if (randomSoundTimer < 0.f) {
+		int i = (rand() % 3);
+		switch (i)
+		{
+		case 0:
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Fish_breathing1, mySound::eSoundChannel::Effect);
+			break;
+		case 1:
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Fish_breathing2, mySound::eSoundChannel::Effect);
+			break;
+		case 2:
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Fish_breathing3, mySound::eSoundChannel::Effect);
+			break;
+		}
+		
+		randomSoundTimer = (rand() % 300 + 400) / 100.f;
+	}
 	ScoopUp(delta);
 }
 
@@ -219,7 +238,7 @@ void Player::ScoopUp(float delta)
 						}
 					}
 					cnt++;
-
+					mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Fish_Catch, mySound::eSoundChannel::Effect);
 					fishs[i]->parent->OnTrigger();
 				}
 
