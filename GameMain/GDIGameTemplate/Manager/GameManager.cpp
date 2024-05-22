@@ -17,6 +17,7 @@ namespace Game
 	void GameManager::Initialize()
 	{	
 		mVolume = 0.5f;
+		effectVolume = 0.5f;
 		m_Ranking = new Ranking();
 		Input::InitInput();
 		High_Resolution_Time::InitTime();

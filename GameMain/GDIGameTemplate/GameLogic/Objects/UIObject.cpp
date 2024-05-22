@@ -716,3 +716,31 @@ void UIIntroBack::Render(float alpha) {
 	Render::DrawBitmap(0, 0, m_bitmap[backGroundFrame], 0, 0, 1280, 720);
 
 }
+
+void UIVolume::Init(Vector2 startPos, Vector2 endPos, WCHAR* _string, int _fontSize, COLORREF myColor)
+{
+	mPos = startPos;
+	fPos = endPos;
+	mFontsize = _fontSize;
+	m_Color = myColor;
+}
+
+void UIVolume::Update(float delta)
+{
+	float backv = Game::GameManager::GetInstance()->mVolume * 10.f;
+	float effectv = Game::GameManager::GetInstance()->effectVolume * 10.f;
+	if (backv > 10.f && effectv > 10.f)
+	{
+		backv = 10.f;
+		effectv = 10.f;
+	}
+	swprintf(b_str, 20, L"%.f", backv);
+	swprintf(e_str, 20, L"%.f", effectv);
+}
+
+void UIVolume::Render(float alpha)
+{
+	if (m_isActive == false) return;
+	Render::DrawFontS(mPos.x, mPos.y, fPos.x, fPos.y, b_str, m_Color, mFontsize, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(mPos.x, mPos.y + 200.f, fPos.x, fPos.y + 200.f, e_str, m_Color, mFontsize, L"KOTRAHOPE.ttf", 1);
+}

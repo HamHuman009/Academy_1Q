@@ -32,6 +32,16 @@ void Stage01::Init()
 	FeedbackEvent* e_feedBack8 = new FeedbackEvent(speech, CrawAppear);
 	FeedbackEvent* e_feedBack9 = new FeedbackEvent(speech, TenSecNothingAnd14sec);
 
+	BGSound_Plus* bg_Plus = new BGSound_Plus();
+	BGSound_Minus* bg_Minus = new BGSound_Minus();
+	EffectSound_Plus* eft_Plus = new EffectSound_Plus();
+	EffectSound_Minus* eft_Minus = new EffectSound_Minus();
+
+	AddEvent(bg_Plus);
+	AddEvent(bg_Minus);
+	AddEvent(eft_Plus);
+	AddEvent(eft_Minus);
+
 	AddEvent(e_tutorialFeedback1);
 	AddEvent(e_tutorialFeedback2);
 	AddEvent(e_tutorialFeedback3);
@@ -80,33 +90,57 @@ void Stage01::Init()
 	Gdiplus::Bitmap* speechBack = CRM->LoadBitmapResouce(L"speechBack", L"UI_Image_Stage_TalkBar_01.png");
 	speech->Init({ 620, 73 }, speechBack);
 
-	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
+	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"PauseBackGround.png");
 
-	UIButton* resume = new UIButton(Vector2{ 710,200 }, e_resume, L"UI_Button_wailManu_GoToStage", L".png");
-	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry, L"UI_Button_wailManu_GoToTitle",L".png");
-	UIButton* exit = new UIButton(Vector2{ 710,600 }, e_exit, L"UI_Button_Title_GameOver", L".png");
+	UIButton* resume = new UIButton(Vector2{ 640.f,300 }, e_resume, L"UI_Button_wailManu_GoToStage", L".png");
+	UIButton* retry = new UIButton(Vector2{ 640.f,400 }, e_retry, L"UI_Button_wailManu_GoToTitle", L".png");
+	UIButton* exit = new UIButton(Vector2{ 640.f,500 }, e_exit, L"UI_Button_Title_GameOver", L".png");
+
+	UIButton* b_Plus = new UIButton({ 250, 300 }, bg_Plus, L"PButton", L".png");
+	UIButton* b_Minus = new UIButton({ 400, 300 }, bg_Minus, L"Mbutton", L".png");
+	UIButton* e_Plus = new UIButton({ 250, 500 }, eft_Plus, L"PButton", L".png");
+	UIButton* e_Minus = new UIButton({ 400, 500 }, eft_Minus, L"Mbutton", L".png");
+	
+	UIVolume* myVoL = new UIVolume();
+
+	myVoL->Init({ 315,280 }, { 350,280 });
 
 	e_resume->Resume = resume;
 	e_resume->Retry = retry;
 	e_resume->PauseBack = pauseBack;
 	e_resume->Exit = exit;
+	e_resume->B_Inc = b_Plus;
+	e_resume->B_Dec = b_Minus;
+	e_resume->E_Inc = e_Plus;
+	e_resume->E_Dec = e_Minus;
+	e_resume->E_Volume = myVoL;
+
 	e_pause->Resume = resume;
 	e_pause->Retry = retry;
 	e_pause->PauseBack = pauseBack;
 	e_pause->Exit = exit;
-	
+	e_pause->B_Inc = b_Plus;
+	e_pause->B_Dec = b_Minus;
+	e_pause->E_Inc = e_Plus;
+	e_pause->E_Dec = e_Minus;
+	e_pause->E_Volume = myVoL;
 	e_resume->OnTrigger();
 	m_Player->pauseEvent = e_pause;
 	
 	pauseBack->Init(pauseBackImage,Vector2{500.f,400.f});
-
+	pauseBack->alpha = 0.5f;
 	
-
 	pauseBack->m_isActive = false;
 	resume->m_isActive = false;
 	retry->m_isActive = false;
 	exit->m_isActive = false;
 
+	b_Plus->m_isActive = false;
+	b_Minus->m_isActive = false;
+	e_Plus->m_isActive = false;
+	e_Minus->m_isActive = false;
+
+	myVoL->m_isActive = false;
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog2);
 	AddEvent(e_nextScn);
@@ -198,10 +232,7 @@ void Stage01::Init()
 	//******************UI********************
 	AddObject(myTimer);
 
-	AddObject(pauseBack);
-	AddObject(resume);
-	AddObject(retry);
-	AddObject(exit);
+	
 
 	//****************µþ ÀÌ¹ÌÁö****************
 	AddObject(myBoard);
@@ -210,6 +241,18 @@ void Stage01::Init()
 
 	//****************¾ÀÀüÈ¯È¿°ú***************
 	AddObject(backEffect);
+
+	//-----------------------------------
+	AddObject(pauseBack);
+	AddObject(resume);
+	AddObject(retry);
+	AddObject(exit);
+
+	AddObject(b_Plus);
+	AddObject(b_Minus);
+	AddObject(e_Plus);
+	AddObject(e_Minus);
+	AddObject(myVoL);
 }
 
 Stage01::~Stage01() {

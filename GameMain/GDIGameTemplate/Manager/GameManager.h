@@ -58,6 +58,7 @@ namespace Game
 		Vector2 m_cameraPosition;
 
 		float mVolume;
+		float effectVolume;
 
 		const char* mySoundRate;
 

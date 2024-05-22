@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdio>
 #include "../Manager/SceneManager.h"
 #include "../Manager/GameManager.h"
 #include "../Scene/CScene.h"
@@ -86,6 +87,11 @@ public:
 	UIButton* Resume;
 	UIButton* Retry;
 	UIButton* Exit;
+	UIButton* B_Inc;
+	UIButton* B_Dec;
+	UIButton* E_Inc;
+	UIButton* E_Dec;
+	UIVolume* E_Volume;
 
 	void OnTrigger() override
 	{	
@@ -96,6 +102,11 @@ public:
 		Resume->m_isActive = true;
 		Retry->m_isActive = true;
 		Exit->m_isActive = true;
+		B_Inc->m_isActive = true;
+		B_Dec->m_isActive = true;
+		E_Inc->m_isActive = true;
+		E_Dec->m_isActive = true;
+		E_Volume->m_isActive = true;
 		High_Resolution_Time::SetTimeScale(0.f);
 	}
 
@@ -114,6 +125,11 @@ public:
 	UIButton* Resume;
 	UIButton* Retry;
 	UIButton* Exit;
+	UIButton* B_Inc;
+	UIButton* B_Dec;
+	UIButton* E_Inc;
+	UIButton* E_Dec;
+	UIVolume* E_Volume;
 
 	void OnTrigger() override
 	{	
@@ -124,6 +140,11 @@ public:
 		Resume->m_isActive = false;
 		Retry->m_isActive = false;
 		Exit->m_isActive = false;
+		B_Inc->m_isActive = false;
+		B_Dec->m_isActive = false;
+		E_Inc->m_isActive = false;
+		E_Dec->m_isActive = false;
+		E_Volume->m_isActive = false;
 		High_Resolution_Time::SetTimeScale(1.f);
 	}
 };
@@ -264,9 +285,10 @@ class BGSound_Plus : public Event
 public:	
 	void OnTrigger() override
 	{
-		
-		m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume += 0.1f, (int)mySound::eSoundChannel::BGM);
-		std::cout << Game::GameManager::GetInstance()->mVolume << " " << (int)mySound::eSoundChannel::BGM << '\n';
+		if (Game::GameManager::GetInstance()->mVolume <= 1.f)
+		{
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume += 0.1f, (int)mySound::eSoundChannel::BGM);
+		}
 	}
 };
 
@@ -275,7 +297,10 @@ class BGSound_Minus : public Event
 public:
 	void OnTrigger() override
 	{
-		m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume -= 0.1f, (int)mySound::eSoundChannel::BGM);
+		if (Game::GameManager::GetInstance()->effectVolume >= 0.f)
+		{
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume -= 0.1f, (int)mySound::eSoundChannel::BGM);
+		}
 	}
 };
 
@@ -283,17 +308,23 @@ class EffectSound_Plus : public Event
 {
 public:
 	void OnTrigger() override
-	{
-		
-		m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume += 0.1f, (int)mySound::eSoundChannel::Effect);
+	{	
+		if (Game::GameManager::GetInstance()->effectVolume <= 1.f)
+		{
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume += 0.1f, (int)mySound::eSoundChannel::Effect);
+		}
 	}
 };
 
 class EffectSound_Minus : public Event
 {
 public:
+
 	void OnTrigger() override
 	{
-		m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume -= 0.1f, (int)mySound::eSoundChannel::Effect);
+		if (Game::GameManager::GetInstance()->effectVolume >= 0.f)
+		{
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume -= 0.1f, (int)mySound::eSoundChannel::Effect);
+		}
 	}
 };

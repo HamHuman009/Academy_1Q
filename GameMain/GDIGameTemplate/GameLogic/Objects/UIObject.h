@@ -371,3 +371,18 @@ public:
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
 	UICrossDissolve* Cross;
 };
+
+class UIVolume : public UIObject
+{
+private:
+	Vector2 mPos;
+	Vector2 fPos;
+	int mFontsize;
+	COLORREF m_Color;
+public:
+	WCHAR b_str[20];
+	WCHAR e_str[20];
+	void Init(Vector2 mPos, Vector2 fPos, WCHAR* _string = nullptr, int _fontSize = 24, COLORREF _Color = RGB(0, 0, 0));
+	void Update(float delta) override;
+	void Render(float alpha) override;
+};
