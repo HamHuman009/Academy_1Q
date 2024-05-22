@@ -10,6 +10,23 @@
 bool isIMEActive = false;
 //AnimationResource* g_PlayerAnim;
 
+
+void ChangeResolution(int width, int height, int bitsPerPixel, int frequency) {
+	DEVMODE devMode;
+	memset(&devMode, 0, sizeof(devMode));
+	devMode.dmSize = sizeof(devMode);
+	devMode.dmPelsWidth = width;
+	devMode.dmPelsHeight = height;
+	devMode.dmBitsPerPel = bitsPerPixel;
+	devMode.dmDisplayFrequency = frequency;
+	devMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT | DM_BITSPERPEL | DM_DISPLAYFREQUENCY;
+
+	if (ChangeDisplaySettings(&devMode, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL) {
+		MessageBox(NULL, L"해상도 변경 실패", L"오류", MB_OK);
+	}
+}
+
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 bool g_Mirror = false;
 
@@ -36,14 +53,14 @@ constexpr int SCREEN_START_TOP = 0;
 BOOL bFullScreen = FALSE;
 const TCHAR* appName = TEXT("Test Game Framework");
 
-void ChangeToFullScreen(int width, int height);
-
 void WinApp::Initialize(HINSTANCE hInstance)
 {
 	m_hInstance = hInstance;
 	//const TCHAR* appName = TEXT("Test Game Framework");
 
 	//Step 1: Registering the Window Class
+
+	//ChangeResolution(1280, 720, 32, 60);
 
 	WNDCLASS wndClass;
 
@@ -76,8 +93,8 @@ void WinApp::Initialize(HINSTANCE hInstance)
 
 	m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
 		SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);
-	//m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
-	//	SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);
+	/*m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
+		SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);*/
 
 	
 	if (!m_hWnd)
@@ -196,7 +213,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		FreeConsole();
 	}
 	
-	//UnregisterClass(appName, hInstance);
+	//ChangeDisplaySettings(NULL, 0); // 프로그램 종료 시 원래 해상도로 복원
 
 	return static_cast<int>(msg.wParam);
 }
@@ -207,11 +224,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_DESTROY:
-
-
-		
 		PostQuitMessage(0);
-		
 		break;
 	default:
 		return DefWindowProc(hwnd, msg, wParam, lParam);

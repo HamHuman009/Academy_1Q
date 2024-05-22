@@ -348,7 +348,7 @@ void In_ScoreBoard::Init(CResourceManager* CRM,Vector2 myPos, Vector2 endPos,Gdi
 	y = myPos.y;
 	cx = endPos.x;
 	cy = endPos.y;
-	m_bitmapBack = CRM->LoadBitmapResouce(L"boaodBack", L"scoreboard_back.bmp");
+	m_bitmapBack = CRM->LoadBitmapResouce(L"boaodBack", L"UI_Text_Stage_NowScore_01.png");
 	m_bitmapTarget = _bitmap;
 	m_bitmapTargetGray = _backBitmap;
 	string = _string;
@@ -358,7 +358,7 @@ void In_ScoreBoard::Init(CResourceManager* CRM,Vector2 myPos, Vector2 endPos,Gdi
 void In_ScoreBoard::Update(float delta)
 {
 	//Score : 0000
-	string = L"Score :";
+	string = L"";
 	string.append(std::to_wstring(SceneManager::GetInstance()->GetCurScene()->g_Score));
 	//Render(1.0f);
 }
@@ -366,10 +366,10 @@ void In_ScoreBoard::Update(float delta)
 void In_ScoreBoard::Render(float alpha)
 {
 	Render::DrawImage(x, y, m_bitmapBack, 0, 0, cx, cy, 1.0f);
-	Render::DrawFontS(x+20, y + 10, cx-40, cy-70, string.c_str(), RGB(255, 255, 255), 12, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(x+120, y + 15, cx, cy-70, string.c_str(), RGB(255, 255, 255), 20, L"KOTRAHOPE.ttf", 1);
 	//Render::DrawImage(x, y, m_bitmapTarget, 0, 0, cx, cy, 1.0f);
 	if(m_bitmapTargetGray != nullptr)
-		Render::DrawRotateImage(x+60, y-60, m_bitmapTargetGray, 270,1.0f,0.5f,0.5f);
+		Render::DrawRotateImage(x+15, y-60, m_bitmapTargetGray, 270,1.0f,0.5f,0.5f);
 }
 
 void In_ScoreBoard::OnTrigger()
