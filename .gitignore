@@ -48,3 +48,8 @@ StyleCop.Cache
 *.tlog
 *.tlog
 *.exe
+GameMain/GDIGameTemplate/x64/Debug/GDIGameTemplate.exe.recipe
+*.recipe
+*.lastbuildstate
+*.tlog
+/GameMain/GDIGameTemplate/x64
