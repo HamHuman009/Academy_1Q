@@ -39,6 +39,8 @@ void Player::Init()
 
 	m_renderBounds = { { -10, -71 }, {Default_playerBitmap->GetWidth() / 2.f, Default_playerBitmap->GetHeight() / 2.f}};
 	randomSoundTimer = (rand() % 300 + 400)/100.f;
+	//timeOverMoment = 1.3f; 
+	//스쿱 찢어지는 순간으로 생각하고 넣어둠
 	isAwake = false;
 }
 
@@ -63,6 +65,9 @@ void Player::Update(float delta)
 		
 		randomSoundTimer = (rand() % 300 + 400) / 100.f;
 	}
+	//if (timeOverMoment) {
+
+	//} 스쿱 찢어질때 소리 넣을 곳 용우씨에게 문의
 	ScoopUp(delta);
 }
 
@@ -198,7 +203,7 @@ void Player::ScoopUp(float delta)
 					if (!isAwake) {
 						if (cnt == 0) {
 							if (feedbackEvent1_ifCrawCaptureScoreZero != nullptr)
-								feedbackEvent1_ifCrawCaptureScoreZero->OnTrigger();
+								feedbackEvent1_ifCrawCaptureScoreZero->OnTrigger(); //가재 잡은 순간 분노 넣어야 하는디 언제 넣는지 용우씨에게 문의
 						}
 						else if (cnt >= 1) {
 							if (feedbackEvent2_ifCrawCaptureScoreOne != nullptr)

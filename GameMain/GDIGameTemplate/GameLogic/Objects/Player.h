@@ -27,6 +27,7 @@ private:
 
 	bool isAwake;
 	float awakeTime;
+	float timeOverMoment; //스쿱 찢어지는 순간 용우씨에게 문의
 	
 public:
 	Event* pauseEvent;
