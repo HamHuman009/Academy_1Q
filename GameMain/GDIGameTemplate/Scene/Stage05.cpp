@@ -73,7 +73,7 @@ void Stage05::Init()
 
 	
 	Gdiplus::Bitmap* speechBack = CRM->LoadBitmapResouce(L"speechBack", L"UI_Image_Stage_TalkBar_01.png");
-	speech->Init({ 766, 103 }, speechBack);
+	speech->Init({ 620, 73 }, speechBack);
 
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
 

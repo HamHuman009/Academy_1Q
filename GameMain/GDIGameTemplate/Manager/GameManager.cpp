@@ -128,10 +128,11 @@ namespace Game
 
 		m_curScene->Render();
 
-		std::string FrameRate = std::to_string(High_Resolution_Time::GetFrameRate());
-		const char* myFrameRate = FrameRate.c_str();
-		Render::DrawTextW(10, 50, myFrameRate, RGB(255, 0, 0));
-		
+		if (Input::IsKey('Q')) {
+			std::string FrameRate = std::to_string(High_Resolution_Time::GetFrameRate());
+			const char* myFrameRate = FrameRate.c_str();
+			Render::DrawTextW(10, 50, myFrameRate, RGB(255, 0, 0));
+		}
 		//Render::DrawTextW(10, 70, mySoundRate, RGB(0, 255, 255));
 		
 

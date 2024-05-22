@@ -483,7 +483,7 @@ void UISpeech::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent) {
 void UISpeech::Render(float alpha) {
 	if (m_isActive == false) return;
 	Render::DrawImage(m_pos.x, m_pos.y , m_Bitmap, 0, 0, cx, cy, 1.0f);
-	Render::DrawFontS(m_pos.x+25 , m_pos.y+25, cx-70, cy-40, t_str, COLORREF(0x091f29), 12, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(m_pos.x+25 , m_pos.y+25, cx-100, cy-60, t_str, COLORREF(0x091f29), 12, L"KOTRAHOPE.ttf", 1);
 
 }
 
@@ -497,27 +497,27 @@ void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 	case TUTORIALONE_Explanation_Control:
 		wcscpy_s(out, 29, L"아빠! 뜰채는 WASD키를 사용해 이동할 수 있어!");
 		isTutorial = true;
-		High_Resolution_Time::SetTimeScale(0.f);
+		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALTWO_Explanation_Scoop:
 		wcscpy_s(out, 49, L"Space키를 누르면 3초동안 뜰채가 물속으로 들어가는데 그때 물고기를 잡을 수 있어!");
 		isTutorial = true;
-		High_Resolution_Time::SetTimeScale(0.f);
+		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALTHREE_Explanation_Boss:
 		wcscpy_s(out, 56, L"아빠! 목표 물고기는 다른 물고기보다 더 예쁘게 생긴 물고기인데... 어 잡으면 내가 더 행복해져!");
 		isTutorial = true;
-		High_Resolution_Time::SetTimeScale(0.f);
+		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALFOUR_Explanation_REMAINNINGTIME:
 		wcscpy_s(out, 60, L"아빠! 모든 스테이지에는 제한시간이 있어! 그러니까 제한시간 안에 최대한 이쁜 물고기를 많이 잡아야 해! ");
 		isTutorial = true;
-		High_Resolution_Time::SetTimeScale(0.f);
+		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALFIVE_Explanation_CRAW:
 		wcscpy_s(out, 51, L"아빠! 가재는 아빠를 콕! 찝어서 아빠가 만들어줘서 물고기를 더 잘 잡을 수 있게 해줘! ");
 		isTutorial = true;
-		High_Resolution_Time::SetTimeScale(0.f);
+		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case IfCrawCaptureScoreZero:
 		wcscpy_s(out, 13, L"물렸어? 아빠 괜찮아?"); // 점수가 0인 상태에서 가재를 삭제한 경우
@@ -577,7 +577,7 @@ void UISpeech::Update(float delta) {
 	if (isTutorial) {
 		if (string[strCount] == L'\0') {
 			isTutorial = false;
-			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
 			memset(t_str, '\0', 255);
 			memset(string, '\0', 255);
 			strCount = 0;
@@ -622,11 +622,11 @@ void UISpeech::Update(float delta) {
 			textEnd = true;
 		}
 	}
-	if (strCount < 255 && this->string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
-		// 아직 대화가 남아있다면 대화를 모두 출력.
-		wcscpy_s(t_str, 255, string);
-		textEnd = true;
-	}
+	//if (strCount < 255 && this->string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
+	//	// 아직 대화가 남아있다면 대화를 모두 출력.
+	//	wcscpy_s(t_str, 255, string);
+	//	textEnd = true;
+	//}
 
 	if (elepsedTime > 1.5f)
 	{

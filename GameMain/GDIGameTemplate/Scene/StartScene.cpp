@@ -37,13 +37,10 @@ void StartScene::Init()
 	UIBackGround* myUPBackGround = new UIBackGround();
 	myUPBackGround->Init(L"물결+그림자_00.png", CR);
 
-	//랭킹보드
-	UIImage* rankingBoard = new UIImage();
-	Gdiplus::Bitmap* rankingBack = CR->LoadBitmapResouce(L"ranking", L"UI_Button_Title_Ranking.png");
-	rankingBoard->Init(rankingBack, { 1450.f, 340.f });
-
-	MoveObject* moveAbleObject = new MoveObject(rankingBoard, {950, 340}, 1.f);
-	AddObject(moveAbleObject);
+	////랭킹보드
+	//UIImage* rankingBoard = new UIImage();
+	//Gdiplus::Bitmap* rankingBack = CR->LoadBitmapResouce(L"ranking", L"UI_Button_Title_Ranking.png");
+	//rankingBoard->Init(rankingBack, { 1450.f, 340.f });
 
 	//타이틀 //70 , 48 //544,144
 	Gdiplus::Bitmap* titleBitmap = CR->LoadBitmapResouce(L"logo", L"Logo_final.png");
@@ -89,7 +86,12 @@ void StartScene::Init()
 	scoreRect = { 400,200,800,800 };
 	UIImage* rankBoard = new UIImage();
 	Gdiplus::Bitmap* rankImage = CR->LoadBitmapResouce(L"RankBoard",L"UI_Title_Ranking.png");
-	rankBoard->Init(rankImage,{950.f,340.f});
+	rankBoard->Init(rankImage,{ 1450.f, 340.f });
+
+	//랭킹보드 움직이는 오브젝트
+	MoveObject* moveAbleObject = new MoveObject(rankBoard, { 950, 340 }, 1.f);
+	AddObject(moveAbleObject);
+
 	/*WCHAR _str[500];
 	memset(_str, L'\0', 500);
 
@@ -120,11 +122,11 @@ void StartScene::Init()
 		int sizeNeeded = MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], (int)tempStr.size(), NULL, 0);
 		MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], plen, top10[i], sizeNeeded);
 		rankDialog[i] = new UIDialog();
-		rankDialog[i]->Init({850.f,173.f+45*i},{200.f,100.f},top10[i],16);
+		rankDialog[i]->Init({850.f,173.f+45*i}, {200.f,100.f}, top10[i], 16, COLORREF(0x271a14));
 		
 		_itow_s(temp.score, top10score[i], 10);
 		scoreDialog[i] = new UIDialog();
-		scoreDialog[i]->Init({ 1050.f,173.f + 45 * i }, { 200.f,100.f }, top10score[i], 16);
+		scoreDialog[i]->Init({ 1065.f - (wcslen(top10score[i]) * 13 ),173.f + 45 * i}, {200.f,100.f}, top10score[i], 16, COLORREF(0x271a14));
 	}
 	
 	

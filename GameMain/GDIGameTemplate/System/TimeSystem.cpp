@@ -42,6 +42,7 @@ namespace High_Resolution_Time
 
 	float deltaTime = 0;
 	float timeScale = 1.f;
+	float timeScale2 = 1.f;
 
 	void InitTime()
 	{
@@ -60,6 +61,10 @@ namespace High_Resolution_Time
 		timeScale = _timeScale;
 	}
 
+	void SetTimeScale2(float _timeScale) {
+		timeScale2 = _timeScale;
+	}
+
 	const float GetFrameRate()
 	{
 		if (deltaTime == 0) return 0;
@@ -67,9 +72,10 @@ namespace High_Resolution_Time
 		return ceil(((1000.0f / deltaTime) * 1000) / 1000);
 	}
 
-	const float GetDeltaTime() { return deltaTime * timeScale; }
+	const float GetDeltaTime() { return deltaTime * timeScale * timeScale2; }
 
 	const float GetUnScaleDeltaTime() { return deltaTime; }
 
 	const float GetTimeScale() { return timeScale; }
+	const float GetTimeScale2() { return timeScale2; }
 }

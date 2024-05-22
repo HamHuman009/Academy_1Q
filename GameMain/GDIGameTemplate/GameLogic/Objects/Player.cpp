@@ -68,8 +68,11 @@ void Player::Render(float alpha)
 	//Render::DrawRect(m_pos.x, m_pos.y, m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(255, 0, 0));
 	//Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, playerBitmap, 0, 0, playerBitmap->GetWidth(), playerBitmap->GetHeight());
 	//if(r) Render::DrawCircle(m_pos.x, m_pos.y, radius, RGB(0, 255, 0));
-	Render::DrawTextW(10, 30, std::to_string(cnt).c_str(), RGB(255, 0, 0));
-	Render::DrawTextW(10, 70, std::to_string(BossCnt).c_str(), RGB(0, 0, 255));
+
+	if (Input::IsKey('Q')) {
+		Render::DrawTextW(10, 30, std::to_string(cnt).c_str(), RGB(255, 0, 0));
+		Render::DrawTextW(10, 70, std::to_string(BossCnt).c_str(), RGB(0, 0, 255));
+	}
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x + 10, m_pos.y - m_renderBounds.extents.y + 51, 
 		gameOver ? TimeOver_playerBitmap : (scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? Target_playerBitmap_Paper : Default_playerBitmap_Paper,
 		0, 0, Default_playerBitmap_Paper->GetWidth(), Default_playerBitmap_Paper->GetHeight(), (scoopUpTime > 1.3f && scoopUpTime < 4.5f) ? 0.2f : 0.5f, scale);

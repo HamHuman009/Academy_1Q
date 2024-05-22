@@ -21,6 +21,7 @@ namespace High_Resolution_Time
 	void UpdateTime();
 
 	void SetTimeScale(float _timeScale);
+	void SetTimeScale2(float _timeScale);
 
 	const float GetFrameRate();
 
@@ -29,4 +30,5 @@ namespace High_Resolution_Time
 	const float GetUnScaleDeltaTime();
 
 	const float GetTimeScale();
+	const float GetTimeScale2();
 }

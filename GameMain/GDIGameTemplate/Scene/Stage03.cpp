@@ -71,7 +71,7 @@ void Stage03::Init()
 
 
 	Gdiplus::Bitmap* speechBack = CRM->LoadBitmapResouce(L"speechBack", L"UI_Image_Stage_TalkBar_01.png");
-	speech->Init({ 766, 103 }, speechBack);
+	speech->Init({ 620, 73 }, speechBack);
 
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
 
@@ -167,12 +167,12 @@ void Stage03::Init()
 	srand(std::time(NULL));
 	Fish* myFish;
 	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
-	myFish->CrawAppearEvent = e_feedBack8;
 	myFish->m_pos = { float(rand() % 1280), -480.f };
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
 	myFish->m_pos = { -280.f, float(rand() % 720) };
+	myFish->CrawAppearEvent = e_feedBack8;
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	for (int i = 0; i < 4; i++) {
