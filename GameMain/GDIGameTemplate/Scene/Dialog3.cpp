@@ -76,6 +76,9 @@ void Dialog3::Init()
 
 void Dialog3::Start()
 {
+	mySound::SoundManager* meSound = mySound::SoundManager::GetInstance();
+	meSound->StopMusic(mySound::eSoundChannel::BGM);
+	meSound->PlayMusic(mySound::eSoundList::Talk_Theme/*s_ending*/, mySound::eSoundChannel::BGM);
 }
 
 

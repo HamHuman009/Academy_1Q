@@ -247,8 +247,15 @@ class HowToEvent : public Event {
 public:
 	UIImage* howToImg;
 
+	HowToEvent(mySound::eSoundList mySound) {
+		m_Sound = mySound;
+	}
+
 	void OnTrigger() override
-	{
+	{	
+		if (m_Sound != mySound::eSoundList::Void) {
+			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
+		}
 		if (howToImg->m_isActive == true) howToImg->m_isActive = false;
 		else howToImg->m_isActive = true;
 

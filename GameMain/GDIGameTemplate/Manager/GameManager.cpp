@@ -26,8 +26,11 @@ namespace Game
 		/*mySound::SoundManager::Init();
 		mySound::SoundManager::GetInstance()->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");*/
 		SMInstance = mySound::SoundManager::GetInstance();
-		SMInstance->LoadMusic(mySound::eSoundList::Main_Theme, true, "Sound_Title_MainTheme_01-1.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Main_Theme, true, "Sound_Title_MainTheme_01-0.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Intro_Theme, true, "Sound_Intro_Intro_Theme_01.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Ingame_Theme, true, "Sound_Stage_Ingame Theme_01-1_2.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Talk_Theme, true, "Sound_Talk_Talk_Theme_01.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Ending_Theme, true, "Sound_Ending_Ending_Theme_01_2-2.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Button_Use, false, "Sound_Button Use_01-1.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Down, false, "Sound_Stage_Scooper Down_01.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Up, false, "Sound_Stage_Scooper Up_01.wav");
@@ -36,6 +39,7 @@ namespace Game
 		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing1, false, "Sound_Fish breathing_01-1.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing2, false, "Sound_Fish breathing_01-2.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing3, false, "Sound_Fish breathing_01-3.wav");
+		
 		SMInstance->SetVolumeAll(mVolume);
 		
 		

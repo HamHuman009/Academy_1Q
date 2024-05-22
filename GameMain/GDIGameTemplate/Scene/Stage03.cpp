@@ -256,6 +256,9 @@ Stage03::~Stage03() {
 
 void Stage03::Start()
 {
+	mySound::SoundManager* meSound = mySound::SoundManager::GetInstance();
+	meSound->StopMusic(mySound::eSoundChannel::BGM);
+	meSound->PlayMusic(mySound::eSoundList::Ingame_Theme/*s_ingame*/, mySound::eSoundChannel::BGM);
 }
 
 void Stage03::FixedUpdate() {

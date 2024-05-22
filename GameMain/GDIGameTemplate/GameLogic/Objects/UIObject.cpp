@@ -262,12 +262,20 @@ void UIDialog::Update(float delta) {
 	if (timer <= 0.f) {
 		timer += maxTime;
 		if (string[strCount] != '\0') {
+			/*if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect))
+			{
+				mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Talk_Output, mySound::eSoundChannel::Effect);
+			}*/
 			t_str[strCount] = string[strCount];
 			strCount++;
 		}
 	}
 	if (strCount < 255 && string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
 		// 아직 대화가 남아있다면 대화를 모두 출력.
+		/*if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect))
+		{
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Talk_Output, mySound::eSoundChannel::Effect);
+		}*/
 		wcscpy_s(t_str, 255, string);
 	}
 }

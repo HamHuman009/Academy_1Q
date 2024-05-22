@@ -59,8 +59,9 @@ void StartScene::Init()
 	UIImage* howToPlay = new UIImage();
 	howToPlay->Init(howToPlayImage, { 640.f, 360.f });
 	howToPlay->m_isActive = false;
-	HowToEvent* myHow = new HowToEvent();
+	HowToEvent* myHow = new HowToEvent(mySound::eSoundList::Button_Use);
 	myHow->howToImg = howToPlay;
+	
 
 
 	/*UIButton* gameStartButton = new UIButton(Vector2{70 + (200 / 2),330 + (50 / 2)}, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // °´Ã¼ Å×½ºÆ®

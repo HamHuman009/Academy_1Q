@@ -143,6 +143,7 @@ public:
 	//void UpdateAnimation(float delta)override;
 	//void ChangeStatus(ObjectStatus status)override;
 	//void OnTrigger() override;
+
 	~UIBackGround() override {};
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
 

@@ -32,6 +32,10 @@ void IntroScene::Init()
 
 void IntroScene::Start()
 {
+	mySound::SoundManager* meSound = mySound::SoundManager::GetInstance();
+	meSound->StopMusic(mySound::eSoundChannel::BGM);
+	meSound->PlayMusic(mySound::eSoundList::Intro_Theme/*s_ending*/, mySound::eSoundChannel::BGM);
+
 }
 
 
