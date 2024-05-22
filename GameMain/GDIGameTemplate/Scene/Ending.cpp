@@ -12,10 +12,11 @@ void Ending::Init()
 	AddEvent(e_NextScn1);
 
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	/*g_Score = 29;
-	g_BossCnt = 5;*/
+	
 	Score = Game::GameManager::GetInstance()->FinalScore;
 	bossCount = Game::GameManager::GetInstance()->BossCount;
+	/*Score = 29;
+	bossCount = 5;*/
 	if (Score <= 1 && bossCount <= 0)
 	{
 		root = static_cast<int>(EndRoot::Poor);
@@ -82,6 +83,7 @@ void Ending::Init()
 	AddEvent(e_NextScn);
 
 	KeyInput* mykey = new KeyInput();
+	mykey->Init(4.0f); //이거 없으면 키 연타하다가 바로 엔딩 씬으로 감..
 	mykey->m_Event = e_NextScn;
 	AddObject(mykey);
 

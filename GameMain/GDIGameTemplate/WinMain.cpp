@@ -121,7 +121,7 @@ void WinApp::Initialize(HINSTANCE hInstance)
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {	
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	//_CrtSetBreakAlloc(1253);
 
@@ -203,11 +203,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//ReleaseResource();
 	HIMC hIMC = ImmGetContext(global::GetWinApp().GetWindow());
 	ImmDestroyContext(hIMC);
-
+	
 	Game::GameManager::GetInstance()->Finalize();
 	Game::GameManager::GetInstance()->ReleaseResource();
 	Game::GameManager::GetInstance()->DestroyInstance();
-	_CrtDumpMemoryLeaks();
+	//_CrtDumpMemoryLeaks();
 	if (bUseConsole)
 	{
 		FreeConsole();
@@ -224,6 +224,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_DESTROY:
+		
 		PostQuitMessage(0);
 		break;
 	default:

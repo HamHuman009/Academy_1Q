@@ -11,10 +11,10 @@ void ScoreScene::Init()
 	WCHAR _str[255];
 	WCHAR _father_str[255];
 	// _str = 점수;
-	std::wstring _wstr = L"점수 창 : ";
+	std::wstring _wstr = L"우리 아빠 점수는 : ";
 	_wstr.append(std::to_wstring(Game::GameManager::GetInstance()->FinalScore));
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.png");
+	myBitmap = CRM->LoadBitmapResouce(L"UI_Rank", L"UI_Window_scorecount_Rank_Window_01.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 640.f,360.f });
 	AddObject(myBack);
@@ -37,13 +37,23 @@ void ScoreScene::Init()
 	myFatherName->Init(Vector2{ 100.f,250.f }, Vector2{ 500.f, 50.f }, _father_str);
 	AddObject(myFatherName);
 
+	UIImage* myNoTitle = new UIImage(); // 객체 테스트 
+	Gdiplus::Bitmap* myNoTitleBitmap = CRM->LoadBitmapResouce(L"UI_NoTitle", L"notitle_resize.jpg");
+	myNoTitle->Init(myNoTitleBitmap, { 850.f,280.f });
+	AddObject(myNoTitle);
+
 	UIInputField* myInputField = new UIInputField(Vector2{ 350.f,350.f }, 500.f, 100.f);
 	myInputField->Init();
 	AddObject(myInputField);
 
-	RetryEvent* e_retry = new RetryEvent(/*mySound::eSoundList::s_button*/);
+	UIButton* inRank = new UIButton(Vector2{ 250,600 }, nullptr/*랭크 등록 이벤트 넣을 것*/, L"UI_Button_scorecount_InRank", L".png");
+	AddObject(inRank);
+		
+	UIButton* toRank = new UIButton(Vector2{650, 600}, nullptr/*랭크 확인 이벤트 넣을 것*/, L"UI_Button_scorecount_ToRank", L".png");
+	AddObject(toRank);
+	RetryEvent* e_retry = new RetryEvent(mySound::eSoundList::Button_Use);
 	//Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
-	UIButton* retry = new UIButton(Vector2{ 710,400 }, e_retry, L"UI_Button_MainMenu", L".png");
+	UIButton* retry = new UIButton(Vector2{ 1050,600 }, e_retry, L"UI_Button_MainMenu", L".png");
 	AddEvent(e_retry);
 	AddObject(retry);
 	

@@ -24,28 +24,28 @@ namespace mySound
     enum class eSoundList
     {
         Void,
-        Main_Theme,
-        Intro_Theme,
-        Talk_Theme,
-        Ingame_Theme,
-        Ending_Theme,
-        Button_Use,
-        Talk_Output,
-        Comic_Talk,
-        Scooper_Down,
-        Scooper_Up,
-        Fish_Move,
-        Fish_Catch,
-        Boss_Fish_Catch,
-        Move_Scene_Theme,
-        Anger_Sound_Start,
-        Anger_Sound_End,
-        Fish_breathing1,
-        Fish_breathing2,
-        Fish_breathing3,
-        Final_Score_Sound,
-        Stage_End_Counting,
-        Scooper_Broken,
+        Main_Theme, //사용
+        Intro_Theme, //사용
+        Talk_Theme, //사용
+        Ingame_Theme, //사용
+        Ending_Theme, //사용
+        Button_Use, //사용
+        Talk_Output, //사운드만 넣으면 됨.
+        Comic_Talk, //몰루
+        Scooper_Down, //사용
+        Scooper_Up, //사용
+        Fish_Move, //아직 안넣음
+        Fish_Catch, //사용
+        Boss_Fish_Catch, //사용
+        Move_Scene_Theme, //아직 미사용
+        Anger_Sound_Start, //넣어야 함
+        Anger_Sound_End, //넣어야 함
+        Fish_breathing1, //사용
+        Fish_breathing2, //사용
+        Fish_breathing3, //사용
+        Final_Score_Sound, //아직 안넣음
+        Stage_End_Counting, //아직 안넣음
+        Scooper_Broken, //아직 안넣음
         Size
     };
     class SoundManager;  // 클래스 전방 선언
