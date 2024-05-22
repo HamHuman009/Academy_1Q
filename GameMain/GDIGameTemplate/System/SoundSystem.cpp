@@ -43,12 +43,31 @@ namespace mySound
         mChannel[(int)(channel)]->stop();
     }
 
-    void SoundManager::SetVolume(float volume)
+    void SoundManager::SetVolumeAll(float volume)
     {
         mVolume = volume;
         for (unsigned int i = 0; i < (int)(eSoundChannel::Size); ++i)
             mChannel[i]->setVolume(mVolume);
+        //mChannel[(int)channel]->setVolume(mVolume);
     }
+
+    void SoundManager::SetVolume(float volume, int channel)
+    {
+        mVolume = volume;
+        if (mVolume <= 0)
+        {
+            mVolume = 0;
+        }
+        if (mVolume >= 1)
+        {
+            mVolume = 1;
+        }
+        /*for (unsigned int i = 0; i < (int)(eSoundChannel::Size); ++i)
+            mChannel[i]->setVolume(mVolume);*/
+        mChannel[channel]->setVolume(mVolume);
+    }
+
+    
 
     void SoundManager::RelaseSounds()
     {   
@@ -71,7 +90,7 @@ namespace mySound
         return isPlaying;
     }
 
-    SoundManager::SoundManager(): mSystem(), mChannel{}, mSoundList{}, mVolume(0.5f)
+    SoundManager::SoundManager(): mSystem(), mChannel{}, mSoundList{}, mVolume()
     {
     }
 

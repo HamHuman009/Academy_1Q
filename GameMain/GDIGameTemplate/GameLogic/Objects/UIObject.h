@@ -368,4 +368,5 @@ public:
 	void OnTrigger() override;
 	~UIIntroBack() override {};
 	void LoadAnimImage(const WCHAR* fileName, CResourceManager* CRM);
+	UICrossDissolve* Cross;
 };

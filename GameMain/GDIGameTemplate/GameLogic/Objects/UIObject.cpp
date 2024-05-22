@@ -690,6 +690,7 @@ void UIIntroBack::OnTrigger() {
 void UIIntroBack::Update(float delta) {
 	bool temp = false;
 	if (Input::IsKeyDown(' ')) temp = true;
+	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) temp = true;
 	if (temp) {
 		backGroundFrame = (backGroundFrame + 1) % INTRO_ANIM_FRAME + 1;
 		if (backGroundFrame == INTRO_ANIM_FRAME) m_Event->OnTrigger();

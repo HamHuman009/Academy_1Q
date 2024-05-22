@@ -57,6 +57,9 @@ namespace Game
 
 		Vector2 m_cameraPosition;
 
+		float mVolume;
+
+		const char* mySoundRate;
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;

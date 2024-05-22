@@ -130,9 +130,6 @@
     <ClInclude Include="System\TimeSystem.h">
       <Filter>System\h</Filter>
     </ClInclude>
-    <ClInclude Include="GameLogic\Vector2.h">
-      <Filter>GamaLogic\h</Filter>
-    </ClInclude>
     <ClInclude Include="GameLogic\Collider.h">
       <Filter>GamaLogic\h</Filter>
     </ClInclude>
@@ -213,6 +210,9 @@
     </ClInclude>
     <ClInclude Include="Scene\Dialog5.h">
       <Filter>Scene\h</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic\Vector2.h">
+      <Filter>GamaLogic\h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -79,9 +79,9 @@ public:
 class PauseEvent : public Event
 {
 public:
-	/*PauseEvent(mySound::eSoundList mSound) : Event(mSound) {
+	PauseEvent(mySound::eSoundList mSound) : Event(mSound) {
 
-	}*/ //생성자 상속 예시
+	} //생성자 상속 예시
 	UIImage* PauseBack;
 	UIButton* Resume;
 	UIButton* Retry;
@@ -254,5 +254,45 @@ public:
 	}
 	void OnTrigger() override {
 		scoreBoard->SwapBitmap();
+	}
+};
+
+
+class BGSound_Plus : public Event
+{
+public:	
+	void OnTrigger() override
+	{
+		
+		m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume += 0.1f, (int)mySound::eSoundChannel::BGM);
+		std::cout << Game::GameManager::GetInstance()->mVolume << " " << (int)mySound::eSoundChannel::BGM << '\n';
+	}
+};
+
+class BGSound_Minus : public Event
+{
+public:
+	void OnTrigger() override
+	{
+		m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume -= 0.1f, (int)mySound::eSoundChannel::BGM);
+	}
+};
+
+class EffectSound_Plus : public Event
+{
+public:
+	void OnTrigger() override
+	{
+		
+		m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume += 0.1f, (int)mySound::eSoundChannel::Effect);
+	}
+};
+
+class EffectSound_Minus : public Event
+{
+public:
+	void OnTrigger() override
+	{
+		m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume -= 0.1f, (int)mySound::eSoundChannel::Effect);
 	}
 };

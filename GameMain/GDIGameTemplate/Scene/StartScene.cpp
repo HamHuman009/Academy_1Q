@@ -9,7 +9,7 @@ void StartScene::Start()
 {
 	mySound::SoundManager* meSound = mySound::SoundManager::GetInstance();
 	meSound->StopMusic(mySound::eSoundChannel::BGM);
-	meSound->PlayMusic(mySound::eSoundList::BGM/*s_ending*/, mySound::eSoundChannel::BGM);
+	meSound->PlayMusic(mySound::eSoundList::Main_Theme/*s_ending*/, mySound::eSoundChannel::BGM);
 }
 
 void StartScene::Init()
@@ -52,8 +52,8 @@ void StartScene::Init()
 	//titleImg->Init(titleBitmap, { 70 + (328 / 2),48 + (223 / 2) });
 
 	//이벤트
-	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO, mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
-	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button);
+	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO, mySound::eSoundList::Button_Use); // 씬전환 이벤트 테스트 버튼
+	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button_Use);
 
 	//게임 방법
 	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"image1.png");
@@ -137,6 +137,24 @@ void StartScene::Init()
 	AddObject(titleImg);
 	//화면 알파 값 초기화
 	alpha = 1.0f;
+
+	/*BGSound_Plus* bg_Plus = new BGSound_Plus();
+	BGSound_Minus* bg_Minus = new BGSound_Minus();
+	EffectSound_Plus* eft_Plus = new EffectSound_Plus();
+	EffectSound_Minus* eft_Minus = new EffectSound_Minus();
+	AddEvent(bg_Plus);
+	AddEvent(bg_Minus);
+	AddEvent(eft_Plus);
+	AddEvent(eft_Minus);
+
+	UIButton* b_Plus = new UIButton({ 600, 500 }, bg_Plus, L"Plus", L".png");
+	UIButton* b_Minus = new UIButton({ 700, 500 }, bg_Minus, L"Minus", L".png");
+	UIButton* e_Plus = new UIButton({ 600, 600 }, eft_Plus, L"Plus", L".png");
+	UIButton* e_Minus = new UIButton({ 700, 600 }, eft_Minus, L"Minus", L".png");
+	AddObject(b_Plus);
+	AddObject(b_Minus);
+	AddObject(e_Plus);
+	AddObject(e_Minus);*/
 }
 
 StartScene::~StartScene() {

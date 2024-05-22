@@ -16,6 +16,7 @@ namespace Game
 	}
 	void GameManager::Initialize()
 	{	
+		mVolume = 0.5f;
 		m_Ranking = new Ranking();
 		Input::InitInput();
 		High_Resolution_Time::InitTime();
@@ -24,12 +25,13 @@ namespace Game
 		/*mySound::SoundManager::Init();
 		mySound::SoundManager::GetInstance()->LoadSounds(mySound::SoundList::Singing, false, "singing.wav");*/
 		SMInstance = mySound::SoundManager::GetInstance();
-		SMInstance->LoadMusic(mySound::eSoundList::BGM, true, "BGM.mp3");
-		SMInstance->LoadMusic(mySound::eSoundList::BGM2, true, "BGM2.mp3");
-		SMInstance->LoadMusic(mySound::eSoundList::BGM3, true, "BGM3.mp3");
-		SMInstance->LoadMusic(mySound::eSoundList::Button, false, "button.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Water, false, "water.wav");
-
+		SMInstance->LoadMusic(mySound::eSoundList::Main_Theme, true, "childhood-193859.mp3");
+		SMInstance->LoadMusic(mySound::eSoundList::Ingame_Theme, true, "Sound_Stage_Ingame Theme_01_1.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Ending_Theme, true, "BGM3.mp3");
+		SMInstance->LoadMusic(mySound::eSoundList::Button_Use, false, "Sound_Button Use_01.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Down, false, "Sound_Stage_Scooper Down_01.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Up, false, "Sound_Stage_Scooper Up_01.wav");
+		SMInstance->SetVolumeAll(mVolume);
 		/*SMInstance->LoadMusic(mySound::eSoundList::s_title,true,"Sound_Title_MainTheme_01.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::s_intro,true,"Sound_Intro_Intro Theme_01.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::s_talk,true,"Sound_Talk_Talk Theme_01.wav");
@@ -97,7 +99,9 @@ namespace Game
 		m_curScene->Update();
 		Input::ResetInput();
 
-		
+		/*std::string SoundRate = std::to_string(mVolume);
+		mySoundRate = SoundRate.c_str();*/
+		//std::cout << mVolume << '\n';
 	}
 	
 	void GameManager::FixeUpdate()
@@ -106,7 +110,7 @@ namespace Game
 
 		elapsedTime += High_Resolution_Time::GetDeltaTime();
 		
-		while (elapsedTime >= 20) //0.02��
+		while (elapsedTime >= 20) //0.02초
 		{
 			++m_FixedUpdateCount;
 			
@@ -127,7 +131,8 @@ namespace Game
 		std::string FrameRate = std::to_string(High_Resolution_Time::GetFrameRate());
 		const char* myFrameRate = FrameRate.c_str();
 		Render::DrawTextW(10, 50, myFrameRate, RGB(255, 0, 0));
-
+		
+		//Render::DrawTextW(10, 70, mySoundRate, RGB(0, 255, 255));
 		
 
 		Render::EndDraw();

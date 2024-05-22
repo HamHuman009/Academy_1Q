@@ -23,11 +23,12 @@ namespace mySound
     enum class eSoundList
     {
         Void,
-        BGM,
-        BGM2,
-        BGM3,
-        Button,
-        Water,
+        Main_Theme,
+        Ingame_Theme,
+        Ending_Theme,
+        Button_Use,
+        Scooper_Down,
+        Scooper_Up,
         /*s_title,
         s_intro,
         s_talk,
@@ -66,7 +67,9 @@ namespace mySound
 
         void StopMusic(eSoundChannel channel);
 
-        void SetVolume(float volume);
+        void SetVolumeAll(float volume);
+
+        void SetVolume(float volume, int channel);
 
         bool isChannelPlaying(eSoundChannel channel);
 

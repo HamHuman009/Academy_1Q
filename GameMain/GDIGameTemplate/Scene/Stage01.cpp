@@ -62,10 +62,10 @@ void Stage01::Init()
 	UIImage* pauseBack = new UIImage();
 	m_Player->Init();
 
-	PauseEvent* e_pause = new PauseEvent(/*mySound::eSoundList::s_button*/);
-	ResumeEvent* e_resume = new ResumeEvent(/*mySound::eSoundList::s_button*/);
-	RetryEvent* e_retry = new RetryEvent(/*mySound::eSoundList::Button*/);
-	ExitEvent* e_exit = new ExitEvent(/*mySound::eSoundList::s_button*/);
+	PauseEvent* e_pause = new PauseEvent(mySound::eSoundList::Button_Use);
+	ResumeEvent* e_resume = new ResumeEvent(mySound::eSoundList::Button_Use);
+	RetryEvent* e_retry = new RetryEvent(mySound::eSoundList::Button_Use);
+	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button_Use);
 
 	AddEvent(e_pause);
 	AddEvent(e_resume);
@@ -229,7 +229,7 @@ void Stage01::Start()
 {
 	mySound::SoundManager* meSound = mySound::SoundManager::GetInstance();
 	meSound->StopMusic(mySound::eSoundChannel::BGM);
-	meSound->PlayMusic(mySound::eSoundList::BGM2/*s_ingame*/, mySound::eSoundChannel::BGM);
+	meSound->PlayMusic(mySound::eSoundList::Ingame_Theme/*s_ingame*/, mySound::eSoundChannel::BGM);
 }
 
 void Stage01::FixedUpdate() {

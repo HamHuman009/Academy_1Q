@@ -93,7 +93,7 @@ void Ending::Start()
 {
 	mySound::SoundManager* meSound = mySound::SoundManager::GetInstance();
 	meSound->StopMusic(mySound::eSoundChannel::BGM);
-	meSound->PlayMusic(mySound::eSoundList::BGM3/*s_ending*/, mySound::eSoundChannel::BGM);
+	meSound->PlayMusic(mySound::eSoundList::Ending_Theme/*s_ending*/, mySound::eSoundChannel::BGM);
 }
 
 void Ending::Exit()
