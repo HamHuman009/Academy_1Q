@@ -87,16 +87,49 @@ void StartScene::Init()
 
 	//랭크보드
 	scoreRect = { 400,200,800,800 };
-	WCHAR _str[500];
+	UIImage* rankBoard = new UIImage();
+	Gdiplus::Bitmap* rankImage = CR->LoadBitmapResouce(L"RankBoard",L"UI_Title_Ranking.png");
+	rankBoard->Init(rankImage,{950.f,340.f});
+	/*WCHAR _str[500];
 	memset(_str, L'\0', 500);
 
 	std::string myRank;
 	int fromRank = strlen(Game::GameManager::GetInstance()->m_Ranking->str_rank.c_str());
 	myRank.assign(Game::GameManager::GetInstance()->m_Ranking->str_rank);
 	int sizeNeeded = MultiByteToWideChar(CP_UTF8, 0, &myRank[0], (int)myRank.size(), NULL, 0);
-	MultiByteToWideChar(CP_UTF8, 0, &myRank[0], fromRank, &_str[0], sizeNeeded);
-	UIDialog* rankDialog = new UIDialog();
-	rankDialog->Init({ 752,48 }, { 432,624 }, _str);
+	MultiByteToWideChar(CP_UTF8, 0, &myRank[0], fromRank, &_str[0], sizeNeeded);*/
+
+	WCHAR top10[10][50];
+	WCHAR top10score[10][10];
+	for (int i = 0; i < 10; i++) {
+		for (int k = 0; k < 50; k++) {
+			top10[i][k] = L'\0';
+		}
+		for (int k = 0; k < 10; k++) {
+			top10score[i][k] = L'\0';
+		}
+	}
+	UIDialog* rankDialog[10];
+	UIDialog* scoreDialog[10];
+	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+
+		Ranking::r_Player temp = Game::GameManager::GetInstance()->m_Ranking->players[i];
+		int plen = strlen(temp.name.c_str());
+		std::string tempStr;
+		tempStr.assign(temp.name.c_str());
+		int sizeNeeded = MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], (int)tempStr.size(), NULL, 0);
+		MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], plen, top10[i], sizeNeeded);
+		rankDialog[i] = new UIDialog();
+		rankDialog[i]->Init({850.f,170.f+48.0f*i},{200.f,100.f},top10[i],16);
+		
+		_itow_s(temp.score, top10score[i], 10);
+		scoreDialog[i] = new UIDialog();
+		scoreDialog[i]->Init({ 1050.f,170.f + 46.0f * i }, { 200.f,100.f }, top10score[i], 16);
+	}
+	
+	
+	/*UIDialog* rankDialog = new UIDialog();
+	rankDialog->Init({ 752,48 }, { 432,624 }, _str);*/
 
 	//조작
 	//UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),472 + (50 / 2) }, e_exit, exitBtn);
@@ -126,8 +159,14 @@ void StartScene::Init()
 	AddObject(gameStartButton);
 	AddObject(controll);
 	AddObject(exit);
-	AddObject(rankingBoard);
-	AddObject(rankDialog);
+	AddObject(rankBoard);
+	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+		AddObject(rankDialog[i]);
+	}
+	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+		AddObject(scoreDialog[i]);
+	}
+
 	AddObject(backEffect);
 	AddObject(howToPlay);
 	//이벤트 등록
