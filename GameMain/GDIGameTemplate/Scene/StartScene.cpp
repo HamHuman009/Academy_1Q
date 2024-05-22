@@ -2,6 +2,7 @@
 #include "../System/InputSystem.h"
 
 #include "../GameLogic/Event.h"
+#include "../GameLogic/Objects/KeyInput.h"
 #include "../GameLogic/Objects/Fish.h"
 
 
@@ -28,9 +29,6 @@ void StartScene::Init()
 	myRang->rankToStr();
 
 	//배경
-	//myBitmap = CR->LoadBitmapResouce(L"image1",L"startback.png");
-	//UIImage* myBack = new UIImage(); // 객체 테스트 
-	//myBack->Init(myBitmap, { 640.f,360.f });
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CR->LoadBitmapResouce(L"waterImage", L"Water.png");
 	myBackGround->Init(waterBack, { 640.f, 360.f });
@@ -57,9 +55,9 @@ void StartScene::Init()
 	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button_Use);
 
 	//게임 방법
-	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"image1.png");
+	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"UI_Image_ToMoveImage.png");
 	UIImage* howToPlay = new UIImage();
-	howToPlay->Init(howToPlayImage, { 500.f,400.f });
+	howToPlay->Init(howToPlayImage, { 640.f, 360.f });
 	howToPlay->m_isActive = false;
 	HowToEvent* myHow = new HowToEvent();
 	myHow->howToImg = howToPlay;
@@ -152,9 +150,13 @@ void StartScene::Init()
 
 	//화면전환
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
+	
 
+	KeyInput* myKey = new KeyInput();
+	myKey->Init();
+	myKey->m_Event = myHow;
 
-
+	AddObject(myKey);
 
 	//오브젝트 등록
 	AddObject(myBackGround);
@@ -185,13 +187,16 @@ void StartScene::Init()
 		AddObject(moveScore[i]);
 	}
 
-	AddObject(backEffect);
-	AddObject(howToPlay);
+	
+	
 	//이벤트 등록
 	AddEvent(e_nextScn);
 	AddEvent(e_exit);
 	AddEvent(myHow);
 	AddObject(titleImg);
+
+	AddObject(howToPlay);
+	AddObject(backEffect);
 	//화면 알파 값 초기화
 	alpha = 1.0f;
 

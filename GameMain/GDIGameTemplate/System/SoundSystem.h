@@ -79,6 +79,7 @@ namespace mySound
 
         static SoundManager* mInstance;
 
+        FMOD_RESULT result;
         FMOD::System* mSystem;
         FMOD::Channel* mChannel[static_cast<int>(eSoundChannel::Size)];
         FMOD::Sound* mSoundList[static_cast<int>(eSoundList::Size)];

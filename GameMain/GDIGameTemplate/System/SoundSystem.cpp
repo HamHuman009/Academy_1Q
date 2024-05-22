@@ -21,9 +21,6 @@ namespace mySound
 
     void SoundManager::LoadMusic(eSoundList soundlist, bool loopcheck, const char* music)
     {
-        System_Create(&mSystem);
-        mSystem->init(2, FMOD_INIT_NORMAL, 0);
-
         if (loopcheck)
             mSystem->createSound(music, FMOD_LOOP_NORMAL, 0, &mSoundList[(int)(soundlist)]);
         else
@@ -92,6 +89,10 @@ namespace mySound
 
     SoundManager::SoundManager(): mSystem(), mChannel{}, mSoundList{}, mVolume()
     {
+        result = System_Create(&mSystem);
+        
+        result = mSystem->init(2, FMOD_INIT_NORMAL, 0);
+        
     }
 
     SoundManager::~SoundManager()
