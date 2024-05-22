@@ -60,6 +60,9 @@ namespace Game
 		float mVolume;
 
 		const char* mySoundRate;
+
+		void SetCameraShakeTimer(float timer);
+
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;
@@ -72,6 +75,7 @@ namespace Game
 
 		int g_root;
 
+		float cameraShakeTimer = 0.f;
 	};
 }
 

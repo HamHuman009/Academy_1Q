@@ -297,6 +297,7 @@ void Player::SoberUp()
 {
 	isAwake = true;
 	awakeTime = 15.f;
+	Game::GameManager::GetInstance()->SetCameraShakeTimer(15.f);
 }
 
 void Player::CancelSoberUp()

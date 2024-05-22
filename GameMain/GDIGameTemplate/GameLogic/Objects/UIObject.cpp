@@ -244,12 +244,17 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string, int _fontSize
 	timer = maxTime;
 	m_Color = myColor;
 	fontSize = _fontSize;
+
+	m_pos.x = float(x + cx / 2);
+	m_pos.y = float(y + cy / 2);
+	m_renderBounds = { {0.f, 0.f}, {cx / 2.f, cy / 2.f} };
 }
 
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
 	//Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
-	Render::DrawFontS(x, y, cx, cy, t_str, m_Color, fontSize, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, 
+		cx, cy, t_str, m_Color, fontSize, L"KOTRAHOPE.ttf", 1);
 }
 
 void UIDialog::Update(float delta) {
@@ -578,9 +583,10 @@ void UISpeech::Update(float delta) {
 		if (string[strCount] == L'\0') {
 			isTutorial = false;
 			High_Resolution_Time::SetTimeScale2(1.f);
-			memset(t_str, '\0', 255);
+			/*memset(t_str, '\0', 255);
 			memset(string, '\0', 255);
-			strCount = 0;
+			strCount = 0;*/
+			textEnd = true;
 		}
 	}
 

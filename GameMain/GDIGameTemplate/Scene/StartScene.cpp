@@ -129,13 +129,15 @@ void StartScene::Init()
 		MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], plen, top10[i], sizeNeeded);
 		rankDialog[i] = new UIDialog();
 		//rankDialog[i]->Init({850.f,173.f+45*i}, {200.f,100.f}, top10[i], 16, COLORREF(0x271a14));
-		rankDialog[i]->Init({1350.f, 173.f+45*i}, {200.f,100.f}, top10[i], 16, COLORREF(0x271a14));
+		rankDialog[i]->Init({1350.f, 173.f + 45.f * i}, {200.f,100.f}, top10[i], 16, COLORREF(0x271a14));
 
-		moveRank[i] = new MoveObject(rankDialog[i], { 850.f, 173.f + 45 * i }, 1.f);
+		moveRank[i] = new MoveObject(rankDialog[i], { 850.f + 100, 173.f + 45.f * i  + 50.f}, 1.f);
 		
 		_itow_s(temp.score, top10score[i], 10);
 		scoreDialog[i] = new UIDialog();
-		scoreDialog[i]->Init({ 1065.f - (wcslen(top10score[i]) * 13 ),173.f + 45 * i}, {200.f,100.f}, top10score[i], 16, COLORREF(0x271a14));
+		scoreDialog[i]->Init({ 1565.f - (wcslen(top10score[i]) * 13 ),173.f + 45 * i}, {200.f,100.f}, top10score[i], 16, COLORREF(0x271a14));
+
+		moveScore[i] = new MoveObject(scoreDialog[i], { 1065.f - (wcslen(top10score[i]) * 13) + 100,173.f + 45 * i + 50}, 1.f);
 
 		//MoveObject* moveAbleObject = new MoveObject(rankBoard, { 950, 340 }, 1.f);
 		//AddObject(moveAbleObject);
@@ -180,6 +182,7 @@ void StartScene::Init()
 	}
 	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
 		AddObject(scoreDialog[i]);
+		AddObject(moveScore[i]);
 	}
 
 	AddObject(backEffect);

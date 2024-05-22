@@ -30,7 +30,7 @@ namespace Game
 		SMInstance->LoadMusic(mySound::eSoundList::Button_Use, false, "Sound_Button Use_01-1.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Down, false, "Sound_Stage_Scooper Down_01.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Up, false, "Sound_Stage_Scooper Up_01.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Fish_Catch, false, "Sound_Stage_Fish Catch_01_003.wav"); 
+		SMInstance->LoadMusic(mySound::eSoundList::Fish_Catch, false, "Sound_Stage_Fish Catch_01_003.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Boss_Fish_Catch, false, "Sound_Stage_Boss Fish Catch_01-1.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing1, false, "Sound_Fish breathing_01-1.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing2, false, "Sound_Fish breathing_01-2.wav");
@@ -53,27 +53,52 @@ namespace Game
 
 		Input::UpdateMouse();
 
-		/*timer += High_Resolution_Time::GetDeltaTime() / 110.f;
-		m_cameraPosition = { sinf(timer) * 7 - 4, sinf(timer * 1.3f) * -3 };*/
+		if (cameraShakeTimer > 0.f) {
+			cameraShakeTimer -= High_Resolution_Time::GetDeltaTime() / 1000.f;
+			timer += High_Resolution_Time::GetDeltaTime() / 110.f;
+			m_cameraPosition = { sinf(timer) * 7 - 4, sinf(timer * 1.3f) * -3 };
+			if (cameraShakeTimer < 0.f) {
+				m_cameraPosition = { 0.f, 0.f };
 
-		if (Input::IsKeyDown('1')) {
+			}
+		}
+
+		if (Input::IsKey('L') && Input::IsKeyDown('1')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::START);
-		}if (Input::IsKeyDown('2')) {
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}if (Input::IsKey('L') && Input::IsKeyDown('2')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::INTRO);
-		}if (Input::IsKeyDown('3')) {
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}if (Input::IsKey('L') && Input::IsKeyDown('3')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_01);
-		}if (Input::IsKeyDown('4')) {
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}if (Input::IsKey('L') && Input::IsKeyDown('4')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_02);
-		}if (Input::IsKeyDown('5')) {
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}if (Input::IsKey('L') && Input::IsKeyDown('5')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_03);
-		}if (Input::IsKeyDown('6')) {
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}if (Input::IsKey('L') && Input::IsKeyDown('6')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_04);
-		}if (Input::IsKeyDown('7')) {
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}if (Input::IsKey('L') && Input::IsKeyDown('7')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::STAGE_05);
-		}if (Input::IsKeyDown('8')) {
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}if (Input::IsKey('L') && Input::IsKeyDown('8')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::Ending);
-		}if (Input::IsKeyDown('9')) {
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}if (Input::IsKey('L') && Input::IsKeyDown('9')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::Score);
+			High_Resolution_Time::SetTimeScale(1.f);
+			High_Resolution_Time::SetTimeScale2(1.f);
 		}
 
 		if (m_curScene != m_sceneManager->GetCurScene()) {
@@ -173,6 +198,12 @@ namespace Game
 	void GameManager::SetRoot(int root)
 	{
 		g_root = root;
+	}
+
+	void GameManager::SetCameraShakeTimer(float timer)
+	{
+		if (cameraShakeTimer < timer)
+			cameraShakeTimer = timer;
 	}
 
 
