@@ -111,6 +111,8 @@ private:
 	Gdiplus::Bitmap* m_BitmapClock;
 	Gdiplus::Bitmap* m_BitmapBack;
 	Gdiplus::Bitmap* m_BitmapBar;
+	Gdiplus::Bitmap* m_BitmapLeft;
+	Gdiplus::Bitmap* m_BitmapRight;
 	UINT cx;
 	UINT cy;
 	UINT x;

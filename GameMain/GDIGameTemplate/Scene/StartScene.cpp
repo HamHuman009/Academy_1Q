@@ -18,6 +18,9 @@ void StartScene::Init()
 	CResourceManager* CR = CResourceManager::GetInstance();
 	Ranking* myRang = Game::GameManager::GetInstance()->m_Ranking;
 
+	//스코어 초기화
+	Game::GameManager::GetInstance().g_sc
+
 	//랭크 불러오기
 	myRang->sortRank();
 	myRang->rankToStr();
@@ -32,10 +35,19 @@ void StartScene::Init()
 	UIBackGround* myUPBackGround = new UIBackGround();
 	myUPBackGround->Init(L"물결+그림자_00.png", CR);
 
+	//랭킹보드
+	UIImage* rankingBoard = new UIImage();
+	Gdiplus::Bitmap* rankingBack = CR->LoadBitmapResouce(L"ranking", L"UI_Button_Title_Ranking.png");
+	rankingBoard->Init(rankingBack, { 1450.f, 340.f });
+
+	MoveObject* moveAbleObject = new MoveObject(rankingBoard, {950, 340}, 1.f);
+	AddObject(moveAbleObject);
+
 	//타이틀 //70 , 48 //544,144
 	Gdiplus::Bitmap* titleBitmap = CR->LoadBitmapResouce(L"logo", L"Logo_final.png");
 	UIImage* titleImg = new UIImage(); // 객체 테스트 
-	titleImg->Init(titleBitmap, { 70 + (328 / 2),48 + (223 / 2) });
+	titleImg->Init(titleBitmap, { 370, 250 });
+	//titleImg->Init(titleBitmap, { 70 + (328 / 2),48 + (223 / 2) });
 
 	//이벤트
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO, mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
@@ -50,15 +62,22 @@ void StartScene::Init()
 	myHow->howToImg = howToPlay;
 
 
-	//시작버튼 
-	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
-
-	UIButton* gameStartButton = new UIButton(Vector2{ 70 + (200 / 2),330 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // 객체 테스트
+	/*UIButton* gameStartButton = new UIButton(Vector2{70 + (200 / 2),330 + (50 / 2)}, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // 객체 테스트
 	//게임 방법 버튼
 	UIButton* controll = new UIButton(Vector2{ 70 + (200 / 2),450 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
 
 	//종료버튼
-	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),570 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
+	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),570 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");*/
+
+	//시작버튼 
+	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
+
+	UIButton* gameStartButton = new UIButton(Vector2{ 80 + (200 / 2),520 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // 객체 테스트
+	//게임 방법 버튼
+	UIButton* controll = new UIButton(Vector2{ 270 + (200 / 2),520 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
+
+	//종료버튼
+	UIButton* exit = new UIButton(Vector2{ 460 + (200 / 2),520 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
 	
 
 	//게임 방법 돌아오기
@@ -105,6 +124,7 @@ void StartScene::Init()
 	AddObject(gameStartButton);
 	AddObject(controll);
 	AddObject(exit);
+	AddObject(rankingBoard);
 	AddObject(rankDialog);
 	AddObject(backEffect);
 	AddObject(howToPlay);

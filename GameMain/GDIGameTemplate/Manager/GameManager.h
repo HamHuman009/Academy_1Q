@@ -52,7 +52,11 @@ namespace Game
 		int GetRoot();
 
 		void SetRoot(int root);
+
 		Ranking* m_Ranking;
+
+		Vector2 m_cameraPosition;
+
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;
@@ -64,6 +68,7 @@ namespace Game
 		int m_FixedUpdateCount = { 0 };
 
 		int g_root;
+
 	};
 }
 

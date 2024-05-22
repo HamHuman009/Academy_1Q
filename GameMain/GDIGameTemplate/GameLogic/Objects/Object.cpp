@@ -182,7 +182,34 @@ Vector2 Object::GetPosition() {
 	return m_pos;
 }
 
+MoveObject::MoveObject(Object* _moveObj, Vector2 _endPosition, float _intervalTime)
+{
+	moveObj = _moveObj;
+	endPosition = _endPosition;
+	intervalTime = _intervalTime;
+	startPosition = moveObj->m_pos;
+	t = 0.f;
+}
 
+void MoveObject::Update(float delta)
+{
+	if (t < 1.f) {
+		t += delta / intervalTime;
+		if (t > 1.f) {
+			t = 1.f;
+		}
+	}
 
+	moveObj->m_pos.x = EaseInOutCurve(startPosition.x, endPosition.x, t);
+	moveObj->m_pos.y = EaseInOutCurve(startPosition.y, endPosition.y, t);
+}
 
+float EaseInOutCurve(float startPos, float endPos, float t) {
+	float value = t < 0.5f ? 0.5f * powf(2.f * t, 2) : 0.5f * (2.f - powf(2.f * (1.f - t), 2));
+	return startPos + (endPos - startPos) * value;
+}
 
+void MoveObject::Render(float alpha)
+{
+
+}

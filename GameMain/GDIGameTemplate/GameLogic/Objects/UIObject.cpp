@@ -88,13 +88,16 @@ void UITimer::Init(CResourceManager* CRM, Vector2 myPos, Event* myEvent, float _
 	m_BitmapBack = CRM->LoadBitmapResouce(L"timerBack", L"UI_Image_Stage_TimeBar_Off_01.png");
 	m_BitmapBar = CRM->LoadBitmapResouce(L"timerbar", L"UI_Image_Stage_TimeBar_On_01.png");
 	m_BitmapClock = CRM->LoadBitmapResouce(L"timerClock", L"UI_Image_Stage_TimeBar_Off_02.png");
+	m_BitmapLeft = CRM->LoadBitmapResouce(L"timerLeft", L"UI_Image_Stage_TimeBar_On_Left_01.png");
+	m_BitmapRight = CRM->LoadBitmapResouce(L"timerRight", L"UI_Image_Stage_TimeBar_On_Right_01.png");
+
 	m_pos = myPos;
 	m_Event = myEvent;
 
-	cx = 600;
+	cx = 551;
 	cy = 50;
 
-	deltaCx = 600;
+	deltaCx = 551;
 	setTime = _setTime;
 	deltaTime = _setTime;
 }
@@ -142,9 +145,13 @@ void UITimer::Update(float delta) {
 
 void UITimer::Render(float alpha) {
 	if (m_isActive == false) return;
-	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapBack, 0, 0, cx, cy);
-	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapBar, 0, 0, (UINT)deltaCx, cy);
-	Render::DrawBitmap(m_pos.x - 30, m_pos.y - 25, m_BitmapClock, 0, 0, 100, 100);
+	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapBack, 0, 0, cx + 75, cy);
+	Render::DrawBitmap(m_pos.x + 12, m_pos.y, m_BitmapBar, 0, 0, (UINT)deltaCx, cy);
+
+	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapLeft, 0, 0, 12, cy);
+	Render::DrawBitmap(m_pos.x + deltaCx + 12, m_pos.y, m_BitmapRight, 0, 0, 12, cy);
+
+	Render::DrawBitmap(m_pos.x - 70, m_pos.y - 25, m_BitmapClock, 0, 0, 100, 100);
 	/*Render::DrawRect(m_pos.x, m_pos.y, cx, cy, RGB(255, 255, 255));
 	Render::DrawRect(m_pos.x, m_pos.y, (UINT)deltaCx, cy, RGB(255, 255, 0));*/
 }

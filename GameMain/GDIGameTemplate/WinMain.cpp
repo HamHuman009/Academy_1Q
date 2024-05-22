@@ -51,7 +51,7 @@ constexpr int SCREEN_START_TOP = 0;
 #define SCREEN_HEIGHT 1080	
 
 BOOL bFullScreen = FALSE;
-const TCHAR* appName = TEXT("Test Game Framework");
+const TCHAR* appName = TEXT("Catch Plz!");
 
 void WinApp::Initialize(HINSTANCE hInstance)
 {

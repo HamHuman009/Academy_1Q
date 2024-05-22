@@ -1,6 +1,7 @@
 
 #include "RenderSystem.h"
 #include "../Manager/SceneManager.h"
+#include "../Manager/GameManager.h"
 
 
 #pragma comment(lib, "msimg32.lib")
@@ -175,6 +176,9 @@ namespace Render
 	//bitmap은 GdiplusShutdown 하기전에 해제해야함
 	void DrawImage(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight, float alpha, float scale)
 	{
+		int cameraX = Game::GameManager::GetInstance()->m_cameraPosition.x;
+		int cameraY = Game::GameManager::GetInstance()->m_cameraPosition.y;
+
 		if (bitmap == nullptr)
 			return;
 
@@ -193,7 +197,7 @@ namespace Render
 		imageAttributes.SetColorMatrix(&colorMatrix);
 
 		Gdiplus::Rect srcRect(srcX, srcY, srcWitdh, srcHeight); // 소스의 영역
-		Gdiplus::Rect destRect(x + srcWitdh / 2 - (srcWitdh * scale) / 2, y + srcHeight / 2 - (srcHeight * scale) / 2, srcRect.Width * scale, srcRect.Height * scale); // 화면에 그릴 영역		
+		Gdiplus::Rect destRect(x + srcWitdh / 2 - (srcWitdh * scale) / 2 + cameraX, y + srcHeight / 2 - (srcHeight * scale) / 2 + cameraY, srcRect.Width * scale, srcRect.Height * scale); // 화면에 그릴 영역		
 		// 이미지 그리기
 		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel, &imageAttributes);
 
@@ -201,6 +205,9 @@ namespace Render
 	}
 
 	void DrawRotateImage(int centerX, int centerY, Gdiplus::Bitmap* bitmap, float rad, float alpha, float ScaleX, float ScaleY) {
+		int cameraX = Game::GameManager::GetInstance()->m_cameraPosition.x;
+		int cameraY = Game::GameManager::GetInstance()->m_cameraPosition.y;
+
 		Gdiplus::Graphics ScreenG(backMemDC);
 		Gdiplus::Matrix mat;
 
@@ -224,16 +231,19 @@ namespace Render
 
 		ScreenG.SetTransform(&mat);
 		Gdiplus::Rect srcRect(0, 0, bitmap->GetWidth(), bitmap->GetHeight()); // 소스의 영역
-		Gdiplus::Rect destRect(centerX, centerY, srcRect.Width * ScaleX, srcRect.Height * ScaleY);
+		Gdiplus::Rect destRect(centerX + cameraX, centerY + cameraY, srcRect.Width * ScaleX, srcRect.Height * ScaleY);
 
 		ScreenG.DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel, &imageAttributes);
 		//ScreenG.DrawImage(bitmap, centerX, centerY);
 	}
 
 	void DrawBitmap(int x, int y, Gdiplus::Bitmap* bitmap, int srcX, int srcY, int srcWitdh, int srcHeight) {
+		int cameraX = Game::GameManager::GetInstance()->m_cameraPosition.x;
+		int cameraY = Game::GameManager::GetInstance()->m_cameraPosition.y;
+
 		Gdiplus::ImageAttributes imgAttr;
 		Gdiplus::Rect srcRect(srcX, srcY, srcWitdh, srcHeight); // 소스의 영역
-		Gdiplus::Rect destRect(x, y, srcRect.Width, srcRect.Height);
+		Gdiplus::Rect destRect(x + cameraX, y + cameraY, srcRect.Width, srcRect.Height);
 		//imgAttr.SetColorKey(Gdiplus::Color(0, 0, 0), Gdiplus::Color(0, 0, 0), Gdiplus::ColorAdjustTypeBitmap);
 		graphics->DrawImage(bitmap, destRect, srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height, Gdiplus::UnitPixel);
 	}

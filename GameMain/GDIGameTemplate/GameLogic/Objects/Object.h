@@ -72,6 +72,19 @@ struct Object
 	}
 };
 
+class MoveObject : public Object {
+	Object* moveObj;
+	Vector2 startPosition;
+	Vector2 endPosition;
+	float t;
+	float intervalTime;
+public:
+	MoveObject(Object* _moveObj, Vector2 _endPosition, float _intervalTime);
+	void Update(float delta) override;
+	void Render(float alpha) override;
+	void OnTrigger() override {}
+};
+float EaseInOutCurve(float startPos, float endPos, float t);
 //struct UIObject : public Object{
 //	void Init() override;
 //	void Update(float delta) override;

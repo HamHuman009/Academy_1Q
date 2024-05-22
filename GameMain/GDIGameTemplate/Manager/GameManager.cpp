@@ -54,19 +54,22 @@ namespace Game
 		SMInstance->LoadMusic(mySound::eSoundList::Water, false, "Sound_Kid Voice_01.wav");
 		*/
 
-		
+		m_cameraPosition = { 0.f, 0.f };
 
 		m_sceneManager = SceneManager::GetInstance();
 		m_sceneManager->Init();
 		m_curScene = m_sceneManager->GetCurScene();
 		
 	}
-
+	float timer = 0.f;
 	void GameManager::Update()
 	{
 		++m_UpdateCount;
 
 		Input::UpdateMouse();
+
+		/*timer += High_Resolution_Time::GetDeltaTime() / 110.f;
+		m_cameraPosition = { sinf(timer) * 7 - 4, sinf(timer * 1.3f) * -3 };*/
 
 		if (Input::IsKeyDown('1')) {
 			m_sceneManager->SetCurScene((UINT)SceneType::START);
