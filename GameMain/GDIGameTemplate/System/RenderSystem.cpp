@@ -274,7 +274,7 @@ namespace Render
 		if (familyCount > 0)
 		{
 			Gdiplus::FontFamily* fontFamily = &fontFamilies[0];
-			Gdiplus::SolidBrush semiTransBrush(Gdiplus::Color(100, 0, 0, 0)); // 50% 癱貲 說除儀
+			Gdiplus::SolidBrush semiTransBrush(Gdiplus::Color(0, 0, 0, 0)); // 50% 癱貲 說除儀
 			graphics->FillRectangle(&semiTransBrush, x, y, cx, cy);
 			/*Gdiplus::FontFamily   fontFamily(fontName);*/
 			Gdiplus::Font         font(fontFamily, fontSize, fontStyle, Gdiplus::UnitPoint);

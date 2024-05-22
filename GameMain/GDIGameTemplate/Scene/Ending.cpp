@@ -14,27 +14,29 @@ void Ending::Init()
 	CResourceManager* CRM = CResourceManager::GetInstance();
 	/*g_Score = 29;
 	g_BossCnt = 5;*/
-	if (g_Score <= 1 && g_BossCnt <= 0)
+	Score = Game::GameManager::GetInstance()->FinalScore;
+	bossCount = Game::GameManager::GetInstance()->BossCount;
+	if (Score <= 1 && bossCount <= 0)
 	{
 		root = static_cast<int>(EndRoot::Poor);
 	}
-	else if (g_Score <= 12 && g_BossCnt <= 4)
+	else if (Score <= 12 && bossCount <= 4)
 	{
 		root = static_cast<int>(EndRoot::Normal);
 	}
-	else if (g_Score <= 12 && g_BossCnt >= 5)
+	else if (Score <= 12 && bossCount >= 5)
 	{
 		root = static_cast<int>(EndRoot::Maniac);
 	}
-	else if (g_Score <= 28 && g_BossCnt <= 2)
+	else if (Score <= 28 && bossCount <= 2)
 	{
 		root = static_cast<int>(EndRoot::Great);
 	}
-	else if (g_Score <= 28 && g_BossCnt >= 5)
+	else if (Score <= 28 && bossCount >= 5)
 	{
 		root = static_cast<int>(EndRoot::Professional);
 	}
-	else if (g_Score >= 29 && g_BossCnt >= 5)
+	else if (Score >= 29 && bossCount >= 5)
 	{
 		root = static_cast<int>(EndRoot::Best);
 	}

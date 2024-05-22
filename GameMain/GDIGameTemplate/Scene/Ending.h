@@ -24,5 +24,8 @@ public:
     ~Ending();
 
     int root;
+
+    UINT Score;
+    UINT bossCount;
 };
 
