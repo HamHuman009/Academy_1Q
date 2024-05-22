@@ -88,10 +88,10 @@ void Stage02::Init()
 	UIButton* retry = new UIButton(Vector2{ 640.f,400 }, e_retry, L"UI_Button_wailManu_GoToTitle", L".png");
 	UIButton* exit = new UIButton(Vector2{ 640.f,500 }, e_exit, L"UI_Button_Title_GameOver", L".png");
 
-	UIButton* b_Plus = new UIButton({ 250, 300 }, bg_Plus, L"PButton", L".png");
-	UIButton* b_Minus = new UIButton({ 400, 300 }, bg_Minus, L"Mbutton", L".png");
-	UIButton* e_Plus = new UIButton({ 250, 500 }, eft_Plus, L"PButton", L".png");
-	UIButton* e_Minus = new UIButton({ 400, 500 }, eft_Minus, L"Mbutton", L".png");
+	UIButton* b_Plus = new UIButton({ 250, 300 }, bg_Plus, L"UI_Button_Pause_VolumeUp", L".png");
+	UIButton* b_Minus = new UIButton({ 400, 300 }, bg_Minus, L"UI_Button_Pause_VolumeDown", L".png");
+	UIButton* e_Plus = new UIButton({ 250, 500 }, eft_Plus, L"UI_Button_Pause_VolumeUp", L".png");
+	UIButton* e_Minus = new UIButton({ 400, 500 }, eft_Minus, L"UI_Button_Pause_VolumeDown", L".png");
 
 	UIVolume* myVoL = new UIVolume();
 
