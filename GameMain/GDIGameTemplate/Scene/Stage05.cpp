@@ -23,7 +23,7 @@ void Stage05::Init()
 
 	colliderManager = new ColliderManager();
 	
-	UISpeech* speech = new UISpeech({ 900.f, 300.f }, nullptr);
+	UISpeech* speech = new UISpeech({ 766, 103 }, nullptr);
 	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, IfCrawCaptureScoreZero);
 	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, IfCrawCaptureScoreOne);
 	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, CaptureBossFish);
@@ -67,14 +67,13 @@ void Stage05::Init()
 	AddEvent(e_exit);
 
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	UIImage* myBackGround = new UIImage();
-	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
-	myBackGround->Init(waterBack, { 640.f, 360.f });
-	//UIBackGround* myBackGround = new UIBackGround();
-	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
 
 
-	//Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
+	///Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
+
+	
+	Gdiplus::Bitmap* speechBack = CRM->LoadBitmapResouce(L"speechBack", L"UI_Image_Stage_TalkBar_01.png");
+	speech->Init({ 766, 103 }, speechBack);
 
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
 
@@ -113,6 +112,13 @@ void Stage05::Init()
 	myTimer->gameOverTimerEvent = e_endGame;
 	AddEvent(e_endGame);
 
+	UIImage* myBackGround = new UIImage();
+	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
+	myBackGround->Init(waterBack, { 640.f, 360.f });
+	//UIBackGround* myBackGround = new UIBackGround();
+	//myBackGround->Init(L"Water_Down_00.bmp",CRM);
+
+
 	m_Player->m_pos = { 600.f, 350.f };
 	m_Player->SetMoveDirection({ 1.f, 0.f }, { 0.f, -1.f }, { 0.f, 1.f }, { -1.f, 0.f });
 
@@ -124,7 +130,7 @@ void Stage05::Init()
 	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
 	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
 	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");
-	UIFace* myFace = new UIFace(Vector2{ 1200,300 }, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
+	UIFace* myFace = new UIFace(Vector2{ 1115 + (250 / 2),120 + (250 / 2) }, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
 	
 
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);

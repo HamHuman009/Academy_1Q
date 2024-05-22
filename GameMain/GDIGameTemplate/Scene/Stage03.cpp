@@ -23,7 +23,7 @@ void Stage03::Init()
 
 	colliderManager = new ColliderManager();
 
-	UISpeech* speech = new UISpeech({ 900.f, 300.f }, nullptr);
+	UISpeech* speech = new UISpeech({ 766, 103 }, nullptr);
 	FeedbackEvent* e_feedBack1 = new FeedbackEvent(speech, IfCrawCaptureScoreZero);
 	FeedbackEvent* e_feedBack2 = new FeedbackEvent(speech, IfCrawCaptureScoreOne);
 	FeedbackEvent* e_feedBack3 = new FeedbackEvent(speech, CaptureBossFish);
@@ -67,7 +67,11 @@ void Stage03::Init()
 	AddEvent(e_exit);
 
 	CResourceManager* CRM = CResourceManager::GetInstance();
-	Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
+	//Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
+
+
+	Gdiplus::Bitmap* speechBack = CRM->LoadBitmapResouce(L"speechBack", L"UI_Image_Stage_TalkBar_01.png");
+	speech->Init({ 766, 103 }, speechBack);
 
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"image1.png");
 
@@ -126,7 +130,7 @@ void Stage03::Init()
 	Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
 	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
 	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");
-	UIFace* myFace = new UIFace(Vector2{ 1200,300 }, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
+	UIFace* myFace = new UIFace(Vector2{ 1115 + (250 / 2),120 + (250 / 2) }, daughterFace1, daughterFace2, daughterFace3, daughterFace4);
 
 
 	alpha = 1.0f;
