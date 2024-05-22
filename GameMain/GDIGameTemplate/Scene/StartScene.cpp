@@ -120,11 +120,11 @@ void StartScene::Init()
 		int sizeNeeded = MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], (int)tempStr.size(), NULL, 0);
 		MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], plen, top10[i], sizeNeeded);
 		rankDialog[i] = new UIDialog();
-		rankDialog[i]->Init({850.f,170.f+48.0f*i},{200.f,100.f},top10[i],16);
+		rankDialog[i]->Init({850.f,173.f+45*i},{200.f,100.f},top10[i],16);
 		
 		_itow_s(temp.score, top10score[i], 10);
 		scoreDialog[i] = new UIDialog();
-		scoreDialog[i]->Init({ 1050.f,170.f + 46.0f * i }, { 200.f,100.f }, top10score[i], 16);
+		scoreDialog[i]->Init({ 1050.f,173.f + 45 * i }, { 200.f,100.f }, top10score[i], 16);
 	}
 	
 	
