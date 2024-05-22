@@ -117,6 +117,8 @@ void StartScene::Init()
 	}
 	UIDialog* rankDialog[10];
 	UIDialog* scoreDialog[10];
+	MoveObject* moveRank[10];
+	MoveObject* moveScore[10];
 	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
 
 		Ranking::r_Player temp = Game::GameManager::GetInstance()->m_Ranking->players[i];
@@ -126,12 +128,17 @@ void StartScene::Init()
 		int sizeNeeded = MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], (int)tempStr.size(), NULL, 0);
 		MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], plen, top10[i], sizeNeeded);
 		rankDialog[i] = new UIDialog();
-		rankDialog[i]->Init({850.f,173.f+45*i}, {200.f,100.f}, top10[i], 16, COLORREF(0x271a14));
+		//rankDialog[i]->Init({850.f,173.f+45*i}, {200.f,100.f}, top10[i], 16, COLORREF(0x271a14));
+		rankDialog[i]->Init({1350.f, 173.f+45*i}, {200.f,100.f}, top10[i], 16, COLORREF(0x271a14));
+
+		moveRank[i] = new MoveObject(rankDialog[i], { 850.f, 173.f + 45 * i }, 1.f);
 		
 		_itow_s(temp.score, top10score[i], 10);
 		scoreDialog[i] = new UIDialog();
 		scoreDialog[i]->Init({ 1065.f - (wcslen(top10score[i]) * 13 ),173.f + 45 * i}, {200.f,100.f}, top10score[i], 16, COLORREF(0x271a14));
 
+		//MoveObject* moveAbleObject = new MoveObject(rankBoard, { 950, 340 }, 1.f);
+		//AddObject(moveAbleObject);
 	}
 	
 	
@@ -169,6 +176,7 @@ void StartScene::Init()
 	AddObject(rankBoard);
 	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
 		AddObject(rankDialog[i]);
+		AddObject(moveRank[i]);
 	}
 	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
 		AddObject(scoreDialog[i]);
