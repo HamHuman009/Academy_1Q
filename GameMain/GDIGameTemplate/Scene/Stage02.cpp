@@ -123,7 +123,7 @@ void Stage02::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog3);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 353, 14 }, e_nextScn, 1.f/*40.f*/);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 353, 14 }, e_nextScn, 40.f/*40.f*/);
 	myTimer->remainningTimeEvent = e_feedBack7;
 	EndgameEvent* e_endGame = new EndgameEvent(m_Player);
 	myTimer->gameOverTimerEvent = e_endGame;

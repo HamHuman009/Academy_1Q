@@ -755,6 +755,8 @@ void UIVolume::Update(float delta)
 void UIVolume::Render(float alpha)
 {
 	if (m_isActive == false) return;
-	Render::DrawFontS(mPos.x, mPos.y, fPos.x, fPos.y, b_str, m_Color, mFontsize, L"KOTRAHOPE.ttf", 1);
-	Render::DrawFontS(mPos.x, mPos.y + 200.f, fPos.x, fPos.y + 200.f, e_str, m_Color, mFontsize, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(mPos.x - 45, mPos.y - 70,fPos.x, fPos.y, L"배경음", RGB(255, 255, 255), 36, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(mPos.x - 45, mPos.y + 130, fPos.x, fPos.y, L"효과음", RGB(255, 255, 255), 36, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(mPos.x, mPos.y, fPos.x, fPos.y, b_str, RGB(255,255,255), mFontsize, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(mPos.x, mPos.y + 200.f, fPos.x, fPos.y + 200.f, e_str, RGB(255, 255, 255), mFontsize, L"KOTRAHOPE.ttf", 1);
 }
