@@ -274,7 +274,7 @@ void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string, int _fontSize
 
 void UIDialog::Render(float alpha) {
 	//Render::DrawFont(x, y, cx, cx, string, RGB(0, 255, 0), 12, L"Arial", 1);
-	//Render::DrawFont(x, y, cx, cy, t_str, RGB(0, 255, 0), 12, L"Arial", 1);
+	//Render::DrawRect(x, y, cx, cy, RGB(255, 255, 255));
 	Render::DrawFontS(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, 
 		cx, cy, t_str, m_Color, fontSize, L"KOTRAHOPE.ttf", 1);
 }
