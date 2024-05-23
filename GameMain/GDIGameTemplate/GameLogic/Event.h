@@ -284,7 +284,7 @@ public:
 	}
 	void OnTrigger() override {
 		scoreBoard->SwapBitmap();
-		m_SoundManager->PlayMusic(mySound::eSoundList::Boss_Fish_Catch, mySound::eSoundChannel::Effect);
+		m_SoundManager->PlayMusic(mySound::eSoundList::Boss_Fish_Catch, mySound::eSoundChannel::Effect2);
 	}
 };
 
@@ -306,7 +306,7 @@ class BGSound_Minus : public Event
 public:
 	void OnTrigger() override
 	{
-		if (Game::GameManager::GetInstance()->effectVolume >= 0.f)
+		if (Game::GameManager::GetInstance()->mVolume > 0.1f)
 		{
 			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume -= 0.1f, (int)mySound::eSoundChannel::BGM);
 		}
@@ -331,9 +331,24 @@ public:
 
 	void OnTrigger() override
 	{
-		if (Game::GameManager::GetInstance()->effectVolume >= 0.f)
+		if (Game::GameManager::GetInstance()->effectVolume > 0.1f)
 		{
 			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume -= 0.1f, (int)mySound::eSoundChannel::Effect);
 		}
+	}
+};
+
+class ButtonOnTriggerAndActiveFalseEvent : public Event {
+public:
+	UIButton* button;
+	UIInputField* objectTrigger;
+	ButtonOnTriggerAndActiveFalseEvent(UIButton* _button, UIInputField* _objectTrigger) {
+		button = _button;
+		objectTrigger = _objectTrigger;
+	}
+	void OnTrigger() override {
+		if (objectTrigger->strCount != 0)
+			button->unableButton = true;
+		objectTrigger->OnTrigger();
 	}
 };

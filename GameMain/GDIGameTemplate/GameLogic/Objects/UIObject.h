@@ -58,6 +58,8 @@ public:
 		delete m_Bitmap;
 	}*/
 
+	bool unableButton = false;
+
 private:
 	Gdiplus::Bitmap* m_Bitmap_On;
 	Gdiplus::Bitmap* m_Bitmap_Off;
@@ -259,11 +261,12 @@ public:
 	void Render(float alpha) override;
 	void OnTrigger() override;
 
-	void EnterInput();
+	void ClearInput();
+	bool EnterInput();
 	bool isInput;
 	
-private:
 	int strCount;
+private:
 	WCHAR inputStr[9]; // 8글자까지 9번째는 \0
 	float timer;
 };

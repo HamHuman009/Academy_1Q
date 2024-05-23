@@ -63,6 +63,7 @@ namespace Game
 		const char* mySoundRate;
 
 		void SetCameraShakeTimer(float timer);
+		void OffCameraShaker();
 
 	private:
 		static GameManager* instance;

@@ -55,9 +55,9 @@ void StartScene::Init()
 	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button_Use);
 
 	//게임 방법
-	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"UI_Image_ToMoveImage.png");
+	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"UI_Image_ToMoveImage_Final.png");
 	UIImage* howToPlay = new UIImage();
-	howToPlay->Init(howToPlayImage, { 640.f, 360.f });
+	howToPlay->Init(howToPlayImage, { 640.f, 340.f });
 	howToPlay->m_isActive = false;
 	HowToEvent* myHow = new HowToEvent(mySound::eSoundList::Button_Use);
 	myHow->howToImg = howToPlay;
@@ -152,8 +152,12 @@ void StartScene::Init()
 	//화면전환
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	
-
-	KeyInput* myKey = new KeyInput();
+	bool keys[256];
+	for (int i = 0; i < 256; i++) {
+		keys[i] = false;
+	}
+	keys[unsigned int(' ')] = true;
+	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init();
 	myKey->m_Event = myHow;
 

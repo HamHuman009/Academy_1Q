@@ -90,9 +90,9 @@ void Stage03::Init()
 	UIButton* exit = new UIButton(Vector2{ 640.f,500 }, e_exit, L"UI_Button_Title_GameOver", L".png");
 
 	UIButton* b_Plus = new UIButton({ 250, 300 }, bg_Plus, L"UI_Button_Pause_VolumeUp", L".png");
-	UIButton* b_Minus = new UIButton({ 400, 300 }, bg_Minus, L"UI_Button_Pause_VolumeUp", L".png");
+	UIButton* b_Minus = new UIButton({ 400, 300 }, bg_Minus, L"UI_Button_Pause_VolumeDown", L".png");
 	UIButton* e_Plus = new UIButton({ 250, 500 }, eft_Plus, L"UI_Button_Pause_VolumeUp", L".png");
-	UIButton* e_Minus = new UIButton({ 400, 500 }, eft_Minus, L"UI_Button_Pause_VolumeUp", L".png");
+	UIButton* e_Minus = new UIButton({ 400, 500 }, eft_Minus, L"UI_Button_Pause_VolumeDown", L".png");
 
 	UIVolume* myVoL = new UIVolume();
 

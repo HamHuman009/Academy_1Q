@@ -47,7 +47,12 @@ void Dialog1::Init()
 	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");*/
 	UIFace* myFace = new UIFace(Vector2{ 130 + (150 / 2),550 + (144 / 2) }, daughterFace1, daughterFace1, daughterFace1, daughterFace1);
 
-	KeyInput* myKey = new KeyInput();
+	bool keys[256];
+	for (int i = 0; i < 256; i++) {
+		keys[i] = false;
+	}
+	keys[unsigned int(' ')] = true;
+	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init(2.0f);
 	myKey->m_Event = e_NextScn;
 
