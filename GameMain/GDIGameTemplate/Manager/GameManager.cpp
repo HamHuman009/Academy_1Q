@@ -68,7 +68,7 @@ namespace Game
 
 		if (cameraShakeTimer > 0.f) {
 			cameraShakeTimer -= High_Resolution_Time::GetDeltaTime() / 1000.f;
-			timer += High_Resolution_Time::GetDeltaTime() / 90.f;
+			timer += High_Resolution_Time::GetDeltaTime() / 200.f;
 
 			std::cout << cameraShakeTimer << std::endl;
 			m_cameraPosition = { sinf(timer) * 6 - 3, sinf(timer * 1.3f) * -3 };

@@ -23,23 +23,23 @@ void Ending::Init()
 	{
 		root = static_cast<int>(EndRoot::Poor);
 	}
-	else if (Score <= 12 && bossCount <= 4)
+	else if (Score <= 16 && bossCount <= 4)
 	{
 		root = static_cast<int>(EndRoot::Normal);
 	}
-	else if (Score <= 12 && bossCount >= 5)
+	else if (Score <= 16 && bossCount == 5)
 	{
 		root = static_cast<int>(EndRoot::Maniac);
 	}
-	else if (Score <= 28 && bossCount >= 2) //조건 수정함 bosscount 이하에서 이상으로.
+	else if (Score <= 50 && bossCount <= 2 && bossCount >= 0) //조건 수정함 bosscount 이하에서 이상으로.
 	{
 		root = static_cast<int>(EndRoot::Great);
 	}
-	else if (Score <= 28 && bossCount >= 5)
+	else if (Score <= 50 && bossCount == 5)
 	{
 		root = static_cast<int>(EndRoot::Professional);
 	}
-	else if (Score >= 29)
+	else if (Score > 50)
 	{
 		root = static_cast<int>(EndRoot::Best);
 	}
