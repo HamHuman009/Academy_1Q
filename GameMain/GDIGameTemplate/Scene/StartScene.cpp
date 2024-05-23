@@ -152,8 +152,12 @@ void StartScene::Init()
 	//화면전환
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	
-
-	KeyInput* myKey = new KeyInput();
+	bool keys[256];
+	for (int i = 0; i < 256; i++) {
+		keys[i] = false;
+	}
+	keys[unsigned int(' ')] = true;
+	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init();
 	myKey->m_Event = myHow;
 

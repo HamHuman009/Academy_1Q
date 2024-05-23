@@ -215,6 +215,12 @@ namespace Game
 			cameraShakeTimer = timer;
 	}
 
+	void GameManager::OffCameraShaker()
+	{
+		cameraShakeTimer = 0.f;
+		m_cameraPosition = { 0.f, 0.f };
+	}
+
 
 	
 	//AnimationResource* g_PlayerAnim = nullptr;

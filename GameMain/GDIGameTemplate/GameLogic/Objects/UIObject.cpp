@@ -56,7 +56,9 @@ void UIButton::Init(Vector2 myPos, Event* myEvent, const std::wstring& _strkey, 
 
 void UIButton::Render(float alpha) {
 	if (m_isActive == false) return;
-	Render::DrawImage(m_pos.x - (cx / 2), m_pos.y - (cy / 2), m_CurBitMap, 0, 0, cx, cy, 1.0f);
+	Render::DrawImage(m_pos.x - (cx / 2), m_pos.y - (cy / 2), 
+		unableButton == false ? m_CurBitMap : m_Bitmap_Off,
+		0, 0, cx, cy, 1.0f);
 }
 
 void UIButton::OnTrigger() {
@@ -439,10 +441,6 @@ void UIInputField::Update(float delta)
 		if (timer < 0.f) {
 			timer = 2.f;
 		}
-
-		if (Input::IsKeyDown('\r')) {
-			EnterInput();
-		}
 	}
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
 		Vector2 temp = Vector2(Input::GetMouseState().x, Input::GetMouseState().y);
@@ -460,6 +458,7 @@ void UIInputField::Update(float delta)
 
 void UIInputField::Render(float alpha)
 {
+	if(m_isActive == false) return;
 	//Render::DrawRect(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
 	//	m_renderBounds.extents.x * 2, m_renderBounds.extents.y * 2, RGB(0, 0, 0));
 	Render::DrawFontS(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y,
@@ -468,11 +467,27 @@ void UIInputField::Render(float alpha)
 
 void UIInputField::OnTrigger()
 {
-
+	bool temp = EnterInput();
+	if (temp == true) {
+		ClearInput();
+		isInput = false;
+		Input::SetInputState(false);
+		m_isActive = false;
+	}
 }
 
-void UIInputField::EnterInput()
+void UIInputField::ClearInput()
 {
+	wmemset(inputStr, L'\0', 9);
+	strCount = 0;
+}
+
+bool UIInputField::EnterInput()
+{
+	if (strCount == 0) {
+		return false;
+	}
+
 	inputStr[strCount] = L'\0';
 	std::wcout << inputStr << std::endl;
 
@@ -482,6 +497,7 @@ void UIInputField::EnterInput()
 
 	Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore });
 	//오류 가능성 있음 주의
+	return true;
 }
 
 void UISpeech::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent) {
