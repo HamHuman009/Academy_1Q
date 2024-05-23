@@ -65,6 +65,7 @@ namespace Game
 		void SetCameraShakeTimer(float timer);
 		void OffCameraShaker();
 
+		bool skipTutorial = false;
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;

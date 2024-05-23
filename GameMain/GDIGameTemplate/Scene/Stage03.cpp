@@ -123,7 +123,7 @@ void Stage03::Init()
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog4);
 	AddEvent(e_nextScn);
 
-	UITimer* myTimer = new UITimer(CRM, Vector2{ 353, 14 }, e_nextScn, 40.f/*40.f*/);
+	UITimer* myTimer = new UITimer(CRM, Vector2{ 353, 14 }, e_nextScn, 50.f/*40.f*/);
 	myTimer->remainningTimeEvent = e_feedBack7;
 	EndgameEvent* e_endGame = new EndgameEvent(m_Player);
 	myTimer->gameOverTimerEvent = e_endGame;
@@ -211,7 +211,7 @@ void Stage03::Init()
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	}
-	myFish = new Fish(L"BossFish", 60.f, 8.7f, L"BossFish_03_Anim_00.png", CRM, L".png", 2.f, 4.f, 30.f, 30.f);
+	myFish = new Fish(L"BossFish", 75.f, 8.7f, L"BossFish_03_Anim_00.png", CRM, L".png", 2.f, 4.f, 30.f, 30.f);
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	//****************¹è°æ¾Õ*******************
