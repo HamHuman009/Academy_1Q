@@ -174,6 +174,8 @@ public:
 	void Update(float delta) override;
 	void Render(float alpha) override;
 	void OnTrigger() override;
+
+	void SetDialog(WCHAR* message, COLORREF _Color = RGB(0, 0, 0));
 };
 
 class UICrossDissolve : public UIObject {
@@ -321,14 +323,7 @@ public:
 	void OnTrigger() override;
 	~UISpeech() override {}
 
-	void AddFeedback(Speechenum feedbackNumber) {
-		if (elepsedTime > 1.5f || (UINT)feedbackNumber < 5) {
-			feedbackSort.push_back(feedbackNumber);
-			nothingTimer = 10.f;
-		}
-
-		std::cout << "button click" << std::endl;
-	}
+	void AddFeedback(Speechenum feedbackNumber);
 
 	UIFace* face;
 	bool isTutorial = false;

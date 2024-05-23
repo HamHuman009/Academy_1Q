@@ -42,9 +42,9 @@ void Dialog1::Init()
 	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::STAGE_01);
 
 	Gdiplus::Bitmap* daughterFace1 = CRM->LoadBitmapResouce(L"TalkBarFace1", L"UI_Image_Talk_TalkBar_01_Portrait.png");
-	/*Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"Face2", L"UI_Image_Talk_CharaFace_Sad_01.png");
-	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"Face3", L"UI_Image_Talk_CharaFace_Smile_01.png");
-	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");*/
+	/*Gdiplus::Bitmap* daughterFace2 = CRM->LoadBitmapResouce(L"TalkBarFace2", L"UI_Image_Talk_CharaFace_Sad_01.png");
+	Gdiplus::Bitmap* daughterFace3 = CRM->LoadBitmapResouce(L"TalkBarFace3", L"UI_Image_Talk_CharaFace_Smile_01.png");
+	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"TalkBarFace4", L"UI_Image_Talk_CharaFace_Happy_01.png");*/
 	UIFace* myFace = new UIFace(Vector2{ 130 + (150 / 2),550 + (144 / 2) }, daughterFace1, daughterFace1, daughterFace1, daughterFace1);
 
 	bool keys[256];
@@ -55,6 +55,49 @@ void Dialog1::Init()
 	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init(2.0f);
 	myKey->m_Event = e_NextScn;
+
+	DialogMessageEvent* e_dialogEvent = new DialogMessageEvent(L"그래서... 물고기를 잡고 싶다고?",
+		nullptr,
+		myFace,
+		myKey,
+		dialog,
+		-1,
+		1000.f
+	);
+	/*
+	DialogMessageEvent* e_dialogEvent = new DialogMessageEvent(L"응! 응!",
+		nullptr,
+		myFace,
+		myKey,
+		dialog,
+		-1,
+		1000.f
+	);
+	DialogMessageEvent* e_dialogEvent = new DialogMessageEvent(L"그래서... 물고기를 잡고 싶다고?",
+		nullptr,
+		myFace,
+		myKey,
+		dialog,
+		-1,
+		1000.f
+	);
+	DialogMessageEvent* e_dialogEvent = new DialogMessageEvent(L"그래서... 물고기를 잡고 싶다고?",
+		nullptr,
+		myFace,
+		myKey,
+		dialog,
+		-1,
+		1000.f
+	);
+	DialogMessageEvent* e_dialogEvent = new DialogMessageEvent(L"그래서... 물고기를 잡고 싶다고?",
+		nullptr,
+		myFace,
+		myKey,
+		dialog,
+		-1,
+		1000.f
+	);*/
+
 
 	AddEvent(e_NextScn);
 

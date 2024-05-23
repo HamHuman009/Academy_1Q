@@ -288,6 +288,15 @@ void UIDialog::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
+void UIDialog::SetDialog(WCHAR* message, COLORREF _Color)
+{
+	wcscpy_s(string, 255, message);
+	strCount = 0;
+	memset(t_str, '\0', 255);
+	timer = maxTime;
+	m_Color = _Color;
+}
+
 UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime, bool _isClickable)
 {
 	m_pos = position;
@@ -342,6 +351,7 @@ void UIFace::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap)
 
 void UIFace::Render(float alpha) {
 	if (m_isActive == false) return;
+	if (m_Bitmap == nullptr) return;
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
 }
 
@@ -352,8 +362,8 @@ void UIFace::OnTrigger()
 
 void UIFace::SetFace(int faceNumber, float duration)
 {
-	m_Bitmap = m_faceImage[faceNumber];
-	timer = duration;
+	m_Bitmap = faceNumber == -1 ? nullptr : m_faceImage[faceNumber];
+	timer = faceNumber == -1 ? 1000.f : duration;
 }
 
 void UIFace::Update(float delta) {
@@ -527,6 +537,19 @@ void UISpeech::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
+void UISpeech::AddFeedback(Speechenum feedbackNumber)
+{
+	if (Game::GameManager::GetInstance()->skipTutorial && (UINT)feedbackNumber < 5) {
+		return;
+	}
+
+	if (elepsedTime > 1.5f || (UINT)feedbackNumber < 5) {
+		feedbackSort.push_back(feedbackNumber);
+		nothingTimer = 10.f;
+	}
+
+	std::cout << "button click" << std::endl;
+}
 void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 {
 	switch (feedbackNumber) {

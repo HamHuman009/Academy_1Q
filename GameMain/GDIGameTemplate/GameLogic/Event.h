@@ -5,6 +5,7 @@
 #include "../Scene/CScene.h"
 #include "../System/TimeSystem.h"
 #include "../System/SoundSystem.h"
+#include "../GameLogic/Objects/KeyInput.h"
 
 class Event {
 protected:
@@ -356,5 +357,39 @@ public:
 		if (objectTrigger->strCount != 0)
 			button->unableButton = true;
 		objectTrigger->OnTrigger();
+	}
+};
+
+class DialogMessageEvent : public Event {
+public:
+	DialogMessageEvent* dialogEvent;
+	UIFace* face;
+	KeyInput* inEvent;
+	UIDialog* dialog;
+	int faceNumber;
+	float faceDuration;
+	
+	WCHAR message[255];
+	COLORREF color;
+
+	DialogMessageEvent(WCHAR* _message, DialogMessageEvent* _dialogEvent,
+		UIFace* _Face, KeyInput* _inEvent, UIDialog* _dialog,
+		int _faceNumber, float _faceDuration,
+		COLORREF _color = RGB(0, 0, 0)) {
+		wcscpy_s(message, 255, _message);
+		dialogEvent = _dialogEvent;
+		face = _Face;
+		inEvent = _inEvent;
+		dialog = _dialog;
+		faceNumber = _faceNumber;
+		faceDuration = _faceDuration;
+		color = _color;
+	}
+	// 키 입력이 있으면
+	void OnTrigger() override {
+		dialog->SetDialog(message, color);
+		face->SetFace(faceNumber, faceDuration);
+		inEvent->m_Event = dialogEvent;
+		inEvent->Init(2.f);
 	}
 };

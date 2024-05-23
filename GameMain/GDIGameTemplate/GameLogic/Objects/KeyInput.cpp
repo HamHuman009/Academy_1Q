@@ -4,12 +4,14 @@
 void KeyInput::Init() {
     m_delay = 0;
     m_delayActive = false;
+    m_elapsedTime = 0.f;
 }
 
 void KeyInput::Init(float i)
 {
     m_delay = i;
     m_delayActive = true;
+    m_elapsedTime = 0.f;
 }
 
 // 모든 키 입력 받음 (마우스 제외)

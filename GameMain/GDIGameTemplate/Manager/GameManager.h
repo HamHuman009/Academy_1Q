@@ -65,6 +65,7 @@ namespace Game
 		void SetCameraShakeTimer(float timer);
 		void OffCameraShaker();
 
+		bool skipTutorial = true;
 	private:
 		static GameManager* instance;
 		SceneManager* m_sceneManager;
@@ -78,6 +79,7 @@ namespace Game
 		int g_root;
 
 		float cameraShakeTimer = 0.f;
+
 	};
 }
 
