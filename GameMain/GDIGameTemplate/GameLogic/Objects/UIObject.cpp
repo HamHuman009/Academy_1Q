@@ -317,7 +317,8 @@ void UIDialog::SetDialog(WCHAR* message, COLORREF _Color)
 
 bool UIDialog::IsSkipAbleDialog()
 {
-	if (strCount < 255 && strCount > 0 && t_str[strCount] != '\0') {
+	int isSkip = wcslen(string) - wcslen(t_str);
+	if (isSkip > 0/*t_str[strCount] != '\0'*/) {
 		// 아직 대화가 남아있다면 대화를 모두 출력.
 		/*if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect))
 		{
