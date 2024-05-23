@@ -17,6 +17,8 @@ namespace mySound
     {
         BGM,
         Effect,
+        Effect2,
+        Effect3,
         Voice,
         Size
     };

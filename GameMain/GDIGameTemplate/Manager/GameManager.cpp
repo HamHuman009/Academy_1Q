@@ -28,20 +28,21 @@ namespace Game
 		SMInstance = mySound::SoundManager::GetInstance();
 		SMInstance->LoadMusic(mySound::eSoundList::Main_Theme, true, "Sound_Title_MainTheme_01-0.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Intro_Theme, true, "Sound_Intro_Intro_Theme_01.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Ingame_Theme, true, "Sound_Stage_Ingame Theme_01-1_2.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Ingame_Theme, true, "Sound_Stage_Ingame_Theme_01-1_2.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Talk_Theme, true, "Sound_Talk_Talk_Theme_01.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Ending_Theme, true, "Sound_Ending_Ending_Theme_01_2-2.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Button_Use, false, "Sound_Button Use_01-1.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Down, false, "Sound_Stage_Scooper Down_01.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Up, false, "Sound_Stage_Scooper Up_01.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Fish_Catch, false, "Sound_Stage_Fish Catch_01_003.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Boss_Fish_Catch, false, "Sound_Stage_Boss Fish Catch_01-1.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing1, false, "Sound_Fish breathing_01-1.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing2, false, "Sound_Fish breathing_01-2.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing3, false, "Sound_Fish breathing_01-3.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Button_Use, false, "Sound_Button_Use_01-1.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Down, false, "Sound_Stage_Scooper_Down_01.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Up, false, "Sound_Stage_Scooper_Up_01.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Fish_Catch, false, "Sound_Stage_Fish_Catch_01_003.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Boss_Fish_Catch, false, "Sound_Stage_Boss_Fish_Catch_01-1.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing1, false, "Sound_Fish_breathing_01-1.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing2, false, "Sound_Fish_breathing_01-2.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing3, false, "Sound_Fish_breathing_01-3.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Anger_Sound_Start,false,"Sound_Anger_Sound_01-3.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Anger_Sound_End, false, "Sound_Anger_Sound_02-3.wav");
-		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Broken, false, "Sound_Scooper Broken_01-1.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Broken, false, "Sound_Scooper_Broken_01-1.wav"); 
+		SMInstance->LoadMusic(mySound::eSoundList::Stage_End_Counting, false, "Sound_Stage_End_Counting_01.wav");
 		SMInstance->SetVolumeAll(mVolume);
 		
 		

@@ -91,7 +91,7 @@ namespace mySound
     SoundManager::SoundManager(): mSystem(), mChannel{}, mSoundList{}, mVolume()
     {
         System_Create(&mSystem);
-        mSystem->init(3, FMOD_INIT_NORMAL, 0);
+        mSystem->init(4, FMOD_INIT_NORMAL, 0);
     }
 
     SoundManager::~SoundManager()

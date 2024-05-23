@@ -127,6 +127,7 @@ void UITimer::Update(float delta) {
 
 		if (deltaTime < 7.f && isOn == false) {
 			isOn = true;
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Stage_End_Counting, mySound::eSoundChannel::Effect3);
 			if (remainningTimeEvent != nullptr)
 				remainningTimeEvent->OnTrigger();
 		}
