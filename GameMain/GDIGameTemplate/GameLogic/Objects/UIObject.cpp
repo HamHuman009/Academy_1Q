@@ -236,6 +236,24 @@ void UIBackGround::FixedUpdate() {
 //}
 
 
+void UIDialog::Init(Vector2 myPos, Vector2 endPos, COLORREF _Color, int _fontSize)
+{
+	x = myPos.x;
+	y = myPos.y;
+	cx = endPos.x;
+	cy = endPos.y;
+	//string = _string;
+	strCount = 0;
+	memset(t_str, '\0', 255);
+	timer = maxTime;
+	m_Color = _Color;
+	fontSize = _fontSize;
+
+	m_pos.x = float(x + cx / 2);
+	m_pos.y = float(y + cy / 2);
+	m_renderBounds = { {0.f, 0.f}, {cx / 2.f, cy / 2.f} };
+}
+
 void UIDialog::Init(Vector2 myPos, Vector2 endPos, WCHAR* _string, int _fontSize, COLORREF myColor) {
 	x = myPos.x;
 	y = myPos.y;
@@ -286,6 +304,36 @@ void UIDialog::Update(float delta) {
 
 void UIDialog::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
+}
+
+void UIDialog::SetDialog(WCHAR* message, COLORREF _Color)
+{
+	wcscpy_s(string, 255, message);
+	strCount = 0;
+	memset(t_str, '\0', 255);
+	timer = maxTime;
+	m_Color = _Color;
+}
+
+bool UIDialog::IsSkipAbleDialog()
+{
+	if (strCount < 255 && strCount > 0 && string[strCount] != '\0') {
+		// 아직 대화가 남아있다면 대화를 모두 출력.
+		/*if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect))
+		{
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Talk_Output, mySound::eSoundChannel::Effect);
+		}*/
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void UIDialog::SkipDialog()
+{
+   	wcscpy_s(t_str, 255, string);
+	strCount = wcslen(string);
 }
 
 UICrossDissolve::UICrossDissolve(Vector2 position, Gdiplus::Bitmap* bitmap, float alphatime, bool _isClickable)
@@ -519,7 +567,7 @@ void UISpeech::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent) {
 void UISpeech::Render(float alpha) {
 	if (m_isActive == false) return;
 	Render::DrawImage(m_pos.x, m_pos.y , m_Bitmap, 0, 0, cx, cy, 1.0f);
-	Render::DrawFontS(m_pos.x+25 , m_pos.y+25, cx-100, cy-60, t_str, COLORREF(0x091f29), 12, L"KOTRAHOPE.ttf", 1);
+	Render::DrawFontS(m_pos.x+25 , m_pos.y+25, cx-100, cy-60, t_str, COLORREF(0x091f29), 16, L"KOTRAHOPE.ttf", 1);
 
 }
 
@@ -529,9 +577,11 @@ void UISpeech::OnTrigger() {
 
 void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 {
+	int randomValue = rand() % 3;
+
 	switch (feedbackNumber) {
 	case TUTORIALONE_Explanation_Control:
-		wcscpy_s(out, 29, L"아빠! 뜰채는 WASD키를 사용해 이동할 수 있어!");
+		wcscpy_s(out, 31, L"아빠!\n뜰채는 WASD키를 사용해 이동할 수 있어!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
@@ -546,7 +596,7 @@ void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALFOUR_Explanation_REMAINNINGTIME:
-		wcscpy_s(out, 41, L"그리고 아빠! 제한시간이 있어서 그 안에 이쁜 물고기를 빨리 잡아야 해!");
+		wcscpy_s(out, 41, L"그리고 아빠!\n제한시간이 있어서 그 안에 이쁜 물고기를 빨리 잡아야 해!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
@@ -556,47 +606,102 @@ void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case IfCrawCaptureScoreZero:
-		wcscpy_s(out, 13, L"물렸어? 아빠 괜찮아?"); // 점수가 0인 상태에서 가재를 삭제한 경우
+		if (randomValue == 0)
+			wcscpy_s(out, 13, L"물렸어? 아빠 괜찮아?"); // 점수가 0인 상태에서 가재를 삭제한 경우
+		else if (randomValue == 1)
+			wcscpy_s(out, 13, L"아빠! 가재가 물었어?");
+		else if (randomValue == 2)
+			wcscpy_s(out, 15, L"물렸어! 피 안 나 아빠?");
 		face->SetFace(1, 3.f);
 		break;
 	case IfCrawCaptureScoreOne:
-		wcscpy_s(out, 19, L"가재가 물고기를 다치게 했어..."); // 점수가 1 이상인 상태에서 가재를 삭제한 경우
+		if (randomValue == 0)
+			wcscpy_s(out, 19, L"가재가 물고기를 다치게 했어..."); // 점수가 1 이상인 상태에서 가재를 삭제한 경우
+		else if (randomValue == 1)
+			wcscpy_s(out, 15, L"물고기가 물렸어... 이잉"); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 19, L"가재가 물고기 물고 도망갔어..."); 
 		face->SetFace(1, 3.f);
 		break;
 	case CaptureBossFish:
-		wcscpy_s(out, 25, L"진짜 예쁜 애 잡았다! 아빠, 정말 대단해!"); // 목표 물고기를 삭제한 경우
+		if (randomValue == 0)
+			wcscpy_s(out, 25, L"진짜 예쁜 애 잡았다! 아빠, 정말 대단해!"); // 목표 물고기를 삭제한 경우
+		else if (randomValue == 1)
+			wcscpy_s(out, 21, L"진짜 얘랑 같이 사는 거야? 우와~!"); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 18, L"아빠 진짜 고마워요! 대박이다!"); 
 		face->SetFace(3, 4.f);
 		break;
 	case CaptureFish:
-		wcscpy_s(out, 3, L"와~"); // 이전 FB_06 출력완료 후 4초가 지났고, 물고기를 삭제한 경우
+		if (randomValue == 0)
+			wcscpy_s(out, 3, L"와~"); // 이전 FB_06 출력완료 후 4초가 지났고, 물고기를 삭제한 경우
+		else if (randomValue == 1)
+			wcscpy_s(out, 6, L"물고기야~"); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 10, L"나랑 같이 가자~"); 
 		face->SetFace(2, 2.f);
 		break;
 	case OneCaptureTwoKill:
-		wcscpy_s(out, 5, L"우와~!"); // 물고기 포획 후 1초 내에 두 마리 더 포획
+		if (randomValue == 0)
+			wcscpy_s(out, 10, L"우와~! 아빠~!"); // 물고기 포획 후 1초 내에 두 마리 더 포획
+		else if (randomValue == 1)
+			wcscpy_s(out, 9, L"아빠 대단해~!"); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 11, L"와~! 진짜 잘해!"); 
 		face->SetFace(3, 2.f);
 		break;
 	case SevenScore:
-		wcscpy_s(out, 24, L"엄청 많다~! 아빠 물고기 엄청 잘 잡아!"); // 한 스테이지에서 점수 7점 이상 달성
+		if (randomValue == 0)
+			wcscpy_s(out, 24, L"엄청 많다~! 아빠 물고기 엄청 잘 잡아!"); // 한 스테이지에서 점수 7점 이상 달성
+		else if (randomValue == 1)
+			wcscpy_s(out, 26, L"진짜 많이 잡았어 아빠! 물고기 대가족이야~!"); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 25, L"가득 잡았다! 너무 좋아 아빠. 더 잡아줘!"); 
 		face->SetFace(3, 4.f);
 		break;
 	case RemainningTime:
-		wcscpy_s(out, 20, L"뜰채가 이상해... 찢어질 것 같아"); // 스테이지 제한 시간이 7초 남은 경우
+		if (randomValue == 0)
+			wcscpy_s(out, 20, L"뜰채가 이상해... 구멍날 것 같아"); // 스테이지 제한 시간이 7초 남은 경우
+		else if (randomValue == 1)
+			wcscpy_s(out, 25, L"방금 무슨 소리지? 구멍나면 안 되는데..."); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 17, L"아빠 들었어? 곧 구멍나겠어!"); 
 		face->SetFace(1, 3.f);
 		break;
 	case CrawAppear:
-		wcscpy_s(out, 28, L"조심해 아빠! 가재 잡으면 아빠도 물고기도 아야해"); // 가재 생성 후, 가재의 콜라이더가 최초로 화면 안에 진입한 경우
+		if (randomValue == 0)
+			wcscpy_s(out, 28, L"조심해 아빠! 가재 잡으면 아빠도 물고기도 아야해"); // 가재 생성 후, 가재의 콜라이더가 최초로 화면 안에 진입한 경우
+		else if (randomValue == 1)
+			wcscpy_s(out, 15, L"가재 왔다! 조심해 아빠!"); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 18, L"가재 왔어! 아빠 손가락 숨겨!"); 
 		face->SetFace(1, 4.f);
 		break;
 	case TenSecNothingAnd14sec:
-		wcscpy_s(out, 22, L"아빠는 할 수 있어! 만능 아빠 힘내!"); // 점수 변동 없이 10초 경과/이전 FB_09 재생 후 14초 경과
+		if (randomValue == 0)
+			wcscpy_s(out, 22, L"아빠는 할 수 있어! 만능 아빠 힘내!"); // 점수 변동 없이 10초 경과/이전 FB_09 재생 후 14초 경과
+		else if (randomValue == 1)
+			wcscpy_s(out, 27, L"아빠는 다 잘하잖아? 물고기도 많이 많이 잡자!");
+		else if (randomValue == 2)
+			wcscpy_s(out, 31, L"오랜만에 같이 노니까 진짜 좋아! 물고기도 잡아 주고!");
 		face->SetFace(2, 3.f);
 		break;
 	case Encouragement:
-		wcscpy_s(out, 8, L"♪~ ♪♪~ "); // FB_01이 10초 이상 지속되었고, 제한 시간이 10초 이상 남은 경우
+		if (randomValue == 0)
+			wcscpy_s(out, 7, L"♪~ ♪♪ "); // FB_01이 10초 이상 지속되었고, 제한 시간이 10초 이상 남은 경우
+		else if (randomValue == 1)
+			wcscpy_s(out, 5, L"♬~ ♪"); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 5, L"♪~~♬"); 
 		face->SetFace(2, 2.f);
 		break;
 	case StageStart:
-		wcscpy_s(out, 16, L"힘내! 저 애 꼭 데려가자!"); // 스테이지 시작 후
+		if (randomValue == 0)
+			wcscpy_s(out, 16, L"힘내! 저 애 꼭 데려가자!"); // 스테이지 시작 후
+		else if (randomValue == 1)
+			wcscpy_s(out, 19, L"물고기 진짜 많아~! 다 귀여워!"); 
+		else if (randomValue == 2)
+			wcscpy_s(out, 21, L"아빠 나랑 놀아줘서 고마워요! 힘내!"); 
 		face->SetFace(0, 2.f);
 		break;
 	default:
@@ -612,11 +717,13 @@ bool SortEnumFeedback(Speechenum a, Speechenum b) {
 void UISpeech::Update(float delta) {
 	if (isTutorial) {
 		if (string[strCount] == L'\0') {
-			isTutorial = false;
-			High_Resolution_Time::SetTimeScale2(1.f);
+			/*isTutorial = false;
+			High_Resolution_Time::SetTimeScale2(1.f);*/
 			/*memset(t_str, '\0', 255);
 			memset(string, '\0', 255);
 			strCount = 0;*/
+			if (textEnd == false)
+				elepsedTime = 0.f;
 			textEnd = true;
 		}
 	}
@@ -646,7 +753,7 @@ void UISpeech::Update(float delta) {
 
 	if (textEnd == true)
 	{
-		elepsedTime += delta;
+		elepsedTime += isTutorial ? High_Resolution_Time::GetUnScaleDeltaTime() / 1000.f : delta;
 	}
 	timer -= isTutorial ? High_Resolution_Time::GetUnScaleDeltaTime() / 1000.f : delta;
 	if (timer <= 0.f) {
@@ -656,7 +763,9 @@ void UISpeech::Update(float delta) {
 			strCount++;
 		}
 		else {
-			textEnd = true;
+			if (strCount != 0) {
+				textEnd = true;
+			}
 		}
 	}
 	//if (strCount < 255 && this->string[strCount] != '\0' && Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
@@ -670,6 +779,11 @@ void UISpeech::Update(float delta) {
 		memset(t_str, '\0', 255);
 		m_isActive = false;
 		textEnd = false;
+
+		if (isTutorial) {
+			isTutorial = false;
+			High_Resolution_Time::SetTimeScale2(1.f);
+		}
 	}
 	if (ignoreTimer <= 0.f) {
 		if (!feedbackSort.empty()) {

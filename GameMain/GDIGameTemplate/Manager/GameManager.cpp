@@ -64,7 +64,7 @@ namespace Game
 		++m_UpdateCount;
 
 		Input::UpdateMouse();
-		std::cout << SMInstance->isChannelPlaying(mySound::eSoundChannel::BGM) << std::endl;
+		//std::cout << SMInstance->isChannelPlaying(mySound::eSoundChannel::BGM) << std::endl;
 
 		if (cameraShakeTimer > 0.f) {
 			cameraShakeTimer -= High_Resolution_Time::GetDeltaTime() / 1000.f;

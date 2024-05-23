@@ -1,4 +1,4 @@
-#include "StartScene.h"
+ï»¿#include "StartScene.h"
 #include "../System/InputSystem.h"
 
 #include "../GameLogic/Event.h"
@@ -15,27 +15,27 @@ void StartScene::Start()
 
 void StartScene::Init()
 {
-	//ÇÊ¿ä ÀÎ½ºÅÏ½º ·Îµå
+	//í•„ìš” ì¸ìŠ¤í„´ìŠ¤ ë¡œë“œ
 	CResourceManager* CR = CResourceManager::GetInstance();
 	Ranking* myRang = Game::GameManager::GetInstance()->m_Ranking;
 
-	//½ºÄÚ¾î ÃÊ±âÈ­
+	//ìŠ¤ì½”ì–´ ì´ˆê¸°í™”
 	Game::GameManager::GetInstance()->BossCount = 0;
 	Game::GameManager::GetInstance()->FinalScore = 0;
 	Game::GameManager::GetInstance()->SetRoot(0);
 
-	//·©Å© ºÒ·¯¿À±â
+	//ë­í¬ ë¶ˆëŸ¬ì˜¤ê¸°
 	myRang->sortRank();
 	myRang->rankToStr();
 
-	//¹è°æ
+	//ë°°ê²½
 	UIImage* myBackGround = new UIImage();
 	Gdiplus::Bitmap* waterBack = CR->LoadBitmapResouce(L"waterImage", L"Water.png");
 	myBackGround->Init(waterBack, { 640.f, 360.f });
 	UIBackGround* myUPBackGround = new UIBackGround();
-	myUPBackGround->Init(L"¹°°á+±×¸²ÀÚ_00.png", CR);
+	myUPBackGround->Init(L"ë¬¼ê²°+ê·¸ë¦¼ì_00.png", CR);
 
-	////·©Å·º¸µå
+	////ë­í‚¹ë³´ë“œ
 	/*UIImage* rankingBoard = new UIImage();
 	Gdiplus::Bitmap* rankingBack = CR->LoadBitmapResouce(L"ranking", L"UI_Button_Title_Ranking.png");
 	rankingBoard->Init(rankingBack, { 1450.f, 340.f });
@@ -44,54 +44,58 @@ void StartScene::Init()
 	AddObject(moveAbleObject);*/
 
 
-	//Å¸ÀÌÆ² //70 , 48 //544,144
+	//íƒ€ì´í‹€ //70 , 48 //544,144
 	Gdiplus::Bitmap* titleBitmap = CR->LoadBitmapResouce(L"logo", L"Logo_final.png");
-	UIImage* titleImg = new UIImage(); // °´Ã¼ Å×½ºÆ® 
+	UIImage* titleImg = new UIImage(); // ê°ì²´ í…ŒìŠ¤íŠ¸ 
 	titleImg->Init(titleBitmap, { 370, 250 });
 	//titleImg->Init(titleBitmap, { 70 + (328 / 2),48 + (223 / 2) });
 
-	//ÀÌº¥Æ®
-	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO, mySound::eSoundList::Button_Use); // ¾ÀÀüÈ¯ ÀÌº¥Æ® Å×½ºÆ® ¹öÆ°
+	//ì´ë²¤íŠ¸
+	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::INTRO, mySound::eSoundList::Button_Use); // ì”¬ì „í™˜ ì´ë²¤íŠ¸ í…ŒìŠ¤íŠ¸ ë²„íŠ¼
 	ExitEvent* e_exit = new ExitEvent(mySound::eSoundList::Button_Use);
 
-	//°ÔÀÓ ¹æ¹ı
+	//ê²Œì„ ë°©ë²• ëŒì•„ì˜¤ê¸° ì´ë¯¸ì§€
+	Gdiplus::Bitmap* b_talkBarSpace = CR->LoadBitmapResouce(L"TalkBar_Space", L"UI_Image_Talk_TalkBar_01_SpaceBar.png");
+	UIImage* talkBarSpace = new UIImage();
+	talkBarSpace->Init(b_talkBarSpace, { 970 + (99 / 2), 550 + (30 / 2) });
+	talkBarSpace->m_isActive = false;
+
+	//ê²Œì„ ë°©ë²•
 	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"UI_Image_ToMoveImage_Final.png");
 	UIImage* howToPlay = new UIImage();
 	howToPlay->Init(howToPlayImage, { 640.f, 340.f });
 	howToPlay->m_isActive = false;
 	HowToEvent* myHow = new HowToEvent(mySound::eSoundList::Button_Use);
 	myHow->howToImg = howToPlay;
+	myHow->howToSpacebar = talkBarSpace;
 	
 
 
-	/*UIButton* gameStartButton = new UIButton(Vector2{70 + (200 / 2),330 + (50 / 2)}, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // °´Ã¼ Å×½ºÆ®
-	//°ÔÀÓ ¹æ¹ı ¹öÆ°
+	/*UIButton* gameStartButton = new UIButton(Vector2{70 + (200 / 2),330 + (50 / 2)}, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // ê°ì²´ í…ŒìŠ¤íŠ¸
+	//ê²Œì„ ë°©ë²• ë²„íŠ¼
 	UIButton* controll = new UIButton(Vector2{ 70 + (200 / 2),450 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
 
-	//Á¾·á¹öÆ°
+	//ì¢…ë£Œë²„íŠ¼
 	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),570 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");*/
 
-	//½ÃÀÛ¹öÆ° 
-	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // ¾ÀÀüÈ¯ ÀÌº¥Æ® Å×½ºÆ® ¹öÆ°
+	//ì‹œì‘ë²„íŠ¼ 
+	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // ì”¬ì „í™˜ ì´ë²¤íŠ¸ í…ŒìŠ¤íŠ¸ ë²„íŠ¼
 
-	UIButton* gameStartButton = new UIButton(Vector2{ 80 + (200 / 2),520 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // °´Ã¼ Å×½ºÆ®
-	//°ÔÀÓ ¹æ¹ı ¹öÆ°
+	UIButton* gameStartButton = new UIButton(Vector2{ 80 + (200 / 2),520 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // ê°ì²´ í…ŒìŠ¤íŠ¸
+	//ê²Œì„ ë°©ë²• ë²„íŠ¼
 	UIButton* controll = new UIButton(Vector2{ 270 + (200 / 2),520 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
 
-	//Á¾·á¹öÆ°
+	//ì¢…ë£Œë²„íŠ¼
 	UIButton* exit = new UIButton(Vector2{ 460 + (200 / 2),520 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
 	
 
-	//°ÔÀÓ ¹æ¹ı µ¹¾Æ¿À±â
-
-
-	//·©Å©º¸µå
+	//ë­í¬ë³´ë“œ
 	scoreRect = { 400,200,800,800 };
 	UIImage* rankBoard = new UIImage();
 	Gdiplus::Bitmap* rankImage = CR->LoadBitmapResouce(L"RankBoard",L"UI_Title_Ranking.png");
 	rankBoard->Init(rankImage,{ 1450.f, 340.f });
 
-	//·©Å·º¸µå ¿òÁ÷ÀÌ´Â ¿ÀºêÁ§Æ®
+	//ë­í‚¹ë³´ë“œ ì›€ì§ì´ëŠ” ì˜¤ë¸Œì íŠ¸
 	MoveObject* moveAbleObject = new MoveObject(rankBoard, { 950, 340 }, 1.f);
 	AddObject(moveAbleObject);
 
@@ -146,10 +150,10 @@ void StartScene::Init()
 	/*UIDialog* rankDialog = new UIDialog();
 	rankDialog->Init({ 752,48 }, { 432,624 }, _str);*/
 
-	//Á¶ÀÛ
+	//ì¡°ì‘
 	//UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),472 + (50 / 2) }, e_exit, exitBtn);
 
-	//È­¸éÀüÈ¯
+	//í™”ë©´ì „í™˜
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, Game::GameManager::GetInstance()->sceneBitmap);
 	
 	bool keys[256];
@@ -157,13 +161,14 @@ void StartScene::Init()
 		keys[i] = false;
 	}
 	keys[unsigned int(' ')] = true;
+	//keys[unsigned int('\1')] = true;
 	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init();
 	myKey->m_Event = myHow;
 
 	AddObject(myKey);
 
-	//¿ÀºêÁ§Æ® µî·Ï
+	//ì˜¤ë¸Œì íŠ¸ ë“±ë¡
 	AddObject(myBackGround);
 
 	Fish* myFish;
@@ -194,15 +199,16 @@ void StartScene::Init()
 
 	
 	
-	//ÀÌº¥Æ® µî·Ï
+	//ì´ë²¤íŠ¸ ë“±ë¡
 	AddEvent(e_nextScn);
 	AddEvent(e_exit);
 	AddEvent(myHow);
 	AddObject(titleImg);
 
 	AddObject(howToPlay);
+	AddObject(talkBarSpace);
 	AddObject(backEffect);
-	//È­¸é ¾ËÆÄ °ª ÃÊ±âÈ­
+	//í™”ë©´ ì•ŒíŒŒ ê°’ ì´ˆê¸°í™”
 	alpha = 1.0f;
 
 	/*BGSound_Plus* bg_Plus = new BGSound_Plus();

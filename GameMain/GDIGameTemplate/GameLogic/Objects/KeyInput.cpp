@@ -17,9 +17,8 @@ void KeyInput::Update(float delta)
 {
     if (m_isActive == false) return;
 
-    if (m_delay != 0) {
-        m_elapsedTime += delta;
-    }
+    m_elapsedTime += delta;
+
     if (m_delayActive == false || (m_delayActive == true && m_elapsedTime > m_delay)) {
         bool temp = false;
         for (int key = 0; key <= 255; ++key) {

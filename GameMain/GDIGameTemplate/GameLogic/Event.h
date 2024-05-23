@@ -248,6 +248,7 @@ public:
 class HowToEvent : public Event {
 public:
 	UIImage* howToImg;
+	UIImage* howToSpacebar;
 
 	HowToEvent(mySound::eSoundList mySound) {
 		m_Sound = mySound;
@@ -258,8 +259,24 @@ public:
 		if (m_Sound != mySound::eSoundList::Void) {
 			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
 		}
-		if (howToImg->m_isActive == true) howToImg->m_isActive = false;
-		else howToImg->m_isActive = true;
+
+		if (Input::IsKey('\1') == true) {
+			howToImg->m_isActive = true;
+			howToSpacebar->m_isActive = true;
+		}
+		if (Input::IsKeyDown(' ') == true) {
+			howToImg->m_isActive = false;
+			howToSpacebar->m_isActive = false;
+		}
+
+		/*if (howToImg->m_isActive == true) {
+			howToImg->m_isActive = false;
+			howToSpacebar->m_isActive = false;
+		}
+		else {
+			howToImg->m_isActive = true;
+			howToSpacebar->m_isActive = true;
+		}*/
 
 	}
 };
@@ -372,5 +389,50 @@ public:
 		}
 		Game::GameManager::GetInstance()->skipTutorial = true;
 		SceneManager::GetInstance()->SetCurScene((int)SceneType::STAGE_01);
+	}
+};
+
+class DialogMessageEvent : public Event {
+public:
+	Event* nextEvent = nullptr;
+	UIFace* face;
+	KeyInput* inEvent;
+	UIDialog* dialog;
+	int faceNumber;
+	float faceDuration;
+
+	WCHAR message[255];
+	COLORREF color;
+
+	bool isSkip = false;
+
+	DialogMessageEvent(const WCHAR* _message,
+		UIFace* _Face, KeyInput* _inEvent, UIDialog* _dialog,
+		int _faceNumber, float _faceDuration,
+		COLORREF _color = RGB(0, 0, 0)) {
+		wcscpy_s(message, 255, _message);
+		face = _Face;
+		inEvent = _inEvent;
+		dialog = _dialog;
+		faceNumber = _faceNumber;
+		faceDuration = _faceDuration;
+		color = _color;
+	}
+	// 키 입력이 있으면
+	void OnTrigger() override {
+		if (isSkip == false) {
+			dialog->SetDialog(message, color);
+			face->SetFace(faceNumber, faceDuration);
+			isSkip = true;
+		}
+		else {
+			if (dialog->IsSkipAbleDialog()) {
+				dialog->SkipDialog();
+			}
+			else {
+				inEvent->m_Event = nextEvent;
+				inEvent->Init(0.5f);
+			}
+		}
 	}
 };

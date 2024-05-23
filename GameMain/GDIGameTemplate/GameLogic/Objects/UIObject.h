@@ -169,11 +169,16 @@ public:
 	~UIDialog()override {
 		//delete[] string;
 	};
+	void Init(Vector2 myPos, Vector2 endPos, COLORREF _Color = RGB(0, 0, 0), int _fontSize = 24);
 	void Init(Vector2 myPos, Vector2 endPos, WCHAR* _string, int _fontSize = 24, COLORREF _Color = RGB(0,0,0));
 	//void Init(Vector2 myPos, Vector2)
 	void Update(float delta) override;
 	void Render(float alpha) override;
 	void OnTrigger() override;
+
+	void SetDialog(WCHAR* message, COLORREF _Color = RGB(0, 0, 0));
+	bool IsSkipAbleDialog();
+	void SkipDialog();
 };
 
 class UICrossDissolve : public UIObject {
@@ -281,8 +286,8 @@ enum Speechenum {
 	IfCrawCaptureScoreZero,
 	IfCrawCaptureScoreOne,
 	CaptureBossFish,
-	CaptureFish,
 	RemainningTime,
+	CaptureFish,
 	CrawAppear,
 	OneCaptureTwoKill,
 	SevenScore,
@@ -300,15 +305,15 @@ public:
 	UISpeech(Vector2 myPos, Gdiplus::Bitmap* myBitMap) {
 		Init(myPos, myBitMap);
 		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
-		feedbackSort.push_back(Speechenum::StageStart);
 		elepsedTime = 1.6f;
+		feedbackSort.push_back(Speechenum::StageStart);
 	}
 
 	UISpeech(Vector2 myPos, Event* myEvent, Gdiplus::Bitmap* myBitMap) {
 		Init(myPos, myBitMap, myEvent);
 		m_renderBounds = { {0.f, 0.f }, { (float)cx, (float)cy } };
-		feedbackSort.push_back(Speechenum::StageStart);
 		elepsedTime = 1.6f;
+		feedbackSort.push_back(Speechenum::StageStart);
 	}
 
 	void Update(float delta) override;
@@ -342,7 +347,7 @@ private:
 	WCHAR t_str[500];
 	int strCount;
 	float timer;
-	const float maxTime = 0.1f;
+	const float maxTime = 0.07f;
 	float elepsedTime;
 	bool textEnd = false;
 

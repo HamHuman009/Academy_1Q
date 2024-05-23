@@ -208,11 +208,11 @@ void Stage02::Init()
 		myFish = new Fish(L"Fish1", 50.f, 4.36f, L"Fish_01_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
-	}for (int i = 0; i < 4; i++) {
+	}for (int i = 0; i < 3; i++) {
 		myFish = new Fish(L"Fish2", 50.f, 4.36f, L"Fish_02_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
-	}for (int i = 0; i < 4; i++) {
+	}for (int i = 0; i < 3; i++) {
 		myFish = new Fish(L"Fish3", 50.f, 4.36f, L"Fish_03_Anim_00.png", CRM, L".png", 3.f, 4.f, 23.f, 23.f);
 		AddObject(myFish);
 		colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);

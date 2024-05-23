@@ -23,8 +23,15 @@ void IntroScene::Init()
 	myBack->Init(L"opening_scene_00.png", CRM);
 	SelectScnEvent* e_nextScn = new SelectScnEvent((int)SceneType::Dialog1);
 	myBack->m_Event = e_nextScn;
+
+	//게임 방법 돌아오기 이미지
+	Gdiplus::Bitmap* b_talkBarSpace = CRM->LoadBitmapResouce(L"TalkBar_Space", L"UI_Image_Talk_TalkBar_01_SpaceBar.png");
+	UIImage* talkBarSpace = new UIImage();
+	talkBarSpace->Init(b_talkBarSpace, { 1100 + (99 / 2), 635 + (30 / 2) });
+
 	AddObject(myBack);
 	AddEvent(e_nextScn);
+	AddObject(talkBarSpace);
 	
 	
 }

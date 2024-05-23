@@ -128,7 +128,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	global::winApp.Initialize(hInstance);
 
-	bool bUseConsole = false;
+	bool bUseConsole = true;
 	if (bUseConsole)
 	{
 		AllocConsole();
@@ -159,6 +159,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			else
 			{
 				DispatchMessage(&msg);
+			}
+
+			if (msg.message == WM_LBUTTONDOWN)
+			{	
+				// 마우스 좌클릭 메시지
+				Input::KeyDown(msg.wParam);
+			}
+			else if (msg.message == WM_LBUTTONUP) {
+				Input::KeyUp(msg.wParam);
 			}
 
 			TranslateMessage(&msg);
