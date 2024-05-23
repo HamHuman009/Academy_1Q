@@ -250,12 +250,15 @@ namespace Render
 
 	void DrawFont(int x, int y, int cx, int cy , const WCHAR* text, COLORREF color, int fontSize, const wchar_t* fontName, int fontStyle) {
 
+		int cameraX = Game::GameManager::GetInstance()->m_cameraPosition.x;
+		int cameraY = Game::GameManager::GetInstance()->m_cameraPosition.y;
+
 		Gdiplus::SolidBrush semiTransBrush(Gdiplus::Color(100, 0, 0, 0)); // 50% Åõ¸í »¡°£»ö
 		graphics->FillRectangle(&semiTransBrush, x, y, cx, cy);
 
 		Gdiplus::FontFamily   fontFamily(fontName);
 		Gdiplus::Font         font(&fontFamily, fontSize, fontStyle, Gdiplus::UnitPoint);
-		Gdiplus::RectF        rectF(x, y, cx, cy);
+		Gdiplus::RectF        rectF(x + cameraX, y + cameraY, cx, cy);
 		Gdiplus::SolidBrush   solidBrush(Gdiplus::Color(255, 0, 0, 0));
 
 		//graphics.DrawString(string, -1, &font, rectF, NULL, &solidBrush);
@@ -265,6 +268,9 @@ namespace Render
 	}
 
 	void DrawFontS(int x, int y, int cx, int cy, const WCHAR* text, COLORREF color, int fontSize, const WCHAR* fontfilepath, int fontStyle) {
+
+		int cameraX = Game::GameManager::GetInstance()->m_cameraPosition.x;
+		int cameraY = Game::GameManager::GetInstance()->m_cameraPosition.y;
 
 		Gdiplus::Graphics Font(backMemDC);
 
@@ -288,7 +294,7 @@ namespace Render
 			graphics->FillRectangle(&semiTransBrush, x, y, cx, cy);
 			/*Gdiplus::FontFamily   fontFamily(fontName);*/
 			Gdiplus::Font         font(fontFamily, fontSize, fontStyle, Gdiplus::UnitPoint);
-			Gdiplus::RectF        rectF(x, y, cx, cy);
+			Gdiplus::RectF        rectF(x + cameraX, y + cameraY, cx, cy);
 			Gdiplus::SolidBrush   solidBrush(m_Color);
 
 			//graphics.DrawString(string, -1, &font, rectF, NULL, &solidBrush);

@@ -21,6 +21,8 @@ void Stage02::Init()
 	//UIBackGround* myBack = new UIBackGround();
 	//AddObject(myBack);
 
+	Game::GameManager::GetInstance()->SetCameraShakeTimer(6000.f);
+
 	colliderManager = new ColliderManager();
 
 	UISpeech* speech = new UISpeech({ 766, 103 }, nullptr);

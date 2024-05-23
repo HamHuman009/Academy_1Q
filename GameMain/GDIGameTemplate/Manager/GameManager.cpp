@@ -68,11 +68,21 @@ namespace Game
 
 		if (cameraShakeTimer > 0.f) {
 			cameraShakeTimer -= High_Resolution_Time::GetDeltaTime() / 1000.f;
-			timer += High_Resolution_Time::GetDeltaTime() / 110.f;
-			m_cameraPosition = { sinf(timer) * 7 - 4, sinf(timer * 1.3f) * -3 };
+			timer += High_Resolution_Time::GetDeltaTime() / 90.f;
+
+			std::cout << cameraShakeTimer << std::endl;
+			m_cameraPosition = { sinf(timer) * 6 - 3, sinf(timer * 1.3f) * -3 };
 			if (cameraShakeTimer < 0.f) {
 				m_cameraPosition = { 0.f, 0.f };
+			}
+		}
 
+		if (hardCameraShakeTimer > 0.f) {
+			hardCameraShakeTimer -= High_Resolution_Time::GetDeltaTime() / 1000.f;
+			timer += High_Resolution_Time::GetDeltaTime() / 50.f;
+			m_cameraPosition = { sinf(timer) * 8 - 4, sinf(timer * 1.3f) * -6 + 3  };
+			if (hardCameraShakeTimer < 0.f) {
+				m_cameraPosition = { 0.f, 0.f };
 			}
 		}
 
@@ -224,6 +234,13 @@ namespace Game
 	{
 		cameraShakeTimer = 0.f;
 		m_cameraPosition = { 0.f, 0.f };
+	}
+
+	void GameManager::SetHardCameraShake(float time)
+	{
+		cameraShakeTimer = 0.f;
+		m_cameraPosition = { 0.f, 0.f };
+		hardCameraShakeTimer = time;
 	}
 
 

@@ -6,6 +6,8 @@
 void Ending::Init()
 {
 	
+	Game::GameManager::GetInstance()->OffCameraShaker();
+
 	WCHAR t_str[] = { 0 };
 
 	SelectScnEvent* e_NextScn1 = new SelectScnEvent((UINT)SceneType::Score);
@@ -15,8 +17,8 @@ void Ending::Init()
 	
 	Score = Game::GameManager::GetInstance()->FinalScore;
 	bossCount = Game::GameManager::GetInstance()->BossCount;
-	Score = 13;
-	bossCount = 3;
+	/*Score = 75;
+	bossCount = 5;*/
 	if (Score <= 1 && bossCount <= 0)
 	{
 		root = static_cast<int>(EndRoot::Poor);

@@ -64,6 +64,7 @@ namespace Game
 
 		void SetCameraShakeTimer(float timer);
 		void OffCameraShaker();
+		void SetHardCameraShake(float time);
 
 		bool skipTutorial = false;
 	private:
@@ -79,6 +80,7 @@ namespace Game
 		int g_root;
 
 		float cameraShakeTimer = 0.f;
+		float hardCameraShakeTimer = 0.f;
 	};
 }
 

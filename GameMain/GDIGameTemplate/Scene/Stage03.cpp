@@ -21,6 +21,8 @@ void Stage03::Init()
 	//UIBackGround* myBack = new UIBackGround();
 	//AddObject(myBack);
 
+	Game::GameManager::GetInstance()->SetCameraShakeTimer(6000.f);
+
 	colliderManager = new ColliderManager();
 
 	UISpeech* speech = new UISpeech({ 766, 103 }, nullptr);
@@ -84,7 +86,6 @@ void Stage03::Init()
 	speech->Init({ 620, 73 }, speechBack);
 
 	Gdiplus::Bitmap* pauseBackImage = CRM->LoadBitmapResouce(L"pauseBackImage", L"PauseBackGround.png");
-
 	UIButton* resume = new UIButton(Vector2{ 640.f,300 }, e_resume, L"UI_Button_wailManu_GoToStage", L".png");
 	UIButton* retry = new UIButton(Vector2{ 640.f,400 }, e_retry, L"UI_Button_wailManu_GoToTitle", L".png");
 	UIButton* exit = new UIButton(Vector2{ 640.f,500 }, e_exit, L"UI_Button_Title_GameOver", L".png");
@@ -119,6 +120,21 @@ void Stage03::Init()
 	e_pause->E_Volume = myVoL;
 	e_resume->OnTrigger();
 	m_Player->pauseEvent = e_pause;
+
+	pauseBack->Init(pauseBackImage, Vector2{ 500.f,400.f });
+	pauseBack->alpha = 0.5f;
+
+	pauseBack->m_isActive = false;
+	resume->m_isActive = false;
+	retry->m_isActive = false;
+	exit->m_isActive = false;
+
+	b_Plus->m_isActive = false;
+	b_Minus->m_isActive = false;
+	e_Plus->m_isActive = false;
+	e_Minus->m_isActive = false;
+
+	myVoL->m_isActive = false;
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog4);
 	AddEvent(e_nextScn);

@@ -17,6 +17,7 @@ Dialog3::~Dialog3()
 
 void Dialog3::Init()
 {
+	Game::GameManager::GetInstance()->OffCameraShaker();
 	CResourceManager* CRM = CResourceManager::GetInstance();
 
 	Gdiplus::Bitmap* b_talkBarBox = CRM->LoadBitmapResouce(L"TalkBar_Box", L"UI_Image_Talk_TalkBar_01_Box.png");

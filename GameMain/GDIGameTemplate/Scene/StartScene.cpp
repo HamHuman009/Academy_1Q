@@ -15,6 +15,8 @@ void StartScene::Start()
 
 void StartScene::Init()
 {
+
+	Game::GameManager::GetInstance()->OffCameraShaker();
 	//필요 인스턴스 로드
 	CResourceManager* CR = CResourceManager::GetInstance();
 	Ranking* myRang = Game::GameManager::GetInstance()->m_Ranking;

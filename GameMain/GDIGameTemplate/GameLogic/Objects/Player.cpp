@@ -303,7 +303,10 @@ void Player::SoberUp()
 {
 	isAwake = true;
 	awakeTime = 15.f;
-	Game::GameManager::GetInstance()->SetCameraShakeTimer(15.f);
+	//Game::GameManager::GetInstance()->SetCameraShakeTimer(awakeTime);
+	Game::GameManager::GetInstance()->SetHardCameraShake(1.f);
+	Game::GameManager::GetInstance()->OffCameraShaker();
+
 }
 
 void Player::CancelSoberUp()
@@ -311,7 +314,8 @@ void Player::CancelSoberUp()
 	mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Anger_Sound_End, mySound::eSoundChannel::Voice);
 	isAwake = false;
 	awakeTime = 0.f;
-	Game::GameManager::GetInstance()->OffCameraShaker();
+	//Game::GameManager::GetInstance()->OffCameraShaker();
+	Game::GameManager::GetInstance()->SetCameraShakeTimer(6000.f);
 }
 
 

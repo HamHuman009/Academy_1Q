@@ -17,6 +17,8 @@ IntroScene::~IntroScene()
 
 void IntroScene::Init()
 {
+	Game::GameManager::GetInstance()->OffCameraShaker();
+
 	// dialog1로 옮겨져서 사용 X
 	UIIntroBack* myBack = new UIIntroBack();
 	CResourceManager* CRM = CResourceManager::GetInstance();

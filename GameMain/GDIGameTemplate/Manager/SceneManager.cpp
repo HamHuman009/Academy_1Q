@@ -28,10 +28,10 @@ void SceneManager::SetCurScene(int i) {
 
 	if (m_curScene != nullptr)
 		m_curScene->Exit();
+	Game::GameManager::GetInstance()->OffCameraShaker();
 	m_curScene = m_sceneArr[i];
  	m_curScene->Init();
 	m_curScene->Start();
-	Game::GameManager::GetInstance()->OffCameraShaker();
 }
 
 CScene* SceneManager::GetCurScene() {

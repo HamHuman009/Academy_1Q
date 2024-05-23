@@ -8,7 +8,7 @@
 
 void ScoreScene::Init()
 {	
-	
+	Game::GameManager::GetInstance()->OffCameraShaker();
 	
 	WCHAR _scoreStr[255];
 	WCHAR _rankStr[255];

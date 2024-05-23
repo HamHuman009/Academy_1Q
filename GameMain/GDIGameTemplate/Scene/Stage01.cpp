@@ -8,6 +8,7 @@
 //#define TEST
 void Stage01::Init()
 {
+
 	colliderManager = new ColliderManager();
 	//200*100//766/103
 
@@ -258,6 +259,9 @@ void Stage01::Init()
 	AddObject(e_Plus);
 	AddObject(e_Minus);
 	AddObject(myVoL);
+
+
+  	Game::GameManager::GetInstance()->SetCameraShakeTimer(6000.f);
 }
 
 Stage01::~Stage01() {

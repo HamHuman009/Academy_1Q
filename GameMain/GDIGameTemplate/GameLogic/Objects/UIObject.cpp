@@ -390,6 +390,7 @@ void UIFace::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap)
 
 void UIFace::Render(float alpha) {
 	if (m_isActive == false) return;
+	if (m_Bitmap == nullptr) return;
 	Render::DrawImage(m_pos.x - m_renderBounds.extents.x, m_pos.y - m_renderBounds.extents.y, m_Bitmap, 0, 0, cx, cy, 1.0f);
 }
 
@@ -400,8 +401,8 @@ void UIFace::OnTrigger()
 
 void UIFace::SetFace(int faceNumber, float duration)
 {
-	m_Bitmap = m_faceImage[faceNumber];
-	timer = duration;
+	m_Bitmap = faceNumber == -1 ? nullptr : m_faceImage[faceNumber];
+	timer = faceNumber == -1 ? 1000.f : duration;
 }
 
 void UIFace::Update(float delta) {
@@ -442,7 +443,7 @@ void In_ScoreBoard::Render(float alpha)
 	Render::DrawFontS(x+120, y + 15, cx, cy-70, string.c_str(), RGB(255, 255, 255), 20, L"KOTRAHOPE.ttf", 1);
 	//Render::DrawImage(x, y, m_bitmapTarget, 0, 0, cx, cy, 1.0f);
 	if(m_bitmapTargetGray != nullptr)
-		Render::DrawRotateImage(x+15, y-60, m_bitmapTargetGray, 270,1.0f,0.5f,0.5f);
+		Render::DrawRotateImage(x+15, y + 28, m_bitmapTargetGray, 0,1.0f,0.5f,0.5f);
 }
 
 void In_ScoreBoard::OnTrigger()
@@ -575,33 +576,45 @@ void UISpeech::OnTrigger() {
 	if (m_Event != nullptr) m_Event->OnTrigger();
 }
 
+void UISpeech::AddFeedback(Speechenum feedbackNumber) {
+	if (Game::GameManager::GetInstance()->skipTutorial && (UINT)feedbackNumber < 5) {
+		return;
+	}
+	if (elepsedTime > 1.5f || (UINT)feedbackNumber < 5) {
+		feedbackSort.push_back(feedbackNumber);
+		nothingTimer = 10.f;
+	}
+
+	std::cout << "button click" << std::endl;
+}
+
 void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 {
 	int randomValue = rand() % 3;
 
 	switch (feedbackNumber) {
 	case TUTORIALONE_Explanation_Control:
-		wcscpy_s(out, 31, L"아빠!\n뜰채는 WASD키를 사용해 이동할 수 있어!");
+		wcscpy_s(out, 25, L"아빠!\n뜰채는 WASD키로 이동할 수 있어!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALTWO_Explanation_Scoop:
-		wcscpy_s(out, 27, L"Space키를 누르면  물고기를 잡을 수 있어!");
+		wcscpy_s(out, 26, L"Space키를 누르면\n물고기를 잡을 수 있어!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALTHREE_Explanation_Boss:
-		wcscpy_s(out, 28, L"더 예쁜 물고기도 있으면 나 더 행복할 거 같아!");
+		wcscpy_s(out, 28, L"더 예쁜 물고기도 있으면\n나 더 행복할 거 같아!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALFOUR_Explanation_REMAINNINGTIME:
-		wcscpy_s(out, 41, L"그리고 아빠!\n제한시간이 있어서 그 안에 이쁜 물고기를 빨리 잡아야 해!");
+		wcscpy_s(out, 37, L"그리고 아빠!\n제한시간이 있어서\n이쁜 물고기를 빨리 잡아야 해! ");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALFIVE_Explanation_CRAW:
-		wcscpy_s(out, 37, L"또 가재는 아빠를 콕! 찝어서 아빠가 다시 정신을 차리게 도와줘!");
+		wcscpy_s(out, 37, L"또 가재는\n아빠를 콕! 찝어서\n아빠가 다시 정신을 차리게 도와줘!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
@@ -625,7 +638,7 @@ void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 		break;
 	case CaptureBossFish:
 		if (randomValue == 0)
-			wcscpy_s(out, 25, L"진짜 예쁜 애 잡았다! 아빠, 정말 대단해!"); // 목표 물고기를 삭제한 경우
+			wcscpy_s(out, 25, L"진짜 예쁜 애 잡았다!\n아빠, 정말 대단해!"); // 목표 물고기를 삭제한 경우
 		else if (randomValue == 1)
 			wcscpy_s(out, 21, L"진짜 얘랑 같이 사는 거야? 우와~!"); 
 		else if (randomValue == 2)
@@ -652,25 +665,25 @@ void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 		break;
 	case SevenScore:
 		if (randomValue == 0)
-			wcscpy_s(out, 24, L"엄청 많다~! 아빠 물고기 엄청 잘 잡아!"); // 한 스테이지에서 점수 7점 이상 달성
+			wcscpy_s(out, 24, L"엄청 많다~!\n아빠 물고기 엄청 잘 잡아!"); // 한 스테이지에서 점수 7점 이상 달성
 		else if (randomValue == 1)
-			wcscpy_s(out, 26, L"진짜 많이 잡았어 아빠! 물고기 대가족이야~!"); 
+			wcscpy_s(out, 26, L"진짜 많이 잡았어 아빠!\n물고기 대가족이야~!"); 
 		else if (randomValue == 2)
-			wcscpy_s(out, 25, L"가득 잡았다! 너무 좋아 아빠. 더 잡아줘!"); 
+			wcscpy_s(out, 25, L"가득 잡았다!\n너무 좋아 아빠. 더 잡아줘!"); 
 		face->SetFace(3, 4.f);
 		break;
 	case RemainningTime:
 		if (randomValue == 0)
 			wcscpy_s(out, 20, L"뜰채가 이상해... 구멍날 것 같아"); // 스테이지 제한 시간이 7초 남은 경우
 		else if (randomValue == 1)
-			wcscpy_s(out, 25, L"방금 무슨 소리지? 구멍나면 안 되는데..."); 
+			wcscpy_s(out, 25, L"방금 무슨 소리지?\n구멍나면 안 되는데..."); 
 		else if (randomValue == 2)
 			wcscpy_s(out, 17, L"아빠 들었어? 곧 구멍나겠어!"); 
 		face->SetFace(1, 3.f);
 		break;
 	case CrawAppear:
 		if (randomValue == 0)
-			wcscpy_s(out, 28, L"조심해 아빠! 가재 잡으면 아빠도 물고기도 아야해"); // 가재 생성 후, 가재의 콜라이더가 최초로 화면 안에 진입한 경우
+			wcscpy_s(out, 28, L"조심해 아빠!\n가재 잡으면 아빠도 물고기도 아야해"); // 가재 생성 후, 가재의 콜라이더가 최초로 화면 안에 진입한 경우
 		else if (randomValue == 1)
 			wcscpy_s(out, 15, L"가재 왔다! 조심해 아빠!"); 
 		else if (randomValue == 2)
@@ -679,11 +692,11 @@ void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 		break;
 	case TenSecNothingAnd14sec:
 		if (randomValue == 0)
-			wcscpy_s(out, 22, L"아빠는 할 수 있어! 만능 아빠 힘내!"); // 점수 변동 없이 10초 경과/이전 FB_09 재생 후 14초 경과
+			wcscpy_s(out, 22, L"아빠는 할 수 있어!\n만능 아빠 힘내!"); // 점수 변동 없이 10초 경과/이전 FB_09 재생 후 14초 경과
 		else if (randomValue == 1)
-			wcscpy_s(out, 27, L"아빠는 다 잘하잖아? 물고기도 많이 많이 잡자!");
+			wcscpy_s(out, 27, L"아빠는 다 잘하잖아?\n물고기도 많이 많이 잡자!");
 		else if (randomValue == 2)
-			wcscpy_s(out, 31, L"오랜만에 같이 노니까 진짜 좋아! 물고기도 잡아 주고!");
+			wcscpy_s(out, 31, L"오랜만에 같이 노니까 진짜 좋아!\n물고기도 잡아 주고!");
 		face->SetFace(2, 3.f);
 		break;
 	case Encouragement:
