@@ -92,8 +92,8 @@ void WinApp::Initialize(HINSTANCE hInstance)
 
 	m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
 		SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);
-	/*m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
-		SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);*/
+	//m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
+	//	SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);
 
 	
 	if (!m_hWnd)

@@ -17,32 +17,60 @@ void Ending::Init()
 	
 	Score = Game::GameManager::GetInstance()->FinalScore;
 	bossCount = Game::GameManager::GetInstance()->BossCount;
-	/*Score = 26;
-	bossCount = 0;*/
-	if (Score <= 1 && bossCount <= 0)
-	{
-		root = static_cast<int>(EndRoot::Poor);
-	}
-	else if (Score <= 16 && bossCount <= 4)
-	{
-		root = static_cast<int>(EndRoot::Normal);
-	}
-	else if (Score <= 16 && bossCount == 5)
-	{
-		root = static_cast<int>(EndRoot::Maniac);
-	}
-	else if (Score <= 50 && bossCount <= 2 && bossCount >= 0) //조건 수정함 bosscount 이하에서 이상으로.
-	{
-		root = static_cast<int>(EndRoot::Great);
-	}
-	else if (Score <= 50 && bossCount == 5)
-	{
-		root = static_cast<int>(EndRoot::Professional);
-	}
-	else if (Score > 50)
-	{
+	/*Score = 16;
+	bossCount = 3;*/
+
+	if (Score > 50) {
 		root = static_cast<int>(EndRoot::Best);
 	}
+	else if (Score > 16) {
+		if (bossCount == 5) {
+			root = static_cast<int>(EndRoot::Professional);
+		}
+		else if (bossCount > 2) {
+			root = static_cast<int>(EndRoot::Great);
+		}
+		else {
+			root = static_cast<int>(EndRoot::Normal);
+		}
+	}
+	else if (Score > 1) {
+		if (bossCount == 5) {
+			root = static_cast<int>(EndRoot::Maniac);
+		}
+		else {
+			root = static_cast<int>(EndRoot::Normal);
+		}
+	}
+	else {
+		root = static_cast<int>(EndRoot::Poor);
+	}
+
+
+	//if (Score <= 1 && bossCount <= 0)
+	//{
+	//	root = static_cast<int>(EndRoot::Poor);
+	//}
+	//else if (Score <= 16 && bossCount <= 4)
+	//{
+	//	root = static_cast<int>(EndRoot::Normal);
+	//}
+	//else if (Score <= 16 && bossCount == 5)
+	//{
+	//	root = static_cast<int>(EndRoot::Maniac);
+	//}
+	//else if (Score <= 50 && bossCount <= 2 && bossCount >= 0) //조건 수정함 bosscount 이하에서 이상으로.
+	//{
+	//	root = static_cast<int>(EndRoot::Great);
+	//}
+	//else if (Score <= 50 && bossCount == 5)
+	//{
+	//	root = static_cast<int>(EndRoot::Professional);
+	//}
+	//else if (Score > 50)
+	//{
+	//	root = static_cast<int>(EndRoot::Best);
+	//}
 
 	// 최고엔딩은 따로 뺄것 (비트맵 2개)
 	switch (root)
