@@ -57,9 +57,9 @@ void ScoreScene::Init()
 	AddEvent(e_retry);
 	AddObject(retry);
 	
-	int root = Game::GameManager::GetInstance()->GetRoot();
+	/*int root = Game::GameManager::GetInstance()->GetRoot();*/
 
-	switch (root)
+	/*switch (root)
 	{
 	case 1:
 		break;
@@ -73,7 +73,7 @@ void ScoreScene::Init()
 		break;
 	case 6:
 		break;
-	}
+	}*/
 
 }
 

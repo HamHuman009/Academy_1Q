@@ -33,10 +33,10 @@ void Dialog1::Init()
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();
 	dialog->Init({ 230.f, 590.f }, { 600.f, 200.f }, _str);
-
-	myBitmap = CRM->LoadBitmapResouce(L"image1", L"startback.png");
+	 
+	myBitmap = CRM->LoadBitmapResouce(L"Dialog3", L"White_Dim.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
-	myBack->Init(myBitmap, { 640.f,360.f });
+	myBack->Init(myBitmap, { 600.f, 300.f });
 
 	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::STAGE_01);
 
