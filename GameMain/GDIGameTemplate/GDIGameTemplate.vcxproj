@@ -231,8 +231,12 @@
     <ResourceCompile Include="GDIGameTemplate.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Desktop\myCursor.png" />
+    <Image Include="Fish.png" />
+    <Image Include="Icon.bmp" />
+    <Image Include="icon2.ico" />
     <Image Include="image1.png" />
+    <Image Include="myIcon.png" />
+    <Image Include="startback5.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cursor1.cur" />

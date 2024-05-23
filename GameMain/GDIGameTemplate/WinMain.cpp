@@ -68,7 +68,7 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	wndClass.cbClsExtra = 0;
 	wndClass.cbWndExtra = 0;
 	wndClass.hInstance = hInstance;
-	wndClass.hIcon = LoadIcon(hInstance, IDI_APPLICATION);
+	wndClass.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_ICON2);
 	wndClass.hCursor = LoadCursor(hInstance, (LPCTSTR)IDC_CURSOR1);
 	wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(WHITE_BRUSH));
 	wndClass.lpszMenuName = NULL;
