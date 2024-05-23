@@ -170,7 +170,7 @@ public:
 		if (m_Sound != mySound::eSoundList::Void) {
 			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
 		}
-		scnManager->SetCurScene(1);
+		scnManager->SetCurScene((int)SceneType::START);
 		High_Resolution_Time::SetTimeScale(1.f);
 		High_Resolution_Time::SetTimeScale2(1.f);
 	}
@@ -391,5 +391,21 @@ public:
 		face->SetFace(faceNumber, faceDuration);
 		inEvent->m_Event = dialogEvent;
 		inEvent->Init(2.f);
+	}
+};
+
+class GameRetryEvent : public Event {
+public:
+
+	GameRetryEvent(mySound::eSoundList mSound) : Event(mSound) {
+
+	}
+
+	void OnTrigger() override {
+		if (m_Sound != mySound::eSoundList::Void) {
+			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
+		}
+		Game::GameManager::GetInstance()->skipTutorial = true;
+		SceneManager::GetInstance()->SetCurScene((int)SceneType::STAGE_01);
 	}
 };
