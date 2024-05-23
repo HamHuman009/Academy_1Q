@@ -42,7 +42,7 @@ namespace Game
 		SMInstance->LoadMusic(mySound::eSoundList::Anger_Sound_Start,false,"Sound_Anger_Sound_01-3.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Anger_Sound_End, false, "Sound_Anger_Sound_02-3.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Broken, false, "Sound_Scooper_Broken_01-1.wav"); 
-		SMInstance->LoadMusic(mySound::eSoundList::Stage_End_Counting, false, "Sound_Stage_End_Counting_01.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Stage_End_Counting, true, "Sound_Stage_End_Counting_01.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Move_Scene_Theme1, false, "Sound_Move_Scene_Theme_01_001.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Move_Scene_Theme2, false, "Sound_Move_Scene_Theme_01_002.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Move_Scene_Theme3, false, "Sound_Move_Scene_Theme_01_003.wav");

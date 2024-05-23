@@ -136,6 +136,7 @@ void UITimer::Update(float delta) {
 
 		if (deltaTime < .5f && isGameOverOn == false) {
 			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Scooper_Broken,mySound::eSoundChannel::Effect);
+			mySound::SoundManager::GetInstance()->StopMusic(mySound::eSoundChannel::Effect3);
 			isGameOverOn = true;
 			if (gameOverTimerEvent != nullptr) {
 				gameOverTimerEvent->OnTrigger();
