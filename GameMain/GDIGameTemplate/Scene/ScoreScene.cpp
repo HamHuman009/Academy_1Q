@@ -141,16 +141,21 @@ void ScoreScene::Init()
 		AddEvent(e_inRank);
 		inRank->m_Event = e_inRank;
 	}
+	//게임 다시 시작하는 버튼과 이벤트
+	GameRetryEvent* e_gameRetry = new GameRetryEvent(mySound::eSoundList::Button_Use); //게임 다시 시작하는 이벤트
+	UIButton* gameRetry = new UIButton(Vector2{ 650, 600 }, e_gameRetry/*랭크 확인 이벤트 넣을 것*/, L"UI_Button_Resume", L".png");
+	AddEvent(e_gameRetry);
+	AddObject(gameRetry);
 	
-	//랭크 확인 제거
-	//UIButton* toRank = new UIButton(Vector2{650, 600}, nullptr/*랭크 확인 이벤트 넣을 것*/, L"UI_Button_scorecount_ToRank", L".png");
-	//AddObject(toRank);
 
-	RetryEvent* e_retry = new RetryEvent(mySound::eSoundList::Button_Use);
+	//랭크 확인 제거
+	
+	//메인 메뉴로 가는 버튼과 이벤트
+	RetryEvent* e_mainMenu = new RetryEvent(mySound::eSoundList::Button_Use);
 	//Gdiplus::Bitmap* exitBtn = CRM->LoadBitmapResouce(L"exitBtn", L"exitbtn_sample.bmp");
-	UIButton* retry = new UIButton(Vector2{ 1050,600 }, e_retry, L"UI_Button_MainMenu", L".png");
-	AddEvent(e_retry);
-	AddObject(retry);
+	UIButton* mainMenuBtn = new UIButton(Vector2{ 1050,600 }, e_mainMenu, L"UI_Button_MainMenu", L".png");
+	AddEvent(e_mainMenu);
+	AddObject(mainMenuBtn);
 
 	/*int root = Game::GameManager::GetInstance()->GetRoot();*/
 
