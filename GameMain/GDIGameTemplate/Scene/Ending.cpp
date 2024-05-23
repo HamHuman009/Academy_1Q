@@ -15,8 +15,8 @@ void Ending::Init()
 	
 	Score = Game::GameManager::GetInstance()->FinalScore;
 	bossCount = Game::GameManager::GetInstance()->BossCount;
-	/*Score = 29;
-	bossCount = 5;*/
+	Score = 13;
+	bossCount = 3;
 	if (Score <= 1 && bossCount <= 0)
 	{
 		root = static_cast<int>(EndRoot::Poor);
@@ -29,7 +29,7 @@ void Ending::Init()
 	{
 		root = static_cast<int>(EndRoot::Maniac);
 	}
-	else if (Score <= 28 && bossCount <= 2)
+	else if (Score <= 28 && bossCount >= 2) //조건 수정함 bosscount 이하에서 이상으로.
 	{
 		root = static_cast<int>(EndRoot::Great);
 	}
@@ -37,7 +37,7 @@ void Ending::Init()
 	{
 		root = static_cast<int>(EndRoot::Professional);
 	}
-	else if (Score >= 29 && bossCount >= 5)
+	else if (Score >= 29)
 	{
 		root = static_cast<int>(EndRoot::Best);
 	}
@@ -73,7 +73,7 @@ void Ending::Init()
 	}
 
 	UIImage* myBack = new UIImage(); // 객체 테스트 
-	myBack->Init(myBitmap, { 640.f,360.f });
+	myBack->Init(myBitmap, { 640.f,340.f });
 	/*UIDialog* dialog = new UIDialog();
 	dialog->Init({ 100.f, 500.f }, { 1000.f, 700.f }, _str);*/
 	AddObject(myBack);
@@ -92,7 +92,7 @@ void Ending::Init()
 	mykey->m_Event = e_NextScn;
 	AddObject(mykey);
 
-	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 360.f }, backBitmap , 4.f, true);
+	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 340.f }, backBitmap , 4.f, true);
 	AddObject(backEffect);
 }
 

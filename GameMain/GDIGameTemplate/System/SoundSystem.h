@@ -32,22 +32,24 @@ namespace mySound
         Ingame_Theme, //사용
         Ending_Theme, //사용
         Button_Use, //사용
-        Talk_Output, //사운드만 넣으면 됨.
+        Talk_Output, //미사용
         Comic_Talk, //몰루
         Scooper_Down, //사용
         Scooper_Up, //사용
         Fish_Move, //아직 안넣음
         Fish_Catch, //사용
         Boss_Fish_Catch, //사용
-        Move_Scene_Theme, //아직 미사용
-        Anger_Sound_Start, //넣어야 함
-        Anger_Sound_End, //넣어야 함
+        Move_Scene_Theme1, //아직 미사용
+        Move_Scene_Theme2, //
+        Move_Scene_Theme3, //
+        Anger_Sound_Start, //사용
+        Anger_Sound_End, //사용
         Fish_breathing1, //사용
         Fish_breathing2, //사용
         Fish_breathing3, //사용
         Final_Score_Sound, //아직 안넣음
-        Stage_End_Counting, //아직 안넣음
-        Scooper_Broken, //아직 안넣음
+        Stage_End_Counting, //사용
+        Scooper_Broken, //사용
         Size
     };
     class SoundManager;  // 클래스 전방 선언

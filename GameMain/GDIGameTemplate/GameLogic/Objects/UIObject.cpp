@@ -732,6 +732,19 @@ void UIIntroBack::Update(float delta) {
 	if (temp) {
 		backGroundFrame = (backGroundFrame + 1) % INTRO_ANIM_FRAME + 1;
 		if (backGroundFrame == INTRO_ANIM_FRAME) m_Event->OnTrigger();
+		int i =rand() % 3;
+		switch (i)
+		{
+		case 0:
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Move_Scene_Theme1, mySound::eSoundChannel::Effect);
+			break;
+		case 1:
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Move_Scene_Theme2, mySound::eSoundChannel::Effect);
+			break;
+		case 2:
+			mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Move_Scene_Theme3, mySound::eSoundChannel::Effect);
+			break;
+		}
 	}
 
 
