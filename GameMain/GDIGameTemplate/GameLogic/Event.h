@@ -321,6 +321,9 @@ public:
 		if (Game::GameManager::GetInstance()->effectVolume <= 1.f)
 		{
 			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume += 0.1f, (int)mySound::eSoundChannel::Effect);
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume += 0.1f, (int)mySound::eSoundChannel::Effect2);
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume += 0.1f, (int)mySound::eSoundChannel::Effect3);
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume += 0.1f, (int)mySound::eSoundChannel::Voice);
 		}
 	}
 };
@@ -334,6 +337,9 @@ public:
 		if (Game::GameManager::GetInstance()->effectVolume > 0.1f)
 		{
 			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume -= 0.1f, (int)mySound::eSoundChannel::Effect);
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume -= 0.1f, (int)mySound::eSoundChannel::Effect2);
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume -= 0.1f, (int)mySound::eSoundChannel::Effect3);
+			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume -= 0.1f, (int)mySound::eSoundChannel::Voice);
 		}
 	}
 };
