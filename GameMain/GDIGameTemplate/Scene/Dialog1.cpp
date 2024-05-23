@@ -56,14 +56,14 @@ void Dialog1::Init()
 	myKey->Init(2.0f);
 	myKey->m_Event = e_NextScn;
 
-	DialogMessageEvent* e_dialogEvent = new DialogMessageEvent(L"그래서... 물고기를 잡고 싶다고?",
+	/*DialogMessageEvent* e_dialogEvent = new DialogMessageEvent(L"그래서... 물고기를 잡고 싶다고?",
 		nullptr,
 		myFace,
 		myKey,
 		dialog,
 		-1,
 		1000.f
-	);
+	);*/
 	/*
 	DialogMessageEvent* e_dialogEvent = new DialogMessageEvent(L"응! 응!",
 		nullptr,
