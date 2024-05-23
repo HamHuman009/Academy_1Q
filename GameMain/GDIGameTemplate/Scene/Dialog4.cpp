@@ -34,9 +34,9 @@ void Dialog4::Init()
 	UIDialog* dialog = new UIDialog();
 	dialog->Init({ 230.f, 590.f }, { 600.f, 200.f }, _str);
 
-	myBitmap = CRM->LoadBitmapResouce(L"Dialog3", L"White_Dim.png");
+	myBitmap = CRM->LoadBitmapResouce(L"FishDialog", L"fish_intro_bg.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
-	myBack->Init(myBitmap, { 600.f, 300.f });
+	myBack->Init(myBitmap, { 600.f, 330.f });
 
 	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::STAGE_04);
 
