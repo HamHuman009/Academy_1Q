@@ -155,7 +155,7 @@ void UITimer::Render(float alpha) {
 	Render::DrawBitmap(m_pos.x, m_pos.y, m_BitmapLeft, 0, 0, 12, cy);
 	Render::DrawBitmap(m_pos.x + deltaCx + 12, m_pos.y, m_BitmapRight, 0, 0, 12, cy);
 
-	Render::DrawBitmap(m_pos.x - 70, m_pos.y - 25, m_BitmapClock, 0, 0, 100, 100);
+	Render::DrawBitmap(m_pos.x - 35, m_pos.y - 25, m_BitmapClock, 0, 0, 100, 100);
 	/*Render::DrawRect(m_pos.x, m_pos.y, cx, cy, RGB(255, 255, 255));
 	Render::DrawRect(m_pos.x, m_pos.y, (UINT)deltaCx, cy, RGB(255, 255, 0));*/
 }
@@ -317,7 +317,7 @@ void UIDialog::SetDialog(WCHAR* message, COLORREF _Color)
 
 bool UIDialog::IsSkipAbleDialog()
 {
-	if (strCount < 255 && strCount > 0 && string[strCount] != '\0') {
+	if (strCount < 255 && strCount > 0 && t_str[strCount] != '\0') {
 		// 아직 대화가 남아있다면 대화를 모두 출력.
 		/*if (mySound::SoundManager::GetInstance()->isChannelPlaying(mySound::eSoundChannel::Effect))
 		{
@@ -857,7 +857,7 @@ void UIIntroBack::Update(float delta) {
 	if (Input::IsKeyDown(' ')) temp = true;
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) temp = true;
 	if (temp) {
-		backGroundFrame = (backGroundFrame + 1) % INTRO_ANIM_FRAME + 1;
+		backGroundFrame = (backGroundFrame + 1);
 		if (backGroundFrame == INTRO_ANIM_FRAME) m_Event->OnTrigger();
 		int i =rand() % 3;
 		switch (i)

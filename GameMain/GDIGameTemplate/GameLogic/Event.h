@@ -421,12 +421,11 @@ public:
 	}
 	// 키 입력이 있으면
 	void OnTrigger() override {
-		if (isSkip == false) {
+		//if (isSkip == false) {
 			dialog->SetDialog(message, color);
 			face->SetFace(faceNumber, faceDuration);
 			isSkip = true;
-		}
-		else {
+
 			if (dialog->IsSkipAbleDialog()) {
 				dialog->SkipDialog();
 			}
@@ -434,6 +433,15 @@ public:
 				inEvent->m_Event = nextEvent;
 				inEvent->Init(0.5f);
 			}
-		}
+		//}
+		/*else {
+			if (dialog->IsSkipAbleDialog()) {
+				dialog->SkipDialog();
+			}
+			else {
+				inEvent->m_Event = nextEvent;
+				inEvent->Init(0.5f);
+			}
+		}*/
 	}
 };

@@ -62,9 +62,9 @@ void Dialog4::Init()
 		myFace, myKey, dialog, 2, 1000.f);
 	DialogMessageEvent* e_dialogEvent3 = new DialogMessageEvent(L"집에서 키운다고? 힘들지 않겠니?",
 		myFace, myKey, dialog, -1, 1000.f);
-	DialogMessageEvent* e_dialogEvent4 = new DialogMessageEvent(L"응! 아빠랑 엄마가 나 키워줬던 것 처럼",
+	DialogMessageEvent* e_dialogEvent4 = new DialogMessageEvent(L"응! 아빠랑 엄마가 나 키워줬던 것처럼",
 		myFace, myKey, dialog, 0, 1000.f);
-	DialogMessageEvent* e_dialogEvent5 = new DialogMessageEvent(L"나도 이 물고기들을 키워줄래!",
+	DialogMessageEvent* e_dialogEvent5 = new DialogMessageEvent(L"나도 이 물고기들 키워줄래!",
 		myFace, myKey, dialog, 3, 1000.f);
 	DialogMessageEvent* e_dialogEvent6 = new DialogMessageEvent(L"그래... 아빠가 다 잡아줄게!",
 		myFace, myKey, dialog, -1, 1000.f);

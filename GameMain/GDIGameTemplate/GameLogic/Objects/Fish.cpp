@@ -161,10 +161,10 @@ void Fish::Render(float alpha) {
 	Render::DrawLine(x1, y1, x2, y1 + 1, RGB(0, 255, 0));
 	Render::DrawLine(x1, y2, x2, y2 - 1, RGB(0, 255, 0));
 	Render::DrawLine(x1, y1, x1 + 1, y2, RGB(0, 255, 0));
-	Render::DrawLine(x2, y1, x2 - 1, y2 - 1, RGB(0, 255, 0));*/
+	Render::DrawLine(x2, y1, x2 - 1, y2 - 1, RGB(0, 255, 0));
 
-	////Render::DrawText(10, 10, std::to_string(dirScale).c_str(), RGB(255, 0, 0));
-	//Render::DrawTextW(10, 70, std::to_string(time).c_str(), RGB(255, 0, 0));
+	Render::DrawText(10, 10, std::to_string(dirScale).c_str(), RGB(255, 0, 0));
+	Render::DrawTextW(10, 70, std::to_string(time).c_str(), RGB(255, 0, 0));*/
 }
 
 void Fish::OnTrigger() {

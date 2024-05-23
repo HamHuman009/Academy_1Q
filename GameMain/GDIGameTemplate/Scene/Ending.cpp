@@ -17,8 +17,8 @@ void Ending::Init()
 	
 	Score = Game::GameManager::GetInstance()->FinalScore;
 	bossCount = Game::GameManager::GetInstance()->BossCount;
-	/*Score = 75;
-	bossCount = 5;*/
+	/*Score = 26;
+	bossCount = 0;*/
 	if (Score <= 1 && bossCount <= 0)
 	{
 		root = static_cast<int>(EndRoot::Poor);

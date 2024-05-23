@@ -57,16 +57,16 @@ void Dialog3::Init()
 	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init(.5f);
 
-	DialogMessageEvent* e_dialogEvent1 = new DialogMessageEvent(L"으윽... 너무 많이 마셨나... 머리가 아파오네",
+	DialogMessageEvent* e_dialogEvent1 = new DialogMessageEvent(L"으윽... 너무 많이 마셨나... 슬슬 머리가 아프네",
 		myFace, myKey, dialog, -1, 1000.f);
 	myKey->m_Event = e_dialogEvent1;
 	DialogMessageEvent* e_dialogEvent2 = new DialogMessageEvent(L"아빠~! 여기 또 예쁜 물고기 있어!",
 		myFace, myKey, dialog, 3, 1000.f);
-	DialogMessageEvent* e_dialogEvent3 = new DialogMessageEvent(L"그래도 우리 딸이 저렇게 행복해보이는 모습 오랜만인걸...",
+	DialogMessageEvent* e_dialogEvent3 = new DialogMessageEvent(L"그래도 우리 딸이 저렇게 행복해 보이는 모습 오랜만인걸...",
 		myFace, myKey, dialog, -1, 1000.f);
 	DialogMessageEvent* e_dialogEvent4 = new DialogMessageEvent(L"빨리 아빠~! 애가 도망가려고 해!",
 		myFace, myKey, dialog, 3, 1000.f);
-	DialogMessageEvent* e_dialogEvent5 = new DialogMessageEvent(L"알았어, 우리 딸, 아빠가 저 예쁜 물고기를 꼭 잡아줄게!",
+	DialogMessageEvent* e_dialogEvent5 = new DialogMessageEvent(L"알았어, 우리 딸. 아빠가 저 예쁜 물고기를 꼭 잡아줄게!",
 		myFace, myKey, dialog, -1, 1000.f);
 
 	e_dialogEvent1->nextEvent = e_dialogEvent2;

@@ -30,7 +30,7 @@ private:
 
 	const static int x1 = 100;
 	const static int y1 = 100;
-	const static int x2 = 800;
+	const static int x2 = 1000;
 	const static int y2 = 620;
 
 	std::wstring m_fileName[30];

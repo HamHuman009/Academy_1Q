@@ -61,9 +61,9 @@ void Dialog1::Init()
 	myKey->m_Event = e_dialogEvent1;
 	DialogMessageEvent* e_dialogEvent2 = new DialogMessageEvent(L"응! 응!",
 		myFace, myKey, dialog, 2, 1000.f);
-	DialogMessageEvent* e_dialogEvent3 = new DialogMessageEvent(L"아빠가 오늘 회식에서 술마셨어서 더 놀아주기 힘든데...",
+	DialogMessageEvent* e_dialogEvent3 = new DialogMessageEvent(L"아빠가 오늘 회식에서 술 마셔서 더 놀아주기 힘든데...",
 		myFace, myKey, dialog, -1, 1000.f);
-	DialogMessageEvent* e_dialogEvent4 = new DialogMessageEvent(L"그래도 한 번만.....",
+	DialogMessageEvent* e_dialogEvent4 = new DialogMessageEvent(L"그래도 한 번만...",
 		myFace, myKey, dialog, 1, 1000.f);
 	DialogMessageEvent* e_dialogEvent5 = new DialogMessageEvent(L"그래, 한 번만이야~",
 		myFace, myKey, dialog, -1, 1000.f);

@@ -56,12 +56,12 @@ void Dialog5::Init()
 	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init(.5f);
 
-	DialogMessageEvent* e_dialogEvent1 = new DialogMessageEvent(L"아빠! 저 물고기 엄마 처럼 예쁘지 않아요?",
+	DialogMessageEvent* e_dialogEvent1 = new DialogMessageEvent(L"아빠! 저 물고기 엄마처럼 예쁘지 않아?",
 		myFace, myKey, dialog, 3, 1000.f);
 	myKey->m_Event = e_dialogEvent1;
-	DialogMessageEvent* e_dialogEvent2 = new DialogMessageEvent(L"그래 이쁜 물고기네.",
+	DialogMessageEvent* e_dialogEvent2 = new DialogMessageEvent(L"그래, 이쁜 물고기네.",
 		myFace, myKey, dialog, -1, 1000.f);
-	DialogMessageEvent* e_dialogEvent3 = new DialogMessageEvent(L"마지막으로 저 애만 잡으면 안돼요?",
+	DialogMessageEvent* e_dialogEvent3 = new DialogMessageEvent(L"마지막으로 저 애만 잡으면 안 돼요?",
 		myFace, myKey, dialog, 1, 1000.f);
 	DialogMessageEvent* e_dialogEvent4 = new DialogMessageEvent(L"그래, 아빠가 마지막으로 힘을 내볼게.",
 		myFace, myKey, dialog, -1, 1000.f);

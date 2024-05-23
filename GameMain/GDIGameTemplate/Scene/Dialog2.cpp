@@ -55,7 +55,7 @@ void Dialog2::Init()
 	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init(.5f);
 
-	DialogMessageEvent* e_dialogEvent1 = new DialogMessageEvent(L"아빠! 물고기 또 잡으면 안돼?",
+	DialogMessageEvent* e_dialogEvent1 = new DialogMessageEvent(L"아빠! 물고기 또 잡으면 안 돼?",
 		myFace, myKey, dialog, 2, 1000.f);
 	myKey->m_Event = e_dialogEvent1;
 	DialogMessageEvent* e_dialogEvent2 = new DialogMessageEvent(L"이걸론 부족하니?",
