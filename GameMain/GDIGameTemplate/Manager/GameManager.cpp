@@ -159,7 +159,8 @@ namespace Game
 	}
 	void GameManager::Finalize()
 	{	
-		//m_Ranking->saveRankings();
+		m_Ranking->saveRankings();
+
 		delete m_Ranking;
 		SceneManager::GetInstance()->DestroyInstance();
 		CResourceManager::GetInstance()->DestroyInstance();

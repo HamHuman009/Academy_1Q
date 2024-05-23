@@ -32,20 +32,31 @@ void ScoreScene::Init()
 
 
 	WCHAR _str[255];
+	WCHAR _scoreStr[255];
 	WCHAR _father_str[255];
 	// _str = 점수;
 	std::wstring _wstr = L"우리 아빠 점수는 : ";
-	_wstr.append(std::to_wstring(Game::GameManager::GetInstance()->FinalScore));
+	std::wstring _wScore = L"";
+	_wScore.append(std::to_wstring(Game::GameManager::GetInstance()->FinalScore));
 	CResourceManager* CRM = CResourceManager::GetInstance();
 	myBitmap = CRM->LoadBitmapResouce(L"UI_Rank", L"UI_Window_scorecount_Rank_Window_01.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 640.f,360.f });
 	AddObject(myBack);
 
-	UIDialog* myScore = new UIDialog();
+	/*int playerRank = Game::GameManager::GetInstance()->m_Ranking->InRankPlayer(Game::GameManager::GetInstance()->FinalScore);
+	_wstr.append(std::to_wstring(playerRank));
+	_wstr.append(L"등");*/
+
+	UIDialog* myScoreDial = new UIDialog();
 	wcscpy_s(_str,255,_wstr.c_str());
-	myScore->Init(Vector2{ 100.f, 100.f }, Vector2{ 1000.f, 150.f }, _str);
+	UIDialog* myScore = new UIDialog();
+	wcscpy_s(_scoreStr, 255, _wScore.c_str());
+	myScoreDial->Init(Vector2{ 100.f, 100.f }, Vector2{ 1000.f, 150.f }, _str);
+	AddObject(myScoreDial);
+	myScore->Init(Vector2{ 310.f, 93.f }, Vector2{ 1000.f, 150.f }, _scoreStr,40);
 	AddObject(myScore);
+
 
 	//WCHAR* _str2 = new WCHAR[255];
 	//// _str = 점수;
@@ -84,6 +95,57 @@ void ScoreScene::Init()
 	AddEvent(e_retry);
 	AddObject(retry);
 	
+	UIImage* rankBoard = new UIImage();
+	Gdiplus::Bitmap* rankImage = CRM->LoadBitmapResouce(L"RankBoard", L"UI_Title_Ranking.png");
+	rankBoard->Init(rankImage, { 1450.f, 340.f });
+	
+	MoveObject* moveAbleObject = new MoveObject(rankBoard, { 950, 340 }, 1.f);
+	AddObject(moveAbleObject);
+
+	WCHAR top10[10][50];
+	WCHAR top10score[10][10];
+	for (int i = 0; i < 10; i++) {
+		for (int k = 0; k < 50; k++) {
+			top10[i][k] = L'\0';
+		}
+		for (int k = 0; k < 10; k++) {
+			top10score[i][k] = L'\0';
+		}
+	}
+	UIDialog* rankDialog[10];
+	UIDialog* scoreDialog[10];
+	MoveObject* moveRank[10];
+	MoveObject* moveScore[10];
+	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+
+		Ranking::r_Player temp = Game::GameManager::GetInstance()->m_Ranking->players[i];
+		int plen = strlen(temp.name.c_str());
+		std::string tempStr;
+		tempStr.assign(temp.name.c_str());
+		int sizeNeeded = MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], (int)tempStr.size(), NULL, 0);
+		MultiByteToWideChar(CP_UTF8, 0, &tempStr[0], plen, top10[i], sizeNeeded);
+		rankDialog[i] = new UIDialog();
+		//rankDialog[i]->Init({850.f,173.f+45*i}, {200.f,100.f}, top10[i], 16, COLORREF(0x271a14));
+		rankDialog[i]->Init({ 1350.f, 173.f + 45.f * i }, { 200.f,100.f }, top10[i], 16, COLORREF(0x271a14));
+
+		moveRank[i] = new MoveObject(rankDialog[i], { 850.f + 100, 173.f + 45.f * i + 50.f }, 1.f);
+
+		_itow_s(temp.score, top10score[i], 10);
+		scoreDialog[i] = new UIDialog();
+		scoreDialog[i]->Init({ 1565.f - (wcslen(top10score[i]) * 13),173.f + 45 * i }, { 200.f,100.f }, top10score[i], 16, COLORREF(0x271a14));
+
+		moveScore[i] = new MoveObject(scoreDialog[i], { 1065.f - (wcslen(top10score[i]) * 13) + 100,173.f + 45 * i + 50 }, 1.f);
+	}
+
+	AddObject(rankBoard);
+	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+		AddObject(rankDialog[i]);
+		AddObject(moveRank[i]);
+	}
+	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+		AddObject(scoreDialog[i]);
+		AddObject(moveScore[i]);
+	}
 	/*int root = Game::GameManager::GetInstance()->GetRoot();*/
 
 	/*switch (root)
@@ -111,7 +173,7 @@ void ScoreScene::Start()
 void ScoreScene::Exit()
 {	
 	Game::GameManager* myGame = Game::GameManager::GetInstance();
-	myGame->m_Ranking->saveRankings();
+	//myGame->m_Ranking->saveRankings();
 	/*myGame->m_Ranking->sortRank();
 	
 	myGame->m_Ranking->loadRankings();
