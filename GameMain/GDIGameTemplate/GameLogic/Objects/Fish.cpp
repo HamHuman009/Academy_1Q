@@ -139,7 +139,7 @@ void Fish::Render(float alpha) {
 	RectangleCollider* r = dynamic_cast<RectangleCollider*>(m_collider);
 	
 	// 테스트용
-	Render::DrawRect(m_pos.x - r->bounds.extents.x, m_pos.y - r->bounds.extents.y, r->bounds.extents.x * 2, r->bounds.extents.x * 2, RGB(0, 255, 0));
+	/*Render::DrawRect(m_pos.x - r->bounds.extents.x, m_pos.y - r->bounds.extents.y, r->bounds.extents.x * 2, r->bounds.extents.x * 2, RGB(0, 255, 0));
 
 	Render::DrawLine((int)m_pos.x - m_renderBounds.extents.x,
 		(int)m_pos.y + m_renderBounds.extents.y,
@@ -164,7 +164,7 @@ void Fish::Render(float alpha) {
 	Render::DrawLine(x2, y1, x2 - 1, y2 - 1, RGB(0, 255, 0));
 
 	Render::DrawText(10, 10, std::to_string(dirScale).c_str(), RGB(255, 0, 0));
-	Render::DrawTextW(10, 70, std::to_string(time).c_str(), RGB(255, 0, 0));
+	Render::DrawTextW(10, 70, std::to_string(time).c_str(), RGB(255, 0, 0));*/
 }
 
 void Fish::OnTrigger() {
