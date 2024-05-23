@@ -173,6 +173,7 @@ namespace Game
 	}
 	void GameManager::Finalize()
 	{	
+		delete sceneBitmap;
 		m_Ranking->saveRankings();
 
 		delete m_Ranking;

@@ -84,6 +84,10 @@ void Ending::Init()
 	SelectScnEvent* e_NextScn = new SelectScnEvent((UINT)SceneType::Score);
 	AddEvent(e_NextScn);
 
+	Gdiplus::Bitmap* b_talkBarSpace = CRM->LoadBitmapResouce(L"TalkBar_Space", L"UI_Image_Talk_TalkBar_01_SpaceBar.png");
+	UIImage* talkBarSpace = new UIImage();
+	talkBarSpace->Init(b_talkBarSpace, { 1100 + (99 / 2), 635 + (30 / 2) });
+
 	bool keys[256];
 	for (int i = 0; i < 256; i++) {
 		keys[i] = false;
@@ -93,6 +97,8 @@ void Ending::Init()
 	mykey->Init(4.0f); //이거 없으면 키 연타하다가 바로 엔딩 씬으로 감..
 	mykey->m_Event = e_NextScn;
 	AddObject(mykey);
+
+	AddObject(talkBarSpace);
 
 	UICrossDissolve* backEffect = new UICrossDissolve({ 640.f, 340.f }, backBitmap , 4.f, true);
 	AddObject(backEffect);

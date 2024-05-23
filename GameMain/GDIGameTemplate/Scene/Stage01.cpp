@@ -9,6 +9,9 @@
 void Stage01::Init()
 {
 
+	Game::GameManager::GetInstance()->FinalScore = 0;
+	Game::GameManager::GetInstance()->BossCount = 0;
+
 	colliderManager = new ColliderManager();
 	//200*100//766/103
 

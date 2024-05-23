@@ -389,6 +389,8 @@ public:
 			mySound::SoundManager::GetInstance()->PlayMusic(m_Sound, mySound::eSoundChannel::Effect);
 		}
 		Game::GameManager::GetInstance()->skipTutorial = true;
+		High_Resolution_Time::SetTimeScale(1.f);
+		High_Resolution_Time::SetTimeScale2(1.f);
 		SceneManager::GetInstance()->SetCurScene((int)SceneType::STAGE_01);
 	}
 };
