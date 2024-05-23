@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
-
+#include "resource.h"
 #include <tchar.h>
 #pragma comment(lib, "imm32.lib")
 bool isIMEActive = false;
@@ -63,14 +63,13 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	//ChangeResolution(1280, 720, 32, 60);
 
 	WNDCLASS wndClass;
-
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
 	wndClass.lpfnWndProc = WndProc;
 	wndClass.cbClsExtra = 0;
 	wndClass.cbWndExtra = 0;
 	wndClass.hInstance = hInstance;
 	wndClass.hIcon = LoadIcon(hInstance, IDI_APPLICATION);
-	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndClass.hCursor = LoadCursor(hInstance, (LPCTSTR)IDC_CURSOR1);
 	wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(WHITE_BRUSH));
 	wndClass.lpszMenuName = NULL;
 	wndClass.lpszClassName = appName;
@@ -119,8 +118,7 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	Game::GameManager::GetInstance()->Initialize();
 }
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-{	
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){	
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	//_CrtSetBreakAlloc(1253);
