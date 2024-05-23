@@ -4,11 +4,11 @@
 enum class EndRoot
 {
     Poor = 1,
-    Normal,
-    Maniac,
-    Great,
-    Professional,
-    Best
+    Normal = 2,
+    Maniac = 3,
+    Great = 4,
+    Professional = 5,
+    Best = 6
 };
 
 class Ending : public CScene

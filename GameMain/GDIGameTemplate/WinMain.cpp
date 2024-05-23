@@ -60,7 +60,7 @@ void WinApp::Initialize(HINSTANCE hInstance)
 
 	//Step 1: Registering the Window Class
 
-	ChangeResolution(1280, 720, 32, 60);
+	//ChangeResolution(1280, 720, 32, 60);
 
 	WNDCLASS wndClass;
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -90,10 +90,10 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	AdjustWindowRect(&clientRect, WS_OVERLAPPEDWINDOW, FALSE);
 
 
-	//m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
-	//	SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);
-	m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
-		SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);
+	m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
+		SCREEN_START_LEFT, SCREEN_START_TOP, clientSize.cx, clientSize.cy, NULL, NULL, hInstance, NULL);
+	/*m_hWnd = CreateWindow(appName, appName, WS_POPUP | WS_SYSMENU,
+		SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);*/
 
 	
 	if (!m_hWnd)
@@ -103,8 +103,8 @@ void WinApp::Initialize(HINSTANCE hInstance)
 	}
 
 
-	//ShowWindow(m_hWnd, SW_SHOWNORMAL);
-	ShowWindow(m_hWnd, SW_MAXIMIZE);
+	ShowWindow(m_hWnd, SW_SHOWNORMAL);
+	//ShowWindow(m_hWnd, SW_MAXIMIZE);
 	
 	UpdateWindow(m_hWnd);
 
@@ -220,7 +220,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		FreeConsole();
 	}
 	
-	ChangeDisplaySettings(NULL, 0); // 프로그램 종료 시 원래 해상도로 복원
+	//ChangeDisplaySettings(NULL, 0); // 프로그램 종료 시 원래 해상도로 복원
 
 	return static_cast<int>(msg.wParam);
 }
