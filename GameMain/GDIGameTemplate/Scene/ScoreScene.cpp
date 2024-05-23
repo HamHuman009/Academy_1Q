@@ -8,6 +8,29 @@
 
 void ScoreScene::Init()
 {	
+	//----------Test-----------
+
+	//Ranking* myRang = Game::GameManager::GetInstance()->m_Ranking;
+	////랭크 불러오기
+	//myRang->sortRank();
+	//myRang->rankToStr();
+
+	////랭크보드
+	//RECT scoreRect = { 400,200,800,800 };
+	//UIImage* rankBoard = new UIImage();
+	//Gdiplus::Bitmap* rankImage = CResourceManager::GetInstance()->LoadBitmapResouce(L"RankBoard", L"UI_Title_Ranking.png");
+	//rankBoard->Init(rankImage, { 1450.f, 340.f });
+
+	////랭킹보드 움직이는 오브젝트
+	//MoveObject* moveAbleObject = new MoveObject(rankBoard, { 950, 340 }, 1.f);
+	//AddObject(moveAbleObject);
+
+
+	//-------------------------
+
+
+
+
 	WCHAR _str[255];
 	WCHAR _father_str[255];
 	// _str = 점수;
@@ -48,6 +71,10 @@ void ScoreScene::Init()
 
 	UIButton* inRank = new UIButton(Vector2{ 250,600 }, nullptr/*랭크 등록 이벤트 넣을 것*/, L"UI_Button_scorecount_InRank", L".png");
 	AddObject(inRank);
+
+	ButtonOnTriggerAndActiveFalseEvent* e_inRank = new ButtonOnTriggerAndActiveFalseEvent(inRank, myInputField);
+	AddEvent(e_inRank);
+	inRank->m_Event = e_inRank;
 		
 	UIButton* toRank = new UIButton(Vector2{650, 600}, nullptr/*랭크 확인 이벤트 넣을 것*/, L"UI_Button_scorecount_ToRank", L".png");
 	AddObject(toRank);

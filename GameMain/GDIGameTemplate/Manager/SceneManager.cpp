@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "GameManager.h"
 
 SceneManager* SceneManager::m_Instance = nullptr;
 
@@ -30,6 +31,7 @@ void SceneManager::SetCurScene(int i) {
 	m_curScene = m_sceneArr[i];
  	m_curScene->Init();
 	m_curScene->Start();
+	Game::GameManager::GetInstance()->OffCameraShaker();
 }
 
 CScene* SceneManager::GetCurScene() {

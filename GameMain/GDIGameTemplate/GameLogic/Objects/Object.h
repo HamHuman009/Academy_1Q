@@ -30,7 +30,7 @@ struct Object
 
 	Vector2 m_pos;									// 현재 위치	
 
-	Collider* m_collider;							// 충돌처리 
+	Collider* m_collider = nullptr;							// 충돌처리 
 	// 만약 오브젝트 삭제 시 콜라이더를 삭제하는데 콜라이더 매니저에 등록된 콜라이더는 어떤 방식으로 삭제할지
 	Bounds m_renderBounds;							// 렌더할 이미지 좌표
 

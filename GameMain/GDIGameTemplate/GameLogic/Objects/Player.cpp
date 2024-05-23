@@ -311,6 +311,7 @@ void Player::CancelSoberUp()
 	mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Anger_Sound_End, mySound::eSoundChannel::Voice);
 	isAwake = false;
 	awakeTime = 0.f;
+	Game::GameManager::GetInstance()->OffCameraShaker();
 }
 
 

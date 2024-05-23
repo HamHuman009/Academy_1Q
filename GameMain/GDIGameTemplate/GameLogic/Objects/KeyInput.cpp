@@ -23,6 +23,9 @@ void KeyInput::Update(float delta)
     if (m_delayActive == false || (m_delayActive == true && m_elapsedTime > m_delay)) {
         bool temp = false;
         for (int key = 0; key <= 255; ++key) {
+
+            if (acceptKey[key] == false) continue;
+
             if (Input::IsKeyDown(key)) {
                 if (key == VK_ESCAPE)
                 {

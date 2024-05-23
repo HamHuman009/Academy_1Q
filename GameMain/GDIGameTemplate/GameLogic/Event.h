@@ -337,3 +337,18 @@ public:
 		}
 	}
 };
+
+class ButtonOnTriggerAndActiveFalseEvent : public Event {
+public:
+	UIButton* button;
+	UIInputField* objectTrigger;
+	ButtonOnTriggerAndActiveFalseEvent(UIButton* _button, UIInputField* _objectTrigger) {
+		button = _button;
+		objectTrigger = _objectTrigger;
+	}
+	void OnTrigger() override {
+		if (objectTrigger->strCount != 0)
+			button->unableButton = true;
+		objectTrigger->OnTrigger();
+	}
+};

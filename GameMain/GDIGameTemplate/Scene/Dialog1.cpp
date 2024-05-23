@@ -33,6 +33,7 @@ void Dialog1::Init()
 	wcscpy_s(_str, 255, t_str);
 	UIDialog* dialog = new UIDialog();
 	dialog->Init({ 230.f, 590.f }, { 600.f, 200.f }, _str);
+
 	 
 	myBitmap = CRM->LoadBitmapResouce(L"Dialog3", L"White_Dim.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
@@ -46,7 +47,12 @@ void Dialog1::Init()
 	Gdiplus::Bitmap* daughterFace4 = CRM->LoadBitmapResouce(L"Face4", L"UI_Image_Talk_CharaFace_Happy_01.png");*/
 	UIFace* myFace = new UIFace(Vector2{ 130 + (150 / 2),550 + (144 / 2) }, daughterFace1, daughterFace1, daughterFace1, daughterFace1);
 
-	KeyInput* myKey = new KeyInput();
+	bool keys[256];
+	for (int i = 0; i < 256; i++) {
+		keys[i] = false;
+	}
+	keys[unsigned int(' ')] = true;
+	KeyInput* myKey = new KeyInput(keys);
 	myKey->Init(2.0f);
 	myKey->m_Event = e_NextScn;
 
@@ -62,12 +68,13 @@ void Dialog1::Init()
 	AddObject(myKey);
 
 	Fish* myFish;
-	myFish = new Fish(L"BossFish", 0, 10, L"BossFish_00.png", CRM, L".png", 0, 0, 0, 0, true);
-	myFish->m_pos = Vector2{ 480 , 420 };
+	myFish = new Fish(L"DialogBossFish", 0, 10, L"BossFish_Only00.png", CRM, L".png", 0, 0, 0, 0, true);
+	//myFish->m_pos = Vector2{ 480 , 420 };
+	myFish->m_pos = Vector2{ 600.f,300.f };
 	myFish->setAngleDirection(Vector2{ 1,0 });
 	myFish->SetMoveDirection(Vector2{ -1,0 });
-	myFish->ScaleX = 3.f;
-	myFish->ScaleY = 3.f;
+	/*myFish->ScaleX = 3.f;
+	myFish->ScaleY = 3.f;*/
 	AddObject(myFish);
 }
 
