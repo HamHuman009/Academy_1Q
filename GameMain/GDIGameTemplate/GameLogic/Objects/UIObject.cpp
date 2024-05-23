@@ -440,15 +440,7 @@ void UIInputField::Update(float delta)
 		}
 
 		if (Input::IsKeyDown('\r')) {
-			inputStr[strCount] = L'\0';
-			std::wcout << inputStr << std::endl;
-
-			int strSize = WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, NULL, 0, NULL, NULL);
-			char* myName = new char[strSize];
-			WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, myName, strSize, 0, 0);
-
-			Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore });
-			//오류 가능성 있음 주의
+			EnterInput();
 		}
 	}
 	if (Input::GetMouseState().left && !Input::GetPrevMouseState().left) {
@@ -476,6 +468,19 @@ void UIInputField::Render(float alpha)
 void UIInputField::OnTrigger()
 {
 
+}
+
+void UIInputField::EnterInput()
+{
+	inputStr[strCount] = L'\0';
+	std::wcout << inputStr << std::endl;
+
+	int strSize = WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, NULL, 0, NULL, NULL);
+	char* myName = new char[strSize];
+	WideCharToMultiByte(CP_UTF8, 0, inputStr, -1, myName, strSize, 0, 0);
+
+	Game::GameManager::GetInstance()->m_Ranking->players.push_back(Ranking::r_Player{ myName , (int)Game::GameManager::GetInstance()->FinalScore });
+	//오류 가능성 있음 주의
 }
 
 void UISpeech::Init(Vector2 myPos, Gdiplus::Bitmap* myBitMap, Event* myEvent) {

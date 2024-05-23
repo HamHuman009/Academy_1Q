@@ -146,6 +146,7 @@ public:
 		E_Dec->m_isActive = false;
 		E_Volume->m_isActive = false;
 		High_Resolution_Time::SetTimeScale(1.f);
+		High_Resolution_Time::SetTimeScale2(1.f);
 	}
 };
 
@@ -170,6 +171,7 @@ public:
 		}
 		scnManager->SetCurScene(1);
 		High_Resolution_Time::SetTimeScale(1.f);
+		High_Resolution_Time::SetTimeScale2(1.f);
 	}
 };
 

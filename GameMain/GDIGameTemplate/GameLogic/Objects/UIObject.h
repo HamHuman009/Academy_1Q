@@ -258,6 +258,8 @@ public:
 	void Update(float delta) override;
 	void Render(float alpha) override;
 	void OnTrigger() override;
+
+	void EnterInput();
 	bool isInput;
 	
 private:
