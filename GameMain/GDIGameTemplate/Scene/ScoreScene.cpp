@@ -143,7 +143,7 @@ void ScoreScene::Init()
 	}
 	//게임 다시 시작하는 버튼과 이벤트
 	GameRetryEvent* e_gameRetry = new GameRetryEvent(mySound::eSoundList::Button_Use); //게임 다시 시작하는 이벤트
-	UIButton* gameRetry = new UIButton(Vector2{ 650, 600 }, e_gameRetry/*랭크 확인 이벤트 넣을 것*/, L"UI_Button_Resume", L".png");
+	UIButton* gameRetry = new UIButton(Vector2{ 650, 600 }, e_gameRetry/*랭크 확인 이벤트 넣을 것*/, L"UI_Button_Retry", L".png");
 	AddEvent(e_gameRetry);
 	AddObject(gameRetry);
 	
