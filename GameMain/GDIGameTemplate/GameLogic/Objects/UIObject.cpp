@@ -536,22 +536,22 @@ void UISpeech::GetFeedBack(Speechenum feedbackNumber, WCHAR* out)
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALTWO_Explanation_Scoop:
-		wcscpy_s(out, 49, L"Space키를 누르면 3초동안 뜰채가 물속으로 들어가는데 그때 물고기를 잡을 수 있어!");
+		wcscpy_s(out, 27, L"Space키를 누르면  물고기를 잡을 수 있어!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALTHREE_Explanation_Boss:
-		wcscpy_s(out, 57, L"아빠! 목표 물고기는 다른 물고기보다 더 예쁘게 생긴 물고기인데...어.. 잡으면 내가 더 행복해져!");
+		wcscpy_s(out, 28, L"더 예쁜 물고기도 있으면 나 더 행복할 거 같아!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALFOUR_Explanation_REMAINNINGTIME:
-		wcscpy_s(out, 60, L"아빠! 모든 스테이지에는 제한시간이 있어! 그러니까 제한시간 안에 최대한 이쁜 물고기를 많이 잡아야 해! ");
+		wcscpy_s(out, 41, L"그리고 아빠! 제한시간이 있어서 그 안에 이쁜 물고기를 빨리 잡아야 해!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
 	case TUTORIALFIVE_Explanation_CRAW:
-		wcscpy_s(out, 51, L"아빠! 가재는 아빠를 콕! 찝어서 아빠가 만들어줘서 물고기를 더 잘 잡을 수 있게 해줘! ");
+		wcscpy_s(out, 37, L"또 가재는 아빠를 콕! 찝어서 아빠가 다시 정신을 차리게 도와줘!");
 		isTutorial = true;
 		High_Resolution_Time::SetTimeScale2(0.f);
 		break;
