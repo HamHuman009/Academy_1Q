@@ -20,7 +20,8 @@ namespace mySound
 		Effect2 = 2,
 		Effect3 = 3,
 		Voice = 4,
-		Size = 5
+		Scoop = 5,
+		Size = 6
 	};
 
 	enum class eSoundList

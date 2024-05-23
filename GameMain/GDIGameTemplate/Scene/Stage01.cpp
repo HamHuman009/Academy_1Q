@@ -205,7 +205,7 @@ void Stage01::Init()
 	Fish* myFish;
 	myFish = new Fish(L"CrawFish", 40.f, 3.5f, L"CrawFish_01_Anim_00.png", CRM, L".png", 4.f, 5.f, 23.f, 23.f, true);
 	myFish->CrawAppearEvent = e_feedBack8;
-	myFish->m_pos = { -670.f, float(rand() % 720) };
+	myFish->m_pos = { -600, float(rand() % 720) };
 	AddObject(myFish);
 	colliderManager->PushCollider(myFish->m_collider, TYPE::FISH);
 	for (int i = 0; i < 3; i++) {
