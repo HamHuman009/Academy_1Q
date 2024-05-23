@@ -39,7 +39,9 @@ namespace Game
 		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing1, false, "Sound_Fish breathing_01-1.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing2, false, "Sound_Fish breathing_01-2.wav");
 		SMInstance->LoadMusic(mySound::eSoundList::Fish_breathing3, false, "Sound_Fish breathing_01-3.wav");
-		
+		SMInstance->LoadMusic(mySound::eSoundList::Anger_Sound_Start,false,"Sound_Anger_Sound_01-3.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Anger_Sound_End, false, "Sound_Anger_Sound_02-3.wav");
+		SMInstance->LoadMusic(mySound::eSoundList::Scooper_Broken, false, "Sound_Scooper Broken_01-1.wav");
 		SMInstance->SetVolumeAll(mVolume);
 		
 		

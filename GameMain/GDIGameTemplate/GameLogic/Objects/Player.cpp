@@ -209,6 +209,7 @@ void Player::ScoopUp(float delta)
 							if (feedbackEvent2_ifCrawCaptureScoreOne != nullptr)
 								feedbackEvent2_ifCrawCaptureScoreOne->OnTrigger();
 						}
+						mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Anger_Sound_Start,mySound::eSoundChannel::Voice);
 						fishs[i]->parent->OnTrigger();
 						cnt--;
 						SoberUp();
@@ -306,7 +307,8 @@ void Player::SoberUp()
 }
 
 void Player::CancelSoberUp()
-{
+{	
+	mySound::SoundManager::GetInstance()->PlayMusic(mySound::eSoundList::Anger_Sound_End, mySound::eSoundChannel::Voice);
 	isAwake = false;
 	awakeTime = 0.f;
 }
