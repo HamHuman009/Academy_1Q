@@ -360,6 +360,7 @@ public:
 	}
 };
 
+
 class DialogMessageEvent : public Event {
 public:
 	DialogMessageEvent* dialogEvent;
@@ -393,3 +394,4 @@ public:
 		inEvent->Init(2.f);
 	}
 };
+
