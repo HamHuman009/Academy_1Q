@@ -22,6 +22,15 @@ void ScoreScene::Init()
 	_wRank.append(std::to_wstring(playerRank));
 
 	CResourceManager* CRM = CResourceManager::GetInstance();
+
+	UIImage* myBackGround = new UIImage();
+	Gdiplus::Bitmap* waterBack = CRM->LoadBitmapResouce(L"waterImage", L"Water.png");
+	myBackGround->Init(waterBack, { 640.f, 360.f });
+	UIBackGround* myUPBackGround = new UIBackGround();
+	myUPBackGround->Init(L"물결+그림자_00.png", CRM);
+	AddObject(myBackGround);
+	AddObject(myUPBackGround);
+
 	Gdiplus::Bitmap* myBitmap = CRM->LoadBitmapResouce(L"UI_Rank", L"UI_Window_scorecount_Rank_Window_01.png");
 	UIImage* myBack = new UIImage(); // 객체 테스트 
 	myBack->Init(myBitmap, { 640.f,360.f });
@@ -39,30 +48,44 @@ void ScoreScene::Init()
 	Gdiplus::Bitmap* nonNameTextImg = CRM->LoadBitmapResouce(L"nonNameText", L"다음엔더많이잡아줘.png");
 	Gdiplus::Bitmap* nameBoxTextImg = CRM->LoadBitmapResouce(L"nameBoxText", L"아빠 이름이 뭐였지__.png");
 
+	//우리아빠 점수는 + 점수 텍스트
 	UIImage* scoreBoxBack = new UIImage();
-	scoreBoxBack->Init(scoreBoxBackImg, { 640.f,140.f });
+	scoreBoxBack->Init(scoreBoxBackImg, { 640.f,180.f });
 	UIImage* scoreBoxText = new UIImage(); 
-	scoreBoxText->Init(scoreBoxTextImg, { 640.f,120.f });
+	scoreBoxText->Init(scoreBoxTextImg, { 640.f,160.f });
+
+	//~등 아빠야
 	UIImage* rankText = new UIImage();
-	rankText->Init(rankTextImg, { 550.f,260.f });
+	rankText->Init(rankTextImg, { 550.f, 287.f });
+	
+	//순위따라 바뀌는 창
 	UIImage* rankSetText = new UIImage();
 	UIImage* nonRankSetText = new UIImage();
+
+	//아빠이름이 뭐였지
 	UIImage* nameBoxBack = new UIImage();
-	nameBoxBack->Init(nameBoxBackImg, { 640.f,350.f });
+	nameBoxBack->Init(nameBoxBackImg, { 640.f,370.f });
 	UIImage* nameBoxText = new UIImage();
-	nameBoxText->Init(nameBoxTextImg, { 640.f,350.f });
+	nameBoxText->Init(nameBoxTextImg, { 640.f,370.f });
 
 
-	
 	UIDialog* myScore = new UIDialog();
 	wcscpy_s(_scoreStr, 255, _wScore.c_str());
+
 
 	UIDialog* myRank = new UIDialog();
 	wcscpy_s(_rankStr, 255, _wRank.c_str());
 
+	// 점수
+	myScore->Init(Vector2{ 600.f,175.f }, Vector2{ 120.f, 70.f }, _scoreStr, 40);
+
+	// 등수
+	myRank->Init(Vector2{ 410.f,255.f }, Vector2{ 120.f, 60.f }, _rankStr, 40);
+
+	// 이름 인풋
+	UIInputField* myInputField = new UIInputField(Vector2{ 820.f, 470.f }, 500.f, 100.f);
+	myInputField->Init();
 	
-	myScore->Init(Vector2{ 600.f,135.f }, Vector2{ 120.f, 70.f }, _scoreStr, 40);
-	myRank->Init(Vector2{ 410.f,225.f }, Vector2{ 120.f, 60.f }, _rankStr, 40);
 
 	AddObject(scoreBoxBack);
 	AddObject(scoreBoxText);
@@ -71,49 +94,53 @@ void ScoreScene::Init()
 	{
 	case 1:
 		_wRank.append(std::to_wstring(playerRank));
-		rankSetText->Init(rankSet1Img, { 800.f,230.f });
+		rankSetText->Init(rankSet1Img, { 780.f,257.f });
 		AddObject(rankText);
 		AddObject(rankSetText);
 		AddObject(nameBoxBack);
 		AddObject(nameBoxText);
 		AddObject(myRank);
+		AddObject(myInputField);
 		break;
 	case 2:
 	case 3:
 		_wRank.append(std::to_wstring(playerRank));
-		rankSetText->Init(rankSet2Img, { 800.f,230.f });
+		rankSetText->Init(rankSet2Img, { 780.f,256.f });
 		AddObject(rankText);
 		AddObject(rankSetText);
 		AddObject(nameBoxBack);
 		AddObject(nameBoxText);
 		AddObject(myRank);
+		AddObject(myInputField);
 		break;
 	case 4:
 	case 5:
 	case 6:
 	case 7:
 		_wRank.append(std::to_wstring(playerRank));
-		rankSetText->Init(rankSet3Img, { 800.f,230.f });
+		rankSetText->Init(rankSet3Img, { 765.f,257.f });
 		AddObject(rankText);
 		AddObject(rankSetText);
 		AddObject(nameBoxBack);
 		AddObject(nameBoxText);
 		AddObject(myRank);
+		AddObject(myInputField);
 		break;
 	case 8:
 	case 9:
 	case 10:
 		_wRank.append(std::to_wstring(playerRank));
-		rankSetText->Init(rankSet4Img, { 800.f,230.f });
+		rankSetText->Init(rankSet4Img, { 800.f,254.f });
 		AddObject(rankText);
 		AddObject(rankSetText);
 		AddObject(nameBoxBack);
 		AddObject(nameBoxText);
 		AddObject(myRank);
+		AddObject(myInputField);
 		break;
 	default:
-		rankSetText->Init(rankSet5Img, { 800.f,230.f });
-		nonRankSetText->Init(nonNameTextImg, { 800.f,230.f });
+		rankSetText->Init(rankSet5Img, { 650.f,350.f });
+		nonRankSetText->Init(nonNameTextImg, { 630.f,350.f });
 		AddObject(rankSetText);
 		AddObject(nonRankSetText);
 		break;
@@ -123,12 +150,8 @@ void ScoreScene::Init()
 	
 
 	//랭크 등록->다시하기로
-	UIButton* inRank = new UIButton(Vector2{ 250,600 }, nullptr/*랭크 등록 이벤트 넣을 것*/, L"UI_Button_scorecount_InRank", L".png");
+	UIButton* inRank = new UIButton(Vector2{ 340 ,565 }, nullptr/*랭크 등록 이벤트 넣을 것*/, L"UI_Button_scorecount_InRank", L".png");
 	AddObject(inRank);
-
-	UIInputField* myInputField = new UIInputField(Vector2{ 810.f,480.f }, 500.f, 100.f);
-	myInputField->Init();
-	AddObject(myInputField);
 
 	ButtonOnTriggerAndActiveFalseEvent* e_inRank = new ButtonOnTriggerAndActiveFalseEvent(inRank, myInputField);
 	AddEvent(e_inRank);
@@ -137,7 +160,7 @@ void ScoreScene::Init()
 
 	//게임 다시 시작하는 버튼과 이벤트
 	GameRetryEvent* e_gameRetry = new GameRetryEvent(mySound::eSoundList::Button_Use); //게임 다시 시작하는 이벤트
-	UIButton* gameRetry = new UIButton(Vector2{ 650, 600 }, e_gameRetry/*랭크 확인 이벤트 넣을 것*/, L"UI_Button_Retry", L".png");
+	UIButton* gameRetry = new UIButton(Vector2{ 640, 565 }, e_gameRetry/*랭크 확인 이벤트 넣을 것*/, L"UI_Button_Retry", L".png");
 	AddEvent(e_gameRetry);
 	AddObject(gameRetry);
 	
@@ -146,7 +169,7 @@ void ScoreScene::Init()
 	
 	//메인 메뉴로 가는 버튼과 이벤트
 	RetryEvent* e_mainMenu = new RetryEvent(mySound::eSoundList::Button_Use);
-	UIButton* mainMenuBtn = new UIButton(Vector2{ 1050,600 }, e_mainMenu, L"UI_Button_MainMenu", L".png");
+	UIButton* mainMenuBtn = new UIButton(Vector2{ 940 ,565 }, e_mainMenu, L"UI_Button_MainMenu", L".png");
 	AddEvent(e_mainMenu);
 	AddObject(mainMenuBtn);
 }

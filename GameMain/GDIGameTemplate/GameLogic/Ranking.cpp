@@ -48,7 +48,7 @@ void Ranking::loadRankings()
     while (file >> name >> score) {
         players.push_back(r_Player(name, score));
         rank++;
-        if (rank == 10)
+        if (rank > 10)
         {
             break;
         }

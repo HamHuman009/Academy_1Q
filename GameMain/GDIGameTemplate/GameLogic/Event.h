@@ -5,6 +5,7 @@
 #include "../Scene/CScene.h"
 #include "../System/TimeSystem.h"
 #include "../System/SoundSystem.h"
+#include "../GameLogic/Objects/KeyInput.h"
 
 class Event {
 protected:
