@@ -119,6 +119,20 @@ void Stage02::Init()
 	e_resume->OnTrigger();
 	m_Player->pauseEvent = e_pause;
 
+	pauseBack->Init(pauseBackImage, Vector2{ 500.f,400.f });
+	pauseBack->alpha = 0.5f;
+
+	pauseBack->m_isActive = false;
+	resume->m_isActive = false;
+	retry->m_isActive = false;
+	exit->m_isActive = false;
+
+	b_Plus->m_isActive = false;
+	b_Minus->m_isActive = false;
+	e_Plus->m_isActive = false;
+	e_Minus->m_isActive = false;
+
+	myVoL->m_isActive = false;
 
 	SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog3);
 	AddEvent(e_nextScn);

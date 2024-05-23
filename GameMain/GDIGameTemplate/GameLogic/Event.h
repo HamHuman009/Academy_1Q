@@ -306,7 +306,7 @@ class BGSound_Minus : public Event
 public:
 	void OnTrigger() override
 	{
-		if (Game::GameManager::GetInstance()->effectVolume >= 0.f)
+		if (Game::GameManager::GetInstance()->mVolume > 0.1f)
 		{
 			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->mVolume -= 0.1f, (int)mySound::eSoundChannel::BGM);
 		}
@@ -331,7 +331,7 @@ public:
 
 	void OnTrigger() override
 	{
-		if (Game::GameManager::GetInstance()->effectVolume >= 0.f)
+		if (Game::GameManager::GetInstance()->effectVolume > 0.1f)
 		{
 			m_SoundManager->SetVolume(Game::GameManager::GetInstance()->effectVolume -= 0.1f, (int)mySound::eSoundChannel::Effect);
 		}

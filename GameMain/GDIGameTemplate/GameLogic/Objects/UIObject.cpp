@@ -743,11 +743,11 @@ void UIVolume::Update(float delta)
 {
 	float backv = Game::GameManager::GetInstance()->mVolume * 10.f;
 	float effectv = Game::GameManager::GetInstance()->effectVolume * 10.f;
-	if (backv > 10.f && effectv > 10.f)
+	/*if (backv > 10.f && effectv > 10.f)
 	{
 		backv = 10.f;
 		effectv = 10.f;
-	}
+	}*/
 	swprintf(b_str, 20, L"%.f", backv);
 	swprintf(e_str, 20, L"%.f", effectv);
 }
