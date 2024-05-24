@@ -116,13 +116,13 @@ void Player::movePlayer(float delta)
 	if (Input::IsKey('W')) {
 		moveDirection += isAwake ? Vector2(0.f, -1.f) : up;
 	}
-	else if (Input::IsKey('S')) {
+	if (Input::IsKey('S')) {
 		moveDirection += isAwake ? Vector2(0.f, 1.f) : down;
 	}
 	if (Input::IsKey('A')) {
 		moveDirection += isAwake ? Vector2(-1.f, 0.f) : left;
 	}
-	else if (Input::IsKey('D')) {
+	if (Input::IsKey('D')) {
 		moveDirection += isAwake ? Vector2(1.f, 0.f) : right;
 	}
 	if(moveDirection != Vector2(0.f, 0.f))
