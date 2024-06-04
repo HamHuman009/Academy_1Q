@@ -124,7 +124,11 @@ void StartScene::Init()
 	UIDialog* scoreDialog[10];
 	MoveObject* moveRank[10];
 	MoveObject* moveScore[10];
-	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+
+	int tempint = Game::GameManager::GetInstance()->m_Ranking->players.size();
+	tempint = tempint > 10 ? 10 : tempint;
+
+	for (int i = 0; i < tempint; i++) {
 
 		Ranking::r_Player temp = Game::GameManager::GetInstance()->m_Ranking->players[i];
 		int plen = strlen(temp.name.c_str());
@@ -190,11 +194,13 @@ void StartScene::Init()
 	AddObject(controll);
 	AddObject(exit);
 	AddObject(rankBoard);
-	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+	
+
+	for (int i = 0; i < tempint; i++) {
 		AddObject(rankDialog[i]);
 		AddObject(moveRank[i]);
 	}
-	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+	for (int i = 0; i < tempint; i++) {
 		AddObject(scoreDialog[i]);
 		AddObject(moveScore[i]);
 	}
