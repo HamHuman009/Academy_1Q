@@ -62,6 +62,7 @@ void StartScene::Init()
 	talkBarSpace->Init(b_talkBarSpace, { 970 + (99 / 2), 550 + (30 / 2) });
 	talkBarSpace->m_isActive = false;
 
+	
 	//게임 방법
 	Gdiplus::Bitmap* howToPlayImage = CR->LoadBitmapResouce(L"HowToPlay", L"UI_Image_ToMoveImage_Final.png");
 	UIImage* howToPlay = new UIImage();
@@ -72,17 +73,6 @@ void StartScene::Init()
 	myHow->howToSpacebar = talkBarSpace;
 	
 
-
-	/*UIButton* gameStartButton = new UIButton(Vector2{70 + (200 / 2),330 + (50 / 2)}, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // 객체 테스트
-	//게임 방법 버튼
-	UIButton* controll = new UIButton(Vector2{ 70 + (200 / 2),450 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
-
-	//종료버튼
-	UIButton* exit = new UIButton(Vector2{ 70 + (200 / 2),570 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");*/
-
-	//시작버튼 
-	//SelectScnEvent* e_nextScn = new SelectScnEvent((UINT)SceneType::Dialog1,mySound::eSoundList::Button); // 씬전환 이벤트 테스트 버튼
-
 	UIButton* gameStartButton = new UIButton(Vector2{ 80 + (200 / 2),520 + (50 / 2) }, e_nextScn, L"UI_Button_Title_StartGame", L".png"); // 객체 테스트
 	//게임 방법 버튼
 	UIButton* controll = new UIButton(Vector2{ 270 + (200 / 2),520 + (50 / 2) }, myHow, L"UI_Button_Title_ToMove", L".png");
@@ -90,6 +80,10 @@ void StartScene::Init()
 	//종료버튼
 	UIButton* exit = new UIButton(Vector2{ 460 + (200 / 2),520 + (50 / 2) }, e_exit, L"UI_Button_Title_GameOver", L".png");
 	
+	myHow->start = gameStartButton;
+	myHow->howto = controll;
+	myHow->exit = exit;
+
 
 	//랭크보드
 	scoreRect = { 400,200,800,800 };
@@ -124,7 +118,10 @@ void StartScene::Init()
 	UIDialog* scoreDialog[10];
 	MoveObject* moveRank[10];
 	MoveObject* moveScore[10];
-	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+
+	int renksize = Game::GameManager::GetInstance()->m_Ranking->players.size() > 10 ? 10 : Game::GameManager::GetInstance()->m_Ranking->players.size();
+
+	for (int i = 0; i < renksize; i++) {
 
 		Ranking::r_Player temp = Game::GameManager::GetInstance()->m_Ranking->players[i];
 		int plen = strlen(temp.name.c_str());
@@ -190,11 +187,11 @@ void StartScene::Init()
 	AddObject(controll);
 	AddObject(exit);
 	AddObject(rankBoard);
-	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+	for (int i = 0; i < renksize; i++) {
 		AddObject(rankDialog[i]);
 		AddObject(moveRank[i]);
 	}
-	for (int i = 0; i < Game::GameManager::GetInstance()->m_Ranking->players.size(); i++) {
+	for (int i = 0; i < renksize; i++) {
 		AddObject(scoreDialog[i]);
 		AddObject(moveScore[i]);
 	}

@@ -250,6 +250,10 @@ class HowToEvent : public Event {
 public:
 	UIImage* howToImg;
 	UIImage* howToSpacebar;
+	UIButton* start;
+	UIButton* howto;
+	UIButton* exit;
+
 
 	HowToEvent(mySound::eSoundList mySound) {
 		m_Sound = mySound;
@@ -264,20 +268,17 @@ public:
 		if (Input::IsKey('\1') == true) {
 			howToImg->m_isActive = true;
 			howToSpacebar->m_isActive = true;
+			start->m_isActive = false;
+			howto->m_isActive = false;
+			exit->m_isActive = false;
 		}
 		if (Input::IsKeyDown(' ') == true) {
 			howToImg->m_isActive = false;
 			howToSpacebar->m_isActive = false;
+			start->m_isActive = true;
+			howto->m_isActive = true;
+			exit->m_isActive = true;
 		}
-
-		/*if (howToImg->m_isActive == true) {
-			howToImg->m_isActive = false;
-			howToSpacebar->m_isActive = false;
-		}
-		else {
-			howToImg->m_isActive = true;
-			howToSpacebar->m_isActive = true;
-		}*/
 
 	}
 };
